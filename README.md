@@ -8,6 +8,7 @@ Dashboard ยอดขายและ Booking ที่ดึงข้อมู�
 | ไฟล์ | หน้าที่ |
 |---|---|
 | `index.html` | ตัว Dashboard ทั้งหมด (HTML + CSS + JS ในไฟล์เดียว) |
+| `manifest.webmanifest`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | ไอคอนเมื่อกด “เพิ่มไปยังหน้าจอโฮม” บนมือถือ |
 | `.nojekyll` | บอก GitHub Pages ให้เสิร์ฟไฟล์ตรง ๆ ไม่ต้องแปลงด้วย Jekyll |
 | `README.md` | ไฟล์นี้ |
 
