@@ -1,4 +1,4 @@
-# Prospect Sales Dashboard
+# ONE Surgery Sales Dashboard By Hambg.
 
 Dashboard ยอดขายและ Booking ที่ดึงข้อมูลสดจาก Google Sheet
 (ชีท `Prospect MMM YYYY` ทุกเดือน และชีท `Input Revenue`)
