@@ -1,4 +1,4 @@
-# ONE Surgery Sales Dashboard By Hambg.
+# ONE Surgery – Ads & Sales Dashboard By Hambg.
 
 Dashboard ยอดขายและ Booking ที่ดึงข้อมูลสดจาก Google Sheet
 (ชีท `Prospect MMM YYYY` ทุกเดือน และชีท `Input Revenue`)
@@ -75,3 +75,14 @@ GitHub Pages จะอัปเดตเองภายใน 1–2 นาที
 | `[` `]` | เปลี่ยนหน้า |
 | `D` | โหมดมืด/สว่าง |
 | `/` | ค้นหาลูกค้า |
+
+## เมนู Ads Spend (Meta Ads)
+
+อ่านข้อมูลจาก Google Sheet “Ads Meta ONE - Hambg” (แท็บ Meta_Ads)
+ชีทนี้ต้องแชร์แบบ **ทุกคนที่มีลิงก์ – ผู้มีสิทธิ์อ่าน** เช่นเดียวกับชีท Prospect
+เปลี่ยนไฟล์หรือแท็บได้ที่ ⚙ ตั้งค่า › “Google Sheet ของ Meta Ads” (วางลิงก์ที่มี #gid=… ได้เลย)
+
+## เมนู Ads × Booking
+
+เปรียบเทียบค่าโฆษณาและจำนวนข้อความกับ Booking จากชีท Prospect
+(ต้นทุนต่อ Booking, แชท → Booking, Booking → WIN, ต้นทุนต่อ WIN) พร้อมกราฟเปรียบเทียบรายสัปดาห์ (จ.–อา. 7 วัน)
