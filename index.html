@@ -86,7 +86,10 @@ button{cursor:pointer;border:0;background:none}
 body.collapsed .layout{grid-template-columns:68px 1fr}
 .side{position:sticky;top:70px;align-self:start;height:calc(100vh - 86px);display:flex;flex-direction:column}
 .nav{position:relative;background:var(--card);border-radius:var(--r-lg);padding:8px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.side-label{font-size:12px;font-weight:500;letter-spacing:.02em;color:var(--muted);padding:0 12px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.collapsed .side-label{font-size:9.5px;padding:0 0 5px;text-align:center}
 .side-label2{margin-top:14px}
+#nav3 .nav-thumb{transition:transform .5s var(--ease),height .5s var(--ease),opacity .35s var(--ease)}
 #nav2 .nav-thumb{transition:transform .5s var(--ease),height .5s var(--ease),opacity .35s var(--ease)}
 .nav-thumb{position:absolute;left:8px;right:8px;top:0;height:0;border-radius:13px;background:var(--pgrad);box-shadow:var(--shadow-p);transition:transform .5s var(--ease),height .5s var(--ease);z-index:0}
 .nav button{position:relative;z-index:1;display:flex;align-items:center;gap:10px;width:100%;padding:7px 8px;border-radius:13px;font-size:14.5px;font-weight:400;transition:color .35s var(--ease)}
@@ -286,6 +289,98 @@ table.dt{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
 /* Compare page */
 #p-ads{gap:12px}
 body.p-ads #filters{display:none}
+body.p-upsale #filters{display:none}
+#p-upsale{display:none}
+#p-upsale.on{display:flex;flex-direction:column;gap:12px}
+.usctl{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:flex-end;padding:14px 16px}
+.usf{display:flex;flex-direction:column;gap:6px;min-width:0}
+.usf > span{font-size:12px;color:var(--muted)}
+.usf .sel{flex:none;align-self:flex-start;width:200px;height:auto}
+.usf.grow1{flex:1 1 220px}
+.usin{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:12px;padding:6px 12px;border:1px solid var(--line)}
+.usin b{font-weight:500;color:var(--muted)}
+.usin input{border:0;background:transparent;font:inherit;font-size:22px;font-weight:600;color:var(--text);width:100%;min-width:0;outline:none;font-variant-numeric:tabular-nums}
+.usin:focus-within{border-color:var(--p1)}
+.usgap{flex:1 1 100%;font-size:13.5px;line-height:1.6}
+.usgap b{font-weight:600}
+.usbase{padding:12px 14px}
+.usbase h3,.usmix h3{margin:0 0 10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.usbase .hint,.usmix .hint{font-size:12px;color:var(--muted);font-weight:300}
+.usk{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.usk div{background:var(--soft);border-radius:12px;padding:8px 12px;min-width:0}
+.usk span{display:block;font-size:12px;color:var(--muted)}
+.usk b{display:block;font-size:clamp(16px,1.3vw,20px);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.usk small{display:block;font-size:11px;color:var(--muted)}
+.usans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.uscard{border-radius:var(--r-lg);padding:16px 18px;color:#fff;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;animation:rowIn .5s var(--ease) both}
+.uscard.a{background:linear-gradient(135deg,#535b27,#7d8741)}
+.uscard.b{background:linear-gradient(135deg,#7a5a36,#a98353);animation-delay:.06s}
+.uscard.c{background:linear-gradient(135deg,#356e6b,#5f9a8f);animation-delay:.12s}
+.uscard .q{font-size:13px;opacity:.9}
+.uscard .big{font-size:clamp(26px,2.4vw,36px);font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.uscard .from{font-size:12.5px;opacity:.9}
+.uscard .cmp{display:grid;grid-template-columns:auto 1fr auto;gap:4px 8px;align-items:center;font-size:11.5px;margin-top:4px}
+.uscard .cmp i{height:8px;border-radius:5px;background:rgba(255,255,255,.25);overflow:hidden;display:block}
+.uscard .cmp i em{display:block;height:100%;background:#fff;border-radius:5px;width:0;transition:width 1s var(--ease)}
+.uscard ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:12.5px}
+.uscard li{display:flex;justify-content:space-between;gap:10px;background:rgba(255,255,255,.12);border-radius:8px;padding:5px 9px}
+.uscard li b{font-weight:600;white-space:nowrap}
+.uscard .warn{font-size:11.5px;background:rgba(0,0,0,.18);border-radius:8px;padding:5px 9px}
+.usmix{padding:12px 16px}
+.btn-soft{font:inherit;font-size:12.5px;padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--soft);color:var(--text);cursor:pointer}
+.btn-soft:hover{border-color:var(--p1);color:var(--p1)}
+.mixwrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,1fr);gap:18px;align-items:start}
+.mixs{display:flex;flex-direction:column;gap:12px}
+.mixs label{display:grid;grid-template-columns:150px minmax(0,1fr) 110px;gap:10px;align-items:center;font-size:13px}
+.mixs label b{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.mixs label small{display:block;font-size:11px;color:var(--muted);font-weight:400}
+.mixs input[type=range]{width:100%;accent-color:var(--p1)}
+.mixr{background:var(--soft);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.mixr .tot{font-size:clamp(22px,2vw,30px);font-weight:600;font-variant-numeric:tabular-nums}
+.mixr .bar{height:12px;border-radius:7px;background:var(--line);overflow:hidden}
+.mixr .bar i{display:block;height:100%;border-radius:7px;background:var(--pgrad);transition:width .5s var(--ease)}
+.mixr .bar i.ok{background:linear-gradient(90deg,#4f7a2e,#7d8741)}
+.mixr .rows{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:12.5px}
+.mixr .rows b{font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.mixr .st{font-size:13px;font-weight:500}
+.mixr .st.ok{color:var(--up)} .mixr .st.no{color:var(--down)}
+.ushero{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:18px 20px;display:flex;flex-direction:column;gap:14px;animation:rowIn .5s var(--ease) both}
+.ushero .ttl{font-size:13px;color:var(--muted)}
+.ushero .ans{font-size:clamp(20px,2.1vw,30px);font-weight:600;line-height:1.35}
+.ushero .ans em{font-style:normal;color:#356e6b}
+.ushero .ans small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:2px}
+.rates{display:grid;grid-template-columns:150px minmax(0,1fr) 92px;gap:8px 12px;align-items:center;font-size:13px}
+.rates .tr{height:26px;border-radius:9px;background:var(--soft);overflow:hidden;position:relative}
+.rates .tr i{position:absolute;inset:0 auto 0 0;border-radius:9px;width:0;transition:width 1.1s var(--ease)}
+.rates .tr i.now{background:linear-gradient(90deg,#a98353,#c9a06b)}
+.rates .tr i.need{background:linear-gradient(90deg,#356e6b,#5f9a8f)}
+.rates b{font-size:17px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.rates .lift{grid-column:2 / -1;font-size:12.5px;color:var(--muted)}
+.rates .lift b{font-size:13px;color:#356e6b}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.flow .fb{flex:1 1 140px;background:var(--soft);border-radius:12px;padding:8px 12px;min-width:0}
+.flow .fb.key{background:linear-gradient(135deg,#356e6b,#5f9a8f);color:#fff}
+.flow .fb.res{background:linear-gradient(135deg,#535b27,#7d8741);color:#fff}
+.flow .fb span{display:block;font-size:11.5px;opacity:.85}
+.flow .fb b{display:block;font-size:clamp(16px,1.4vw,21px);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.flow .fb small{display:block;font-size:11px;opacity:.85}
+.flow .op{align-self:center;font-size:20px;color:var(--muted)}
+.usrow{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px}
+.usladder{padding:12px 14px}
+.usladder h3{margin:0 0 8px;font-size:14px;font-weight:500;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.usladder .hint{font-size:12px;color:var(--muted);font-weight:300}
+.usladder tr.cur td{background:color-mix(in srgb,#356e6b 12%,transparent);font-weight:500}
+.usalt{display:flex;flex-direction:column;gap:12px}
+.usalt .uscard{gap:6px;padding:14px 16px}
+.usalt .uscard .big{font-size:clamp(20px,1.8vw,26px)}
+@media (max-width:1180px){ .usrow{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .rates{grid-template-columns:72px minmax(0,1fr) 70px} .flow .op{display:none} .flow .fb{flex:1 1 100%} }
+.fixd{font-size:12.5px;color:var(--muted);background:var(--soft);border-radius:10px;padding:7px 12px}
+.fixd b{color:var(--text);font-weight:600}
+.usinfo{display:none;margin-left:8px;color:var(--p1);cursor:help;border-bottom:1px dotted currentColor}
+.usnote{font-size:12px;color:var(--muted);line-height:1.7;padding:0 4px}
+@media (max-width:1180px){ .usk{grid-template-columns:repeat(3,minmax(0,1fr))} .usans{grid-template-columns:1fr} .mixwrap{grid-template-columns:1fr} }
+@media (max-width:640px){ .usk{grid-template-columns:1fr 1fr} .mixs label{grid-template-columns:1fr auto} .mixs label input{grid-column:1 / -1;order:3} }
 #adsTop{display:none;flex-direction:column;gap:12px;margin-bottom:12px}
 body.p-ads #adsTop{display:flex}
 #p-adsbook .adsbook{padding:16px 18px}
@@ -552,6 +647,143 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 .svc .mini i{background:var(--c)}
 @media (max-width:1180px){ .svc-grid{grid-template-columns:repeat(4,minmax(0,1fr))} }
 @media (max-width:640px){ .svc-grid{grid-template-columns:1fr 1fr} }
+/* ===== mobile: header button bars must scroll sideways, charts get more height ===== */
+.seg{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.seg.more-r{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+.seg.more-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
+.seg.more-l.more-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.ch h3 > span:has(.seg){min-width:0;max-width:100%}
+.mobhint{display:none;font-size:11.5px;color:var(--muted);margin:-2px 0 4px;flex:none}
+@media (max-width:1180px){
+  /* later desktop rules set these grids; on tablets/phones every block stacks in one column */
+  .cbottom,.dimpage,.abtop,.adsbottom,.abwrap,.rcwrap{grid-template-columns:1fr !important}
+  .dimpage .chcard{height:360px} .dimpage .tcard{height:auto;max-height:520px}
+  #p-compare .chcard{height:380px} #p-compare .tcard{height:auto;max-height:520px}
+}
+@media (max-width:760px){
+  .ch h3 > span:has(.seg){flex:1 1 100%;margin-left:0 !important;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start}
+  .ch h3 .seg,.cbar .seg,.abbar .seg,.adsbar .seg{max-width:100%}
+  .ch h3 .hint{flex:1 1 100%;margin-left:0}
+  .abweek{height:470px}
+  .adschart{height:420px}
+  .mobhint{display:block}
+  .ch h3{flex-wrap:wrap}
+  .revk{grid-template-columns:1fr 1fr}
+  .revcard{height:auto !important}
+  .revcard .grow{flex:none;height:280px}
+  #p-trend .chcard{height:auto}
+  #p-trend .chcard > .grow{flex:none;height:300px}
+  .abk small,.revk small{white-space:normal}
+  .rcwrap{height:auto}
+  .cal{gap:4px}
+  .cal .day{padding:4px;min-height:58px}
+  .cal .dn{flex-direction:column;align-items:flex-start;gap:3px}
+  .cal .dn span{padding:0 5px;font-size:10px}
+}
+/* phones: every button bar wraps onto more lines so every option can be tapped (older iOS has no :has(), so no scroll trick) */
+@media (max-width:760px){
+  .seg{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none !important;mask-image:none !important;max-width:100%}
+  .seg.more-l,.seg.more-r{-webkit-mask-image:none !important;mask-image:none !important}
+  .ch h3 > span[style*="margin-left"]{flex:1 1 100%;margin-left:0 !important;min-width:0;max-width:100%;display:flex}
+  .usctl .seg{max-width:100%}
+}
+/* ===== computer screens: every page fits the window; long lists scroll inside their own card ===== */
+@media (min-width:1181px) and (min-height:620px){
+  /* compare */
+  /* compare: metrics on top; revenue on the left, chart + breakdown on the right */
+  #p-compare{height:var(--avail);min-height:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr)}
+  #p-compare .cbar,#p-compare .mcard{grid-column:1 / -1}
+  #p-compare .revcmp{grid-column:1;grid-row:3;display:flex;flex-direction:column;min-height:0}
+  #p-compare .rcwrap{flex:1;min-height:0;height:auto;display:flex;flex-direction:column;gap:10px}
+  #p-compare .rcwrap .tbl-wrap{flex:none;height:auto}
+  #p-compare .rcchart{flex:1;min-height:120px}
+  #p-compare .cbottom{grid-column:2;grid-row:3;min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+  #p-compare .chcard,#p-compare .tcard{height:auto;min-height:0;max-height:none}
+  #p-compare .chcard h3 > span{flex-wrap:nowrap !important}
+  #p-compare .revcmp h3 .hint{display:none}
+  /* customers: calendar on the left, search table and top customers on the right */
+  #p-customers{height:var(--avail);grid-template-columns:minmax(0,1.45fr) minmax(360px,1fr);grid-template-rows:minmax(0,1.2fr) minmax(0,1fr);gap:12px}
+  #p-customers .cal-card{grid-column:1;grid-row:1 / 3;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #p-customers .cal{flex:1;min-height:0;grid-template-rows:auto;grid-auto-rows:minmax(0,1fr)}
+  #p-customers .cal .day{min-height:0;overflow:hidden;gap:2px;padding:4px 6px}
+  #p-customers .cal .day > *{flex:none}
+  #p-customers .cal-legend{margin-top:8px;padding-top:8px}
+  #p-customers .tcard{grid-column:2;grid-row:1;height:auto;min-height:0}
+  #p-customers .custcard{grid-column:2;grid-row:2;height:auto;min-height:0}
+  #p-customers .tbl-wrap,#p-customers .cust-list{flex:1;height:auto;min-height:0}
+  /* Ads Spend: KPI row, two charts side by side, table below */
+  .adsnote{padding:5px 12px;font-size:12.5px}
+  /* Ads Spend: three full-width rows — ads chart, weekly comparison, summary table */
+  /* Ads Spend: three full-width rows that share the window height — ads chart, weekly comparison, summary table */
+  #p-ads{height:var(--avail);grid-template-rows:auto minmax(0,1fr);gap:10px}
+  #p-ads .adsbottom{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto;gap:10px;min-height:0}
+  #p-ads .adschart,#p-ads .adsweek{height:auto;min-height:0;margin:0;padding:8px 14px}
+  #p-ads .adschart h3,#p-ads .adsweek h3{margin-bottom:4px}
+  #p-ads .adsweek .abinsight{margin-bottom:2px;padding:3px 10px;font-size:12px}
+  #p-ads .adstable{max-height:min(170px,22vh) !important;min-height:0;padding:8px 14px}
+  /* the auto-update note moves into the info line of the period bar */
+  body.p-ads .adsnote{display:none}
+  body.p-ads #adsHint::before{content:"อัปเดตอัตโนมัติทุก 1 ชั่วโมง  ·  ";color:var(--p1)}
+  #p-ads .adsk .cm .b{display:none}
+  #p-ads .adsk .cm .lb{font-size:12px}
+  #p-ads .adstable h3{margin-bottom:2px}
+  #p-ads .adstable td,#p-ads .adstable th{padding-top:4px;padding-bottom:4px}
+  #p-ads .adsk{gap:8px}
+  #p-ads .adsk .cm{padding:7px 12px;min-height:0}
+  #p-ads .adsk .cm .v{font-size:clamp(15px,1.2vw,19px)}
+  #p-ads .adsk .cm .b{font-size:11px}
+  .adsnote{padding:4px 12px}
+  #p-ads .abinsight{font-size:12.5px;padding:5px 10px}
+  /* one header line per chart: drop the helper text, keep the buttons beside the title */
+  #p-ads .adschart h3 .hint,#p-ads .adsweek h3 .hint,#p-ads #awMetricTag,#p-adsbook .abweek h3 .hint{display:none}
+  #p-ads .adschart h3,#p-ads .adsweek h3{flex-wrap:nowrap}
+  #p-ads .adschart h3 > span[style],#p-ads .adsweek h3 > span[style]{min-width:0}
+  #p-ads #awMetric button,#p-ads #adsChartSvc button{padding:5px 8px;font-size:12.5px}
+  /* Ads × Booking: KPIs + funnel on top, weekly chart + table below */
+  #p-adsbook .abtablecard .tbl-wrap,#p-ads .adstable .tbl-wrap{min-height:0}
+  #p-adsbook{height:var(--avail);grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:12px}
+  #p-adsbook .abbar{grid-column:1 / -1;margin:0}
+  #p-adsbook .abtop{display:contents}
+  #p-adsbook .adsbook{grid-column:1;grid-row:2}
+  #p-adsbook .abfun{grid-column:2;grid-row:2}
+  #p-adsbook .abweek{grid-column:2;grid-row:3;height:auto;min-height:0;margin:0}
+  #p-adsbook .abtablecard{grid-column:1;grid-row:3;max-height:none;min-height:0}
+  #p-adsbook .abinsight{font-size:12.5px;padding:5px 10px}
+  #p-adsbook .fs{padding:6px 22px}
+  /* Up Sale: answer on the left, reference data and alternatives on the right */
+  #p-upsale.on{display:grid;height:var(--avail);grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:12px}
+  #p-upsale .usctl{grid-column:1 / -1;grid-row:1;padding:10px 16px}
+  #p-upsale .ushero{grid-column:1;grid-row:2 / 4;padding:14px 18px;gap:10px;overflow:auto}
+  #p-upsale .usbase{grid-column:2;grid-row:2}
+  #p-upsale .usrow,#p-upsale .usalt{display:contents}
+  #p-upsale .usalt .uscard.a{grid-column:2;grid-row:3}
+  #p-upsale .usalt .uscard.c{display:none}
+  #p-upsale .usmix{grid-column:1;grid-row:4;min-height:0;overflow:auto}
+  #p-upsale .usladder{grid-column:2;grid-row:4;min-height:0;display:flex;flex-direction:column}
+  #p-upsale .usladder .tbl-wrap{flex:1;min-height:0;overflow:auto}
+  #p-upsale .usnote{display:none}
+  #p-upsale .flow{display:none}
+  #p-upsale .ushero .ans{font-size:clamp(20px,1.8vw,27px)}
+  #p-upsale .usinfo{display:inline}
+  #p-upsale .usalt .uscard ul{display:none}
+  #p-upsale .usalt .uscard{padding:12px 16px}
+  #p-upsale .usbase{padding:10px 14px}
+  #p-upsale .usbase h3{margin-bottom:6px}
+  #p-upsale .usk div{padding:6px 10px}
+  #p-upsale .mixs label{grid-template-columns:125px minmax(0,1fr) 92px}
+  #p-upsale .mixr{padding:10px 12px;gap:6px}
+  #p-upsale .mixr .tot{font-size:clamp(20px,1.7vw,26px)}
+  #p-upsale .usladder td,#p-upsale .usladder th{padding-top:5px;padding-bottom:5px}
+  #p-upsale .usk{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #p-upsale .usin input{font-size:19px}
+  #p-upsale .mixs{gap:8px}
+}
+@media (min-width:1181px) and (max-height:880px){
+  #p-overview{gap:8px}
+  #p-overview .kpi{min-height:86px;padding:8px 13px}
+  #p-overview .svc{min-height:74px;padding-top:7px;padding-bottom:7px}
+  #p-overview .ov-sec{margin-top:2px}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -572,6 +804,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 
 <div class="layout">
   <aside class="side">
+    <div class="side-label">Sale</div>
     <nav class="nav" id="nav">
       <div class="nav-thumb" id="navThumb"></div>
       <button data-page="overview" class="on"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg></span><span class="t">ภาพรวม</span></button>
@@ -582,11 +815,16 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
       <button data-page="proc"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><span class="t">Services</span></button>
       <button data-page="customers"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span><span class="t">ลูกค้าทั้งหมด</span></button>
     </nav>
-    <div class="side-label side-label2">โฆษณา</div>
+    <div class="side-label side-label2">Ads</div>
     <nav class="nav" id="nav2">
       <div class="nav-thumb" id="navThumb2"></div>
       <button data-page="ads"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><span class="t">Ads Spend</span></button>
       <button data-page="adsbook"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></span><span class="t">Ads × Booking</span></button>
+    </nav>
+    <div class="side-label side-label2">ประมาณการยอดขาย</div>
+    <nav class="nav" id="nav3">
+      <div class="nav-thumb" id="navThumb3"></div>
+      <button data-page="upsale"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="t">Up Sale</span></button>
     </nav>
     <button class="collapse" id="collapseBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg><span>ย่อเมนู</span></button>
   </aside>
@@ -666,15 +904,42 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         <div class="adsk" id="adsKpis"></div>
         <div class="adsbottom">
           <div class="card ch flex adschart"><h3>กราฟโฆษณา <span class="hint" id="adsChartHint"></span>
-            <span style="margin-left:auto"><div class="seg" id="adsChartSvc"><i class="thumb"></i></div></span></h3><div class="grow"><canvas id="ads-chart"></canvas></div></div>
+            <span style="margin-left:auto"><div class="seg" id="adsChartSvc"><i class="thumb"></i></div></span></h3>
+            <div class="mobhint">ช่วงยาวบนมือถือจะแสดงตัวเลขบางจุดเพื่อไม่ให้ทับกัน แตะที่กราฟเพื่อดูค่าทุกวัน หรือเลือก 7 วัน / 14 วัน / รายสัปดาห์</div>
+            <div class="grow"><canvas id="ads-chart"></canvas></div></div>
           <div class="card ch flex abweek adsweek">
             <h3>เปรียบเทียบรายสัปดาห์ <span class="srcTag ads" id="awMetricTag"></span><span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span>
               <span style="margin-left:auto"><div class="seg" id="awMetric"><i class="thumb"></i></div></span></h3>
             <div class="abinsight" id="awInsight"></div>
+            <div class="mobhint">แกนล่างแสดงวันจันทร์ต้นสัปดาห์ (วัน/เดือน) · * = สัปดาห์ที่ยังไม่ครบ 7 วัน · แตะแท่งเพื่อดูรายละเอียด</div>
             <div class="grow"><canvas id="ads-week"></canvas></div>
           </div>
           <div class="card ch flex adstable"><h3><span id="adsTblTitle">สรุป</span><span class="hint" style="margin-left:auto"><div class="seg" id="adsTab"><i class="thumb"></i><button data-t="svc" class="on">แยกบริการ</button><button data-t="acct">แยกบัญชีแอด</button><button data-t="time">รายวัน/เดือน</button><button data-t="camp">แคมเปญ</button></div></span></h3><div class="tbl-wrap" id="t-ads"></div></div>
         </div>
+      </section>
+
+      <!-- Up Sale -->
+      <section class="page" id="p-upsale">
+        <div class="card usctl">
+          <div class="usf"><span>เดือนอ้างอิง (ยอดขายทั้งเดือน)</span><div class="sel"><select id="usMonth" aria-label="เดือนอ้างอิง"></select></div></div>
+          <div class="usf"><span>ยอดขายและ Booking ที่ใช้อ้างอิง</span><div class="seg" id="usSrc"><i class="thumb"></i><button data-s="all" class="on">รวมทั้งหมด</button><button data-s="new"><span class="dot" style="background:var(--p1)"></span>ลูกค้าใหม่</button><button data-s="carry"><span class="dot" style="background:var(--muted2)"></span>ยอดยกมา</button></div></div>
+          <div class="usf grow1"><span id="usTargetLbl">เป้ายอดขายเดือนถัดไป</span>
+            <div class="usin"><b>฿</b><input id="usTarget" inputmode="numeric" autocomplete="off" aria-label="เป้ายอดขาย"></div></div>
+          <div class="usf"><span>เพิ่มจากเดือนอ้างอิง</span><div class="seg" id="usQuick"><i class="thumb"></i><button data-q="0.1">+10%</button><button data-q="0.2">+20%</button><button data-q="0.3">+30%</button><button data-q="0.5">+50%</button><button data-q="1">×2</button></div></div>
+          <div class="usgap" id="usGap"></div>
+        </div>
+        <div class="ushero" id="usHero"></div>
+        <div class="card ch usbase"><h3>ข้อมูลเดือนอ้างอิง <span class="hint" id="usBaseHint"></span></h3><div class="usk" id="usBase"></div></div>
+        <div class="usrow">
+          <div class="card ch usladder"><h3>ตั้งเป้าแต่ละระดับ ต้องได้ แชท → Booking เท่าไร <span class="hint">แชท (งบแอด) และยอดต่อ Booking เท่าเดือนอ้างอิง</span></h3><div class="tbl-wrap" id="usLadder"></div></div>
+          <div class="usalt" id="usAlt"></div>
+        </div>
+        <div class="card ch usmix">
+          <h3>วางแผนผสม <span class="hint">ปรับหลายค่าพร้อมกันแล้วดูว่าถึงเป้าหรือยัง</span>
+            <span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap"><button class="btn-soft" id="usAuto">ปรับให้ถึงเป้าแบบเท่า ๆ กัน</button><button class="btn-soft" id="usReset">ใช้ค่าเดือนอ้างอิง</button></span></h3>
+          <div class="mixwrap"><div class="mixs" id="usSliders"></div><div class="mixr" id="usMixRes"></div></div>
+        </div>
+        <div class="usnote" id="usNote"></div>
       </section>
 
       <!-- Ads × Booking -->
@@ -698,6 +963,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         <div class="card ch flex abweek">
           <h3>เปรียบเทียบรายสัปดาห์ <span class="srcTag pros" id="abWeekMetric"></span><span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span></h3>
           <div class="abinsight" id="abInsight"></div>
+          <div class="mobhint">แกนล่างแสดงวันจันทร์ต้นสัปดาห์ (วัน/เดือน) · * = สัปดาห์ที่ยังไม่ครบ 7 วัน · แตะแท่งเพื่อดูรายละเอียด</div>
           <div class="grow"><canvas id="ab-week"></canvas></div>
         </div>
         <div class="card ch flex abtablecard">
@@ -1188,8 +1454,8 @@ const S = {
   rankSort:{proc:"act", sales:"act", doctor:"n"},
   cmp:{type:"month", periods:[], base:"prev", metric:"act", dim:"sales", view:"total", rmetric:"avg"}
 };
-const PAGES = ["overview","compare","trend","ads","adsbook","sales","doctor","proc","customers"];
-const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
+const PAGES = ["overview","compare","trend","ads","adsbook","upsale","sales","doctor","proc","customers"];
+const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
 const DIMS = {
   proc:{field:"proc", title:"Services", label:"Services", skipEmpty:false},
   sales:{field:"sales", title:"Sales", label:"Sales", skipEmpty:false},
@@ -1250,11 +1516,26 @@ function group(rows, field, skipEmpty){
 const totals = rows => group(rows, null)[0] || {n:0,act:0,est:0,win:0,dep:0,winAct:0,nw:0,conv:0,avg:0};
 
 /* ================= UI: period & filters ================= */
+function segEdges(seg){
+  const max = seg.scrollWidth - seg.clientWidth;
+  seg.classList.toggle("more-r", max > 2 && seg.scrollLeft < max - 2);
+  seg.classList.toggle("more-l", max > 2 && seg.scrollLeft > 2);
+}
 function segMove(seg){
+  if(!seg._edges){ seg._edges = true; seg.addEventListener("scroll", () => segEdges(seg), {passive:true}); }
+  requestAnimationFrame(() => {
+    const a = seg.querySelector("button.on");
+    if(a && seg.scrollWidth > seg.clientWidth){
+      if(a.offsetLeft < seg.scrollLeft) seg.scrollLeft = a.offsetLeft - 8;
+      else if(a.offsetLeft + a.offsetWidth > seg.scrollLeft + seg.clientWidth) seg.scrollLeft = a.offsetLeft + a.offsetWidth - seg.clientWidth + 8;
+    }
+    segEdges(seg);
+  });
   const th = seg.querySelector(".thumb"), a = seg.querySelector("button.on");
   if(!th) return;
   if(!a || !seg.offsetParent){ th.style.opacity = 0; return; }
-  th.style.opacity = 1; th.style.width = a.offsetWidth + "px"; th.style.transform = `translateX(${a.offsetLeft}px)`;
+  th.style.opacity = 1; th.style.width = a.offsetWidth + "px"; th.style.height = a.offsetHeight + "px";
+  th.style.transform = `translate(${a.offsetLeft}px, ${a.offsetTop - 4}px)`;
 }
 function segSet(seg, attr, val){ seg.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset[attr] === val)); segMove(seg); }
 $$(".seg").forEach(seg => new ResizeObserver(()=>segMove(seg)).observe(seg));
@@ -1340,13 +1621,17 @@ function fillMonthSelect(){
 }
 
 /* ================= FIT TO SCREEN ================= */
+/* height left on screen for the page that is showing (measured without its slide-in animation) */
 function fitHeight(){
-  const el = $("#pages"); if(!el) return;
-  const top = el.getBoundingClientRect().top + window.scrollY;
-  document.documentElement.style.setProperty("--avail", Math.max(520, window.innerHeight - top - 14) + "px");
+  const el = document.querySelector(".page.on") || $("#pages"); if(!el) return;
+  let top = 0; for(let n = el; n; n = n.offsetParent) top += n.offsetTop;
+  document.documentElement.style.setProperty("--avail", Math.max(480, window.innerHeight - top - 14) + "px");
 }
 window.addEventListener("resize", fitHeight);
+let lastW = window.innerWidth, rzT;
+window.addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if(Math.abs(window.innerWidth - lastW) > 60){ lastW = window.innerWidth; render(); } }, 350); });
 new ResizeObserver(fitHeight).observe($("#filters"));
+new ResizeObserver(fitHeight).observe($("#adsTop"));
 
 /* ================= KPI ================= */
 function countTo(el, val, fmt){
@@ -1494,7 +1779,9 @@ function lineChart(id, rows, hintEl){
         backgroundColor:ctx=>{ const {chart}=ctx, area=chart.chartArea; if(!area) return "transparent"; const g=chart.ctx.createLinearGradient(0,area.top,0,area.bottom); g.addColorStop(0,"rgba(94,102,45,.28)"); g.addColorStop(1,"rgba(138,106,67,0)"); return g; },
         datalabels:{...pill(p1), display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, align:"top", anchor:"end", offset:4, formatter:v=>fmtK(v)}},
       {type:"bar", label:"Booking", data:s.book, yAxisID:"y1", order:2, backgroundColor:"rgba(192,138,62,.75)", borderRadius:5, maxBarThickness:26, barPercentage:.7, categoryPercentage:.8,
-        datalabels:{display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"start", offset:2, color:"#fff", font:{size:9.5, weight:600}, formatter:v=>v}}
+        datalabels: slotPx(id, s.labels.length) < 22
+          ? {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"end", offset:1, color:"#a06f2c", font:{size:9, weight:700}, formatter:v=>v}
+          : {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"start", offset:2, color:"#fff", font:{size:9.5, weight:600}, formatter:v=>v}}
     ]},
     options:{maintainAspectRatio:false, interaction:{mode:"index", intersect:false}, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:14, right:6}},
       plugins:{legend:legendCfg(), datalabels:{display:true},
@@ -1728,13 +2015,20 @@ function renderCalendar(){
   $("#calCount").textContent = `${fmtN(rows.length)} นัดในเดือนนี้ · คลิกวันที่เพื่อดูทั้งหมด`;
   const first = addDays(start, -((start.getDay()+6)%7)), last = addDays(end, 6 - (end.getDay()+6)%7), today = iso(new Date());
   let html = DOW.map(d => `<div class="dow">${d}</div>`).join(""), i = 0;
+  // on a computer the calendar fills the window, so show as many names per day as the cell height allows
+  let maxShow = 3;
+  if(matchMedia("(min-width:1181px) and (min-height:620px)").matches){
+    const avail = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--avail")) || 700;
+    const weeks = Math.round((last - first) / 6048e5) + 1, per = (avail - 150) / weeks;
+    maxShow = Math.max(1, Math.min(4, Math.floor((per - 40) / 18)));
+  }
   for(let d = first; d <= last; d = addDays(d,1), i++){
     const x = iso(d), inMonth = d.getMonth() === start.getMonth(), list = inMonth ? (calDays.get(x) || []) : [];
-    const shown = list.slice(0, 3);
+    const shown = list.slice(0, maxShow);
     html += `<div class="day ${inMonth?"":"out"} ${x===today?"today":""}" data-d="${inMonth?x:""}" style="--i:${i}">
       <div class="dn">${d.getDate()}${list.length?`<span>${list.length}</span>`:""}</div>
       ${shown.map(r => `<div class="ev st-${STATUS_CLS[r.status]||"none"}" title="${esc(`${r.name} · ${r.proc} · ${r.doctor||"-"} · ${r.sales} · ${r.status}`)}">${esc(r.name)} <small>${esc(r.proc)}</small></div>`).join("")}
-      ${list.length > 3 ? `<div class="more">+${list.length-3} รายการ</div>` : ""}</div>`;
+      ${list.length > maxShow ? `<div class="more">+${list.length-maxShow} รายการ</div>` : ""}</div>`;
   }
   $("#cal").innerHTML = html;
   const LEG = [["WIN","ปิดการขายแล้ว"],["มัดจำ","จ่ายมัดจำแล้ว รอผ่าตัด/ชำระส่วนที่เหลือ"],["Considering","กำลังพิจารณา"],
@@ -1902,7 +2196,7 @@ function renderCmpRevenue(){
     options:{maintainAspectRatio:false, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:30}},
       plugins:{legend:{display:false}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{title:c=>cmpLabel(P[c[0].dataIndex]), label:c=>{ const pl = gp(c); return ` ${c.dataset.label}: ${fmtB(c.raw)}${pl ? `  (${pl.t})` : ""}`; }}}},
-      scales:{x:{grid:{display:false}, ticks:{font:{size:10.5}, maxRotation:0, autoSkip:false}},
+      scales:{x:{grid:{display:false}, ticks:{font:{size:10.5}, maxRotation:0, autoSkip:false, callback:arrTick(slotPx("rc-chart", P.length) < 70)}},
         y:{beginAtZero:true, grace:"25%", grid:{color:css("--line")}, ticks:{callback:v=>fmtK(v), maxTicksLimit:4}}}}
   }, "rc" + N);
 }
@@ -1935,7 +2229,8 @@ function renderCompare(){
   const split = N === 1 || S.cmp.view === "split";
   segSet($("#cmpView"), "v", split ? "split" : "total");
   $("#cmpView").style.display = N === 1 ? "none" : "";
-  const pillLbl = (getPill, show) => ({display:c => show(c) && !!getPill(c), anchor:"end", align:"end", offset:c => c.dataset.data[c.dataIndex] > 0 ? 19 : 2,
+  const cmpTight = slotPx("cmp-chart", Math.max(1, (S.cmp.view === "split" || S.cmp.periods.length === 1) ? (S.cmp.type === "month" ? 5 : 7) * S.cmp.periods.length : S.cmp.periods.length)) < 30;
+  const pillLbl = (getPill, show) => ({display:c => show(c) && !!getPill(c) ? (cmpTight ? "auto" : true) : false, anchor:"end", align:"end", offset:c => c.dataset.data[c.dataIndex] > 0 ? 19 : 2,
     color:"#fff", backgroundColor:c => (getPill(c)||{}).c, borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:10, weight:500}, formatter:(v,c) => (getPill(c)||{}).t});
   const valLbl = color => ({display:c=>c.dataset.data[c.dataIndex]>0 ? "auto" : false, anchor:"end", align:"end", offset:1, color, font:{size:10.5, weight:500}, formatter:fl});
   let labels, datasets, tipTitle, tipLabel;
@@ -1977,7 +2272,7 @@ function renderCompare(){
     options:{maintainAspectRatio:false, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:30}},
       plugins:{legend:{...legendCfg(), display:split}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{title:tipTitle, label:tipLabel}}},
-      scales:{x:{grid:{display:false}, ticks:{font:{size:10.5}, autoSkip:false, maxRotation:0}},
+      scales:{x:{grid:{display:false}, ticks:{font:{size:10.5}, autoSkip:false, maxRotation:0, callback:arrTick(slotPx("cmp-chart", labels.length) < 70)}},
         y:{beginAtZero:true, grace:"22%", grid:{color:css("--line")}, ticks:{callback:v=>m==="act"?fmtK(v):v, precision:0, maxTicksLimit:5}}}}
   }, (split ? "split" : "total") + N + S.cmp.type);
 
@@ -2019,6 +2314,8 @@ $("#cmpBase").onchange = e => { S.cmp.base = e.target.value; render(); };
 $$(".qbtn").forEach(b => b.onclick = () => { cmpLatest(+b.dataset.n); fillCmpControls(); render(); });
 
 /* ================= ADS SPEND PAGE ================= */
+/* computer layout where the page fits the window: charts drop their legends to keep the plot tall */
+const fitDesk = () => matchMedia("(min-width:1181px) and (min-height:620px)").matches;
 const ADS_MET = {
   spend:{label:"ค่าใช้จ่าย (Spend)", short:"Spend", color:"#5e662d", money:1},
   msg:{label:"จำนวนข้อความ", short:"ข้อความ", color:"#a98353"},
@@ -2139,13 +2436,16 @@ function renderAds(){
   const fmtM = (id, v) => v == null ? "-" : ADS_MET[id].money ? (ADS_MET[id].rate ? fmtB2(v) : fmtB(v)) : id === "roas" ? fmtX(v) : fmtN(v);
   const fmtTick = (id, v) => ADS_MET[id].money ? fmtK(v) : id === "roas" ? v.toFixed(1) + "x" : fmtK(v);
   const showLbl = true;
+  const aSlot = slotPx("ads-chart", keys.length), aTight = aSlot < 34;
   const datasets = sel.map((id, n) => {
     const M = ADS_MET[id], data = B.map(o => valOf(o, id)), isBar = id === barId;
     // bar values sit inside the top of each bar; line values float above their points in a small pill, so they never cover each other
     const fmtL = v => M.money ? fmtK(v) : id === "roas" ? v.toFixed(2) + "x" : fmtK(v);
     const lbl = isBar
-      ? {display:c => c.dataset.data[c.dataIndex] ? "auto" : false, anchor:"end", align:"start", offset:4, color:"#fff", font:{size:9.5, weight:600}, formatter:fmtL}
-      : {display:c => c.dataset.data[c.dataIndex] == null ? false : (sel.length <= 3 ? true : "auto"), anchor:"center", align:"top", offset:6,
+      ? (aTight
+          ? {display:c => c.dataset.data[c.dataIndex] ? "auto" : false, anchor:"end", align:"end", offset:2, rotation:-90, color:css("--text"), font:{size:9, weight:600}, formatter:fmtL}
+          : {display:c => c.dataset.data[c.dataIndex] ? "auto" : false, anchor:"end", align:"start", offset:4, color:"#fff", font:{size:9.5, weight:600}, formatter:fmtL})
+      : {display:c => c.dataset.data[c.dataIndex] == null ? false : (sel.length <= 3 && !aTight ? true : "auto"), anchor:"center", align:"top", offset:6,
           color:"#fff", backgroundColor:M.color, borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600}, formatter:fmtL};
     return isBar
       ? {type:"bar", label:M.short, data, yAxisID:"y_" + id, order:9, borderRadius:6, maxBarThickness:34, barPercentage:.7, categoryPercentage:.8,
@@ -2172,7 +2472,7 @@ function renderAds(){
   $("#adsChartHint").textContent = sel.map(id => ADS_MET[id].short).join(" · ") + "  ·  คลิกการ์ดด้านบนเพื่อเลือกค่าที่แสดง";
   upsert("ads-chart", {type:"bar", data:{labels, datasets},
     options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top:16, right:4}}, interaction:{mode:"index", intersect:false},
-      plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true},
+      plugins:{legend:{...legendCfg(), align:"end", display:!fitDesk()}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{label:c => ` ${c.dataset.label}: ${fmtM(sel[c.datasetIndex], c.raw)}`}}},
       scales}
   }, "adsM" + sel.join("-") + (byMonth ? "m" : "d"));
@@ -2286,6 +2586,10 @@ const AB_MET = {
   wrate:{label:"WIN จาก Booking", color:"#356e6b", better:"up", fmt:v => v.toFixed(1) + "%", tick:v => v.toFixed(0) + "%"},
   cpw:{label:"ต้นทุนต่อ WIN", color:"#356e6b", better:"down", fmt:v => fmtB(v), tick:v => fmtK(v)}
 };
+/* width (px) available per category on a chart; small values mean a phone screen */
+const slotPx = (id, n) => { const el = document.getElementById(id), w = el && el.parentNode ? el.parentNode.clientWidth : 800; return w / Math.max(1, n); };
+/* multi-line category labels collapse to their first line when there is no room */
+const arrTick = narrow => function(v){ const l = this.getLabelForValue(v); return narrow && Array.isArray(l) ? l[0] : l; };
 /* shared weekly bar chart: full Mon–Sun weeks, at least 8 weeks, value + % change pills, average line, best week */
 function weeklyBars(o){
   const {canvas, insightEl, label, color, better, fmt, tick, W, sig, sum} = o;
@@ -2309,25 +2613,30 @@ function weeklyBars(o){
     insightEl.innerHTML = `สัปดาห์ ${lab(lw)[0]}${lw.partial ? " (ยังไม่ครบ 7 วัน)" : ""}: ${label} <b>${fmt(lw.v)}</b>${dir}${vsAvg}${bestTxt}${pNote}`;
   }
   const colors = W.map((w,i) => i === best ? color : color + (w.partial ? "55" : "bb"));
+  // on narrow screens the value goes above the bar (dark text, turned 90°) and the % pill is left to the tooltip / summary line
+  const slot = slotPx(canvas, W.length), tight = slot < 64, mid = !tight && slot < 112;   // mid = half-width card on a computer
   upsert(canvas, {type:"bar", data:{labels:W.map(lab), datasets:[
       {type:"bar", label, data:vals, backgroundColor:colors, borderRadius:8, maxBarThickness:72, barPercentage:.7, categoryPercentage:.8, order:2,
         datalabels:{labels:{
-          value:{display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"start", offset:4, color:"#fff", font:{size:10.5, weight:600}, formatter:v => fmt(v)},
-          delta:{display:c => !!chg(c.dataIndex), anchor:"end", align:"end", offset:2, color:"#fff", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600},
+          value: tight
+            ? {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"end", offset:3, rotation:-90, color:css("--text"), font:{size:10, weight:600}, formatter:v => tick(v)}
+            : {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"start", offset:4, color:"#fff", font:{size: mid ? 10 : 10.5, weight:600}, formatter:v => mid ? tick(v) : fmt(v)},
+          delta:{display:c => !tight && !!chg(c.dataIndex), anchor:"end", align:"end", offset:2, color:"#fff", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600},
             backgroundColor:c => { const d = chg(c.dataIndex); return !d || d.good == null ? "#8c8172" : d.good ? "#4f7a2e" : "#b5473a"; },
             formatter:(v,c) => { const d = chg(c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"} ${Math.abs(d.p).toFixed(0)}%`; }}
         }}},
       {type:"line", label:"ค่าเฉลี่ย", data:W.map(() => avg), borderColor:"#8c8172", borderDash:[6,5], borderWidth:1.5, pointRadius:0, order:1, datalabels:{display:false}}
     ]},
-    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top:22}},
-      plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true},
+    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: tight ? 44 : 22}},
+      plugins:{legend:{...legendCfg(), align:"end", display:!mid && !(canvas === "ads-week" && fitDesk())}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{
           title:c => lab(W[c[0].dataIndex])[0],
           label:c => c.datasetIndex === 1 ? ` ค่าเฉลี่ย: ${avg == null ? "-" : fmt(avg)}` : ` ${label}: ${c.raw == null ? "ไม่มีข้อมูล" : fmt(c.raw)}`,
           afterBody:c => (W[c[0].dataIndex].extra || [])}}},
-      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkip:false, font:{size:10.5}}},
-        y:{beginAtZero:true, grace:"18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6}}}}
-  }, sig);
+      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkip:false, font:{size: tight ? 9.5 : 10.5},
+          callback:function(v, i){ const w = W[i]; return tight ? `${w.ws.getDate()}/${w.ws.getMonth()+1}${w.partial ? "*" : ""}` : mid ? `${w.ws.getDate()} ${TH[w.ws.getMonth()]}${w.partial ? "*" : ""}` : lab(w); }}},
+        y:{beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6}}}}
+  }, sig + (tight ? "t" : mid ? "m" : ""));
 }
 /* week starts (Mondays) covering the chosen period, at least 8 weeks, at most 26 */
 function weekStarts(a, b){
@@ -2344,7 +2653,7 @@ const AW_MET = {
   pur:{label:"การซื้อ", color:"#356e6b", better:"up", fmt:v => fmtN(v), tick:v => fmtN(v)},
   cpp:{label:"ทุน/การซื้อ", color:"#b5654a", better:"down", fmt:v => fmtB(v), tick:v => fmtK(v)},
   val:{label:"มูลค่าซื้อ", color:"#7c9a6d", better:"up", fmt:v => fmtB(v), tick:v => fmtK(v)},
-  roas:{label:"ROAS", color:"#8a6a43", better:"up", fmt:v => v.toFixed(2) + "x", tick:v => v.toFixed(1) + "x"}
+  roas:{label:"ROAS", color:"#8a6a43", better:"up", fmt:v => v.toFixed(2) + "x", tick:v => v.toFixed(2) + "x"}
 };
 function renderAdsWeekly(){
   const mk = S.awMetric in AW_MET ? S.awMetric : "spend", M = AW_MET[mk];
@@ -2468,9 +2777,167 @@ $$("#abSrc button").forEach(b => b.onclick = () => { S.abSrc = b.dataset.s; rend
 $$("#abTab button").forEach(b => b.onclick = () => { S.abTab = b.dataset.t; delete sorts["t-ab"]; rerenderAds(); });
 $$("#adsTab button").forEach(b => b.onclick = () => { S.adsTab = b.dataset.t; renderAds(); });
 
+/* ================= UP SALE: what next month needs to hit a sales target =================
+   Model (reference month = one Prospect sheet, whole month):
+     ยอดขาย = Booking × ยอดต่อ Booking
+     Booking = แชท × % แชท → Booking
+   Booking = every customer row in that month's sheet (new + carried over), e.g. ต.ค. 2026 = 134.
+   Chats come from Meta Ads messages of that month (all accounts). */
+const usNextKey = k => { const d = monthStart(k), n = new Date(d.getFullYear(), d.getMonth()+1, 1); return keyOf(n.getFullYear(), n.getMonth()); };
+const US_SRC = {all:"รวมทั้งหมด", new:"ลูกค้าใหม่", carry:"ยอดยกมา"};
+function usBase(k, src = (S.us && S.us.src) || "all"){
+  const all = (S.raw || []).filter(r => r.sheetKey === k);
+  const rows = all.filter(r => src === "all" || (src === "new" ? r.isNew : !r.isNew));
+  const book = rows.length, sales = rows.reduce((t,r) => t + r.act, 0);
+  const ads = (S.ads || []).filter(x => keyOf(x.date.getFullYear(), x.date.getMonth()) === k);
+  const chats = ads.reduce((t,x) => t + x.msg, 0), spend = ads.reduce((t,x) => t + x.spend, 0);
+  return {k, src, book, newBook:all.filter(r => r.isNew).length, carryBook:all.filter(r => !r.isNew).length, sales, chats, spend,
+    bill: book ? sales / book : 0, chatRate: chats ? book / chats : null, cpm: chats ? spend / chats : null};
+}
+const usRev = (B, m) => (B.chats ? m.chats * m.rate : m.book) * m.bill;
+const usFmtPct = (v, dp = 2) => v == null || !isFinite(v) ? "-" : (v * 100).toFixed(dp) + "%";
+const usUp = (n, b) => b ? `${n >= b ? "+" : ""}${((n / b - 1) * 100).toFixed(1)}%` : "";
+function usMonths(){ return S.sheets.map(s => s.key).filter(k => (S.raw || []).some(r => r.sheetKey === k && r.act > 0)); }
+function usDefaultMonth(){
+  const ks = usMonths(), t = new Date(), l = new Date(t.getFullYear(), t.getMonth()-1, 1), last = keyOf(l.getFullYear(), l.getMonth());
+  return ks.includes(last) ? last : ks[ks.length - 1];
+}
+function usMixReset(B){ S.us.mix = {chats:B.chats, rate:B.chatRate || 0, bill:B.bill, book:B.book}; }  // chats stay fixed: ad budget is not raised
+/* what one target needs, holding chats and value per booking at the reference month */
+function usNeed(B, T){
+  const needBook = B.bill ? T / B.bill : null;
+  const needRate = needBook != null && B.chats ? needBook / B.chats : null;
+  return {needBook, needRate, needChats: needBook != null && B.chatRate ? needBook / B.chatRate : null, needBill: B.book ? T / B.book : null};
+}
+let usNoteHtml = "";
+function renderUpsale(){
+  S.us = S.us || {};
+  const ks = usMonths();
+  if(!ks.length){ $("#usHero").innerHTML = `<div class="rcmsg">ยังไม่มีข้อมูลยอดขาย</div>`; return; }
+  if(!ks.includes(S.us.month)) S.us.month = usDefaultMonth();
+  $("#usMonth").innerHTML = ks.map(k => `<option value="${k}" ${k === S.us.month ? "selected" : ""}>${keyLabel(k)}</option>`).join("");
+  S.us.src = S.us.src || "all"; segSet($("#usSrc"), "s", S.us.src);
+  const B = usBase(S.us.month), nk = usNextKey(B.k), SN = US_SRC[B.src];
+  if(S.us.baseFor !== B.k + B.src){ S.us.baseFor = B.k + B.src; S.us.target = Math.ceil(B.sales * 1.2 / 100000) * 100000; usMixReset(B); }
+  const T = S.us.target || 0, N = usNeed(B, T);
+  $("#usTargetLbl").textContent = `เป้ายอดขาย ${keyLabel(nk)}`;
+  if(document.activeElement !== $("#usTarget")) $("#usTarget").value = fmtN(T);
+  segSet($("#usQuick"), "q", String(S.us.quick ?? ""));
+  const diff = T - B.sales;
+  $("#usGap").innerHTML = `เดือนอ้างอิง ${keyLabel(B.k)} (${SN}) ขายได้ <b>${fmtB(B.sales)}</b> จาก Booking ${fmtN(B.book)} คน · เป้า ${keyLabel(nk)} <b>${fmtB(T)}</b> → ต้อง${diff >= 0 ? "เพิ่ม" : "ลด"} <b>${fmtB(Math.abs(diff))}</b> (${usUp(T, B.sales)})`;
+
+  /* ---- hero: the answer, focused on chat → Booking ---- */
+  if(T <= B.sales){
+    $("#usHero").innerHTML = `<div class="ttl">สรุป</div><div class="ans">เป้า ${fmtB(T)} ไม่สูงกว่ายอดขาย ${keyLabel(B.k)} (${fmtB(B.sales)})<small>ใส่เป้าที่สูงขึ้น เพื่อดูว่า แชท → Booking ต้องเพิ่มขึ้นเท่าไร</small></div>`;
+  }else if(N.needRate == null){
+    $("#usHero").innerHTML = `<div class="ttl">สรุปเพื่อให้ถึงเป้า ${fmtB(T)}</div>
+      <div class="ans">ต้องได้ Booking <em>${fmtN(Math.ceil(N.needBook))} คน</em> (เดิม ${fmtN(B.book)} · ${usUp(N.needBook, B.book)})
+      <small>${keyLabel(B.k)} ไม่มีข้อมูลแชทจาก Meta Ads จึงคำนวณ % แชท → Booking ไม่ได้ · ยอดต่อ Booking เท่าเดิม ${fmtB(B.bill)}</small></div>`;
+  }else{
+    const pts = (N.needRate - B.chatRate) * 100, mx = Math.max(N.needRate, B.chatRate) * 1.1;
+    $("#usHero").innerHTML = `<div class="ttl">สรุปเพื่อให้ถึงเป้า ${fmtB(T)} ใน ${keyLabel(nk)} · อ้างอิง${SN}</div>
+      <div class="ans">แชท → Booking ต้องเพิ่มจาก ${usFmtPct(B.chatRate)} เป็น <em>${usFmtPct(N.needRate)}</em>
+        <small>เพิ่มขึ้น ${pts.toFixed(2)} จุด (${usUp(N.needRate, B.chatRate)}) · Booking ต้องได้ ${fmtN(Math.ceil(N.needBook))} คน จากเดิม ${fmtN(B.book)} คน (+${fmtN(Math.ceil(N.needBook) - B.book)} คน) โดยแชทเท่าเดิม ${fmtN(B.chats)} และยอดต่อ Booking เท่าเดิม ${fmtB(B.bill)}</small></div>
+      <div class="rates">
+        <span>ตอนนี้ (${keyLabel(B.k)})</span><div class="tr"><i class="now" data-w="${(B.chatRate / mx * 100).toFixed(1)}"></i></div><b>${usFmtPct(B.chatRate)}</b>
+        <span>ต้องได้</span><div class="tr"><i class="need" data-w="${(N.needRate / mx * 100).toFixed(1)}"></i></div><b style="color:#356e6b">${usFmtPct(N.needRate)}</b>
+        <div class="lift">ทุก 100 แชท ต้องได้ Booking <b>${(N.needRate * 100).toFixed(1)} คน</b> (เดิม ${(B.chatRate * 100).toFixed(1)} คน) · หรือทุก <b>${(1 / N.needRate).toFixed(1)} แชท ได้ 1 Booking</b> (เดิม ${(1 / B.chatRate).toFixed(1)})</div>
+      </div>
+      <div class="flow">
+        <div class="fb"><span>แชท (เท่าเดิม · งบแอดเดิม)</span><b>${fmtN(B.chats)}</b><small>ข้อความจาก Meta Ads</small></div><div class="op">×</div>
+        <div class="fb key"><span>แชท → Booking</span><b>${usFmtPct(N.needRate)}</b><small>เดิม ${usFmtPct(B.chatRate)}</small></div><div class="op">=</div>
+        <div class="fb"><span>Booking (${SN})</span><b>${fmtN(Math.ceil(N.needBook))} คน</b><small>เดิม ${fmtN(B.book)} คน</small></div><div class="op">×</div>
+        <div class="fb"><span>ยอดต่อ Booking (เท่าเดิม)</span><b>${fmtB(B.bill)}</b><small>ยอดขาย ÷ Booking</small></div><div class="op">=</div>
+        <div class="fb res"><span>ยอดขาย (${SN})</span><b>${fmtB(T)}</b><small>เดิม ${fmtB(B.sales)}</small></div>
+      </div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => $$("#usHero .tr i").forEach(e => e.style.width = e.dataset.w + "%")));
+  }
+
+  /* ---- reference month ---- */
+  $("#usBaseHint").textContent = `${keyLabel(B.k)} · ทั้งเดือน · ${SN}`;
+  const tile = (l, v, sub) => `<div><span>${l}</span><b>${v}</b><small>${sub}</small></div>`;
+  $("#usBase").innerHTML =
+    tile(`ยอดขาย (${SN})`, fmtB(B.sales), "Actual Received ทั้งเดือน") +
+    tile(`Booking (${SN})`, fmtN(B.book) + " คน", `ทั้งเดือน: ใหม่ ${fmtN(B.newBook)} · ยกมา ${fmtN(B.carryBook)}`) +
+    tile("ยอดต่อ Booking", fmtB(B.bill), "ยอดขาย ÷ Booking") +
+    tile("แชท (ข้อความจากแอด)", B.chats ? fmtN(B.chats) : "-", B.chats ? `ทุน/แชท ${fmtB2(B.cpm)}` : "ไม่มีข้อมูลแอดเดือนนี้") +
+    tile("แชท → Booking", usFmtPct(B.chatRate), B.chatRate ? `ทุก ${(1 / B.chatRate).toFixed(1)} แชท ได้ 1 Booking` : "-") +
+    tile("ค่าแอดทั้งเดือน", B.spend ? fmtB(B.spend) : "-", "คงงบเดิม ไม่เพิ่มแชท");
+
+  /* ---- target ladder ---- */
+  const steps = [...new Set([T, ...[.1, .2, .3, .5, 1].map(q => Math.round(B.sales * (1 + q) / 1000) * 1000)])].sort((x,y) => x - y);
+  const lr = steps.map(t => { const n = usNeed(B, t); return {t, inc: B.sales ? (t / B.sales - 1) * 100 : 0, book:n.needBook, rate:n.needRate, pts: n.needRate != null && B.chatRate != null ? (n.needRate - B.chatRate) * 100 : null, cur: t === T}; });
+  $("#usLadder").innerHTML = `<table class="fitw" style="width:100%"><thead><tr><th>เป้ายอดขาย</th><th class="num">เพิ่ม</th><th class="num">Booking</th><th class="num">แชท → Booking</th><th class="num">เพิ่มขึ้น</th></tr></thead><tbody>` +
+    lr.map(r => `<tr class="${r.cur ? "cur" : ""}"><td>${fmtB(r.t)}${r.cur ? " ◀ เป้า" : ""}</td><td class="num">${r.inc >= 0 ? "+" : ""}${r.inc.toFixed(0)}%</td><td class="num">${r.book == null ? "-" : fmtN(Math.ceil(r.book))}</td>
+      <td class="num"><b style="font-weight:600;color:#356e6b">${usFmtPct(r.rate)}</b></td><td class="num">${r.pts == null ? "-" : `${r.pts >= 0 ? "+" : ""}${r.pts.toFixed(2)} จุด`}</td></tr>`).join("") + `</tbody></table>`;
+
+  /* ---- other ways to reach the same target ---- */
+  $("#usAlt").innerHTML = T <= B.sales ? "" :
+    `<div class="uscard a"><div class="q">ทางเลือก: เพิ่ม<b> ยอดต่อ Booking </b>(Booking เท่าเดิม ${fmtN(B.book)} คน · งบแอดเดิม)</div>
+      <div class="big">${N.needBill == null ? "-" : fmtB(N.needBill)}</div>
+      <div class="from">${N.needBill == null ? "" : `เดิม ${fmtB(B.bill)} · เพิ่มคนละ ${fmtB(N.needBill - B.bill)} (${usUp(N.needBill, B.bill)})`}</div>
+      <ul><li><span>เช่น ขายเพิ่ม/อัปเกรดหัตถการ</span><b>${N.needBill == null || N.needBill <= B.bill ? "-" : `+${fmtB(N.needBill - B.bill)} ต่อคน`}</b></li></ul></div>
+    <div class="uscard c"><div class="q">หรือผสมกัน (แชทเท่าเดิม)</div>
+      <div class="from">เพิ่ม % แชท → Booking และยอดต่อ Booking ไปพร้อมกัน · ลองปรับใน <b>วางแผนผสม</b> ด้านล่าง หรือกดปุ่ม “ปรับให้ถึงเป้าแบบเท่า ๆ กัน”</div></div>`;
+
+  usSliders(B);
+  usNoteHtml = `วิธีคิด: ยอดขาย = Booking × ยอดต่อ Booking · Booking = แชท × % แชท → Booking · แชทคงที่เท่าเดือนอ้างอิง (ไม่เพิ่มงบแอด) ·
+    Booking และยอดขายเลือกได้ว่าใช้ รวมทั้งหมด / ลูกค้าใหม่ / ยอดยกมา ในชีทของเดือนนั้น · ยอดต่อ Booking = ยอดขาย (Actual Received) ÷ Booking ·
+    แชทมาจากจำนวนข้อความของ Meta Ads ทุกบัญชีในเดือนนั้น · ตัวเลขเป็นการประมาณจากข้อมูลเดือนเดียว ใช้เพื่อวางแผน ไม่ใช่การพยากรณ์`;
+  $("#usNote").innerHTML = usNoteHtml;
+  const ttl = $("#usHero .ttl");
+  if(ttl) ttl.insertAdjacentHTML("beforeend", ` <span class="usinfo" title="${esc($("#usNote").textContent.replace(/\s+/g, " "))}">ⓘ วิธีคิด</span>`);
+}
+function usSliders(B){
+  const m = S.us.mix, useChats = !!B.chats;
+  const defs = [
+    useChats && {k:"rate", lb:"% แชท → Booking", sub:`เดิม ${usFmtPct(B.chatRate)}`, min:0.005, max:Math.max(.1, (B.chatRate || 0) * 3), step:.0005, f:v => usFmtPct(v)},
+    !useChats && {k:"book", lb:"Booking", sub:`เดิม ${fmtN(B.book)}`, min:0, max:Math.max(10, B.book * 3), step:1, f:v => fmtN(Math.round(v))},
+    {k:"bill", lb:"ยอดต่อ Booking", sub:`เดิม ${fmtB(B.bill)}`, min:Math.round(B.bill * .5 / 500) * 500, max:Math.round(B.bill * 2.5 / 500) * 500, step:500, f:v => fmtB(v)}
+  ].filter(Boolean);
+  $("#usSliders").innerHTML = (useChats ? `<div class="fixd">แชทคงที่ <b>${fmtN(B.chats)}</b> ข้อความ (งบแอดเดิม ${fmtB(B.spend)})</div>` : "") + defs.map(d => `<label><span>${d.lb}<small>${d.sub}</small></span><input type="range" data-k="${d.k}" min="${d.min}" max="${d.max}" step="${d.step}" value="${m[d.k]}"><b id="usv-${d.k}">${d.f(m[d.k])}</b></label>`).join("");
+  $$("#usSliders input").forEach(inp => inp.oninput = () => { const d = defs.find(x => x.k === inp.dataset.k); m[d.k] = +inp.value; $("#usv-" + d.k).textContent = d.f(m[d.k]); usMixResult(B); });
+  usMixResult(B);
+}
+function usMixResult(B){
+  const m = S.us.mix, T = S.us.target || 0, rev = usRev(B, m);
+  const book = B.chats ? m.chats * m.rate : m.book, ok = rev >= T, gap = T - rev;
+  $("#usMixRes").innerHTML = `<div>ยอดขายที่คาดว่าจะได้</div><div class="tot">${fmtB(rev)}</div>
+    <div class="bar"><i class="${ok ? "ok" : ""}" style="width:${Math.min(100, T ? rev / T * 100 : 0).toFixed(1)}%"></i></div>
+    <div class="st ${ok ? "ok" : "no"}">${ok ? `ถึงเป้าแล้ว (เกิน ${fmtB(-gap)})` : `ยังขาดอีก ${fmtB(gap)} (${(T ? rev / T * 100 : 0).toFixed(0)}% ของเป้า)`}</div>
+    <div class="rows"><span>Booking</span><b>${fmtN(Math.round(book))} คน (${usUp(book, B.book)})</b>
+      ${B.chats ? `<span>แชท → Booking</span><b>${usFmtPct(m.rate)} (${usUp(m.rate, B.chatRate)})</b>` : ""}
+      ${B.chats ? `<span>แชท (คงที่)</span><b>${fmtN(B.chats)}</b>` : ""}
+      <span>เป้า</span><b>${fmtB(T)}</b></div>`;
+}
+/* raise chats, chat → Booking % and value per booking by the same factor until the target is met */
+function usAutoMix(){
+  const B = usBase(S.us.month), T = S.us.target || 0;
+  usMixReset(B);
+  const base = {...S.us.mix};
+  const at = k => usRev(B, B.chats ? {...base, rate:base.rate * k, bill:base.bill * k} : {...base, book:base.book * k, bill:base.bill * k});
+  let lo = 0.2, hi = 5; for(let i = 0; i < 60; i++){ const mid = (lo + hi) / 2; if(at(mid) < T) lo = mid; else hi = mid; }
+  const k = hi;
+  S.us.mix = B.chats ? {...base, rate:base.rate * k, bill:Math.ceil(base.bill * k / 100) * 100} : {...base, book:Math.ceil(base.book * k), bill:Math.ceil(base.bill * k / 100) * 100};
+  usSliders(B);
+  toast(B.chats ? `ปรับ % แชท→Booking และยอดต่อ Booking เพิ่มเท่ากันคนละ ${((k - 1) * 100).toFixed(1)}%` : `ปรับ Booking และยอดต่อ Booking เพิ่มเท่ากันคนละ ${((k - 1) * 100).toFixed(1)}%`);
+}
+$("#usMonth").onchange = e => { S.us.month = e.target.value; S.us.quick = ""; renderSubtitle(); renderUpsale(); };
+$("#usTarget").addEventListener("input", e => {
+  const v = +String(e.target.value).replace(/[^\d]/g, "");
+  S.us.target = v; S.us.quick = "";
+  clearTimeout(S.us._t); S.us._t = setTimeout(() => renderUpsale(), 350);
+});
+$("#usTarget").addEventListener("blur", () => { $("#usTarget").value = fmtN(S.us.target || 0); });
+$$("#usQuick button").forEach(b => b.onclick = () => { const B = usBase(S.us.month); S.us.quick = b.dataset.q; S.us.target = Math.round(B.sales * (1 + +b.dataset.q) / 1000) * 1000; renderUpsale(); });
+$("#usAuto").onclick = usAutoMix;
+$$("#usSrc button").forEach(b => b.onclick = () => { S.us.src = b.dataset.s; S.us.quick = ""; renderUpsale(); });
+$("#usReset").onclick = () => { usMixReset(usBase(S.us.month)); usSliders(usBase(S.us.month)); };
+
 /* ================= RENDER ================= */
 function renderSubtitle(){
   let txt;
+  if(S.page === "upsale"){ const k = (S.us && S.us.month) || usDefaultMonth(); $("#subtitle").textContent = k ? `อ้างอิงยอดขาย ${keyLabel(k)}  ·  เป้า ${keyLabel(usNextKey(k))}` : ""; return; }
   if(S.page === "ads" || S.page === "adsbook"){ const [a, b] = adsRange(); $("#subtitle").textContent = a && b ? `${dLabel(a)} – ${dLabel(b)}  ·  ข้อมูล Meta Ads` : "ข้อมูล Meta Ads"; return; }
   if(S.page === "compare") txt = `${S.cmp.periods.map((id,i)=>String.fromCharCode(65+i)+" "+cmpShort(id)).join("  ·  ")}  ·  เฉพาะลูกค้าใหม่ ไม่รวมยอดยกมา`;
   else{
@@ -2493,11 +2960,22 @@ function render(){
   else if(p==="customers") renderCustomers();
   else if(p==="ads") renderAds();
   else if(p==="adsbook") renderAdsBookPage();
+  else if(p==="upsale") renderUpsale();
 }
+
+/* charts decide label placement from their width when drawn; redraw them when the screen width changes (rotation, split view) */
+(() => {
+  let w0 = innerWidth, t;
+  addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => {
+    if(Math.abs(innerWidth - w0) < 40) return; w0 = innerWidth;
+    Object.keys(charts).forEach(k => { try{ charts[k].destroy(); }catch(e){} delete charts[k]; });
+    render();
+  }, 250); });
+})();
 
 /* ================= NAV ================= */
 function moveNavThumb(){
-  [["#nav","#navThumb"],["#nav2","#navThumb2"]].forEach(([n, t]) => {
+  [["#nav","#navThumb"],["#nav2","#navThumb2"],["#nav3","#navThumb3"]].forEach(([n, t]) => {
     const a = $(n + " button.on"), th = $(t); if(!th) return;
     if(!a){ th.style.opacity = 0; return; }
     th.style.opacity = 1; th.style.height = a.offsetHeight + "px"; th.style.transform = `translateY(${a.offsetTop}px)`;
@@ -2507,6 +2985,7 @@ function goPage(p){
   S.page = p;
   document.body.classList.toggle("p-compare", p==="compare");
   document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook");
+  document.body.classList.toggle("p-upsale", p==="upsale");
   $$(".nav button[data-page]").forEach(b => b.classList.toggle("on", b.dataset.page===p));
   $$(".page").forEach(s => s.classList.toggle("on", s.id==="p-"+p));
   $("#pageTitle").textContent = PAGE_TITLES[p];
@@ -2517,7 +2996,7 @@ function goPage(p){
   history.replaceState(null, "", "#" + p);
 }
 $$(".nav button[data-page]").forEach(b => b.onclick = () => goPage(b.dataset.page));
-new ResizeObserver(moveNavThumb).observe($("#nav")); new ResizeObserver(moveNavThumb).observe($("#nav2"));
+new ResizeObserver(moveNavThumb).observe($("#nav")); new ResizeObserver(moveNavThumb).observe($("#nav2")); new ResizeObserver(moveNavThumb).observe($("#nav3"));
 $("#collapseBtn").onclick = () => { document.body.classList.toggle("collapsed"); try{localStorage.setItem("pd_collapsed", document.body.classList.contains("collapsed")?"1":"");}catch(e){} setTimeout(()=>{moveNavThumb(); $$(".seg").forEach(segMove);}, 460); };
 $("#menuBtn").onclick = () => document.body.classList.toggle("nav-open");
 $("#backdrop").onclick = () => document.body.classList.remove("nav-open");
