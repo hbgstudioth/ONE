@@ -381,6 +381,112 @@ body.p-upsale #filters{display:none}
 .usnote{font-size:12px;color:var(--muted);line-height:1.7;padding:0 4px}
 @media (max-width:1180px){ .usk{grid-template-columns:repeat(3,minmax(0,1fr))} .usans{grid-template-columns:1fr} .mixwrap{grid-template-columns:1fr} }
 @media (max-width:640px){ .usk{grid-template-columns:1fr 1fr} .mixs label{grid-template-columns:1fr auto} .mixs label input{grid-column:1 / -1;order:3} }
+body.p-chat #adsGran{display:none}
+.chhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px}
+.chhead .chic{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center}
+.chhead b{font-size:16px;font-weight:600}
+.chhead .sel{flex:0 1 260px}
+.chhead .hint{margin-left:auto;font-size:12px;color:var(--muted)}
+.chk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.chk .kc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:0;box-shadow:var(--shadow);animation:rowIn .5s var(--ease) both}
+.chk .kc.hero{background:linear-gradient(135deg,#535b27,#7d8741);color:#fff;border:0}
+.chk .kc .l{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.chk .kc.hero .l,.chk .kc.hero .s{color:rgba(255,255,255,.85)}
+.chk .kc .v{font-size:clamp(20px,1.7vw,26px);font-weight:600;line-height:1.25;font-variant-numeric:tabular-nums}
+.chk .kc .s{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chk .kc select{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:7px;background:var(--soft);color:var(--text);padding:0 4px}
+.dp{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;border-radius:6px;padding:1px 6px;margin-top:3px}
+.dp.g{background:color-mix(in srgb,#4f7a2e 16%,transparent);color:#4f7a2e}
+.dp.b{background:color-mix(in srgb,#b5473a 14%,transparent);color:#b5473a}
+.dp.n{background:var(--soft);color:var(--muted)}
+.kc.hero .dp{background:rgba(255,255,255,.2);color:#fff}
+.dp em{font-style:normal;font-weight:400;color:var(--muted);margin-left:3px}
+.kc.hero .dp em{color:rgba(255,255,255,.8)}
+.chrow{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:12px}
+.chrow2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.chday,.chhour{height:320px}
+.chwait,.chspeed{max-height:320px}
+.chwait h3,.chspeed h3,.chday h3,.chhour h3,.chsrc h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chwait .hint,.chspeed .hint,.chday .hint{margin-left:auto;font-size:12px;color:var(--muted);font-weight:300}
+.wbadge{font-size:12px;font-weight:600;background:color-mix(in srgb,#b5473a 14%,transparent);color:#b5473a;border-radius:999px;padding:0 8px}
+.waitlist{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.wi{display:grid;grid-template-columns:10px minmax(0,1fr) auto auto;gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:13px}
+.wi i{width:8px;height:8px;border-radius:50%;background:#b5473a}
+.wi b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wi small{display:block;font-size:11px;color:var(--muted);font-weight:400}
+.wi .w{color:#b5473a;font-weight:600;white-space:nowrap}
+.wi a{font-size:12px;border-radius:8px;padding:3px 10px;background:var(--soft);color:var(--text);text-decoration:none}
+.wi a:hover{background:var(--p1);color:#fff}
+.waitlist .empty{color:var(--muted);font-size:13px;padding:20px 0;text-align:center}
+.peaks{flex:none;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:4px}
+.peaks span.pk{background:var(--soft);border-radius:999px;padding:2px 10px;color:var(--text)}
+.peaks span.pk b{font-weight:600}
+.peaks span.pk.top{background:color-mix(in srgb,#4f7a2e 16%,transparent);color:#4f7a2e}
+.speed{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:6px}
+.sp{display:grid;grid-template-columns:72px minmax(0,1fr) 40px 40px;gap:10px;align-items:center;font-size:13px}
+.sp .tr{height:10px;border-radius:6px;background:var(--soft);overflow:hidden}
+.sp .tr i{display:block;height:100%;border-radius:6px;width:0;transition:width 1s var(--ease)}
+.sp b{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.sp small{text-align:right;color:var(--muted);font-size:11.5px}
+.chsrc{padding:10px 14px}
+.chsrc h3{margin:0 0 8px}
+.srcwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:center}
+.adsrc .top{display:flex;justify-content:space-between;align-items:baseline;font-size:13px}
+.adsrc .top b{font-size:clamp(22px,2vw,30px);font-weight:700}
+.adsrc .tr{height:10px;border-radius:6px;background:var(--soft);overflow:hidden;margin:6px 0}
+.adsrc .tr i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#535b27,#7d8741);width:0;transition:width 1s var(--ease)}
+.adsrc small{font-size:11.5px;color:var(--muted)}
+.chlist{display:flex;flex-wrap:wrap;gap:8px}
+.chlist div{flex:1 1 220px;display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:10px;padding:6px 12px;font-size:13px;min-width:0}
+.chlist div span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chlist div b{font-weight:600}
+.chlist div small{color:var(--muted);font-size:11.5px;width:40px;text-align:right}
+.chcust{height:520px;padding:10px 14px}
+.chcust h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.chcust .hint{margin-left:auto;font-size:12px;color:var(--muted);font-weight:300}
+.wbadge.n{background:var(--soft);color:var(--text)}
+.cfind{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px;flex:none}
+.cfind input{flex:1 1 140px;min-width:0;font:inherit;font-size:13px;border:1px solid var(--line);border-radius:10px;background:var(--soft);color:var(--text);padding:6px 10px;outline:none}
+.cfind input:focus{border-color:var(--p1)}
+.cfind .seg button{padding:5px 9px;font-size:12.5px}
+.custlist{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:2px}
+.cr{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 6px;border-radius:10px;border-bottom:1px solid var(--line)}
+.cr:hover{background:var(--soft)}
+.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:600;color:#fff;background:linear-gradient(135deg,#7d8741,#535b27);font-size:14px;flex:none}
+.cr .nm{display:flex;align-items:center;gap:6px;min-width:0}
+.cr .nm b{font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr .lm{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr .mt{font-size:11px;color:var(--muted)}
+.cr .rt{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.tg{font-size:10.5px;font-weight:600;border-radius:6px;padding:0 6px;white-space:nowrap}
+.tg.w{background:color-mix(in srgb,#b5473a 14%,transparent);color:#b5473a}
+.tg.p{background:color-mix(in srgb,#356e6b 16%,transparent);color:#356e6b}
+.pvb{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:3px 10px;background:var(--card);color:var(--text);cursor:pointer;white-space:nowrap}
+.pvb:hover{background:var(--p1);color:#fff;border-color:var(--p1)}
+.custlist .empty{color:var(--muted);font-size:13px;padding:20px 0;text-align:center}
+.cvbox{width:min(640px,100%) !important;height:min(86vh,820px);max-height:none !important;display:flex;flex-direction:column;padding:0 !important;overflow:hidden}
+.cvhead{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.cvhead .cvt{flex:1;min-width:0}
+.cvhead h2{margin:0;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cvhead .d{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.cvx{font:inherit;border:0;background:var(--soft);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer}
+.cvhead a.btn-soft{text-decoration:none;white-space:nowrap}
+.cvstats{display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px;border-bottom:1px solid var(--line);font-size:12px}
+.cvstats span{background:var(--soft);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.cvstats b{color:var(--text);font-weight:600}
+.cvbody{flex:1;min-height:0;overflow:auto;padding:12px 16px;display:flex;flex-direction:column;gap:6px;background:color-mix(in srgb,var(--soft) 55%,var(--card))}
+.cvday{align-self:center;font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin:6px 0}
+.bb{max-width:78%;padding:7px 11px;border-radius:14px;font-size:13.5px;line-height:1.45;white-space:pre-wrap;word-break:break-word;position:relative}
+.bb.c{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bb.a{align-self:flex-end;background:linear-gradient(135deg,#5e662d,#7d8741);color:#fff;border-bottom-right-radius:4px}
+.bb.out{opacity:.55}
+.bb time{display:block;font-size:10px;opacity:.7;margin-top:2px;text-align:right}
+.bb .ph{background:#fff3;border-radius:4px;padding:0 3px;font-weight:600}
+.bb.c .ph{background:color-mix(in srgb,#356e6b 18%,transparent);color:#356e6b}
+.bb .empty{font-style:italic;opacity:.7}
+.cvgap{align-self:center;font-size:11px;color:#b5473a}
+@media (max-width:1180px){ .chk{grid-template-columns:repeat(4,minmax(0,1fr))} .chrow,.chrow2,.srcwrap{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .chk{grid-template-columns:1fr 1fr} .chk .kc.hero{grid-column:1 / -1} }
 #adsTop{display:none;flex-direction:column;gap:12px;margin-bottom:12px}
 body.p-ads #adsTop{display:flex}
 #p-adsbook .adsbook{padding:16px 18px}
@@ -392,8 +498,15 @@ body.p-ads #adsTop{display:flex}
 .adsnote b{margin-left:auto;font-weight:400;color:var(--muted);font-size:12.5px}
 .adsk .cm.hl{border:0;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 22px -12px var(--c1)}
 .adsk .cm.hl .lb,.adsk .cm.hl .b{color:rgba(255,255,255,.85)}
+.adsk .cm.hl .b b{color:#fff;font-weight:600}
 .adsk .cm.hl .v{font-size:clamp(18px,1.55vw,25px)}
 .adschart{height:360px}
+.adssum{flex:none;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12.5px;margin:2px 0 4px}
+.adssum .svn{font-weight:600;background:var(--soft);border-radius:999px;padding:2px 10px}
+.adssum .sc{display:inline-flex;align-items:baseline;gap:5px;color:var(--muted)}
+.adssum .sc i{width:8px;height:8px;border-radius:50%;background:var(--mc);display:inline-block;align-self:center}
+.adssum .sc b{color:var(--text);font-weight:600}
+.adssum .sc em{font-style:normal;font-size:11.5px}
 .adsbook{padding:12px 14px}
 .adsbook h3{margin:0 0 10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .adsbook h3 .hint{font-size:12px;color:var(--muted);font-weight:300}
@@ -725,6 +838,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   body.p-ads .adsnote{display:none}
   body.p-ads #adsHint::before{content:"อัปเดตอัตโนมัติทุก 1 ชั่วโมง  ·  ";color:var(--p1)}
   #p-ads .adsk .cm .b{display:none}
+  #p-ads .adsk .cm.hl .b{display:block;font-size:11.5px}
   #p-ads .adsk .cm .lb{font-size:12px}
   #p-ads .adstable h3{margin-bottom:2px}
   #p-ads .adstable td,#p-ads .adstable th{padding-top:4px;padding-bottom:4px}
@@ -778,6 +892,30 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-upsale .usin input{font-size:19px}
   #p-upsale .mixs{gap:8px}
 }
+@media (min-width:1181px) and (min-height:620px){
+  #p-chat{height:var(--avail);grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto minmax(0,1fr) minmax(0,1fr) auto;gap:10px}
+  #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
+  #p-chat .chrow{display:contents}
+  #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3}
+  #p-chat .chhour{grid-column:1;grid-row:4} #p-chat .chspeed{grid-column:2;grid-row:4}
+  #p-chat .chsrc{grid-column:1 / 3;grid-row:5}
+  #p-chat .chcust{grid-column:3;grid-row:3 / 6;height:auto;min-height:0}
+  #p-chat .srcwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+  #p-chat .chspeed .speed{justify-content:space-between;gap:0}
+  #p-chat .peaks .pl{display:none}
+  #p-chat .peaks{flex-wrap:nowrap;overflow:hidden;font-size:11.5px}
+  #p-chat .peaks span.pk{white-space:nowrap;padding:1px 8px}
+  #p-chat .chspeed .sp{font-size:12.5px}
+  #p-chat .chspeed h3,#p-chat .chhour h3,#p-chat .chwait h3,#p-chat .chday h3{margin-bottom:4px}
+  #p-chat .chsrc h3{margin-bottom:4px}
+  #p-chat .adsrc .top b{font-size:clamp(20px,1.6vw,26px)}
+  #p-chat .chrow{min-height:0}
+  #p-chat .chday,#p-chat .chhour,#p-chat .chwait,#p-chat .chspeed{height:auto;max-height:none;min-height:0}
+  #p-chat .chday h3 .hint{display:none}
+  #p-chat .usnote{display:none}
+  #p-chat .chsrc{padding:8px 14px}
+  #p-chat .chk .kc{padding:8px 12px}
+}
 @media (min-width:1181px) and (max-height:880px){
   #p-overview{gap:8px}
   #p-overview .kpi{min-height:86px;padding:8px 13px}
@@ -820,6 +958,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
       <div class="nav-thumb" id="navThumb2"></div>
       <button data-page="ads"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><span class="t">Ads Spend</span></button>
       <button data-page="adsbook"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></span><span class="t">Ads × Booking</span></button>
+      <button data-page="chat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><span class="t">Chat</span></button>
     </nav>
     <div class="side-label side-label2">ประมาณการยอดขาย</div>
     <nav class="nav" id="nav3">
@@ -906,7 +1045,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="card ch flex adschart"><h3>กราฟโฆษณา <span class="hint" id="adsChartHint"></span>
             <span style="margin-left:auto"><div class="seg" id="adsChartSvc"><i class="thumb"></i></div></span></h3>
             <div class="mobhint">ช่วงยาวบนมือถือจะแสดงตัวเลขบางจุดเพื่อไม่ให้ทับกัน แตะที่กราฟเพื่อดูค่าทุกวัน หรือเลือก 7 วัน / 14 วัน / รายสัปดาห์</div>
-            <div class="grow"><canvas id="ads-chart"></canvas></div></div>
+            <div class="adssum" id="adsChartSum"></div><div class="grow"><canvas id="ads-chart"></canvas></div></div>
           <div class="card ch flex abweek adsweek">
             <h3>เปรียบเทียบรายสัปดาห์ <span class="srcTag ads" id="awMetricTag"></span><span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span>
               <span style="margin-left:auto"><div class="seg" id="awMetric"><i class="thumb"></i></div></span></h3>
@@ -916,6 +1055,30 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           </div>
           <div class="card ch flex adstable"><h3><span id="adsTblTitle">สรุป</span><span class="hint" style="margin-left:auto"><div class="seg" id="adsTab"><i class="thumb"></i><button data-t="svc" class="on">แยกบริการ</button><button data-t="acct">แยกบัญชีแอด</button><button data-t="time">รายวัน/เดือน</button><button data-t="camp">แคมเปญ</button></div></span></h3><div class="tbl-wrap" id="t-ads"></div></div>
         </div>
+      </section>
+
+      <!-- Chat -->
+      <section class="page" id="p-chat">
+        <div class="card chhead">
+          <span class="chic">💬</span><b>แชทลูกค้า</b>
+          <div class="sel"><select id="chatPage" aria-label="เพจ"></select></div>
+          <span class="hint" id="chatHint"></span>
+        </div>
+        <div class="chk" id="chatKpis"></div>
+        <div class="chrow">
+          <div class="card ch flex chday"><h3>แชทรายวัน <span class="hint">แท่ง = แชทที่มีการคุย · เส้น = แชทใหม่</span></h3><div class="grow"><canvas id="chat-day"></canvas></div></div>
+          <div class="card ch flex chwait"><h3>รอตอบ <span class="wbadge" id="chatWaitN">0</span><span class="hint" id="chatWaitHint"></span></h3><div class="waitlist" id="chatWait"></div></div>
+        </div>
+        <div class="chrow chrow2">
+          <div class="card ch flex chhour"><h3>ช่วงเวลาที่ลูกค้าทัก <span style="margin-left:auto"><div class="seg" id="chatHourMode"><i class="thumb"></i><button data-m="hour" class="on">รายชั่วโมง</button><button data-m="wd">รายวัน</button></div></span></h3>
+            <div class="peaks" id="chatPeaks"></div><div class="grow"><canvas id="chat-hour"></canvas></div></div>
+          <div class="card ch flex chspeed"><h3>ความเร็วในการตอบ <span class="hint" id="chatSpeedHint"></span></h3><div class="speed" id="chatSpeed"></div></div>
+        </div>
+        <div class="card ch flex chcust"><h3>รายชื่อลูกค้า <span class="wbadge n" id="chatCustN">0</span><span class="hint">คุยในช่วงที่เลือก · ล่าสุดก่อน</span></h3>
+          <div class="cfind"><input id="chatFind" placeholder="ค้นหาชื่อ หรือข้อความ" autocomplete="off"><div class="seg" id="chatCustF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="wait">รอตอบ</button><button data-f="phone">มีเบอร์</button></div></div>
+          <div class="custlist" id="chatCust"></div></div>
+        <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
+        <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
       </section>
 
       <!-- Up Sale -->
@@ -1036,6 +1199,14 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 <div class="modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="dayTitle">
   <div class="card box"><h2 id="dayTitle"></h2><p class="d" id="daySub"></p><div class="tbl-wrap" id="dayList" style="max-height:60vh"></div>
     <div class="acts"><button class="btn ghost" id="dayClose">ปิด</button></div></div>
+</div>
+<div class="modal" id="chatModal" role="dialog" aria-modal="true" aria-labelledby="cvName">
+  <div class="card box cvbox">
+    <div class="cvhead"><div class="av" id="cvAv"></div><div class="cvt"><h2 id="cvName"></h2><p class="d" id="cvSub"></p></div>
+      <a class="btn-soft" id="cvLink" target="_blank" rel="noopener">เปิดแชท ↗</a><button class="cvx" id="cvClose" aria-label="ปิด">✕</button></div>
+    <div class="cvstats" id="cvStats"></div>
+    <div class="cvbody" id="cvBody"></div>
+  </div>
 </div>
 <div class="modal" id="custModal" role="dialog" aria-modal="true" aria-labelledby="custName">
   <div class="card box cbox">
@@ -1435,14 +1606,50 @@ async function fetchAds(mcp){
   if(mcp){
     const map = await loadWorkbookMcp(mcp, id);
     const rows = Object.values(map).find(rs => rs.slice(0,5).some(isAdsHeader));
+    const cr = Object.values(map).find(rs => rs.slice(0,5).some(isChatHeader));
+    if(cr){ S.chat = parseChats(cr); S.chatErr = ""; } else S.chatErr = "NOCHAT";
     const p = rows && parseAds(rows); if(!p) throw new Error("NOADS"); return p;
   }
   const url = q => cb => `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq?tqx=out:json;responseHandler:${cb}&headers=1&${q}&_=${Date.now()}`;
   const tries = [gid ? url("gid=" + encodeURIComponent(gid)) : null, url("sheet=Meta_Ads"), url("gid=0")].filter(Boolean);
+  // chat messages live in the same file (tab Chat_Messages)
+  try{ const c = parseChats(tableToRows(await jsonpCall(url("sheet=Chat_Messages"), 30000))); if(c){ S.chat = c; S.chatErr = ""; } }catch(e){ S.chatErr = "NOCHAT"; }
   for(const t of tries){
     try{ const p = parseAds(tableToRows(await jsonpCall(t, 25000))); if(p && p.length) return p; }catch(e){}
   }
   throw new Error("NOADS");
+}
+
+/* ================= CHAT (tab Chat_Messages) =================
+   Columns: วันเวลา · ช่องทาง · Page ID · ชื่อเพจ · Customer ID · ชื่อลูกค้า · ผู้ส่ง (ลูกค้า/แอดมิน) · ข้อความ · ไฟล์แนบ · Conversation ID · Message ID · ลิงก์แชท */
+const isChatHeader = r => r && r.some(c => /conversation id/i.test(c)) && r.some(c => /ผู้ส่ง/.test(c));
+function chatTime(v){
+  const t = clean(v), m = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?/);
+  if(m) return new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +(m[6]||0));
+  const g = t.match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+)(?:,(\d+))?)?\)/);
+  if(g) return new Date(+g[1], +g[2], +g[3], +(g[4]||0), +(g[5]||0), +(g[6]||0));
+  return parseDate(t);
+}
+function parseChats(rows){
+  const hi = rows.findIndex(isChatHeader); if(hi < 0) return null;
+  const H = rows[hi].map(c => clean(c).toLowerCase());
+  const col = (...k) => H.findIndex(h => k.some(x => h.includes(x)));
+  const C = {t:col("วันเวลา","date"), ch:col("ช่องทาง"), pid:col("page id"), page:col("ชื่อเพจ"), cid:col("customer id"), name:col("ชื่อลูกค้า"), from:col("ผู้ส่ง"), text:col("ข้อความ"), conv:col("conversation id")};
+  const convs = new Map();
+  for(const r of rows.slice(hi + 1)){
+    const t = chatTime(r[C.t]), id = clean(r[C.conv]) || clean(r[C.cid]); if(!t || !id) continue;
+    if(!convs.has(id)) convs.set(id, {id, name:clean(r[C.name]) || "-", page:clean(r[C.page]) || "-", pid:clean(r[C.pid]), cid:clean(r[C.cid]), ch:clean(r[C.ch]) || "-", msgs:[]});
+    const c = convs.get(id);
+    if(c.name === "-" && clean(r[C.name])) c.name = clean(r[C.name]);
+    c.msgs.push({t, c: /ลูกค้า|customer/i.test(clean(r[C.from])), text:String(r[C.text] ?? "")});
+  }
+  for(const c of convs.values()){
+    c.msgs.sort((a,b) => a.t - b.t);
+    const f = c.msgs.find(m => m.c); c.first = f ? f.t : null;
+    c.last = c.msgs[c.msgs.length - 1];
+    c.link = c.pid && c.cid ? `https://business.facebook.com/latest/inbox/all?asset_id=${c.pid}&mailbox_id=${c.pid}&selected_item_id=${c.cid}&thread_type=${/instagram/i.test(c.ch) ? "IG" : "FB"}_MESSAGE_THREAD` : "";
+  }
+  return [...convs.values()];
 }
 
 /* ================= STATE ================= */
@@ -1450,12 +1657,12 @@ const S = {
   raw:[], sheets:[], inited:false,
   mode:"months", months:new Set(), week:"", from:null, to:null, preset:"this",
   f:{proc:"", sales:"", doctor:"", status:"", src:"all"},
-  page:"overview", ads:[], adsErr:"", adsAcct:"", adsSvc:"", adsGran:"auto", adsTab:"svc", adsPreset:"month", awMetric:"spend", abMetric:"cpb", adsFrom:null, adsTo:null, adsMetrics:["spend","msg"], adsChartSvc:"", adsAt:0, search:"", custMode:"month", calMonth:"", rev:[], revErr:"", revInfo:null, revDiag:[],
+  page:"overview", ads:[], adsErr:"", adsAcct:"", adsSvc:"", adsGran:"auto", adsTab:"svc", adsPreset:"month", chat:null, chatErr:"", chatPage:"", chatDeep:10, chatHourMode:"hour", awMetric:"spend", abMetric:"cpb", adsFrom:null, adsTo:null, adsMetrics:["spend","msg"], adsChartSvc:"", adsAt:0, search:"", custMode:"month", calMonth:"", rev:[], revErr:"", revInfo:null, revDiag:[],
   rankSort:{proc:"act", sales:"act", doctor:"n"},
   cmp:{type:"month", periods:[], base:"prev", metric:"act", dim:"sales", view:"total", rmetric:"avg"}
 };
-const PAGES = ["overview","compare","trend","ads","adsbook","upsale","sales","doctor","proc","customers"];
-const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
+const PAGES = ["overview","compare","trend","ads","adsbook","chat","upsale","sales","doctor","proc","customers"];
+const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", chat:"Chat · แชทลูกค้า", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
 const DIMS = {
   proc:{field:"proc", title:"Services", label:"Services", skipEmpty:false},
   sales:{field:"sales", title:"Sales", label:"Sales", skipEmpty:false},
@@ -2396,10 +2603,10 @@ function renderAds(){
   $("#adsUpdated").textContent = S.adsAt ? `อัปเดตล่าสุด ${new Date(S.adsAt).toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"})} น.` : "";
   $("#adsHint").textContent = `ข้อมูล ${dLabel(new Date(Math.min(...ds)))} – ${dLabel(lastData)} · ${fmtN(rows.length)} แถวในช่วงนี้`;
   const K = [
-    ["spend", fmtB(T.spend), nDays ? `เฉลี่ย ${fmtB(T.spend / nDays)}/วัน` : "", "#535b27,#7d8741"],
-    ["msg", fmtN(T.msg), nDays ? `เฉลี่ย ${(T.msg / nDays).toFixed(1)}/วัน` : "", "#7a5a36,#a98353"],
+    ["spend", fmtB(T.spend), nDays ? `เฉลี่ย <b>${fmtB(T.spend / nDays)}</b>/วัน` : "", "#535b27,#7d8741"],
+    ["msg", fmtN(T.msg), nDays ? `เฉลี่ย <b>${(T.msg / nDays).toFixed(1)}</b> ข้อความ/วัน` : "", "#7a5a36,#a98353"],
     ["cpm", fmtB2(T.cpm), "Spend ÷ ข้อความ"],
-    ["pur", fmtN(T.pur), T.msg ? `${(T.pur / T.msg * 100).toFixed(1)}% ของข้อความ` : "", "#356e6b,#5f9a8f"],
+    ["pur", fmtN(T.pur), [nDays ? `เฉลี่ย <b>${(T.pur / nDays).toFixed(2)}</b>/วัน` : "", T.msg ? `${(T.pur / T.msg * 100).toFixed(1)}% ของข้อความ` : ""].filter(Boolean).join(" · "), "#356e6b,#5f9a8f"],
     ["cpp", fmtB2(T.cpp), "Spend ÷ การซื้อ"],
     ["val", fmtB(T.val), ""],
     ["roas", fmtX(T.roas), "มูลค่าการซื้อ ÷ Spend"]
@@ -2470,6 +2677,23 @@ function renderAds(){
       ticks:{callback:v => v < 0 || v > mx * 1.02 ? "" : fmtTick(id, v), maxTicksLimit:5, padding:6, color: id === barId ? css("--muted") : ADS_MET[id].color}};
   });
   $("#adsChartHint").textContent = sel.map(id => ADS_MET[id].short).join(" · ") + "  ·  คลิกการ์ดด้านบนเพื่อเลือกค่าที่แสดง";
+  /* total and daily average of each chosen value for the service shown (รวม / จมูก / ดึงหน้า …) */
+  {
+    const t = cRows.reduce((o,x) => (o.spend += x.spend, o.msg += x.msg, o.pur += x.pur, o.val += x.val, o), {spend:0, msg:0, pur:0, val:0});
+    const days = nDays || keys.length || 1;
+    const chip = id => { const M = ADS_MET[id];
+      if(M.rate){ const v = valOf(t, id); return `<span class="sc" style="--mc:${M.color}"><i></i>${M.short} <b>${fmtM(id, v)}</b><em>ทั้งช่วง</em></span>`; }
+      const avg = t[id] / days;
+      return `<span class="sc" style="--mc:${M.color}"><i></i>${M.short} รวม <b>${fmtM(id, t[id])}</b><em>เฉลี่ย ${id === "pur" ? avg.toFixed(2) : id === "msg" ? avg.toFixed(1) : fmtB(avg)}/วัน</em></span>`; };
+    $("#adsChartSum").innerHTML = `<span class="svn">${esc(S.adsChartSvc || "รวมทุกบริการ")}</span>` + sel.map(chip).join("");
+  }
+  // dashed line at the average of the bar value (per day, or per month when grouped by month)
+  if(barId){
+    const bv = B.map(o => valOf(o, barId)).filter(v => v != null), avgB = bv.length ? bv.reduce((a,v) => a + v, 0) / bv.length : null;
+    if(avgB != null) datasets.push({type:"line", label:`เฉลี่ย ${ADS_MET[barId].short}/${byMonth ? "เดือน" : "วัน"}`, data:keys.map(() => avgB), yAxisID:"y_" + barId, order:8,
+      borderColor:css("--muted"), borderDash:[6,5], borderWidth:1.4, pointRadius:0, pointHoverRadius:0, datalabels:{display:c => c.dataIndex === keys.length - 1, align:"top", anchor:"end", offset:2,
+        color:css("--muted"), font:{size:9.5, weight:600}, formatter:v => `เฉลี่ย ${fmtTick(barId, v)}`}});
+  }
   upsert("ads-chart", {type:"bar", data:{labels, datasets},
     options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top:16, right:4}}, interaction:{mode:"index", intersect:false},
       plugins:{legend:{...legendCfg(), align:"end", display:!fitDesk()}, datalabels:{display:true},
@@ -2705,7 +2929,7 @@ function renderAdsBookPage(){
   if(!h){ $("#abKpis").innerHTML = ""; $("#abFunnel").innerHTML = ""; $("#t-ab").innerHTML = `<div class="rcmsg">ไม่มีข้อมูลโฆษณา</div>`; return; }
   renderAdsBooking(h.rows, h.a, h.b, h.byMonth, h.keyOfD);
 }
-const rerenderAds = () => S.page === "adsbook" ? renderAdsBookPage() : renderAds();
+const rerenderAds = () => S.page === "adsbook" ? renderAdsBookPage() : S.page === "chat" ? renderChat() : renderAds();
 function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
   segSet($("#abTab"), "t", S.abTab || "svc");
   // new customers count on their "Date of entry"; carried-over rows count on the first day of their sheet month (same as week 1)
@@ -2934,11 +3158,209 @@ $("#usAuto").onclick = usAutoMix;
 $$("#usSrc button").forEach(b => b.onclick = () => { S.us.src = b.dataset.s; S.us.quick = ""; renderUpsale(); });
 $("#usReset").onclick = () => { usMixReset(usBase(S.us.month)); usSliders(usBase(S.us.month)); };
 
+/* ================= CHAT PAGE ================= */
+const PHONE_RE = /(?:\+?66|0)[689]\d{8}|0[2-7]\d{7}/;
+const fmtDur = ms => { const m = ms / 6e4; return m < 1 ? "<1 นาที" : m < 60 ? `${Math.round(m)} นาที` : m < 60 * 48 ? `${(m / 60).toFixed(1)} ชม.` : `${(m / 1440).toFixed(1)} วัน`; };
+function chatConvs(){ return (S.chat || []).filter(c => !S.chatPage || c.page === S.chatPage); }
+/* everything the page shows for one period [a, e) */
+function chatStats(a, e){
+  const inR = t => t >= a && t < e, deepN = +S.chatDeep || 10;
+  const o = {active:0, neu:0, cust:0, admin:0, replied:0, deep:0, phone:0, rts:[], hours:Array(24).fill(0), wd:Array(7).fill(0), dayActive:new Map(), dayNew:new Map(), ch:{}, pages:{}};
+  for(const c of chatConvs()){
+    let hasC = false, firstCin = null, nIn = 0, gotPhone = false, rep = false, wait = null;
+    for(const m of c.msgs){
+      const r = inR(m.t);
+      if(r) nIn++;
+      if(m.c){
+        if(r){
+          o.cust++; hasC = true; if(!firstCin) firstCin = m.t;
+          o.hours[m.t.getHours()]++; o.wd[(m.t.getDay() + 6) % 7]++;
+          const dk = iso(m.t); if(!o.dayActive.has(dk)) o.dayActive.set(dk, new Set()); o.dayActive.get(dk).add(c.id);
+          if(!gotPhone && PHONE_RE.test(m.text.replace(/[\s\-.()]/g, ""))) gotPhone = true;
+        }
+        if(wait == null) wait = m.t;
+      }else{
+        if(r) o.admin++;
+        if(wait != null){ if(inR(wait)) o.rts.push(m.t - wait); wait = null; }
+        if(firstCin && m.t > firstCin) rep = true;
+      }
+    }
+    if(hasC){ o.active++; if(rep) o.replied++; if(nIn > deepN) o.deep++; if(gotPhone) o.phone++; o.ch[c.ch] = (o.ch[c.ch] || 0) + 1; o.pages[c.page] = (o.pages[c.page] || 0) + 1; }
+    if(c.first && inR(c.first)){ o.neu++; const dk = iso(c.first); o.dayNew.set(dk, (o.dayNew.get(dk) || 0) + 1); }
+  }
+  const rs = [...o.rts].sort((x,y) => x - y);
+  o.median = rs.length ? rs[Math.floor(rs.length / 2)] : null;
+  o.mean = rs.length ? rs.reduce((t,v) => t + v, 0) / rs.length : null;
+  o.in15 = rs.length ? rs.filter(v => v <= 9e5).length / rs.length : null;
+  return o;
+}
+function adsMsgs(a, e){ return (S.ads || []).filter(x => x.date >= a && x.date < e && (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc)).reduce((t,x) => t + x.msg, 0); }
+/* % change pill: good = green, bad = red ("up" metrics are better when higher) */
+function dpill(cur, prev, better = "up", pct = true){
+  if(cur == null || prev == null || !isFinite(cur) || !isFinite(prev) || prev === 0) return "";
+  const d = pct ? (cur - prev) / Math.abs(prev) * 100 : cur - prev;
+  if(Math.abs(d) < 0.05) return `<span class="dp n">• 0%<em>จากช่วงก่อน</em></span>`;
+  const good = better === "up" ? d > 0 : d < 0;
+  return `<span class="dp ${good ? "g" : "b"}">${d > 0 ? "▲" : "▼"} ${Math.abs(d).toFixed(1)}%<em>จากช่วงก่อน</em></span>`;
+}
+function renderChat(){
+  const h = adsHeader();      // shared period bar (also sets the date inputs)
+  const [a0, b0] = adsRange();
+  const pages = [...new Set((S.chat || []).map(c => c.page))].sort();
+  $("#chatPage").innerHTML = `<option value="">ทุกเพจ (${pages.length})</option>` + pages.map(p => `<option value="${esc(p)}" ${p === S.chatPage ? "selected" : ""}>${esc(p)}</option>`).join("");
+  if(!(S.chat || []).length){
+    $("#chatHint").textContent = S.chatErr ? "ยังอ่านแท็บ Chat_Messages ไม่ได้ · ตรวจว่าชีท Meta Ads มีแท็บนี้และแชร์แบบทุกคนที่มีลิงก์" : "กำลังโหลด…";
+    $("#chatKpis").innerHTML = ""; return;
+  }
+  // chat data range
+  const allT = (S.chat || []).flatMap(c => [c.msgs[0].t, c.last.t]);
+  const dMin = new Date(Math.min(...allT)), dMax = new Date(Math.max(...allT));
+  const a = a0 || new Date(dMin.getFullYear(), dMin.getMonth(), dMin.getDate()), e = addDays(b0 || dMax, 1);
+  const len = e - a, pa = new Date(+a - len);
+  const C = chatStats(a, e), P = chatStats(pa, a);
+  const am = adsMsgs(a, e), pam = adsMsgs(pa, a);
+  $("#chatHint").textContent = `นับจากแท็บแชทในชีต · ข้อมูลแชท ${dLabel(dMin)} – ${dLabel(dMax)} · ตัวกรองบัญชี/บริการมีผลเฉพาะ Message จากโฆษณา`;
+  const rate = C.active ? C.replied / C.active : null, prate = P.active ? P.replied / P.active : null;
+  const deepSel = `<select id="chatDeepSel">${[5,10,20,30].map(n => `<option ${n === +S.chatDeep ? "selected" : ""}>${n}</option>`).join("")}</select>`;
+  $("#chatKpis").innerHTML = [
+    `<div class="kc hero"><div class="l">แชททั้งหมด</div><div class="v">${fmtN(C.active)}</div><div class="s">ลูกค้าทัก ${fmtN(C.active)} ห้อง</div>${dpill(C.active, P.active)}</div>`,
+    `<div class="kc"><div class="l">แชทใหม่</div><div class="v">${fmtN(C.neu)}</div><div class="s">Message จากโฆษณา (Meta) ${fmtN(am)}</div>${dpill(C.neu, P.neu)}</div>`,
+    `<div class="kc"><div class="l">ข้อความจากลูกค้า</div><div class="v">${fmtN(C.cust)}</div><div class="s">เพจตอบ ${fmtN(C.admin)} ข้อความ</div>${dpill(C.cust, P.cust)}</div>`,
+    `<div class="kc"><div class="l">อัตราการตอบ</div><div class="v">${rate == null ? "-" : (rate * 100).toFixed(1) + "%"}</div><div class="s">ตอบแล้ว ${fmtN(C.replied)} จาก ${fmtN(C.active)} ห้อง</div>${dpill(rate, prate)}</div>`,
+    `<div class="kc"><div class="l">เวลาตอบกลับ (มัธยฐาน)</div><div class="v">${C.median == null ? "-" : fmtDur(C.median)}</div><div class="s">${C.mean == null ? "" : `เฉลี่ย ${fmtDur(C.mean)} · ตอบใน 15 นาที ${(C.in15 * 100).toFixed(0)}%`}</div>${dpill(C.median, P.median, "down")}</div>`,
+    `<div class="kc"><div class="l">แชทคุย &gt; ${deepSel} ข้อความ</div><div class="v">${fmtN(C.deep)}</div><div class="s">${C.active ? (C.deep / C.active * 100).toFixed(1) : "0.0"}% ของแชททั้งหมด</div>${dpill(C.deep, P.deep)}</div>`,
+    `<div class="kc"><div class="l">ได้เบอร์โทร</div><div class="v">${fmtN(C.phone)}</div><div class="s">${C.active ? (C.phone / C.active * 100).toFixed(1) : "0.0"}% ของแชททั้งหมด</div>${dpill(C.phone, P.phone)}</div>`
+  ].join("");
+  $("#chatDeepSel").onchange = ev => { S.chatDeep = +ev.target.value; renderChat(); };
+
+  /* daily chart */
+  const days = []; for(let d = new Date(a); d < e; d = addDays(d, 1)) days.push(new Date(d));
+  const act = days.map(d => (C.dayActive.get(iso(d)) || new Set()).size), nw = days.map(d => C.dayNew.get(iso(d)) || 0);
+  const tight = slotPx("chat-day", days.length) < 30;
+  upsert("chat-day", {type:"bar", data:{labels:days.map(d => days.length <= 8 ? `${DOW[(d.getDay()+6)%7]} ${d.getDate()}` : `${d.getDate()} ${TH[d.getMonth()]}`), datasets:[
+      {type:"bar", label:"แชทที่มีการคุย", data:act, backgroundColor:"rgba(124,154,109,.7)", borderRadius:5, maxBarThickness:40, order:2,
+        datalabels:{display:c => c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align: tight ? "end" : "start", offset:2, rotation: tight ? -90 : 0, color: tight ? css("--text") : "#fff", font:{size:9.5, weight:600}}},
+      {type:"line", label:"แชทใหม่", data:nw, borderColor:"#8a6a43", backgroundColor:"#8a6a43", borderWidth:2, tension:.35, pointRadius: days.length > 20 ? 0 : 3, pointBackgroundColor:"#fff", pointBorderWidth:2, order:1,
+        datalabels:{display:c => !tight && c.dataset.data[c.dataIndex] > 0 ? "auto" : false, align:"top", offset:4, color:"#fff", backgroundColor:"#8a6a43", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600}}}
+    ]},
+    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top:18}}, interaction:{mode:"index", intersect:false},
+      plugins:{legend:{...legendCfg(), align:"end", display:!fitDesk()}, datalabels:{display:true}, tooltip:{...tooltip()}},
+      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:12}}, y:{beginAtZero:true, grace:"15%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5, padding:6}}}}
+  }, "chd" + (tight ? "t" : ""));
+
+  /* waiting list: last message of the room is from the customer, sent in the chosen period */
+  const now = Date.now();
+  const waits = chatConvs().filter(c => c.last && c.last.c && c.last.t >= a && c.last.t < e).sort((x,y) => x.last.t - y.last.t);
+  $("#chatWaitN").textContent = waits.length;
+  $("#chatWaitHint").textContent = `ลูกค้าทักในช่วงนี้แล้วยังไม่ได้ตอบ`;
+  $("#chatWait").innerHTML = waits.length ? waits.slice(0, 80).map(c => `<div class="wi"><i></i><div><b>${esc(c.name)}</b><small>${esc(c.page)} · “${esc(c.last.text.slice(0, 40))}${c.last.text.length > 40 ? "…" : ""}”</small></div>
+      <span class="w">${fmtDur(now - c.last.t)}</span><span style="display:flex;gap:4px"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>`).join("") : `<div class="empty">ไม่มีแชทค้างตอบ 🎉</div>`;
+
+  renderChatList(a, e);
+
+  /* busy hours */
+  segSet($("#chatHourMode"), "m", S.chatHourMode);
+  const isH = S.chatHourMode !== "wd", arr = isH ? C.hours : C.wd, tot = arr.reduce((t,v) => t + v, 0) || 1;
+  const labs = isH ? arr.map((_, i) => String(i).padStart(2, "0")) : ["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
+  const order = arr.map((v,i) => [v,i]).sort((x,y) => y[0] - x[0]).filter(x => x[0] > 0).slice(0, 3);
+  $("#chatPeaks").innerHTML = `<span class="pl">ช่วงที่ลูกค้าทักมากสุด</span> ` + order.map(([v,i], k) => `<span class="pk ${k === 0 ? "top" : ""}"><b>${isH ? `${labs[i]}:00–${String((i + 1) % 24).padStart(2,"0")}:00` : ["จันทร์","อังคาร","พุธ","พฤหัสฯ","ศุกร์","เสาร์","อาทิตย์"][i]}</b> ${(v / tot * 100).toFixed(0)}%</span>`).join("");
+  const topI = order.length ? order[0][1] : -1;
+  const hT = slotPx("chat-hour", arr.length) < 22;
+  upsert("chat-hour", {type:"bar", data:{labels:labs, datasets:[{label:"ข้อความจากลูกค้า", data:arr, borderRadius:4, maxBarThickness:34,
+      backgroundColor:arr.map((_, i) => i === topI ? "#4f7a2e" : "rgba(124,154,109,.55)"),
+      datalabels:{display:c => c.dataIndex === topI || (!hT && c.dataset.data[c.dataIndex] > 0 && !isH) ? true : false, anchor:"end", align:"end", offset:1, color:css("--text"), font:{size:10, weight:600}}}]},
+    options:{maintainAspectRatio:false, animation:{duration:700}, layout:{padding:{top:16}}, plugins:{legend:{display:false}, datalabels:{display:true}, tooltip:{...tooltip()}},
+      scales:{x:{grid:{display:false}, ticks:{autoSkip:true, maxRotation:0, callback:function(v, i){ return isH && hT && i % 3 ? "" : labs[i]; }}}, y:{beginAtZero:true, grace:"12%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5}}}}
+  }, "chh" + (isH ? "h" : "w"));
+
+  /* reply speed */
+  const B = [["≤ 5 นาที", 0, 3e5, "#4f7a2e"], ["5–15 นาที", 3e5, 9e5, "#7c9a6d"], ["15–60 นาที", 9e5, 36e5, "#c08a3e"], ["1–4 ชม.", 36e5, 144e5, "#d07a4a"], ["4–24 ชม.", 144e5, 864e5, "#b5654a"], ["> 1 วัน", 864e5, Infinity, "#b5473a"]];
+  const nR = C.rts.length || 1;
+  $("#chatSpeedHint").textContent = `${fmtN(C.rts.length)} ครั้งที่ลูกค้าทักแล้วเพจตอบ`;
+  $("#chatSpeed").innerHTML = B.map(([l, lo, hi, col]) => { const n = C.rts.filter(v => v > lo && v <= hi || (lo === 0 && v <= hi)).length;
+    return `<div class="sp"><span>${l}</span><div class="tr"><i style="background:${col}" data-w="${(n / nR * 100).toFixed(1)}"></i></div><b>${fmtN(n)}</b><small>${(n / nR * 100).toFixed(0)}%</small></div>`; }).join("");
+
+  /* source & channels */
+  const adsPct = C.neu ? Math.min(1, am / C.neu) : null;
+  const chs = Object.entries(C.ch).sort((x,y) => y[1] - x[1]), pgs = Object.entries(C.pages).sort((x,y) => y[1] - x[1]);
+  $("#chatSrc").innerHTML = `<div class="adsrc"><div class="top"><span>แชทใหม่ที่มาจากโฆษณา (ประมาณ)</span><b>${adsPct == null ? "-" : (adsPct * 100).toFixed(0) + "%"}</b></div>
+      <div class="tr"><i data-w="${adsPct == null ? 0 : (adsPct * 100).toFixed(1)}"></i></div><small>Meta Ads นับ Message ${fmtN(am)} · แชทใหม่ทั้งหมด ${fmtN(C.neu)}${dpill(am, pam) ? " · Message จากแอด " + dpill(am, pam) : ""}</small></div>
+    <div class="chlist">${chs.map(([k,v]) => `<div>💬<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}
+      ${pgs.map(([k,v]) => `<div>📄<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}</div>`;
+  requestAnimationFrame(() => requestAnimationFrame(() => $$("#chatSpeed .tr i, #chatSrc .tr i").forEach(i => i.style.width = i.dataset.w + "%")));
+}
+$("#chatPage").onchange = ev => { S.chatPage = ev.target.value; renderChat(); };
+
+/* ---------- customer list + conversation preview ---------- */
+const initial = n => (String(n).trim().match(/[\p{L}\p{N}]/u) || ["?"])[0].toUpperCase();
+const fmtWhen = t => { const d = new Date(), y = addDays(new Date(d.getFullYear(), d.getMonth(), d.getDate()), -1), hm = `${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}`;
+  return t >= addDays(y, 1) ? hm : t >= y ? `เมื่อวาน ${hm}` : `${t.getDate()} ${TH[t.getMonth()]} ${hm}`; };
+const phoneOf = c => { for(const m of c.msgs) if(m.c){ const x = m.text.replace(/[\s\-.()]/g, "").match(PHONE_RE); if(x) return x[0]; } return ""; };
+function renderChatList(a, e){
+  const q = (S.chatFind || "").trim().toLowerCase(), f = S.chatCustF || "all";
+  segSet($("#chatCustF"), "f", f);
+  let list = chatConvs().filter(c => c.msgs.some(m => m.c && m.t >= a && m.t < e));
+  if(f === "wait") list = list.filter(c => c.last && c.last.c);
+  if(f === "phone") list = list.filter(c => phoneOf(c));
+  if(q) list = list.filter(c => c.name.toLowerCase().includes(q) || c.msgs.some(m => m.text.toLowerCase().includes(q)));
+  list.sort((x,y) => y.last.t - x.last.t);
+  $("#chatCustN").textContent = fmtN(list.length);
+  $("#chatCust").innerHTML = list.length ? list.slice(0, 300).map(c => {
+    const nc = c.msgs.filter(m => m.c).length, na = c.msgs.length - nc, ph = phoneOf(c), lt = c.last.text.trim();
+    return `<div class="cr"><div class="av">${esc(initial(c.name))}</div>
+      <div style="min-width:0"><div class="nm"><b>${esc(c.name)}</b>${c.last.c ? `<span class="tg w">รอตอบ</span>` : ""}${ph ? `<span class="tg p">📞 มีเบอร์</span>` : ""}</div>
+        <div class="lm">${c.last.c ? "" : "เพจ: "}${lt ? esc(lt.slice(0, 60)) : "<i>(ไฟล์/สติกเกอร์)</i>"}</div>
+        <div class="mt">${esc(c.page)} · ลูกค้า ${nc} · เพจ ${na} ข้อความ</div></div>
+      <div class="rt"><span class="mt">${fmtWhen(c.last.t)}</span><button class="pvb" data-cv="${esc(c.id)}">Preview</button></div></div>`; }).join("")
+    + (list.length > 300 ? `<div class="empty">แสดง 300 จาก ${fmtN(list.length)} ห้อง · ใช้ช่องค้นหาเพื่อหาคนอื่น</div>` : "")
+    : `<div class="empty">ไม่พบลูกค้าในช่วงนี้</div>`;
+}
+function openChatPreview(id){
+  const c = (S.chat || []).find(x => x.id === id); if(!c) return;
+  const [a0, b0] = adsRange(), a = a0, e = b0 ? addDays(b0, 1) : null;
+  const nc = c.msgs.filter(m => m.c).length, ph = phoneOf(c);
+  $("#cvAv").textContent = initial(c.name);
+  $("#cvName").textContent = c.name;
+  $("#cvSub").textContent = `${c.page} · ${c.ch}`;
+  const lk = $("#cvLink"); lk.style.display = c.link ? "" : "none"; if(c.link) lk.href = c.link;
+  // stats for this customer
+  const rts = []; let wait = null;
+  for(const m of c.msgs){ if(m.c){ if(wait == null) wait = m.t; } else if(wait != null){ rts.push(m.t - wait); wait = null; } }
+  const med = rts.length ? [...rts].sort((x,y) => x - y)[Math.floor(rts.length / 2)] : null;
+  $("#cvStats").innerHTML = `<span>ทักครั้งแรก <b>${dLabel(c.msgs[0].t)}</b></span><span>ล่าสุด <b>${fmtWhen(c.last.t)}</b></span>
+    <span>ลูกค้า <b>${nc}</b> · เพจ <b>${c.msgs.length - nc}</b> ข้อความ</span>${med != null ? `<span>เพจตอบกลับ (มัธยฐาน) <b>${fmtDur(med)}</b></span>` : ""}
+    ${ph ? `<span>📞 <b>${esc(ph)}</b></span>` : ""}${c.last.c ? `<span style="color:#b5473a">รอตอบ <b>${fmtDur(Date.now() - c.last.t)}</b></span>` : ""}`;
+  // bubbles with day separators; messages outside the chosen period are dimmed
+  let html = "", day = "";
+  const msgs = c.msgs.length > 400 ? c.msgs.slice(-400) : c.msgs;
+  if(c.msgs.length > 400) html += `<div class="cvday">แสดง 400 ข้อความล่าสุด จาก ${fmtN(c.msgs.length)}</div>`;
+  for(const m of msgs){
+    const dk = iso(m.t);
+    if(dk !== day){ day = dk; html += `<div class="cvday">${DOW[(m.t.getDay()+6)%7]} ${dLabel(m.t)}</div>`; }
+    const out = a && e && (m.t < a || m.t >= e);
+    let txt = esc(m.text.trim());
+    if(m.c) txt = txt.replace(/((?:\+?66|0)[689][\d\s\-.]{8,12}\d)/g, '<span class="ph">$1</span>');
+    html += `<div class="bb ${m.c ? "c" : "a"} ${out ? "out" : ""}">${txt || `<span class="empty">(ไฟล์แนบ / สติกเกอร์)</span>`}<time>${String(m.t.getHours()).padStart(2,"0")}:${String(m.t.getMinutes()).padStart(2,"0")}</time></div>`;
+  }
+  if(c.last.c) html += `<div class="cvgap">ลูกค้ารอคำตอบมา ${fmtDur(Date.now() - c.last.t)}</div>`;
+  $("#cvBody").innerHTML = html;
+  $("#chatModal").classList.add("on");
+  requestAnimationFrame(() => { const b = $("#cvBody"); b.scrollTop = b.scrollHeight; });
+}
+const closeChatPreview = () => $("#chatModal").classList.remove("on");
+$("#cvClose").onclick = closeChatPreview;
+$("#chatModal").onclick = ev => { if(ev.target.id === "chatModal") closeChatPreview(); };
+document.addEventListener("keydown", ev => { if(ev.key === "Escape" && $("#chatModal").classList.contains("on")) closeChatPreview(); });
+document.addEventListener("click", ev => { const b = ev.target.closest(".pvb"); if(b) openChatPreview(b.dataset.cv); });
+$("#chatFind").addEventListener("input", ev => { S.chatFind = ev.target.value; clearTimeout(S._cf); S._cf = setTimeout(() => { const [a0, b0] = adsRange(); if(a0 && b0) renderChatList(a0, addDays(b0, 1)); else renderChat(); }, 200); });
+$$("#chatCustF button").forEach(b => b.onclick = () => { S.chatCustF = b.dataset.f; renderChat(); });
+$$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.dataset.m; renderChat(); });
+
 /* ================= RENDER ================= */
 function renderSubtitle(){
   let txt;
   if(S.page === "upsale"){ const k = (S.us && S.us.month) || usDefaultMonth(); $("#subtitle").textContent = k ? `อ้างอิงยอดขาย ${keyLabel(k)}  ·  เป้า ${keyLabel(usNextKey(k))}` : ""; return; }
-  if(S.page === "ads" || S.page === "adsbook"){ const [a, b] = adsRange(); $("#subtitle").textContent = a && b ? `${dLabel(a)} – ${dLabel(b)}  ·  ข้อมูล Meta Ads` : "ข้อมูล Meta Ads"; return; }
+  if(S.page === "ads" || S.page === "adsbook" || S.page === "chat"){ const [a, b] = adsRange(); $("#subtitle").textContent = a && b ? `${dLabel(a)} – ${dLabel(b)}  ·  ข้อมูล Meta Ads` : "ข้อมูล Meta Ads"; return; }
   if(S.page === "compare") txt = `${S.cmp.periods.map((id,i)=>String.fromCharCode(65+i)+" "+cmpShort(id)).join("  ·  ")}  ·  เฉพาะลูกค้าใหม่ ไม่รวมยอดยกมา`;
   else{
     const [a,b] = range(), n = filtered().length;
@@ -2960,6 +3382,7 @@ function render(){
   else if(p==="customers") renderCustomers();
   else if(p==="ads") renderAds();
   else if(p==="adsbook") renderAdsBookPage();
+  else if(p==="chat") renderChat();
   else if(p==="upsale") renderUpsale();
 }
 
@@ -2984,7 +3407,8 @@ function moveNavThumb(){
 function goPage(p){
   S.page = p;
   document.body.classList.toggle("p-compare", p==="compare");
-  document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook");
+  document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook" || p==="chat");
+  document.body.classList.toggle("p-chat", p==="chat");
   document.body.classList.toggle("p-upsale", p==="upsale");
   $$(".nav button[data-page]").forEach(b => b.classList.toggle("on", b.dataset.page===p));
   $$(".page").forEach(s => s.classList.toggle("on", s.id==="p-"+p));
