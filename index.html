@@ -169,6 +169,48 @@ body.p-compare .period,body.p-compare #srcSeg{display:none}
 .kpi .mini i{display:block;height:100%;width:0;border-radius:5px;background:var(--c);transition:width 1s var(--ease)}
 
 /* Dimension pages: donut + bar on the left, table on the right */
+.dimR{display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-height:0}
+.rankcard{padding:10px 14px}
+.rankcard h3{margin:0 0 8px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ranks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rk{display:flex;align-items:center;gap:10px;border-radius:12px;padding:8px 10px;min-width:0;background:color-mix(in srgb,var(--tc) 12%,var(--card));border:1px solid color-mix(in srgb,var(--tc) 35%,transparent);animation:rowIn .5s var(--ease) both}
+.rk.r1{background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 26%,var(--card)),color-mix(in srgb,var(--tc) 8%,var(--card)))}
+.tro{position:relative;width:40px;height:40px;flex:none}
+.tro svg{width:40px;height:40px;filter:drop-shadow(0 3px 4px color-mix(in srgb,var(--tc) 45%,transparent))}
+.tro span{position:absolute;top:7px;left:0;right:0;text-align:center;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.rn{min-width:0}
+.rn b{display:block;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rn .rv{font-size:clamp(15px,1.25vw,19px);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rn small{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:10px;padding-top:4px}
+.pd{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;animation:rowIn .6s var(--ease) both}
+.pd .who{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;max-width:100%}
+.dav{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--mc);background:color-mix(in srgb,var(--mc) 16%,var(--card));border:2px solid var(--mc);margin-bottom:4px}
+.pd.p1 .dav{width:56px;height:56px}
+.dav svg{width:62%;height:62%}
+.dav .md{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:50%;background:var(--mc);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.pd b{font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pd .rv{font-size:clamp(14px,1.15vw,18px);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pd small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pd .step{width:100%;border-radius:10px 10px 4px 4px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:20px;
+  background:linear-gradient(180deg,var(--mc),color-mix(in srgb,var(--mc) 70%,#3a3a2a));box-shadow:inset 0 2px 0 rgba(255,255,255,.3);transform-origin:bottom;animation:stepUp .7s var(--ease) both}
+.pd.p1 .step{height:62px} .pd.p2 .step{height:44px} .pd.p3 .step{height:30px;font-size:17px}
+@keyframes stepUp{from{transform:scaleY(0)}to{transform:none}}
+.top5{display:flex;flex-direction:column;gap:5px}
+.t5{display:grid;grid-template-columns:24px 26px minmax(0,1fr) auto;gap:8px;align-items:center;animation:rowIn .5s var(--ease) both}
+.t5 .no{width:22px;height:22px;border-radius:50%;background:var(--mc);color:#fff;font-size:11.5px;font-weight:700;display:grid;place-items:center}
+.t5 .si{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:var(--mc);background:color-mix(in srgb,var(--mc) 15%,var(--card))}
+.t5 .si svg{width:16px;height:16px}
+.t5 .tn{min-width:0}
+.t5 .tn b{display:block;font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t5 .tb{height:6px;border-radius:4px;background:var(--soft);overflow:hidden;margin-top:3px}
+.t5 .tb i{display:block;height:100%;border-radius:4px;background:var(--mc)}
+.t5 .tv{text-align:right}
+.t5 .tv b{font-weight:600;font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.t5 .tv small{display:block;font-size:10.5px;color:var(--muted);white-space:nowrap}
+.rk-more{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
+.rk-more b{color:var(--text);font-weight:500}
+@media (max-width:760px){ .ranks{grid-template-columns:1fr 1fr} }
 .dimL{display:grid;grid-template-rows:minmax(0,.8fr) minmax(0,1.2fr);gap:12px;min-height:0}
 #p-customers{grid-template-columns:minmax(0,1fr) minmax(280px,330px)}
 
@@ -516,7 +558,7 @@ body.p-ads #adsTop{display:flex}
 .abk{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .abk div{background:var(--soft);border-radius:12px;padding:8px 12px;min-width:0}
 .abtop{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr);gap:12px;margin-bottom:12px;align-items:stretch}
-.abk{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+.abk{grid-template-columns:repeat(2,minmax(0,1fr)) !important}  /* one colour group per row */
 .abk div{cursor:pointer;position:relative;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .abk div:hover{transform:translateY(-2px)}
 .abk div.on{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--rc,#5e662d)}
@@ -529,6 +571,11 @@ body.p-ads #adsTop{display:flex}
 .adsweek{margin-bottom:0}
 #awMetric button{padding:6px 10px}
 .abweek .hint{font-size:12px;color:var(--muted);font-weight:300}
+.wtog{display:inline-flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.wtog button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;transition:all .25s var(--ease)}
+.wtog button i{width:10px;height:10px;border-radius:3px;background:var(--p1);opacity:.35;transition:opacity .25s}
+.wtog button.on{color:var(--text);background:var(--soft);border-color:color-mix(in srgb,var(--p1) 35%,var(--line))}
+.wtog button.on i{opacity:1}
 .abinsight{flex:none;font-size:13px;line-height:1.6;background:var(--soft);border-radius:10px;padding:7px 12px;margin-bottom:6px}
 .abinsight b{font-weight:600}
 .abinsight .up{color:var(--up)} .abinsight .down{color:var(--down)}
@@ -547,10 +594,12 @@ body.p-ads #adsTop{display:flex}
 .abk small{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .funnel{margin-top:12px}
 .fun{display:flex;flex-direction:column;align-items:center;gap:5px}
-.fs{width:var(--w);display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center;column-gap:10px;padding:8px 22px;color:#fff;
+.fs{width:var(--w);display:flex;justify-content:center;align-items:center;gap:14px;padding:8px 22px;color:#fff;text-align:right;
   clip-path:polygon(0 0,100% 0,95% 100%,5% 100%);border-radius:6px;transform-origin:top center;animation:funIn .7s var(--ease) both}
 .fs span{font-size:12.5px;opacity:.9}
-.fs b{grid-row:span 2;font-size:clamp(20px,1.7vw,26px);font-weight:600;font-variant-numeric:tabular-nums}
+.fs .fl{display:flex;flex-direction:column;align-items:flex-end;min-width:0}
+.fs .fsep{width:2px;align-self:stretch;margin:2px 0;border-radius:2px;background:rgba(255,255,255,.55)}
+.fs b{text-align:left;min-width:2.5em;font-size:clamp(20px,1.7vw,26px);font-weight:600;font-variant-numeric:tabular-nums}
 .fs small{font-size:11px;opacity:.85}
 .fs.s1{background:linear-gradient(135deg,#7a5a36,#a98353)}
 .fs.s2{background:linear-gradient(135deg,#535b27,#7d8741);animation-delay:.12s}
@@ -618,6 +667,18 @@ body.p-ads #adsTop{display:flex}
 .chip button:hover{background:color-mix(in srgb,var(--c) 20%,transparent);color:var(--text)}
 .cbar .sel.add{flex:0 1 210px}
 .cbar .sel.base{flex:0 1 230px}
+#presetSeg .qp{display:none}
+body[data-page="overview"] #presetSeg .qp,body[data-page="trend"] #presetSeg .qp,body[data-page="sales"] #presetSeg .qp,body[data-page="doctor"] #presetSeg .qp,body[data-page="proc"] #presetSeg .qp{display:inline-flex}
+body[data-page="trend"] #srcSeg button[data-s="carry"]{display:none}
+.avgpill.tot{background:color-mix(in srgb,var(--p1) 12%,transparent)}
+.avgpill + .avgpill{margin-left:6px}
+.kpi.hl{border:0;color:#fff;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 62%,#fff));box-shadow:0 12px 26px -14px var(--c)}
+.kpi.hl .lb,.kpi.hl .s,.kpi.hl .s *{color:rgba(255,255,255,.88) !important}
+.kpi.hl .v{color:#fff}
+.kpi.hl .bar{display:none}
+.kpi.hl .tag{background:rgba(255,255,255,.2) !important;color:#fff !important}
+.kpi.hl .mini{background:rgba(255,255,255,.25)}
+.kpi.hl .mini i{background:#fff !important}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -864,6 +925,16 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-adsbook .abtablecard{grid-column:1;grid-row:3;max-height:none;min-height:0}
   #p-adsbook .abinsight{font-size:12.5px;padding:5px 10px}
   #p-adsbook .fs{padding:6px 22px}
+  /* KPI tiles two per row (one colour group per row): keep them short so the charts below keep their height */
+  #p-adsbook .adsbook{padding:10px 14px}
+  #p-adsbook .adsbook h3{margin-bottom:6px}
+  #p-adsbook .adsbook h3 .hint,#p-adsbook .abtip{display:none}
+  #p-adsbook .abk{gap:6px}
+  #p-adsbook .abk div{padding:5px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px}
+  #p-adsbook .abk div span{grid-column:1}
+  #p-adsbook .abk div b{grid-column:2;grid-row:1 / 3;font-size:clamp(17px,1.4vw,22px)}
+  #p-adsbook .abk div small{grid-column:1;grid-row:2}
+  #p-adsbook .abk div.on::after{top:50%;transform:translateY(-50%);right:auto;left:-7px}
   /* Up Sale: answer on the left, reference data and alternatives on the right */
   #p-upsale.on{display:grid;height:var(--avail);grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:12px}
   #p-upsale .usctl{grid-column:1 / -1;grid-row:1;padding:10px 16px}
@@ -973,7 +1044,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
       <div class="frow period">
         <div class="date period"><input type="date" id="dFrom" aria-label="วันที่เริ่ม"><span>–</span><input type="date" id="dTo" aria-label="วันที่สิ้นสุด"></div>
         <div class="seg period" id="presetSeg"><i class="thumb"></i>
-          <button data-p="this">เดือนนี้</button><button data-p="last">เดือนที่แล้ว</button><button data-p="3m">3 เดือน</button><button data-p="all">ทั้งหมด</button>
+          <button data-p="today" class="qp">วันนี้</button><button data-p="yday" class="qp">เมื่อวาน</button><button data-p="7d" class="qp">7 วัน</button><button data-p="14d" class="qp">14 วัน</button><button data-p="this">เดือนนี้</button><button data-p="last">เดือนที่แล้ว</button><button data-p="3m">3 เดือน</button><button data-p="all">ทั้งหมด</button>
         </div>
         <div class="sel month-sel period"><select id="monthSel" aria-label="เลือกเดือน"></select></div>
         <div class="seg week-seg period" id="weekSeg" hidden><i class="thumb"></i></div>
@@ -1017,7 +1088,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="seg" id="cmpType"><i class="thumb"></i><button data-t="month" class="on">รายเดือน</button><button data-t="week">รายสัปดาห์ (จ.–อา.)</button></div>
           <div class="chips" id="cmpChips"></div>
           <div class="sel add"><select id="cmpAdd" aria-label="เพิ่มช่วงที่ต้องการเทียบ"></select></div>
-          <button class="qbtn" data-n="2">ล่าสุด 2</button><button class="qbtn" data-n="3">ล่าสุด 3</button><button class="qbtn" data-n="6">ล่าสุด 6</button>
+          <button class="qbtn" data-n="2">ล่าสุด 2</button><button class="qbtn" data-n="3">ล่าสุด 3</button><button class="qbtn" data-n="4">ล่าสุด 4</button><button class="qbtn" data-n="5">ล่าสุด 5</button><button class="qbtn" data-n="6">ล่าสุด 6</button>
           <span class="vs">คิด % เทียบกับ</span>
           <div class="sel base"><select id="cmpBase" aria-label="ช่วงฐานในการคิด %"></select></div>
         </div>
@@ -1124,7 +1195,8 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           </div>
         </div>
         <div class="card ch flex abweek">
-          <h3>เปรียบเทียบรายสัปดาห์ <span class="srcTag pros" id="abWeekMetric"></span><span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span></h3>
+          <h3>เปรียบเทียบรายสัปดาห์ <span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span>
+            <span class="wtog" id="abWShow"><button data-k="m" class="on"><i></i><span id="abWeekMetric"></span></button><button data-k="sp" class="on"><i style="background:#c08a3e"></i>ค่าใช้จ่าย Ads</button></span></h3>
           <div class="abinsight" id="abInsight"></div>
           <div class="mobhint">แกนล่างแสดงวันจันทร์ต้นสัปดาห์ (วัน/เดือน) · * = สัปดาห์ที่ยังไม่ครบ 7 วัน · แตะแท่งเพื่อดูรายละเอียด</div>
           <div class="grow"><canvas id="ab-week"></canvas></div>
@@ -1670,6 +1742,20 @@ const DIMS = {
 };
 const PALETTE = ["#5e662d","#7c9a6d","#c08a3e","#b5654a","#a38b5f","#c8bfae"];
 
+/* One record per customer (HN, or name, + Date of entry) taken from the latest sheet it appears in, so status and
+   Actual are up to date and a customer carried into later sheets is counted once. */
+function buildEntryRows(){
+  const m = new Map();
+  const ord = [...S.raw].sort((a,b) => (a.sheetKey || "").localeCompare(b.sheetKey || ""));
+  for(const r of ord){
+    if(!r.entry) continue;
+    const k = (r.hn || r.name).trim().toLowerCase() + "|" + iso(r.entry);
+    const prev = m.get(k);
+    m.set(k, {...r, isNew:true, firstSheet: prev ? prev.firstSheet : r.sheetKey});
+  }
+  S.entryRows = [...m.values()];
+}
+const inRangeE = (r, a, b) => r.entry && r.entry >= a && r.entry <= b;
 function inPeriod(r){
   if(S.mode === "months") return S.months.has(r.sheetKey) && (!S.week || r.weekId === S.week);
   if(!S.from || !S.to) return true;
@@ -1691,13 +1777,27 @@ function attrOk(r, except){
 const cmpWeek = id => { const from = parseDate(id.slice(3)); return {from, to:addDays(from, 6)}; };
 const mondayOf = d => addDays(d, -((d.getDay()+6)%7));
 function cmpPeriodRows(id){
-  if(S.cmp.type === "month") return S.raw.filter(r => r.isNew && r.sheetKey === id);
+  if(!S.entryRows) buildEntryRows();
+  if(S.cmp.type === "month") return S.entryRows.filter(r => inRangeE(r, monthStart(id), monthEnd(id)));
   const w = cmpWeek(id);
-  return S.raw.filter(r => r.isNew && r.entry && r.entry >= w.from && r.entry <= w.to);
+  return S.entryRows.filter(r => inRangeE(r, w.from, w.to));
 }
 function baseRows(){
   if(S.page === "compare") return S.cmp.periods.flatMap(cmpPeriodRows);
-  return S.raw.filter(inPeriod);
+  if(!S.entryRows) buildEntryRows();
+  if(S.mode === "custom"){
+    // a date range (วันนี้ / 7 วัน / ระบุวันที่ …): customers whose Date of entry is in the range
+    if(!S.from || !S.to) return S.entryRows;
+    return S.entryRows.filter(r => inRangeE(r, S.from, S.to));
+  }
+  // month view: customers who entered in the chosen months (Date of entry) + rows carried into those months' sheets
+  const ks = [...S.months].sort(); if(!ks.length) return [];
+  const a = monthStart(ks[0]), b = monthEnd(ks[ks.length - 1]);
+  const w = S.week ? weekById(S.week) : null;
+  const fresh = S.entryRows.filter(r => w ? inRangeE(r, w.from, w.to) : inRangeE(r, a, b));
+  const carried = S.raw.filter(r => S.months.has(r.sheetKey) && !(r.entry && r.entry >= monthStart(r.sheetKey)) && (!r.isNew || !r.entry) && (!S.week || r.weekId === S.week))
+    .map(r => r.isNew ? r : r);   // rows without a date stay with their sheet month
+  return [...fresh, ...carried];
 }
 const filtered = except => baseRows().filter(r => attrOk(r, except));
 function range(){
@@ -1751,6 +1851,10 @@ function setPreset(p){
   const now = new Date(), cur = keyOf(now.getFullYear(), now.getMonth());
   const shift = n => { const d = new Date(now.getFullYear(), now.getMonth()+n, 1); return keyOf(d.getFullYear(), d.getMonth()); };
   S.mode = "months"; S.preset = p; S.week = ""; S.calFollow = true;
+  // day-based quick periods (today, yesterday, last 7 / 14 days including today)
+  const t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = {today:[0,0], yday:[1,1], "7d":[6,0], "14d":[13,0]}[p];
+  if(days){ S.mode = "custom"; S.from = addDays(t0, -days[0]); S.to = addDays(t0, -days[1]); segSet($("#presetSeg"), "p", p); syncPeriodInputs(); render(); return; }
   if(p==="this") S.months = new Set([cur]);
   else if(p==="last") S.months = new Set([shift(-1)]);
   else if(p==="3m") S.months = new Set([shift(-2), shift(-1), cur]);
@@ -1841,6 +1945,7 @@ new ResizeObserver(fitHeight).observe($("#filters"));
 new ResizeObserver(fitHeight).observe($("#adsTop"));
 
 /* ================= KPI ================= */
+/* highlighted overview cards (Booking, ยอดจากลูกค้าใหม่, ยอดจากลูกค้ายกมา) use the --c colour as a filled background */
 function countTo(el, val, fmt){
   const from = +el.dataset.v || 0; el.dataset.v = val;
   const t0 = performance.now(), dur = 850;
@@ -1867,10 +1972,10 @@ function kpiCard(id, label, cls, color, i, mini){
 }
 function buildKpis(){
   $("#p-overview").innerHTML = kpiCard("act","Actual Received","hero","",0) + kpiCard("est","Estimate Value","hero2","",1) +
-    kpiCard("book","Booking","","#5e662d",2) + kpiCard("win","WIN","","#4d7c32",3,1) +
+    kpiCard("book","Booking","hl","#356e6b",2) + kpiCard("win","WIN","","#4d7c32",3,1) +
     kpiCard("dep","มัดจำ","","#3f7a78",4,1) + kpiCard("conv","Conversion Rate","","#8fa14a",5,1) +
     kpiCard("avg","เฉลี่ย / บิล (WIN)","","#c08a3e",6) + kpiCard("pipe","Pipeline รอปิด","","#b5654a",7) +
-    kpiCard("newAct","ยอดจากลูกค้าใหม่","","#a38b5f",8,1) + kpiCard("carryAct","ยอดจากลูกค้ายกมา","","#7d7566",9,1) +
+    kpiCard("newAct","ยอดจากลูกค้าใหม่","hl","#8a6a43",8,1) + kpiCard("carryAct","ยอดจากลูกค้ายกมา","hl","#6b6656",9,1) +
     `<div class="ov-sec"><h3>Actual Received แยกตาม Service</h3><span class="hint">ทุกหัตถการที่มีคำว่า “จมูก” รวมเป็นการ์ดเดียว · คลิกการ์ดเพื่อกรอง</span></div>
      <div class="svc-grid" id="svcCards"></div>`;
 }
@@ -1889,8 +1994,8 @@ function renderKpis(rows){
   set("win", t.win, fmtN, `ยอด ${fmtB(t.winAct)}`); mini("win", pct(t.win,t.n));
   set("dep", t.dep, fmtN, `ยอด ${fmtB(depAct)}`); mini("dep", pct(t.dep,t.n));
   set("conv", t.conv, v=>v.toFixed(2)+"%", "WIN ÷ Booking"); mini("conv", t.conv);
-  set("avg", t.avg, fmtB, `จาก ${fmtN(t.win)} เคสที่ WIN`);
-  set("pipe", pipe, fmtB, `Estimate − Actual ของ ${open.length} เคสที่ยังไม่ปิด`);
+  set("avg", t.avg, fmtB, `จาก ${fmtN(t.win)} Booked ที่ WIN`);
+  set("pipe", pipe, fmtB, `Estimate − Actual ของ ${open.length} Booked ที่ยังไม่ปิด`);
   set("newAct", nwAct, fmtB, `${nw.length} ราย · ${pct(nwAct,t.act).toFixed(0)}% ของยอดรวม`); mini("newAct", pct(nwAct,t.act));
   set("carryAct", crAct, fmtB, `${cr.length} ราย · ${pct(crAct,t.act).toFixed(0)}% ของยอดรวม`); mini("carryAct", pct(crAct,t.act));
 }
@@ -1946,7 +2051,7 @@ function donut(id, rows, field, valueKey, skipEmpty){
     data:{labels:top.map(x=>x.key), datasets:[{data:top.map(x=>x[valueKey]), backgroundColor:colors, borderColor:css("--card"), borderWidth:2, hoverOffset:8, borderRadius:5}]},
     options:{maintainAspectRatio:false, cutout:"58%", layout:{padding:4}, animation:{duration:900, easing:"easeOutQuart"},
       plugins:{legend:{display:false},
-        tooltip:{...tooltip(), callbacks:{label:c=>` ${c.label}: ${valueKey==="act"?fmtB(c.raw):fmtN(c.raw)+" เคส"} (${(c.raw/total*100).toFixed(1)}%)`}},
+        tooltip:{...tooltip(), callbacks:{label:c=>` ${c.label}: ${valueKey==="act"?fmtB(c.raw):fmtN(c.raw)+" Booked"} (${(c.raw/total*100).toFixed(1)}%)`}},
         datalabels:{display:c=> c.dataset.data[c.dataIndex]/total >= .06, color:"#fff", font:{size:10.5, weight:500}, formatter:v=>(v/total*100).toFixed(0)+"%"}}}
   });
   $("#lg-"+id).innerHTML = top.map((x,i)=>`<span title="${esc(x.key)}"><i style="background:${colors[i]}"></i><em>${esc(x.key)}</em><b>${fv(x[valueKey])}</b></span>`).join("")
@@ -1979,7 +2084,8 @@ function series(rows){
 function lineChart(id, rows, hintEl){
   const s = series(rows), p1 = css("--p1");
   const totalBook = s.book.reduce((a,b)=>a+b,0), n = s.book.length || 1;
-  if(hintEl) hintEl.innerHTML = `<span class="avgpill">Booking เฉลี่ย/${s.unit==="day"?"วัน":"เดือน"} <b>${(totalBook/n).toFixed(1)}</b></span>`;
+  const totalAct = s.act.reduce((a,b)=>a+b,0);
+  if(hintEl) hintEl.innerHTML = `<span class="avgpill tot">รวมช่วงนี้ Actual <b>${fmtB(totalAct)}</b></span><span class="avgpill tot">Booking <b>${fmtN(totalBook)}</b></span><span class="avgpill">Booking เฉลี่ย/${s.unit==="day"?"วัน":"เดือน"} <b>${(totalBook/n).toFixed(1)}</b></span>`;
   upsert(id, {type:"line",
     data:{labels:s.labels, datasets:[
       {label:"Actual Received", data:s.act, yAxisID:"y", order:1, borderColor:p1, borderWidth:2.2, tension:.4, pointRadius:2.5, pointHoverRadius:5, pointBackgroundColor:p1, fill:true,
@@ -1994,9 +2100,9 @@ function lineChart(id, rows, hintEl){
       plugins:{legend:legendCfg(), datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{label:c=> c.dataset.yAxisID==="y" ? ` Actual: ${fmtB(c.raw)}` : ` Booking: ${c.raw}`}}},
       scales:{ x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:10}},
-        // Booking bars use the lower part of the chart and the Actual line the upper part, so their values never overlap
-        y:{min:-(Math.max(1,...s.act))*1.0, max:Math.max(1,...s.act)*1.18, grid:{color:css("--line")}, ticks:{callback:v=> v < 0 ? "" : fmtK(v), maxTicksLimit:6}},
-        y1:{min:0, max:Math.max(1,...s.book)*2.25, position:"right", grid:{display:false}, ticks:{precision:0, maxTicksLimit:5, callback:v=> v > Math.max(1,...s.book) ? "" : v}} }}
+        // both start at zero and fill the chart, so bars and line overlap in proportion
+        y:{beginAtZero:true, grace:"14%", grid:{color:css("--line")}, ticks:{callback:v=>fmtK(v), maxTicksLimit:6}},
+        y1:{beginAtZero:true, grace:"14%", position:"right", grid:{display:false}, ticks:{precision:0, maxTicksLimit:5}} }}
   });
   return s;
 }
@@ -2005,9 +2111,7 @@ function barChart(id, g){
   upsert(id, {type:"bar",
     data:{labels:top.map(x=>x.key), datasets:[
       {label:"Actual Received", data:top.map(x=>x.act), backgroundColor:"rgba(94,102,45,.88)", borderRadius:6, barPercentage:.8, categoryPercentage:.8,
-        datalabels:{display:c=>c.dataset.data[c.dataIndex]>0, anchor:"end", align:"end", offset:2, color:css("--text"), font:{size:10.5, weight:500}, formatter:v=>fmtK(v)}},
-      {label:"Estimate Value", data:top.map(x=>x.est), backgroundColor:"rgba(138,106,67,.25)", borderRadius:6, barPercentage:.8, categoryPercentage:.8,
-        datalabels:{display:c=>c.dataset.data[c.dataIndex]>0, anchor:"end", align:"end", offset:2, color:css("--muted"), font:{size:10}, formatter:v=>fmtK(v)}}
+        datalabels:{display:c=>c.dataset.data[c.dataIndex]>0, anchor:"end", align:"end", offset:2, color:css("--text"), font:{size:10.5, weight:500}, formatter:v=>fmtK(v)}}
     ]},
     options:{indexAxis:"y", maintainAspectRatio:false, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{right:40}},
       plugins:{legend:legendCfg(), datalabels:{display:true}, tooltip:{...tooltip(), callbacks:{label:c=>` ${c.dataset.label}: ${fmtB(c.raw)}`}}},
@@ -2062,7 +2166,7 @@ function renderSvcCards(rows){
     return `<div class="card kpi svc ${on?"picked":""}" data-svc="${esc(fv)}" title="${esc(tip)}" style="--i:${i};--c:${colors[i%colors.length]}">
       <i class="bar"></i><div class="lb">${esc(g.key)}</div>
       <div class="v">${fmtB(g.act)}</div>
-      <div class="s">${fmtN(g.n)} เคส · WIN ${fmtN(g.win)} · สัดส่วน ${pct(g.act,total).toFixed(1)}%</div>
+      <div class="s">${fmtN(g.n)} Booked · WIN ${fmtN(g.win)} · สัดส่วน ${pct(g.act,total).toFixed(1)}%</div>
       <div class="mini"><i style="width:${Math.min(100,pct(g.act,total)).toFixed(1)}%"></i></div></div>`;
   }).join("") || `<p style="color:var(--muted)">ไม่มีข้อมูลในช่วงนี้</p>`;
   $$("#svcCards .svc").forEach(c => c.onclick = () => toggleFilter("proc", c.dataset.svc));
@@ -2070,28 +2174,73 @@ function renderSvcCards(rows){
 function renderOverview(){ const rows = filtered(); renderKpis(rows); renderSvcCards(rows); }
 function buildDimPages(){
   for(const dim of Object.keys(DIMS)){
-    const share = dim==="doctor" ? "สัดส่วนเคสตามแพทย์" : `สัดส่วนยอดตาม ${DIMS[dim].label}`;
+    const share = dim==="doctor" ? "สัดส่วน Booked ตามแพทย์" : `สัดส่วนยอดตาม ${DIMS[dim].label}`;
     $("#p-"+dim).innerHTML = `
       <div class="dimL">
         <div class="card ch flex dcard"><h3>${share}</h3><div class="dwrap"><div class="grow"><canvas id="dn-${dim}"></canvas></div><div class="dleg" id="lg-${dim}"></div></div></div>
-        <div class="card ch flex chcard"><h3>ยอดตาม ${DIMS[dim].label} <span class="hint">Actual เทียบ Estimate</span></h3><div class="grow"><canvas id="bar-${dim}"></canvas></div></div>
+        <div class="card ch flex chcard"><h3>ยอดตาม ${DIMS[dim].label} <span class="hint">Actual Received</span></h3><div class="grow"><canvas id="bar-${dim}"></canvas></div></div>
       </div>
-      <div class="card ch flex tcard"><h3>ผลงานแยกตาม ${DIMS[dim].label} <span class="hint">คลิกแถวเพื่อกรอง · คลิกหัวตารางเพื่อเรียง</span></h3><div class="tbl-wrap" id="t-${dim}"></div></div>`;
+      <div class="dimR"><div class="card rankcard"><h3>${{sales:"🏆 Ranking ทีม Sales", doctor:"🏅 Ranking แพทย์", proc:"✨ Top 5 Services"}[dim]} ${dim === "sales" ? `<span style="margin-left:auto"><div class="seg" id="rankBy-${dim}"><i class="thumb"></i><button data-r="n">Booked</button><button data-r="win">WIN</button><button data-r="act" class="on">Actual</button></div></span>` : `<span class="hint" style="margin-left:auto">วัดจาก Booked</span>`}</h3><div class="${{sales:"ranks", doctor:"podium", proc:"top5"}[dim]}" id="rankList-${dim}"></div></div>
+      <div class="card ch flex tcard"><h3>ผลงานแยกตาม ${DIMS[dim].label} <span class="hint">คลิกแถวเพื่อกรอง · คลิกหัวตารางเพื่อเรียง</span></h3><div class="tbl-wrap" id="t-${dim}"></div></div></div>`;
   }
+}
+const TROPHY = ["#d4a017", "#a7adb5", "#b87333", "#5f9a8f"];
+const trophySvg = c => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4.5a5 5 0 0 1-10 0z" fill="${c}"/><path d="M7 5H4.2v1.6A3.4 3.4 0 0 0 7.6 10M17 5h2.8v1.6A3.4 3.4 0 0 1 16.4 10" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/><path d="M10.5 12.3h3v3.4h-3z" fill="${c}"/><rect x="7.5" y="16.5" width="9" height="3.5" rx="1" fill="${c}"/></svg>`;
+const DOC_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3.6"/><path d="M4.5 21v-1.2A5.8 5.8 0 0 1 10.3 14h3.4a5.8 5.8 0 0 1 5.8 5.8V21"/><path d="M9.2 14.3v2.9a2.3 2.3 0 0 0 4.6 0v-1"/><circle cx="15.6" cy="17.4" r="1.1"/><path d="M15.6 14.3v2"/></svg>`;
+const SURG_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.2 4.8 19.2 9.8 9.5 19.5H4.5v-5z"/><path d="m12 7 5 5"/><path d="M3 21h9"/><path d="M18 3.2l2.8 2.8"/></svg>`;
+const MEDAL = ["#d4a017", "#a7adb5", "#b87333"];
+function rankRows(g, by){ return g.filter(x => x.key && x.key !== "-").sort((a,b) => (b[by] - a[by]) || (b.act - a.act)); }
+const rankVal = (x, k) => k === "act" ? fmtB(x.act) : fmtN(x[k]) + (k === "n" ? " Booked" : " WIN");
+/* doctors: podium for the top 3 (2nd · 1st · 3rd) */
+function renderPodium(g){
+  const by = "n";   // doctors are ranked by Booked only
+  const L = rankRows(g, by).slice(0, 3), box = $("#rankList-doctor");
+  if(!L.length){ box.innerHTML = `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`; return; }
+  const order = [1, 0, 2].filter(i => L[i]);
+  box.innerHTML = order.map(i => { const x = L[i];
+    return `<div class="pd p${i+1}" style="--mc:${MEDAL[i]};animation-delay:${[1,0,2].indexOf(i)*90}ms">
+      <div class="who"><div class="dav">${DOC_ICON}<span class="md">${i+1}</span></div><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${rankVal(x, by)}</div>
+</div>
+      <div class="step"><span>${i+1}</span></div></div>`; }).join("");
+}
+/* services: top 5 with a bar against the leader */
+function renderTop5(g){
+  const by = "n";   // services are ranked by Booked only
+  const L = rankRows(g, by).slice(0, 5), mx = L.length ? L[0][by] || 1 : 1;
+  const C = ["#d4a017", "#a7adb5", "#b87333", "#5f9a8f", "#8a6a43"];
+  $("#rankList-proc").innerHTML = L.length ? L.map((x, i) => `<div class="t5" style="--mc:${C[i]};animation-delay:${i*50}ms">
+      <span class="no">${i+1}</span><span class="si">${SURG_ICON}</span>
+      <div class="tn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="tb"><i style="width:${Math.max(3, x[by] / mx * 100).toFixed(1)}%"></i></div></div>
+      <div class="tv"><b>${rankVal(x, by)}</b></div></div>`).join("")
+    : `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`;
+}
+function renderRank(g){
+  const by = S.rankBy || "act";
+  segSet($("#rankBy-sales"), "r", by);
+  const L = rankRows(g, by), fv = rankVal;
+  $("#rankList-sales").innerHTML = L.length ? L.slice(0, 4).map((x, i) => `<div class="rk r${i+1}" style="--tc:${TROPHY[i]};animation-delay:${i*60}ms">
+      <div class="tro">${trophySvg(TROPHY[i])}<span>${i+1}</span></div>
+      <div class="rn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${fv(x, by)}</div>
+        <small>${["n","win","act"].filter(k => k !== by).map(k => fv(x, k)).join(" · ")}</small></div></div>`).join("")
+    + (L.length > 4 ? `<div class="rk-more">${L.slice(4).map((x, i) => `<span>${i+5}. ${esc(x.key)} <b>${fv(x, by)}</b></span>`).join("")}</div>` : "")
+    : `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`;
+  $$("#rankBy-sales button").forEach(b => b.onclick = () => { S.rankBy = b.dataset.r; renderRank(g); });
 }
 function renderDim(dim){
   const D = DIMS[dim], rows = filtered();
   const g = group(rows, D.field, D.skipEmpty).sort((a,b)=>b.act-a.act);
+  if(dim === "sales") renderRank(g);
+  else if(dim === "doctor") renderPodium(g);
+  else if(dim === "proc") renderTop5(g);
   donut(dim, rows, D.field, dim==="doctor" ? "n" : "act", D.skipEmpty);
   barChart("bar-"+dim, g);
   const t = totals(rows.filter(r=>!D.skipEmpty || r[D.field]));
   dataTable("t-"+dim, [
     {k:"key", label:D.label, wrap:1, fmt:v=>`<b style="font-weight:500">${esc(v)}</b>`},
-    {k:"n", label:"เคส", num:1, fmt:fmtN}, {k:"win", label:"WIN", num:1, fmt:fmtN}, {k:"dep", label:"มัดจำ", num:1, fmt:fmtN},
-    {k:"conv", label:"Conv.", num:1, fmt:v=>v.toFixed(1)+"%"},
-    {k:"est", label:"Estimate", num:1, fmt:fmtB}, {k:"act", label:"Actual", num:1, fmt:fmtB},
+    {k:"n", label:"Booked", num:1, fmt:fmtN}, {k:"win", label:"WIN", num:1, fmt:fmtN}, {k:"dep", label:"มัดจำ", num:1, fmt:fmtN},
+    {k:"act", label:"Actual", num:1, fmt:fmtB},
     {k:"avg", label:"เฉลี่ย/บิล", num:1, fmt:fmtB}
-  ], g, {k:"act", d:-1}, {key:"รวมทั้งหมด", n:fmtN(t.n), win:fmtN(t.win), dep:fmtN(t.dep), conv:t.conv.toFixed(1)+"%", est:fmtB(t.est), act:fmtB(t.act), avg:fmtB(t.avg)},
+  ], g, {k:"act", d:-1}, {key:"รวมทั้งหมด", n:fmtN(t.n), win:fmtN(t.win), dep:fmtN(t.dep), act:fmtB(t.act), avg:fmtB(t.avg)},
     {fit:true, onRow:r => toggleFilter(dim, r.key), rowClass:r => (S.f[dim] && (dim==="proc" ? procMatch(r.key, S.f[dim]) : S.f[dim]===r.key)) ? "sel" : ""});
 }
 function renderRevenue(){
@@ -2491,7 +2640,7 @@ function renderCompare(){
     g.forEach(x => x.share = pct(x.act, t.act));
     dataTable("t-cmp", [
       {k:"key", label:D.label, wrap:1, fmt:v=>`<b style="font-weight:500">${esc(v)}</b>`},
-      {k:"n", label:"เคส", num:1, fmt:fmtN}, {k:"win", label:"WIN", num:1, fmt:fmtN}, {k:"dep", label:"มัดจำ", num:1, fmt:fmtN},
+      {k:"n", label:"Booked", num:1, fmt:fmtN}, {k:"win", label:"WIN", num:1, fmt:fmtN}, {k:"dep", label:"มัดจำ", num:1, fmt:fmtN},
       {k:"conv", label:"Conv.", num:1, fmt:v=>v.toFixed(1)+"%"},
       {k:"est", label:"Estimate", num:1, fmt:fmtB}, {k:"act", label:"Actual", num:1, fmt:fmtB},
       {k:"share", label:"สัดส่วน", num:1, fmt:v=>v.toFixed(1)+"%"}
@@ -2502,10 +2651,10 @@ function renderCompare(){
   const keys = new Set(); maps.forEach(mp => mp.forEach((_,k) => keys.add(k)));
   const rows = [...keys].map(k => { const o = {key:k}; maps.forEach((mp,i) => { const x = mp.get(k) || {n:0, act:0}; o["a"+i] = x.act; o["n"+i] = x.n; }); return o; });
   const cell = (i) => (v, r) => { const b = baseIdx(i), d = b==null ? null : deltaHtml(r["a"+i], r["a"+b], "baht");
-    return `<div class="mv">${fmtB(v)}</div><div class="md">${fmtN(r["n"+i])} เคส${d ? d.chip : ""}</div>`; };
+    return `<div class="mv">${fmtB(v)}</div><div class="md">${fmtN(r["n"+i])} Booked${d ? d.chip : ""}</div>`; };
   const foot = {key:"รวม"};
   P.forEach((_,i) => { const b = baseIdx(i), d = b==null ? null : deltaHtml(Ms[i].act, Ms[b].act, "baht");
-    foot["a"+i] = `<div class="mv">${fmtB(Ms[i].act)}</div><div class="md">${fmtN(Ms[i].n)} เคส${d ? d.chip : ""}</div>`; });
+    foot["a"+i] = `<div class="mv">${fmtB(Ms[i].act)}</div><div class="md">${fmtN(Ms[i].n)} Booked${d ? d.chip : ""}</div>`; });
   dataTable("t-cmp", [
     {k:"key", label:D.label, wrap:1, fmt:v=>`<b style="font-weight:500">${esc(v)}</b>`},
     ...P.map((id,i) => ({k:"a"+i, label:`<span style="color:${CMP_COLORS[i]}">■</span> ${esc(cmpShort(id))}`, num:1, fmt:cell(i)}))
@@ -2816,7 +2965,7 @@ const slotPx = (id, n) => { const el = document.getElementById(id), w = el && el
 const arrTick = narrow => function(v){ const l = this.getLabelForValue(v); return narrow && Array.isArray(l) ? l[0] : l; };
 /* shared weekly bar chart: full Mon–Sun weeks, at least 8 weeks, value + % change pills, average line, best week */
 function weeklyBars(o){
-  const {canvas, insightEl, label, color, better, fmt, tick, W, sig, sum} = o;
+  const {canvas, insightEl, label, color, better, fmt, tick, W, sig, sum, second} = o;
   const lab = w => [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} – ${w.we.getDate()} ${TH[w.we.getMonth()]}`, w.partial ? "(ยังไม่ครบสัปดาห์)" : ""];
   const vals = W.map(w => w.v), valid = vals.filter((v,i) => v != null && !(sum && W[i].partial));
   const avg = valid.length ? valid.reduce((t,v) => t + v, 0) / valid.length : null;
@@ -2842,25 +2991,36 @@ function weeklyBars(o){
   upsert(canvas, {type:"bar", data:{labels:W.map(lab), datasets:[
       {type:"bar", label, data:vals, backgroundColor:colors, borderRadius:8, maxBarThickness:72, barPercentage:.7, categoryPercentage:.8, order:2,
         datalabels:{labels:{
-          value: tight
+          value: second && !tight
+            ? {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"end", offset:2, color, font:{size:9.5, weight:700}, formatter:v => tick(v)}
+            : tight
             ? {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"end", offset:3, rotation:-90, color:css("--text"), font:{size:10, weight:600}, formatter:v => tick(v)}
             : {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"start", offset:4, color:"#fff", font:{size: mid ? 10 : 10.5, weight:600}, formatter:v => mid ? tick(v) : fmt(v)},
-          delta:{display:c => !tight && !!chg(c.dataIndex), anchor:"end", align:"end", offset:2, color:"#fff", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600},
+          delta:{display:c => !tight && !second && !!chg(c.dataIndex), anchor:"end", align:"end", offset:2, color:"#fff", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600},
             backgroundColor:c => { const d = chg(c.dataIndex); return !d || d.good == null ? "#8c8172" : d.good ? "#4f7a2e" : "#b5473a"; },
             formatter:(v,c) => { const d = chg(c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"} ${Math.abs(d.p).toFixed(0)}%`; }}
         }}},
-      {type:"line", label:"ค่าเฉลี่ย", data:W.map(() => avg), borderColor:"#8c8172", borderDash:[6,5], borderWidth:1.5, pointRadius:0, order:1, datalabels:{display:false}}
+      {type:"line", label:"ค่าเฉลี่ย", data:W.map(() => avg), borderColor:"#8c8172", borderDash:[6,5], borderWidth:1.5, pointRadius:0, order:1, datalabels:{display:false}},
+      ...(second ? [{type:"bar", label:second.label, data:second.vals, yAxisID:"y2", backgroundColor:W.map(w => second.color + (w.partial ? "55" : "cc")), borderRadius:8, maxBarThickness:72, barPercentage:.7, categoryPercentage:.8, order:3,
+        // side by side: both values sit above their bars in the series colour
+        datalabels:{labels:{value:{display:c => c.dataset.data[c.dataIndex] > 0, anchor:"end", align:"end", offset: tight ? 3 : 2, rotation: tight ? -90 : 0,
+          color: tight ? css("--text") : second.color, font:{size:9.5, weight:700}, formatter:v => second.tick(v)}}}}] : [])
     ]},
     options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: tight ? 44 : 22}},
       plugins:{legend:{...legendCfg(), align:"end", display:!mid && !(canvas === "ads-week" && fitDesk())}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{
           title:c => lab(W[c[0].dataIndex])[0],
-          label:c => c.datasetIndex === 1 ? ` ค่าเฉลี่ย: ${avg == null ? "-" : fmt(avg)}` : ` ${label}: ${c.raw == null ? "ไม่มีข้อมูล" : fmt(c.raw)}`,
+          label:c => c.datasetIndex === 1 ? ` ค่าเฉลี่ย: ${avg == null ? "-" : fmt(avg)}` : c.datasetIndex === 2 ? ` ${second.label}: ${second.fmt(c.raw || 0)}` : ` ${label}: ${c.raw == null ? "ไม่มีข้อมูล" : fmt(c.raw)}`,
           afterBody:c => (W[c[0].dataIndex].extra || [])}}},
       scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkip:false, font:{size: tight ? 9.5 : 10.5},
-          callback:function(v, i){ const w = W[i]; return tight ? `${w.ws.getDate()}/${w.ws.getMonth()+1}${w.partial ? "*" : ""}` : mid ? `${w.ws.getDate()} ${TH[w.ws.getMonth()]}${w.partial ? "*" : ""}` : lab(w); }}},
-        y:{beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6}}}}
-  }, sig + (tight ? "t" : mid ? "m" : ""));
+          // every bar is labelled with its own date range (Monday – Sunday)
+          callback:function(v, i){ const w = W[i], st = w.partial ? "*" : "";
+            if(tight) return [`${w.ws.getDate()}/${w.ws.getMonth()+1}–`, `${w.we.getDate()}/${w.we.getMonth()+1}${st}`];
+            if(mid) return [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} –`, `${w.we.getDate()} ${TH[w.we.getMonth()]}${st}`];
+            return lab(w); }}},
+        y:{beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6, color: second ? color : undefined}},
+        ...(second ? {y2:{position:"right", beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{display:false}, ticks:{callback:v => second.tick(v), maxTicksLimit:5, color:second.color}}} : {})}}
+  }, sig + (tight ? "t" : mid ? "m" : "") + (second ? "2" : ""));
 }
 /* week starts (Mondays) covering the chosen period, at least 8 weeks, at most 26 */
 function weekStarts(a, b){
@@ -2908,7 +3068,8 @@ function renderAbWeekly(src){
   const cov = S.sheets.length ? [monthStart(S.sheets[0].key), monthEnd(S.sheets[S.sheets.length-1].key)] : null;
   const ads = (S.ads || []).filter(x => (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc));
   const bookDate = r => r.isNew ? r.entry : monthStart(r.sheetKey);
-  const books = (S.raw || []).filter(r => (r.isNew ? src !== "carry" : src !== "new") && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
+  if(!S.entryRows) buildEntryRows();
+  const books = [...(src !== "carry" ? S.entryRows : []), ...(src !== "new" ? (S.raw || []).filter(r => !r.isNew) : [])].filter(r => !S.adsSvc || bookMatch(S.adsSvc, r.proc));
   const W = weeks.map(ws => {
     const we = addDays(ws, 6), inW = d => d && d >= ws && d <= we;
     const ar = ads.filter(x => inW(x.date)), br = books.filter(r => inW(bookDate(r)));
@@ -2919,8 +3080,16 @@ function renderAbWeekly(src){
     return {ws, we, v, partial: we > today, sp, msg, nb, nw};
   });
   $("#abWeekMetric").textContent = M.label;
+  const show = S.abWShow || (S.abWShow = {m:true, sp:true});
+  const tg = $("#abWShow");
+  tg.querySelector('[data-k="m"] i').style.background = M.color;
+  tg.querySelectorAll("button").forEach(b => { b.classList.toggle("on", !!show[b.dataset.k]);
+    b.onclick = () => { const k = b.dataset.k, o = k === "m" ? "sp" : "m"; show[k] = !show[k]; if(!show[k] && !show[o]) show[o] = true; renderAbWeekly(src); }; });
   W.forEach(w => w.extra = [`Spend ${fmtB(w.sp)} · แชท ${fmtN(w.msg)}`, `Booking ${fmtN(w.nb)} · WIN ${fmtN(w.nw)}`]);
-  weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"abw" + mk + W.length, sum: mk === "book"});
+  const SP = {label:"ค่าใช้จ่าย Ads", color:"#c08a3e", better:null, fmt:v => fmtB(v), tick:v => fmtK(v)};
+  if(show.m) weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"abw" + mk + W.length, sum: mk === "book",
+    second: show.sp ? {...SP, vals:W.map(w => w.sp > 0 ? w.sp : null)} : null});
+  else weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), ...SP, W:W.map(w => ({...w, v: w.sp > 0 ? w.sp : null})), sig:"abwsp" + W.length, sum:true});
 }
 function renderAdsBookPage(){
   buildAbWeek();
@@ -2936,7 +3105,9 @@ function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
   const src = S.abSrc || "new";
   const inR = d => d && a && b && d >= a && d <= b;
   const bookDate = r => r.isNew ? r.entry : monthStart(r.sheetKey);
-  const books = (S.raw || []).filter(r => (r.isNew ? src !== "carry" : src !== "new") && inR(bookDate(r)) && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
+  if(!S.entryRows) buildEntryRows();
+  const pool = [...(src !== "carry" ? S.entryRows : []), ...(src !== "new" ? (S.raw || []).filter(r => !r.isNew) : [])];
+  const books = pool.filter(r => inR(bookDate(r)) && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
   const sp = adRows.reduce((t,x)=>t+x.spend,0), msg = adRows.reduce((t,x)=>t+x.msg,0);
   const nb = books.length, nw = books.filter(r => r.status === "WIN").length;
   const pct1 = msg ? nb / msg * 100 : null;
@@ -2957,7 +3128,7 @@ function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
   renderAbWeekly(src);
   // funnel: stage size is fixed (easy to read); the counts and the conversion % between stages carry the numbers
   const pc = (n, d, dp = 1) => d ? (n / d * 100).toFixed(dp) + "%" : "-";
-  const stage = (cls, w, lb, n, sub) => `<div class="fs ${cls}" style="--w:${w}%"><span>${lb}</span><b>${fmtN(n)}</b><small>${sub}</small></div>`;
+  const stage = (cls, w, lb, n, sub) => `<div class="fs ${cls}" style="--w:${w}%"><div class="fl"><span>${lb}</span><small>${sub}</small></div><i class="fsep"></i><b>${fmtN(n)}</b></div>`;
   const conv = (lb, v, note) => `<div class="fconv"><i>↓</i><span>${lb}</span><b>${v}</b><em>${note}</em></div>`;
   $("#abFunnel").innerHTML = `<div class="fun">` +
     stage("s1", 100, "แชท (ข้อความ)", msg, "100%") +
@@ -3406,6 +3577,11 @@ function moveNavThumb(){
 }
 function goPage(p){
   S.page = p;
+  document.body.dataset.page = p;
+  // quick day buttons exist only on overview / trend / team pages; leave them for a month view elsewhere
+  if(["today","yday","7d","14d"].includes(S.preset) && !["overview","trend","sales","doctor","proc"].includes(p)) setTimeout(() => setPreset("this"), 0);
+  // "ยอดยกมา" is not used on the trend page
+  if(p === "trend" && S.f.src === "carry"){ S.f.src = "all"; segSet($("#srcSeg"), "s", "all"); }
   document.body.classList.toggle("p-compare", p==="compare");
   document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook" || p==="chat");
   document.body.classList.toggle("p-chat", p==="chat");
@@ -3470,6 +3646,7 @@ async function load(manual){
     const mcp = await getMcp();
     // ads data refreshes at most once an hour (or when refreshed by hand)
     const needAds = manual || !S.adsAt || !(S.ads||[]).length || Date.now() - S.adsAt > 3600000;
+    S.entryRows = null;
     const adsP = needAds ? fetchAds(mcp).then(a => { S.ads = a; S.adsErr = ""; S.adsAt = Date.now(); }).catch(e => { S.adsErr = e && (e.code || e.message) || "ERR"; }) : Promise.resolve();
     if(mcp) WB = await loadWorkbookMcp(mcp);
     await adsP;
