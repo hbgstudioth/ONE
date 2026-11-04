@@ -1777,27 +1777,21 @@ function attrOk(r, except){
 const cmpWeek = id => { const from = parseDate(id.slice(3)); return {from, to:addDays(from, 6)}; };
 const mondayOf = d => addDays(d, -((d.getDay()+6)%7));
 function cmpPeriodRows(id){
-  if(!S.entryRows) buildEntryRows();
-  if(S.cmp.type === "month") return S.entryRows.filter(r => inRangeE(r, monthStart(id), monthEnd(id)));
+  if(S.cmp.type === "month") return S.raw.filter(r => r.isNew && r.sheetKey === id);
   const w = cmpWeek(id);
-  return S.entryRows.filter(r => inRangeE(r, w.from, w.to));
+  return S.raw.filter(r => r.isNew && r.entry && r.entry >= w.from && r.entry <= w.to);
 }
+/* Column A decides where a row belongs: a number = this sheet's own customer (ยอดเดือนนี้), blank = carried over (ยอดยกมา).
+   Month view = the rows of that month's sheet, exactly as in the sheet.
+   Date ranges (วันนี้ / 7 วัน / ระบุวันที่ …) use Date of entry for this-month rows; a carried-over row counts on the 1st day of its sheet month. */
+const rowDate = r => r.isNew && r.entry ? r.entry : monthStart(r.sheetKey);
 function baseRows(){
   if(S.page === "compare") return S.cmp.periods.flatMap(cmpPeriodRows);
-  if(!S.entryRows) buildEntryRows();
   if(S.mode === "custom"){
-    // a date range (วันนี้ / 7 วัน / ระบุวันที่ …): customers whose Date of entry is in the range
-    if(!S.from || !S.to) return S.entryRows;
-    return S.entryRows.filter(r => inRangeE(r, S.from, S.to));
+    if(!S.from || !S.to) return S.raw;
+    return S.raw.filter(r => { const d = rowDate(r); return d >= S.from && d <= S.to; });
   }
-  // month view: customers who entered in the chosen months (Date of entry) + rows carried into those months' sheets
-  const ks = [...S.months].sort(); if(!ks.length) return [];
-  const a = monthStart(ks[0]), b = monthEnd(ks[ks.length - 1]);
-  const w = S.week ? weekById(S.week) : null;
-  const fresh = S.entryRows.filter(r => w ? inRangeE(r, w.from, w.to) : inRangeE(r, a, b));
-  const carried = S.raw.filter(r => S.months.has(r.sheetKey) && !(r.entry && r.entry >= monthStart(r.sheetKey)) && (!r.isNew || !r.entry) && (!S.week || r.weekId === S.week))
-    .map(r => r.isNew ? r : r);   // rows without a date stay with their sheet month
-  return [...fresh, ...carried];
+  return S.raw.filter(r => S.months.has(r.sheetKey) && (!S.week || r.weekId === S.week));
 }
 const filtered = except => baseRows().filter(r => attrOk(r, except));
 function range(){
@@ -3068,8 +3062,7 @@ function renderAbWeekly(src){
   const cov = S.sheets.length ? [monthStart(S.sheets[0].key), monthEnd(S.sheets[S.sheets.length-1].key)] : null;
   const ads = (S.ads || []).filter(x => (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc));
   const bookDate = r => r.isNew ? r.entry : monthStart(r.sheetKey);
-  if(!S.entryRows) buildEntryRows();
-  const books = [...(src !== "carry" ? S.entryRows : []), ...(src !== "new" ? (S.raw || []).filter(r => !r.isNew) : [])].filter(r => !S.adsSvc || bookMatch(S.adsSvc, r.proc));
+  const books = (S.raw || []).filter(r => (r.isNew ? src !== "carry" : src !== "new") && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
   const W = weeks.map(ws => {
     const we = addDays(ws, 6), inW = d => d && d >= ws && d <= we;
     const ar = ads.filter(x => inW(x.date)), br = books.filter(r => inW(bookDate(r)));
@@ -3105,9 +3098,7 @@ function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
   const src = S.abSrc || "new";
   const inR = d => d && a && b && d >= a && d <= b;
   const bookDate = r => r.isNew ? r.entry : monthStart(r.sheetKey);
-  if(!S.entryRows) buildEntryRows();
-  const pool = [...(src !== "carry" ? S.entryRows : []), ...(src !== "new" ? (S.raw || []).filter(r => !r.isNew) : [])];
-  const books = pool.filter(r => inR(bookDate(r)) && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
+  const books = (S.raw || []).filter(r => (r.isNew ? src !== "carry" : src !== "new") && inR(bookDate(r)) && (!S.adsSvc || bookMatch(S.adsSvc, r.proc)));
   const sp = adRows.reduce((t,x)=>t+x.spend,0), msg = adRows.reduce((t,x)=>t+x.msg,0);
   const nb = books.length, nw = books.filter(r => r.status === "WIN").length;
   const pct1 = msg ? nb / msg * 100 : null;
