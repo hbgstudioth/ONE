@@ -169,7 +169,25 @@ body.p-compare .period,body.p-compare #srcSeg{display:none}
 .kpi .mini i{display:block;height:100%;width:0;border-radius:5px;background:var(--c);transition:width 1s var(--ease)}
 
 /* Dimension pages: donut + bar on the left, table on the right */
-.dimR{display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;min-height:0}
+.dimR{display:contents}
+.dimpage .rankcard{grid-column:1 / -1;grid-row:1}
+.dimpage .dimL{grid-column:1;grid-row:2;min-height:0}
+.dimpage .tcard{grid-column:2;grid-row:2}
+.dimpage.fit{grid-template-rows:auto minmax(0,1fr)}
+@media (max-width:1180px){ .dimpage .dimL,.dimpage .tcard{grid-column:1 / -1} .dimpage .tcard{grid-row:3} }
+/* ranking card across the top of the team pages: kept short */
+.dimpage .rankcard{padding:8px 14px}
+.dimpage .rankcard h3{margin-bottom:4px}
+.dimpage .podium{max-width:760px;margin:0 auto;width:100%;gap:14px;padding-top:0}
+.dimpage .pd{gap:3px}
+.dimpage .dav{width:36px;height:36px;margin-bottom:2px}
+.dimpage .pd.p1 .dav{width:44px;height:44px}
+.dimpage .pd .rv{font-size:15px}
+.dimpage .pd.p1 .step{height:40px;font-size:17px} .dimpage .pd.p2 .step{height:28px;font-size:15px} .dimpage .pd.p3 .step{height:20px;font-size:13px}
+.dimpage .top5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.dimpage .t5{grid-template-columns:22px 26px minmax(0,1fr);grid-template-areas:"no si tv" "nm nm nm";row-gap:4px;background:color-mix(in srgb,var(--mc) 9%,var(--card));border:1px solid color-mix(in srgb,var(--mc) 30%,transparent);border-radius:12px;padding:7px 10px}
+.dimpage .t5 .no{grid-area:no} .dimpage .t5 .si{grid-area:si} .dimpage .t5 .tv{grid-area:tv;text-align:right} .dimpage .t5 > div:not(.tv){grid-area:nm;min-width:0}
+@media (max-width:760px){ .dimpage .top5{grid-template-columns:1fr 1fr} }
 .rankcard{padding:10px 14px}
 .rankcard h3{margin:0 0 8px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .ranks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -679,6 +697,52 @@ body[data-page="trend"] #srcSeg button[data-s="carry"]{display:none}
 .kpi.hl .tag{background:rgba(255,255,255,.2) !important;color:#fff !important}
 .kpi.hl .mini{background:rgba(255,255,255,.25)}
 .kpi.hl .mini i{background:#fff !important}
+/* ===== Actual Received motion background ===== */
+.kpi.hero > :not(.growfx){position:relative;z-index:1}
+.growfx{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none;z-index:0}
+.growfx .sheen{position:absolute;top:-50%;bottom:-50%;width:40%;left:-60%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:gfxSheen 4.5s ease-in-out infinite}
+.growfx .bars{position:absolute;right:10px;bottom:0;width:58%;height:78%;opacity:.28}
+.growfx .bars rect{fill:#fff;transform-box:fill-box;transform-origin:bottom;animation:gfxBar 3.6s cubic-bezier(.2,.8,.2,1) infinite;animation-delay:var(--d)}
+.growfx .trend{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:100;animation:gfxDraw 3.6s ease-in-out infinite;vector-effect:non-scaling-stroke}
+.growfx .tip{fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation:gfxTip 3.6s ease-in-out infinite;vector-effect:non-scaling-stroke}
+.growfx .coin{position:absolute;bottom:-18px;font-size:12px;font-weight:700;color:rgba(255,255,255,.55);animation:gfxCoin var(--s) linear infinite;animation-delay:var(--d)}
+@keyframes gfxSheen{0%{left:-60%}60%,100%{left:130%}}
+@keyframes gfxBar{0%{transform:scaleY(.15);opacity:.4}45%{transform:scaleY(1);opacity:1}85%{transform:scaleY(1);opacity:1}100%{transform:scaleY(.15);opacity:.4}}
+@keyframes gfxDraw{0%{stroke-dashoffset:100;opacity:.9}55%{stroke-dashoffset:0;opacity:1}85%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes gfxTip{0%,50%{opacity:0}58%,85%{opacity:1}100%{opacity:0}}
+@keyframes gfxCoin{0%{transform:translateY(0) scale(.8);opacity:0}15%{opacity:1}100%{transform:translateY(-140px) scale(1.1);opacity:0}}
+@media (prefers-reduced-motion:reduce){ .growfx *{animation:none !important} .growfx .trend{stroke-dashoffset:0} }
+/* ===== ranking motion backgrounds ===== */
+.rk,.t5{position:relative;overflow:hidden}
+.rk > :not(.rfx),.t5 > :not(.rfx){position:relative;z-index:1}
+.rfx{position:absolute;inset:0;pointer-events:none;z-index:0;border-radius:inherit}
+.rfx .sheen{position:absolute;top:-40%;bottom:-40%;width:35%;left:-50%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--tc,var(--mc)) 30%,rgba(255,255,255,.55)),transparent);animation:rkSheen var(--sd) ease-in-out infinite}
+.rfx .tw{position:absolute;font-size:10px;line-height:1;color:var(--tc,var(--mc));opacity:0;animation:rkTwinkle 2.8s ease-in-out infinite;animation-delay:var(--d)}
+.rk.r1 .rfx .tw{font-size:12px}
+.rk.r1{animation:rowIn .5s var(--ease) both,rkGlow 2.6s ease-in-out .6s infinite}
+@keyframes rkSheen{0%{left:-50%}55%,100%{left:130%}}
+@keyframes rkTwinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0)}45%{opacity:.9;transform:scale(1.15) rotate(45deg)}70%{opacity:.25}}
+@keyframes rkGlow{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 18px 2px color-mix(in srgb,var(--tc) 45%,transparent)}}
+/* podium: falling confetti, spotlight on the winner, light sweeping the steps */
+.podium{position:relative}
+.podium > .pd{position:relative;z-index:1}
+.confetti{position:absolute;inset:-10px 0 0 0;overflow:hidden;pointer-events:none;z-index:0}
+.confetti i{position:absolute;top:-14px;width:var(--w);height:calc(var(--w) * 1.6);border-radius:1px;opacity:.85;animation:cfFall var(--s) linear infinite;animation-delay:var(--d)}
+@keyframes cfFall{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}100%{transform:translateY(190px) rotate(var(--r));opacity:0}}
+.pd.p1 .who{position:relative}
+.pd.p1 .who::before{content:"";position:absolute;left:50%;top:40%;width:120px;height:120px;transform:translate(-50%,-50%);border-radius:50%;z-index:-1;
+  background:radial-gradient(circle,color-mix(in srgb,var(--mc) 40%,transparent),transparent 65%);animation:spot 2.8s ease-in-out infinite}
+@keyframes spot{0%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.85)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}}
+.pd .step{position:relative;overflow:hidden}
+.pd .step::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:rkSheen 3.4s ease-in-out infinite}
+.pd.p2 .step::after{animation-delay:.6s} .pd.p3 .step::after{animation-delay:1.2s}
+/* top 5: progress bar with moving stripes */
+.t5 .tb i{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.3) 0 6px,transparent 6px 12px) !important;background-color:var(--mc) !important;background-size:34px 34px !important;animation:stripes 1.2s linear infinite}
+@keyframes stripes{from{background-position:0 0}to{background-position:34px 0}}
+@media (prefers-reduced-motion:reduce){ .rfx *,.confetti i,.pd .step::after,.pd.p1 .who::before,.t5 .tb i,.rk.r1{animation:none !important} .rfx .tw{opacity:.5} }
+
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -890,11 +954,13 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   /* Ads Spend: three full-width rows — ads chart, weekly comparison, summary table */
   /* Ads Spend: three full-width rows that share the window height — ads chart, weekly comparison, summary table */
   #p-ads{height:var(--avail);grid-template-rows:auto minmax(0,1fr);gap:10px}
-  #p-ads .adsbottom{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto;gap:10px;min-height:0}
+  #p-ads .adsbottom{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:10px;min-height:0}
+  #p-ads .adschart{grid-column:1;grid-row:1} #p-ads .adsweek{grid-column:1;grid-row:2}
+  #p-ads .adstable{grid-column:2;grid-row:1 / 3;max-height:none !important}
   #p-ads .adschart,#p-ads .adsweek{height:auto;min-height:0;margin:0;padding:8px 14px}
   #p-ads .adschart h3,#p-ads .adsweek h3{margin-bottom:4px}
   #p-ads .adsweek .abinsight{margin-bottom:2px;padding:3px 10px;font-size:12px}
-  #p-ads .adstable{max-height:min(170px,22vh) !important;min-height:0;padding:8px 14px}
+  #p-ads .adstable{min-height:0;padding:8px 14px}
   /* the auto-update note moves into the info line of the period bar */
   body.p-ads .adsnote{display:none}
   body.p-ads #adsHint::before{content:"อัปเดตอัตโนมัติทุก 1 ชั่วโมง  ·  ";color:var(--p1)}
@@ -1958,8 +2024,19 @@ const ICON = {
   newAct:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
   carryAct:'<path d="M3 12h13"/><path d="m12 7 5 5-5 5"/><path d="M21 5v14"/>'
 };
+/* Actual Received: looping "sales going up" motion behind the numbers
+   (shimmer sweep + bars growing one after another + trend line drawing upward + coins floating up) */
+const GROW_FX = `<div class="growfx" aria-hidden="true">
+  <i class="sheen"></i>
+  <svg class="bars" viewBox="0 0 200 100" preserveAspectRatio="none">
+    ${[18,26,24,36,44,40,58,72].map((h, k) => `<rect x="${8 + k * 24}" y="${100 - h}" width="14" height="${h}" rx="3" style="--d:${k * .18}s"/>`).join("")}
+    <polyline class="trend" points="15,86 39,76 63,78 87,64 111,54 135,58 159,38 183,22" pathLength="100"/>
+    <path class="tip" d="M175,22 L185,20 L181,30" />
+  </svg>
+  ${[12, 30, 48, 64, 80, 92].map((x, k) => `<span class="coin" style="left:${x}%;--d:${(k * .9).toFixed(1)}s;--s:${(5 + (k % 3)).toFixed(1)}s">฿</span>`).join("")}
+</div>`;
 function kpiCard(id, label, cls, color, i, mini){
-  return `<div class="card kpi ${cls||""}" id="k-${id}" style="--i:${i};${color?`--c:${color}`:""}">
+  return `<div class="card kpi ${cls||""}" id="k-${id}" style="--i:${i};${color?`--c:${color}`:""}">${id === "act" ? GROW_FX : ""}
     ${color?`<i class="bar"></i>`:""}${ICON[id] && cls!=="hero" ? `<span class="tag" style="${cls==="hero2"?"--c:#5e662d":""}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[id]}</svg></span>`:""}
     <div class="lb">${label}</div><div class="v">0</div><div class="s"></div>
     ${id==="act"?'<div class="meter"><i></i></div>':""}${mini?'<div class="mini"><i></i></div>':""}</div>`;
@@ -2174,7 +2251,7 @@ function buildDimPages(){
         <div class="card ch flex dcard"><h3>${share}</h3><div class="dwrap"><div class="grow"><canvas id="dn-${dim}"></canvas></div><div class="dleg" id="lg-${dim}"></div></div></div>
         <div class="card ch flex chcard"><h3>ยอดตาม ${DIMS[dim].label} <span class="hint">Actual Received</span></h3><div class="grow"><canvas id="bar-${dim}"></canvas></div></div>
       </div>
-      <div class="dimR"><div class="card rankcard"><h3>${{sales:"🏆 Ranking ทีม Sales", doctor:"🏅 Ranking แพทย์", proc:"✨ Top 5 Services"}[dim]} ${dim === "sales" ? `<span style="margin-left:auto"><div class="seg" id="rankBy-${dim}"><i class="thumb"></i><button data-r="n">Booked</button><button data-r="win">WIN</button><button data-r="act" class="on">Actual</button></div></span>` : `<span class="hint" style="margin-left:auto">วัดจาก Booked</span>`}</h3><div class="${{sales:"ranks", doctor:"podium", proc:"top5"}[dim]}" id="rankList-${dim}"></div></div>
+      <div class="dimR"><div class="card rankcard"><h3>${{sales:"🏆 Ranking ทีม Sales", doctor:"🏅 Ranking แพทย์", proc:"✨ Top 5 Services"}[dim]} ${dim === "sales" ? `<span style="margin-left:auto"><div class="seg" id="rankBy-${dim}"><i class="thumb"></i><button data-r="n">Booked</button><button data-r="win">WIN</button><button data-r="act" class="on">Actual</button></div></span>` : `<span class="hint" style="margin-left:auto">วัดจาก Case</span>`}</h3><div class="${{sales:"ranks", doctor:"podium", proc:"top5"}[dim]}" id="rankList-${dim}"></div></div>
       <div class="card ch flex tcard"><h3>ผลงานแยกตาม ${DIMS[dim].label} <span class="hint">คลิกแถวเพื่อกรอง · คลิกหัวตารางเพื่อเรียง</span></h3><div class="tbl-wrap" id="t-${dim}"></div></div></div>`;
   }
 }
@@ -2184,16 +2261,23 @@ const DOC_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const SURG_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.2 4.8 19.2 9.8 9.5 19.5H4.5v-5z"/><path d="m12 7 5 5"/><path d="M3 21h9"/><path d="M18 3.2l2.8 2.8"/></svg>`;
 const MEDAL = ["#d4a017", "#a7adb5", "#b87333"];
 function rankRows(g, by){ return g.filter(x => x.key && x.key !== "-").sort((a,b) => (b[by] - a[by]) || (b.act - a.act)); }
-const rankVal = (x, k) => k === "act" ? fmtB(x.act) : fmtN(x[k]) + (k === "n" ? " Booked" : " WIN");
+const rankVal = (x, k, unit = "Booked") => k === "act" ? fmtB(x.act) : fmtN(x[k]) + (k === "n" ? " " + unit : " WIN");
+/* ---- motion backgrounds for the ranking cards (looping, behind the content) ---- */
+const SPOTS = [[8,22],[78,14],[56,70],[90,62],[30,80],[66,30],[18,58],[44,12]];
+const sparkFx = (n, dur = 4.5) => `<div class="rfx" aria-hidden="true"><i class="sheen" style="--sd:${dur}s"></i>${SPOTS.slice(0, n).map(([x, y], k) =>
+  `<span class="tw" style="left:${x}%;top:${y}%;--d:${(k * .55).toFixed(2)}s">✦</span>`).join("")}</div>`;
+const CONF_C = ["#d4a017", "#a7adb5", "#b87333", "#7d8741", "#5f9a8f", "#c08a3e"];
+const confettiFx = () => `<div class="confetti" aria-hidden="true">${Array.from({length:22}, (_, k) =>
+  `<i style="left:${(k * 4.6 + (k % 3) * 1.7) % 100}%;background:${CONF_C[k % CONF_C.length]};--d:${((k * .37) % 4).toFixed(2)}s;--s:${(3.6 + (k % 5) * .45).toFixed(2)}s;--r:${(k % 2 ? 1 : -1) * (180 + k * 23)}deg;--w:${k % 3 ? 6 : 4}px"></i>`).join("")}</div>`;
 /* doctors: podium for the top 3 (2nd · 1st · 3rd) */
 function renderPodium(g){
   const by = "n";   // doctors are ranked by Booked only
   const L = rankRows(g, by).slice(0, 3), box = $("#rankList-doctor");
   if(!L.length){ box.innerHTML = `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`; return; }
   const order = [1, 0, 2].filter(i => L[i]);
-  box.innerHTML = order.map(i => { const x = L[i];
+  box.innerHTML = confettiFx() + order.map(i => { const x = L[i];
     return `<div class="pd p${i+1}" style="--mc:${MEDAL[i]};animation-delay:${[1,0,2].indexOf(i)*90}ms">
-      <div class="who"><div class="dav">${DOC_ICON}<span class="md">${i+1}</span></div><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${rankVal(x, by)}</div>
+      <div class="who"><div class="dav">${DOC_ICON}<span class="md">${i+1}</span></div><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${rankVal(x, by, "Case")}</div>
 </div>
       <div class="step"><span>${i+1}</span></div></div>`; }).join("");
 }
@@ -2202,17 +2286,17 @@ function renderTop5(g){
   const by = "n";   // services are ranked by Booked only
   const L = rankRows(g, by).slice(0, 5), mx = L.length ? L[0][by] || 1 : 1;
   const C = ["#d4a017", "#a7adb5", "#b87333", "#5f9a8f", "#8a6a43"];
-  $("#rankList-proc").innerHTML = L.length ? L.map((x, i) => `<div class="t5" style="--mc:${C[i]};animation-delay:${i*50}ms">
+  $("#rankList-proc").innerHTML = L.length ? L.map((x, i) => `<div class="t5" style="--mc:${C[i]};animation-delay:${i*50}ms">${sparkFx(i === 0 ? 5 : 3, 4 + i * .6)}
       <span class="no">${i+1}</span><span class="si">${SURG_ICON}</span>
       <div class="tn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="tb"><i style="width:${Math.max(3, x[by] / mx * 100).toFixed(1)}%"></i></div></div>
-      <div class="tv"><b>${rankVal(x, by)}</b></div></div>`).join("")
+      <div class="tv"><b>${rankVal(x, by, "Case")}</b></div></div>`).join("")
     : `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`;
 }
 function renderRank(g){
   const by = S.rankBy || "act";
   segSet($("#rankBy-sales"), "r", by);
   const L = rankRows(g, by), fv = rankVal;
-  $("#rankList-sales").innerHTML = L.length ? L.slice(0, 4).map((x, i) => `<div class="rk r${i+1}" style="--tc:${TROPHY[i]};animation-delay:${i*60}ms">
+  $("#rankList-sales").innerHTML = L.length ? L.slice(0, 4).map((x, i) => `<div class="rk r${i+1}" style="--tc:${TROPHY[i]};animation-delay:${i*60}ms">${sparkFx(i === 0 ? 8 : 5 - i, i === 0 ? 3.2 : 4.5 + i)}
       <div class="tro">${trophySvg(TROPHY[i])}<span>${i+1}</span></div>
       <div class="rn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${fv(x, by)}</div>
         <small>${["n","win","act"].filter(k => k !== by).map(k => fv(x, k)).join(" · ")}</small></div></div>`).join("")
