@@ -1,7 +1,7 @@
 {
   "name": "ONE Surgery Ads & Sales Dashboard",
   "short_name": "ONE Surgery",
-  "start_url": "./",
+  "start_url": "./#overview",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
@@ -25,5 +25,7 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "id": "./",
+  "lang": "th"
 }

@@ -689,7 +689,10 @@ body.p-ads #adsTop{display:flex}
 .cbar .sel.base{flex:0 1 230px}
 #presetSeg .qp{display:none}
 body[data-page="overview"] #presetSeg .qp,body[data-page="trend"] #presetSeg .qp,body[data-page="sales"] #presetSeg .qp,body[data-page="doctor"] #presetSeg .qp,body[data-page="proc"] #presetSeg .qp{display:inline-flex}
-body[data-page="trend"] #srcSeg button[data-s="carry"]{display:none}
+body[data-page="trend"] #srcSeg{display:none}
+.trendnote{display:none;align-items:center;gap:4px;font-size:12.5px;color:var(--muted);background:var(--soft);border-radius:999px;padding:6px 12px}
+.trendnote b{color:var(--text);font-weight:600}
+body[data-page="trend"] .trendnote{display:inline-flex}
 .avgpill.tot{background:color-mix(in srgb,var(--p1) 12%,transparent)}
 .avgpill + .avgpill{margin-left:6px}
 .kpi.hl{border:0;color:#fff;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 62%,#fff));box-shadow:0 12px 26px -14px var(--c)}
@@ -750,6 +753,86 @@ body[data-page="trend"] #srcSeg button[data-s="carry"]{display:none}
 .revsales h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .revsales .tbl-wrap{flex:1;min-height:0;overflow:auto}
 .revsales tfoot td{font-weight:600}
+/* ===== "add to home screen" bar (phones, opened in the browser, not yet installed) ===== */
+.instbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px;box-shadow:0 14px 34px -12px rgba(46,42,32,.45);animation:rowIn .5s var(--ease) both}
+.instbar[hidden]{display:none}
+.instbar .iic{width:42px;height:42px;border-radius:11px;flex:none;background:#000}
+.instbar .itx{flex:1;min-width:0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.instbar .itx b{display:block;font-size:14px;color:var(--text);font-weight:600}
+.instbar .itx svg{width:15px;height:15px;vertical-align:-3px;color:#007aff}
+.instbar .ibtn{font:inherit;font-size:13px;font-weight:600;border:0;border-radius:10px;padding:8px 12px;background:var(--pgrad);color:#fff;white-space:nowrap}
+.instbar .ix{font:inherit;border:0;background:var(--soft);color:var(--muted);width:28px;height:28px;border-radius:50%;flex:none}
+/* ===== overview: Input Revenue card (first, full width) ===== */
+/* the side menu scrolls when the screen is short (phone turned sideways) */
+.side{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.side::-webkit-scrollbar{display:none}
+.kpi.revday{grid-column:1 / -1;display:grid !important;grid-template-columns:minmax(220px,1.1fr) minmax(0,1.6fr) minmax(0,1.3fr);gap:16px;align-items:center;
+  background:linear-gradient(135deg,#2f5f5c,#5f9a8f);color:#fff;border:0;box-shadow:0 14px 30px -16px #2f5f5c;position:relative;overflow:hidden;min-height:0 !important}
+.kpi.revday .lb,.kpi.revday .s{color:rgba(255,255,255,.85) !important}
+.kpi.revday .lb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-right:0 !important}
+.kpi.revday .srcnote{background:rgba(255,255,255,.18);color:#fff}
+.kpi.revday .v{font-size:clamp(22px,2vw,32px) !important;color:#fff}
+.rvM{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rvM div{background:rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:0}
+.rvM span{display:block;font-size:11px;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rvM b{display:block;font-size:clamp(13px,1.05vw,16px);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rvM small{font-size:10.5px;color:rgba(255,255,255,.75)}
+.rvM .live{display:inline-flex;align-items:center;gap:4px}
+.rvM .live i{width:7px;height:7px;border-radius:50%;background:#bff0c8;box-shadow:0 0 0 0 rgba(191,240,200,.7);animation:livePulse 1.6s ease-out infinite}
+.rvR{position:relative;height:62px;align-self:end;overflow:hidden;border-radius:8px}
+.rvR svg{width:100%;height:100%;display:block}
+.rvR rect{fill:rgba(255,255,255,.42);transform-box:fill-box;transform-origin:bottom;animation:rvRise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d)}
+.rvR rect.pk{fill:#ffe9a8}
+.rvR rect.now{fill:#bff0c8;animation:rvRise .9s cubic-bezier(.2,.8,.2,1) both var(--d),rvNow 1.6s ease-in-out 1.4s infinite}
+.rvscan{position:absolute;top:0;bottom:0;width:22%;left:-30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:rvScan 3.8s ease-in-out infinite}
+@keyframes rvRise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes rvNow{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes rvScan{0%{left:-30%}70%,100%{left:110%}}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(191,240,200,.7)}100%{box-shadow:0 0 0 8px rgba(191,240,200,0)}}
+@media (max-width:1180px){ .kpi.revday{grid-template-columns:1fr} .rvM{grid-template-columns:repeat(2,minmax(0,1fr))} }
+/* ===== Estimate Value motion ===== */
+.kpi.hero2{position:relative;overflow:hidden}
+.kpi.hero2 > :not(.estfx):not(.tag){position:relative;z-index:1}
+.kpi.hero2 > .tag{z-index:2}
+.estfx{position:absolute;inset:0;pointer-events:none;z-index:0}
+.estfx svg{position:absolute;right:18px;bottom:8px;width:52%;height:72%}
+.estfx .proj{fill:none;stroke:color-mix(in srgb,var(--p1) 45%,transparent);stroke-width:2;stroke-dasharray:4 4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.estfx .proj{stroke-dasharray:100;stroke-dashoffset:100;animation:estDraw 4s ease-in-out infinite}
+.estfx .tgt{position:absolute;right:calc(18px + 52% * .12 + 30px);top:calc(28% - 4px);width:18px;height:18px}
+.estfx .tgt i{position:absolute;inset:0;border-radius:50%;border:2px solid color-mix(in srgb,var(--p1) 55%,transparent);opacity:0;animation:estRing 2.4s ease-out infinite}
+.estfx .tgt i:nth-child(2){animation-delay:.8s} .estfx .tgt i:nth-child(3){animation-delay:1.6s}
+.estfx .tgt::after{content:"";position:absolute;inset:5px;border-radius:50%;background:color-mix(in srgb,var(--p1) 60%,transparent)}
+@keyframes estDraw{0%{stroke-dashoffset:100;opacity:.9}55%{stroke-dashoffset:0;opacity:1}85%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes estRing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){ .rvR rect,.rvscan,.rvM .live i,.estfx *,.estfx .tgt::after{animation:none !important} .estfx .proj{stroke-dashoffset:0} }
+/* ===== money motion (รายได้จริงต่อวัน) ===== */
+.kpi.revday > :not(.mnyfx){position:relative;z-index:1}
+#k-rev,#k-book{position:relative;overflow:hidden;isolation:isolate}
+.mnyfx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.mnyfx .coin{position:absolute;bottom:-26px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800;color:#8a6a1c;
+  background:radial-gradient(circle at 35% 30%,#fff3c4,#e9c25a 55%,#b88a26);box-shadow:0 0 0 2px rgba(255,236,170,.35);opacity:0;transform:scale(var(--z));
+  animation:mnyUp var(--s) linear infinite;animation-delay:var(--d)}
+.mnyfx .note{position:absolute;bottom:-30px;width:34px;height:18px;border-radius:3px;display:grid;place-items:center;background:linear-gradient(135deg,#cfe8c8,#8cc28a);
+  border:1.5px solid rgba(255,255,255,.6);opacity:0;animation:mnyNote var(--s) ease-in-out infinite;animation-delay:var(--d)}
+.mnyfx .note b{font-size:10px;color:#3d6b3a;font-weight:800}
+.mnyfx .cashglow{position:absolute;left:-10%;top:-60%;width:45%;height:220%;background:radial-gradient(closest-side,rgba(255,236,170,.22),transparent);animation:cashGlow 6s ease-in-out infinite}
+@keyframes mnyUp{0%{transform:translateY(0) scale(var(--z)) rotateY(0);opacity:0}12%{opacity:.75}85%{opacity:.6}100%{transform:translateY(-150px) scale(var(--z)) rotateY(360deg);opacity:0}}
+@keyframes mnyNote{0%{transform:translate(0,0) rotate(0);opacity:0}15%{opacity:.6}50%{transform:translate(10px,-75px) rotate(var(--r))}85%{opacity:.45}100%{transform:translate(-6px,-150px) rotate(calc(var(--r) * -1));opacity:0}}
+@keyframes cashGlow{0%,100%{left:-15%;opacity:.6}50%{left:70%;opacity:1}}
+/* ===== booking motion (ลูกค้าที่จอง) ===== */
+#k-book{position:relative;overflow:hidden}
+#k-book > :not(.bkfx):not(.tag){position:relative;z-index:1}
+#k-book > .tag{z-index:2}
+.bkfx{position:absolute;inset:0;pointer-events:none;z-index:0}
+.bkfx .bcal{position:absolute;right:12px;bottom:10px;display:grid;grid-template-columns:repeat(7,10px);gap:3px;opacity:.5}
+.bkfx .bcal i{width:10px;height:10px;border-radius:3px;background:rgba(255,255,255,.22);position:relative;animation:bkDay 4.6s ease-in-out infinite;animation-delay:var(--d)}
+.bkfx .ppl{position:absolute;bottom:42%;display:flex;align-items:center;gap:2px;opacity:0;animation:bkPop 5.4s ease-out infinite;animation-delay:var(--d)}
+.bkfx .ppl svg{width:16px;height:16px;fill:rgba(255,255,255,.8)}
+.bkfx .ppl em{font-style:normal;font-size:10px;font-weight:800;color:#fff;background:rgba(255,255,255,.22);border-radius:6px;padding:0 4px}
+@keyframes bkDay{0%,20%{background:rgba(255,255,255,.22);transform:scale(1)}30%{background:#fff;transform:scale(1.35)}40%,80%{background:#bff0e4;transform:scale(1)}100%{background:rgba(255,255,255,.22)}}
+@keyframes bkPop{0%{opacity:0;transform:translateY(10px) scale(.6)}12%{opacity:.95;transform:translateY(0) scale(1)}40%{opacity:.8;transform:translateY(-14px)}60%,100%{opacity:0;transform:translateY(-26px)}}
+@media (prefers-reduced-motion:reduce){ .mnyfx *,.bkfx *{animation:none !important} .mnyfx .coin,.mnyfx .note{display:none} }
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -809,6 +892,8 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   .menu-btn{display:grid}
   .side{position:fixed;z-index:50;top:0;left:0;bottom:0;width:260px;height:100%;padding:16px 12px;padding-top:calc(16px + env(safe-area-inset-top,0px));background:var(--bg);transform:translateX(-105%);transition:transform .45s var(--ease)}
   body.nav-open .side{transform:none}
+  .side{height:100vh;height:100dvh;max-height:100dvh;overflow-y:auto;touch-action:pan-y;padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+  .side > *{flex-shrink:0}
   .backdrop{display:block;position:fixed;inset:0;z-index:45;background:rgba(30,28,20,.38);opacity:0;pointer-events:none;transition:opacity .35s}
   body.nav-open .backdrop{opacity:1;pointer-events:auto}
   .collapse{display:none}
@@ -935,25 +1020,32 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 /* ===== computer screens: every page fits the window; long lists scroll inside their own card ===== */
 @media (min-width:1181px) and (min-height:620px){
   /* compare */
-  /* compare: metrics on top; revenue on the left, chart + breakdown on the right */
-  #p-compare{height:var(--avail);min-height:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr)}
-  #p-compare .cbar,#p-compare .mcard{grid-column:1 / -1}
-  /* compare has one more card now: rows keep a readable height and the page scrolls a little instead of squeezing */
-  #p-compare{height:auto !important;min-height:var(--avail);grid-template-rows:auto auto clamp(400px,50vh,500px) clamp(280px,34vh,380px) !important}
-  #p-compare .rcchart{min-height:150px}
-  #p-compare .cbottom{grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;min-height:0}
-  #p-compare .cbottom > .card{min-height:0;max-height:none}
-  #p-compare .revcmp{overflow:hidden}
-  #p-compare .revcmp{grid-column:1;grid-row:3;display:flex;flex-direction:column;min-height:0}
-  #p-compare .revsales{grid-column:1;grid-row:4;min-height:0;height:auto}
-  #p-compare .srcnote{max-width:60%}
-  #p-compare .rcwrap{flex:1;min-height:0;height:auto;display:flex;flex-direction:column;gap:10px}
-  #p-compare .rcwrap .tbl-wrap{flex:none;height:auto}
-  #p-compare .rcchart{flex:1;min-height:120px}
-  #p-compare .cbottom{grid-column:2;grid-row:3 / 5;min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
-  #p-compare .chcard,#p-compare .tcard{height:auto;min-height:0;max-height:none}
-  #p-compare .chcard h3 > span{flex-wrap:nowrap !important}
+  /* compare (fits the window):
+     row 1  period controls
+     row 2  Prospect metrics table (wide)        | Booking % chart (same height)
+     row 3  Input Revenue per day (table + chart) | Input Revenue by sales person */
+  #p-compare{height:var(--avail);min-height:0;grid-template-columns:minmax(0,2.15fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:12px}
+  #p-compare .cbar{grid-column:1 / -1;grid-row:1}
+  #p-compare .mcard{grid-column:1;grid-row:2;min-height:0}
+  #p-compare .cbottom{grid-column:2;grid-row:2;display:flex;min-height:0}
+  #p-compare .cbottom > .chcard{flex:1;height:auto;min-height:0;max-height:none}
+  #p-compare .chcard h3{flex-wrap:wrap;row-gap:4px}
+  #p-compare .chcard h3 .srcnote{order:3;max-width:100%}
+  #p-compare .chcard .grow{min-height:120px}
+  #p-compare .revcmp{grid-column:1;grid-row:3;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #p-compare .revsales{grid-column:2;grid-row:3;min-height:0;height:auto}
+  #p-compare .rcwrap{flex:1;min-height:0;height:auto;display:flex;flex-direction:column;gap:6px}
+  #p-compare .rcwrap .tbl-wrap{flex:none;height:auto;overflow:auto}
+  #p-compare .rcchart{display:none}   /* the table already shows each period's revenue; the cards stay readable */
+  /* tighter tables so every column is visible in the narrower cards */
+  #p-compare table{font-size:12.5px}
+  #p-compare th,#p-compare td{padding-left:6px !important;padding-right:6px !important}
+  #p-compare td.num .md,#p-compare td .md{white-space:normal;line-height:1.35}
+  #p-compare table .dchip,#p-compare table .chip{font-size:10px;padding:0 4px}
+  #p-compare .mcard td,#p-compare .revcmp td{padding-top:5px !important;padding-bottom:5px !important}
+  #p-compare .srcnote{max-width:70%}
   #p-compare .revcmp h3 .hint{display:none}
+
   /* customers: calendar on the left, search table and top customers on the right */
   #p-customers{height:var(--avail);grid-template-columns:minmax(0,1.45fr) minmax(360px,1fr);grid-template-rows:minmax(0,1.2fr) minmax(0,1fr);gap:12px}
   #p-customers .cal-card{grid-column:1;grid-row:1 / 3;display:flex;flex-direction:column;min-height:0;overflow:hidden}
@@ -1068,6 +1160,12 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-chat .chsrc{padding:8px 14px}
   #p-chat .chk .kc{padding:8px 12px}
 }
+@media (min-width:1181px) and (min-height:620px){
+  #p-overview{height:var(--avail);grid-template-rows:auto auto auto auto minmax(0,1fr)}
+  #p-overview .svc-grid{min-height:0;overflow:auto;align-content:start;grid-auto-rows:minmax(84px,auto);padding:2px 2px 4px}
+  #p-overview .svc-grid{grid-auto-rows:max-content !important}
+  #p-overview .svc-grid > *{min-height:84px;height:auto;justify-content:flex-start}
+}
 @media (min-width:1181px) and (max-height:880px){
   #p-overview{gap:8px}
   #p-overview .kpi{min-height:86px;padding:8px 13px}
@@ -1135,7 +1233,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <button data-s="all" class="on">ทุกรายการ</button>
           <button data-s="new"><span class="dot" style="background:var(--p1)"></span>ลูกค้าใหม่</button>
           <button data-s="carry"><span class="dot" style="background:var(--muted2)"></span>ยอดยกมา</button>
-        </div>
+        </div><span class="trendnote">👤 หน้านี้แสดงเฉพาะ <b>ลูกค้าใหม่</b> (คอลัมน์ A มีเลข) เพื่อดูแนวโน้มรายวัน</span>
         <div class="sel" data-f="proc"><select aria-label="Services"></select></div>
         <div class="sel" data-f="sales"><select aria-label="Sales"></select></div>
         <div class="sel" data-f="doctor"><select aria-label="Doctor"></select></div>
@@ -1186,11 +1284,9 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         </div>
         <div class="cbottom">
           <div class="card ch flex chcard"><h3><span id="cmpChartTitle">เทียบรายสัปดาห์</span><span class="srcnote" data-src="pros"></span>
-            <span class="hint" style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><div class="seg" id="cmpView"><i class="thumb"></i><button data-v="total" class="on">ยอดรวมแต่ละช่วง</button><button data-v="split" id="cmpViewSplit">แยกรายสัปดาห์</button></div><div class="seg" id="cmpMetric"><i class="thumb"></i><button data-m="act" class="on">Actual</button><button data-m="n">Booking</button><button data-m="win">WIN</button></div></span></h3>
+            <span class="hint" style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><div class="seg" id="cmpView"><i class="thumb"></i><button data-v="total" class="on">ยอดรวมแต่ละช่วง</button><button data-v="split" id="cmpViewSplit">แยกรายสัปดาห์</button></div><div class="seg" id="cmpMetric" hidden><i class="thumb"></i><button data-m="n" class="on">Booking</button></div></span></h3>
             <div class="grow"><canvas id="cmp-chart"></canvas></div></div>
-          <div class="card ch flex tcard"><h3><span id="cmpTblTitle">เปลี่ยนแปลงแยกตาม</span><span class="srcnote" data-src="pros"></span>
-            <span class="hint" style="margin-left:auto"><div class="seg" id="cmpDim"><i class="thumb"></i><button data-d="sales" class="on">Sales</button><button data-d="doctor">แพทย์</button><button data-d="proc">Services</button></div></span></h3>
-            <div class="tbl-wrap" id="t-cmp"></div></div>
+          <div hidden><span id="cmpTblTitle"></span><div class="seg" id="cmpDim"><button data-d="sales" class="on">Sales</button></div><div id="t-cmp"></div></div>
         </div>
       </section>
 
@@ -1281,7 +1377,8 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         </div>
         <div class="card ch flex abweek">
           <h3>เปรียบเทียบรายสัปดาห์ <span class="hint">สัปดาห์ละ 7 วัน (จ.–อา.) ข้ามเดือนได้</span>
-            <span class="wtog" id="abWShow"><button data-k="m" class="on"><i></i><span id="abWeekMetric"></span></button><button data-k="sp" class="on"><i style="background:#c08a3e"></i>ค่าใช้จ่าย Ads</button></span></h3>
+            <div class="seg" id="abAgg" style="margin-left:auto"><i class="thumb"></i><button data-a="sum" class="on">ยอดรวม</button><button data-a="avg">เฉลี่ย/วัน</button></div>
+            <span class="wtog" id="abWShow" style="margin-left:0"><button data-k="m" class="on"><i></i><span id="abWeekMetric"></span></button><button data-k="sp" class="on"><i style="background:#c08a3e"></i>ค่าใช้จ่าย Ads</button></span></h3>
           <div class="abinsight" id="abInsight"></div>
           <div class="mobhint">แกนล่างแสดงวันจันทร์ต้นสัปดาห์ (วัน/เดือน) · * = สัปดาห์ที่ยังไม่ครบ 7 วัน · แตะแท่งเพื่อดูรายละเอียด</div>
           <div class="grow"><canvas id="ab-week"></canvas></div>
@@ -1294,7 +1391,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 
       <!-- Trend -->
       <section class="page fit" id="p-trend">
-        <div class="card ch flex chcard"><h3><span class="srcTag pros">Prospect</span>Booking และยอดรับเงิน <span class="hint" id="trendHint2"></span></h3><div class="grow"><canvas id="ln-trend"></canvas></div></div>
+        <div class="card ch flex chcard"><h3><span class="srcTag pros">Prospect</span>Booking รายวัน <span class="hint" id="trendHint2"></span></h3><div class="grow"><canvas id="ln-trend"></canvas></div></div>
         <div class="card ch flex chcard revcard"><h3><span class="srcTag rev">Input Revenue</span>รายได้จริงต่อวัน <span class="hint" id="revHint"></span></h3>
           <div class="revk" id="revKpis"></div>
           <div class="revinfo" id="revInfo"></div>
@@ -1356,6 +1453,12 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 <div class="modal" id="dayModal" role="dialog" aria-modal="true" aria-labelledby="dayTitle">
   <div class="card box"><h2 id="dayTitle"></h2><p class="d" id="daySub"></p><div class="tbl-wrap" id="dayList" style="max-height:60vh"></div>
     <div class="acts"><button class="btn ghost" id="dayClose">ปิด</button></div></div>
+</div>
+<div class="instbar" id="instBar" hidden role="dialog" aria-label="ติดตั้งแอป">
+  <img class="iic" id="instIcon" alt="">
+  <div class="itx"><b>ติดตั้ง ONE Dashboard เป็นแอป</b><span id="instMsg"></span></div>
+  <button class="ibtn" id="instBtn" hidden>ติดตั้งแอป</button>
+  <button class="ix" id="instClose" aria-label="ปิด">✕</button>
 </div>
 <div class="modal" id="chatModal" role="dialog" aria-modal="true" aria-labelledby="cvName">
   <div class="card box cvbox">
@@ -1816,7 +1919,7 @@ const S = {
   f:{proc:"", sales:"", doctor:"", status:"", src:"all"},
   page:"overview", ads:[], adsErr:"", adsAcct:"", adsSvc:"", adsGran:"auto", adsTab:"svc", adsPreset:"month", chat:null, chatErr:"", chatPage:"", chatDeep:10, chatHourMode:"hour", awMetric:"spend", abMetric:"cpb", adsFrom:null, adsTo:null, adsMetrics:["spend","msg"], adsChartSvc:"", adsAt:0, search:"", custMode:"month", calMonth:"", rev:[], revErr:"", revInfo:null, revDiag:[],
   rankSort:{proc:"act", sales:"act", doctor:"n"},
-  cmp:{type:"month", periods:[], base:"prev", metric:"act", dim:"sales", view:"total", rmetric:"avg"}
+  cmp:{type:"month", periods:[], base:"prev", metric:"n", dim:"sales", view:"total", rmetric:"avg"}
 };
 const PAGES = ["overview","compare","trend","ads","adsbook","chat","upsale","sales","doctor","proc","customers"];
 const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", chat:"Chat · แชทลูกค้า", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
@@ -2054,14 +2157,35 @@ const GROW_FX = `<div class="growfx" aria-hidden="true">
   </svg>
   ${[12, 30, 48, 64, 80, 92].map((x, k) => `<span class="coin" style="left:${x}%;--d:${(k * .9).toFixed(1)}s;--s:${(5 + (k % 3)).toFixed(1)}s">฿</span>`).join("")}
 </div>`;
+/* Estimate Value = money still possible: a dashed projection line keeps drawing up towards a target that pulses */
+const EST_FX = `<div class="estfx" aria-hidden="true">
+  <svg viewBox="0 0 200 100" preserveAspectRatio="none"><polyline class="proj" points="8,88 50,74 92,66 134,44 176,22" pathLength="100"/></svg>
+  <span class="tgt"><i></i><i></i><i></i></span>
+</div>`;
 function kpiCard(id, label, cls, color, i, mini){
-  return `<div class="card kpi ${cls||""}" id="k-${id}" style="--i:${i};${color?`--c:${color}`:""}">${id === "act" ? GROW_FX : ""}
+  return `<div class="card kpi ${cls||""}" id="k-${id}" style="--i:${i};${color?`--c:${color}`:""}">${id === "act" ? GROW_FX : id === "est" ? EST_FX : id === "book" ? BOOK_FX : ""}
     ${color?`<i class="bar"></i>`:""}${ICON[id] && cls!=="hero" ? `<span class="tag" style="${cls==="hero2"?"--c:#5e662d":""}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[id]}</svg></span>`:""}
     <div class="lb">${label}</div><div class="v">0</div><div class="s"></div>
     ${id==="act"?'<div class="meter"><i></i></div>':""}${mini?'<div class="mini"><i></i></div>':""}</div>`;
 }
+/* revenue card: coins and banknotes floating up behind the numbers */
+const MONEY_FX = `<div class="mnyfx" aria-hidden="true">${[
+  ["c", 4, 0, 7.5], ["n", 15, 1.6, 9], ["c", 27, 3.1, 6.8], ["c", 38, .8, 8.2], ["n", 47, 2.4, 9.5],
+  ["c", 58, 4.2, 7.2], ["n", 66, .3, 8.8], ["c", 74, 2.9, 6.5], ["c", 84, 1.2, 7.8], ["n", 92, 3.6, 9.2]
+].map(([t, x, d, s2], k) => t === "c"
+  ? `<i class="coin" style="left:${x}%;--d:${d}s;--s:${s2}s;--z:${(.75 + (k % 3) * .18).toFixed(2)}">฿</i>`
+  : `<i class="note" style="left:${x}%;--d:${d}s;--s:${s2}s;--r:${k % 2 ? 14 : -12}deg"><b>฿</b></i>`).join("")}<i class="cashglow"></i></div>`;
+/* booking card: a mini calendar where days get booked one by one, and new customers pop in */
+const BOOK_FX = `<div class="bkfx" aria-hidden="true">
+  <div class="bcal">${Array.from({length:21}, (_, k) => `<i style="--d:${((k * 7) % 21 * .22).toFixed(2)}s"></i>`).join("")}</div>
+  ${[[64,1.0],[78,2.6],[90,4.1]].map(([x, d]) => `<span class="ppl" style="left:${x}%;--d:${d}s"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg><em>+1</em></span>`).join("")}
+</div>`;
 function buildKpis(){
-  $("#p-overview").innerHTML = kpiCard("act","Actual Received","hero","",0) + kpiCard("est","Estimate Value","hero2","",1) +
+  $("#p-overview").innerHTML = `<div class="card kpi revday" id="k-rev" style="--i:0">${MONEY_FX}
+      <div class="rvL"><div class="lb">รายได้จริงต่อวัน <span class="srcnote">ชีท Input Revenue</span></div><div class="v" id="rvTot">-</div><div class="s" id="rvSub"></div></div>
+      <div class="rvM" id="rvMid"></div>
+      <div class="rvR"><svg id="rvSpark" preserveAspectRatio="none" aria-hidden="true"></svg><i class="rvscan" aria-hidden="true"></i></div>
+    </div>` + kpiCard("act","Actual Received","hero","",0) + kpiCard("est","Estimate Value","hero2","",1) +
     kpiCard("book","Booking","hl","#356e6b",2) + kpiCard("win","WIN","","#4d7c32",3,1) +
     kpiCard("dep","มัดจำ","","#3f7a78",4,1) + kpiCard("conv","Conversion Rate","","#8fa14a",5,1) +
     kpiCard("avg","เฉลี่ย / บิล (WIN)","","#c08a3e",6) + kpiCard("pipe","Pipeline รอปิด","","#b5654a",7) +
@@ -2088,6 +2212,41 @@ function renderKpis(rows){
   set("pipe", pipe, fmtB, `Estimate − Actual ของ ${open.length} Booked ที่ยังไม่ปิด`);
   set("newAct", nwAct, fmtB, `${nw.length} ราย · ${pct(nwAct,t.act).toFixed(0)}% ของยอดรวม`); mini("newAct", pct(nwAct,t.act));
   set("carryAct", crAct, fmtB, `${cr.length} ราย · ${pct(crAct,t.act).toFixed(0)}% ของยอดรวม`); mini("carryAct", pct(crAct,t.act));
+  renderRevDay();
+}
+/* first overview card: Input Revenue for the chosen period, with the daily bars drawn behind as a live sparkline */
+function renderRevDay(){
+  const el = $("#k-rev"); if(!el) return;
+  const [a0, b0] = range();
+  if(!(S.rev || []).length){ $("#rvTot").textContent = "-"; $("#rvSub").textContent = S.revErr ? "ยังอ่านชีท Input Revenue ไม่ได้" : "กำลังโหลด…"; $("#rvMid").innerHTML = ""; $("#rvSpark").innerHTML = ""; return; }
+  const today = new Date(); today.setHours(0,0,0,0);
+  const a = a0 || new Date(Math.min(...S.rev.map(x => +x.date))), b = b0 || today;
+  const end = b > today ? today : b;
+  // the Sales and Services filters also apply here (Input Revenue has Sales in D and the procedure in E)
+  const salesOk = x => !S.f.sales || String(x.sales || "").split(/\s*(?:,|x|×|&|\+|\/|และ)\s*/i).map(t => t.trim()).includes(S.f.sales) || String(x.sales || "").trim() === S.f.sales;
+  const procOk = x => !S.f.proc || procMatch(x.proc, S.f.proc) || (!S.f.proc.startsWith("~") && String(x.proc || "").includes(S.f.proc));
+  const rows = S.rev.filter(x => x.date >= a && x.date <= b && salesOk(x) && procOk(x));
+  const used = [S.f.sales && `Sales: ${S.f.sales}`, S.f.proc && `Services: ${S.f.proc.replace(/^~/, "มีคำว่า ")}`].filter(Boolean);
+  const unused = [S.f.doctor && "แพทย์", S.f.status && "สถานะ", S.f.src && S.f.src !== "all" && "ลูกค้าใหม่/ยกมา"].filter(Boolean);
+  $("#k-rev .srcnote").textContent = `ชีท Input Revenue${used.length ? " · กรอง " + used.join(" · ") : ""}${unused.length ? " · " + unused.join("/") + " ไม่มีผลกับรายได้" : ""}`;
+  const days = []; for(let d = new Date(a); d <= end; d = addDays(d, 1)) days.push(new Date(d));
+  const byDay = new Map(); rows.forEach(x => { const k = iso(x.date); const o = byDay.get(k) || {amt:0, store:0, online:0}; o.amt += x.amt; o.store += x.shop; o.online += x.online; byDay.set(k, o); });
+  const vals = days.map(d => (byDay.get(iso(d)) || {amt:0}).amt);
+  const tot = rows.reduce((t,x) => t + x.amt, 0), st = rows.reduce((t,x) => t + x.shop, 0), on = rows.reduce((t,x) => t + x.online, 0);
+  const nd = Math.max(1, days.length), withRev = vals.filter(v => v > 0).length;
+  let bi = -1; vals.forEach((v,i) => { if(bi < 0 || v > vals[bi]) bi = i; });
+  countTo($("#rvTot"), tot, fmtB);
+  $("#rvSub").textContent = `เฉลี่ย ${fmtB(tot / nd)}/วัน · ${nd} วัน (มีรายได้ ${withRev} วัน) · ${fmtN(rows.length)} รายการ`;
+  const lastV = vals[vals.length - 1] || 0;
+  $("#rvMid").innerHTML = `<div><span>หน้าร้าน</span><b>${fmtB(st)}</b><small>${tot ? (st / tot * 100).toFixed(0) : 0}%</small></div>
+    <div><span>ออนไลน์</span><b>${fmtB(on)}</b><small>${tot ? (on / tot * 100).toFixed(0) : 0}%</small></div>
+    <div><span>วันสูงสุด</span><b>${bi >= 0 && vals[bi] ? fmtB(vals[bi]) : "-"}</b><small>${bi >= 0 && vals[bi] ? dLabel(days[bi]) : ""}</small></div>
+    <div><span>ล่าสุด ${days.length ? `${days[days.length-1].getDate()} ${TH[days[days.length-1].getMonth()]}` : ""}</span><b>${fmtB(lastV)}</b><small class="live"><i></i>วันล่าสุด</small></div>`;
+  // sparkline: one bar per day, the best day highlighted, bars rise one after another
+  const W = Math.max(60, nd * 10), H = 60, mx = Math.max(1, ...vals), bw = W / nd;
+  $("#rvSpark").setAttribute("viewBox", `0 0 ${W} ${H}`);
+  $("#rvSpark").innerHTML = vals.map((v, i) => { const h = v ? Math.max(2, v / mx * (H - 4)) : 1;
+    return `<rect x="${(i * bw + bw * .15).toFixed(2)}" y="${(H - h).toFixed(2)}" width="${(bw * .7).toFixed(2)}" height="${h.toFixed(2)}" rx="${Math.min(2, bw * .2).toFixed(2)}" class="${i === bi ? "pk" : ""}${i === vals.length - 1 ? " now" : ""}" style="--d:${(i / nd * 1.1).toFixed(2)}s"/>`; }).join("");
 }
 
 /* ================= RANK / LISTS ================= */
@@ -2172,28 +2331,28 @@ function series(rows){
   return {labels, days, vals, book:vals.map(v=>v.n), act:vals.map(v=>v.act), unit:byMonth?"month":"day"};
 }
 function lineChart(id, rows, hintEl){
-  const s = series(rows), p1 = css("--p1");
-  const totalBook = s.book.reduce((a,b)=>a+b,0), n = s.book.length || 1;
-  const totalAct = s.act.reduce((a,b)=>a+b,0);
-  if(hintEl) hintEl.innerHTML = `<span class="avgpill tot">รวมช่วงนี้ Actual <b>${fmtB(totalAct)}</b></span><span class="avgpill tot">Booking <b>${fmtN(totalBook)}</b></span><span class="avgpill">Booking เฉลี่ย/${s.unit==="day"?"วัน":"เดือน"} <b>${(totalBook/n).toFixed(1)}</b></span>`;
-  upsert(id, {type:"line",
+  const s = series(rows);
+  const totalBook = s.book.reduce((a,b)=>a+b,0), n = s.book.length || 1, unit = s.unit === "day" ? "วัน" : "เดือน";
+  const nNew = (s.vals || []).reduce((a,v) => a + (v.nw || 0), 0);
+  const avg = totalBook / n, mx = Math.max(0, ...s.book), best = s.book.indexOf(mx);
+  if(hintEl) hintEl.innerHTML = `<span class="avgpill tot">รวมช่วงนี้ <b>${fmtN(totalBook)}</b> Booking</span><span class="avgpill">ลูกค้าใหม่ <b>${fmtN(nNew)}</b></span><span class="avgpill">เฉลี่ย/${unit} <b>${avg.toFixed(1)}</b></span>`;
+  const tight = slotPx(id, s.labels.length) < 22;
+  upsert(id, {type:"bar",
     data:{labels:s.labels, datasets:[
-      {label:"Actual Received", data:s.act, yAxisID:"y", order:1, borderColor:p1, borderWidth:2.2, tension:.4, pointRadius:2.5, pointHoverRadius:5, pointBackgroundColor:p1, fill:true,
-        backgroundColor:ctx=>{ const {chart}=ctx, area=chart.chartArea; if(!area) return "transparent"; const g=chart.ctx.createLinearGradient(0,area.top,0,area.bottom); g.addColorStop(0,"rgba(94,102,45,.28)"); g.addColorStop(1,"rgba(138,106,67,0)"); return g; },
-        datalabels:{...pill(p1), display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, align:"top", anchor:"end", offset:4, formatter:v=>fmtK(v)}},
-      {type:"bar", label:"Booking", data:s.book, yAxisID:"y1", order:2, backgroundColor:"rgba(192,138,62,.75)", borderRadius:5, maxBarThickness:26, barPercentage:.7, categoryPercentage:.8,
-        datalabels: slotPx(id, s.labels.length) < 22
-          ? {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"end", offset:1, color:"#a06f2c", font:{size:9, weight:700}, formatter:v=>v}
-          : {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"start", offset:2, color:"#fff", font:{size:9.5, weight:600}, formatter:v=>v}}
+      {type:"bar", label:"Booking", data:s.book, order:2, borderRadius:6, maxBarThickness:34, barPercentage:.72, categoryPercentage:.85,
+        backgroundColor:s.book.map((v,i) => i === best && v ? "#a06f2c" : "rgba(192,138,62,.72)"),
+        datalabels: tight
+          ? {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"end", offset:1, color:"#8a6a43", font:{size:9, weight:700}, formatter:v=>v}
+          : {display:c=> c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align:"end", offset:2, color:"#8a6a43", font:{size:10.5, weight:700}, formatter:v=>v}},
+      {type:"line", label:`เฉลี่ย/${unit}`, data:s.book.map(() => avg), order:1, borderColor:"#8c8172", borderDash:[6,5], borderWidth:1.5, pointRadius:0,
+        datalabels:{display:c => c.dataIndex === s.book.length - 1, align:"top", anchor:"end", offset:2, color:"#8c8172", font:{size:10, weight:600}, formatter:v => `เฉลี่ย ${v.toFixed(1)}`}}
     ]},
-    options:{maintainAspectRatio:false, interaction:{mode:"index", intersect:false}, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:14, right:6}},
-      plugins:{legend:legendCfg(), datalabels:{display:true},
-        tooltip:{...tooltip(), callbacks:{label:c=> c.dataset.yAxisID==="y" ? ` Actual: ${fmtB(c.raw)}` : ` Booking: ${c.raw}`}}},
+    options:{maintainAspectRatio:false, interaction:{mode:"index", intersect:false}, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:18, right:6}},
+      plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true},
+        tooltip:{...tooltip(), callbacks:{label:c=> c.datasetIndex === 0 ? ` Booking: ${c.raw}${s.vals && s.vals[c.dataIndex] ? ` (ใหม่ ${s.vals[c.dataIndex].nw || 0})` : ""}` : ` เฉลี่ย: ${(+c.raw).toFixed(1)}`}}},
       scales:{ x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:10}},
-        // both start at zero and fill the chart, so bars and line overlap in proportion
-        y:{beginAtZero:true, grace:"14%", grid:{color:css("--line")}, ticks:{callback:v=>fmtK(v), maxTicksLimit:6}},
-        y1:{beginAtZero:true, grace:"14%", position:"right", grid:{display:false}, ticks:{precision:0, maxTicksLimit:5}} }}
-  });
+        y:{beginAtZero:true, grace:"15%", grid:{color:css("--line")}, ticks:{precision:0, maxTicksLimit:6}} }}
+  }, "bk" + (tight ? "t" : ""));
   return s;
 }
 function barChart(id, g){
@@ -2739,7 +2898,8 @@ function renderCompare(){
           const d = b==null ? null : deltaHtml(v, Ms[b][k], kind);
           return `<td class="num"><div class="mv">${fv(v,kind)}</div><div class="md">${d ? (d.amt ? `<span class="dtxt ${d.cls}">${d.amt}</span>` : "") + d.chip : "&nbsp;"}</div></td>`; }).join("")}</tr>`; }).join("")}</tbody></table>`;
 
-  /* --- chart --- */
+  /* --- chart: Booking only --- */
+  S.cmp.metric = "n";
   const m = S.cmp.metric;
   const val = rows => m==="act" ? rows.reduce((s,r)=>s+r.act,0) : m==="win" ? rows.filter(r=>r.status==="WIN").length : rows.length;
   const fl = v => m==="act" ? fmtK(v) : v;
@@ -2759,7 +2919,7 @@ function renderCompare(){
     const gp = c => { const b = baseIdx(c.dataIndex); return b==null ? null : dPill(vals[c.dataIndex], vals[b]); };
     datasets = [{label:"ยอดรวม", data:vals, backgroundColor:P.map((_,i)=>CMP_COLORS[i]), borderRadius:8, barPercentage:.6, categoryPercentage:.8,
       datalabels:{labels:{value:{...valLbl(css("--text")), display:c=>c.dataset.data[c.dataIndex]>0}, delta:pillLbl(gp, () => true)}}}];
-    $("#cmpChartTitle").textContent = `% เทียบ${S.cmp.base==="prev" ? "ช่วงก่อนหน้า" : "ช่วง " + L(P.indexOf(S.cmp.base))}`;
+    $("#cmpChartTitle").textContent = `Booking · % เทียบ${S.cmp.base==="prev" ? "ช่วงก่อนหน้า" : "ช่วง " + L(P.indexOf(S.cmp.base))}`;
     tipTitle = c => cmpLabel(P[c[0].dataIndex]);
     tipLabel = c => { const b = baseIdx(c.dataIndex), pl = b==null ? null : dPill(vals[c.dataIndex], vals[b]); return ` ${fmtTip(c.raw)}${pl ? `  (${pl.t} เทียบ ${L(b)})` : ""}`; };
   }else{
@@ -2783,7 +2943,7 @@ function renderCompare(){
       const b = baseIdx(i); return b==null ? null : dPill(series[i][j], series[b][j]); };
     datasets = P.map((id,i) => ({label:`${L(i)} · ${cmpShort(id)}`, data:series[i], backgroundColor:CMP_COLORS[i], borderRadius:5, barPercentage:.85, categoryPercentage:.75,
       datalabels:{labels:{value:valLbl(CMP_COLORS[i]), delta:pillLbl(gp, c => N === 1 || (N === 2 && baseIdx(c.datasetIndex) != null))}}}));
-    $("#cmpChartTitle").textContent = N === 1 ? `% เทียบ${unit}ก่อนหน้า` : `เทียบ ${N} ช่วง`;
+    $("#cmpChartTitle").textContent = N === 1 ? `Booking · % เทียบ${unit}ก่อนหน้า` : `Booking · เทียบ ${N} ช่วง`;
     tipTitle = c => isMonth ? `W${c[0].dataIndex+1}` : DOW[c[0].dataIndex];
     tipLabel = c => { const pl = gp(c); return ` ${c.dataset.label} (${dateTxt(P[c.datasetIndex], c.dataIndex)}): ${fmtTip(c.raw)}${pl ? `  ${pl.t}` : ""}`; };
   }
@@ -3127,6 +3287,53 @@ const slotPx = (id, n) => { const el = document.getElementById(id), w = el && el
 /* multi-line category labels collapse to their first line when there is no room */
 const arrTick = narrow => function(v){ const l = this.getLabelForValue(v); return narrow && Array.isArray(l) ? l[0] : l; };
 /* shared weekly bar chart: full Mon–Sun weeks, at least 8 weeks, value + % change pills, average line, best week */
+/* weekly comparison for several values at once: grouped bars, one scale per value (first on the left, second on the right) */
+function weeklyMulti({canvas, insightEl, W, series, sig}){
+  const lab = w => [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} – ${w.we.getDate()} ${TH[w.we.getMonth()]}`, w.partial ? "(ยังไม่ครบสัปดาห์)" : ""];
+  const slot = slotPx(canvas, W.length), tight = slot / series.length < 22, mid = slot < 112;
+  // summary: latest comparable week vs the week before, for every value
+  const parts = series.map(sr => {
+    let li = -1; for(let i = W.length - 1; i >= 0; i--) if(sr.vals[i] != null && !(sr.sum && W[i].partial)){ li = i; break; }
+    if(li < 0) return `<b style="color:${sr.color}">${sr.label}</b> -`;
+    let j = li - 1; while(j >= 0 && sr.vals[j] == null) j--;
+    const cur = sr.vals[li], prev = j >= 0 ? sr.vals[j] : null;
+    let dir = "";
+    if(prev){ const p = (cur - prev) / Math.abs(prev) * 100, g = sr.better === "up" ? p > 0 : sr.better === "down" ? p < 0 : null;
+      dir = ` <span class="${p === 0 || g == null ? "" : g ? "up" : "down"}">${p > 0 ? "▲" : p < 0 ? "▼" : "•"} ${Math.abs(p).toFixed(1)}%</span>`; }
+    return `<b style="color:${sr.color}">${sr.label}</b> ${sr.fmt(cur)}${dir}`;
+  });
+  const last = W[W.length - 1];
+  insightEl.innerHTML = `เทียบกับสัปดาห์ก่อน · ${parts.join(" · ")}${last && last.partial ? ` <span style="opacity:.75">(สัปดาห์ปัจจุบันยังไม่ครบ 7 วัน)</span>` : ""}`;
+  // % change vs the previous week for every bar (green = better, red = worse for that value)
+  const chg = (sr, i) => { const cur = sr.vals[i]; if(cur == null || (sr.sum && W[i].partial)) return null; let j = i - 1; while(j >= 0 && sr.vals[j] == null) j--;
+    if(j < 0 || !sr.vals[j]) return null; const p = (cur - sr.vals[j]) / Math.abs(sr.vals[j]) * 100;
+    return {p, good: p === 0 || !sr.better ? null : sr.better === "up" ? p > 0 : p < 0}; };
+  // room per bar decides what fits above it: value + % pill, % pill only, or nothing (the tooltip still has both)
+  const perBar = slot / series.length, rot = false;
+  const showVal = !tight && (series.length < 3 || perBar >= 34), showPct = perBar >= (series.length >= 3 ? 26 : 22);
+  upsert(canvas, {type:"bar", data:{labels:W.map(lab), datasets:series.map((sr, k) => ({type:"bar", label:sr.label, data:sr.vals, yAxisID:"y" + k,
+      backgroundColor:W.map(w => sr.color + (w.partial ? "55" : "d0")), borderRadius:6, maxBarThickness:44, barPercentage:.88, categoryPercentage:.82,
+      datalabels:{labels:{
+        value:{display:c => showVal && c.dataset.data[c.dataIndex] != null, anchor:"end", align:"end", offset:2, rotation: rot ? -90 : 0,
+          color:sr.color, font:{size:9, weight:700}, formatter:v => sr.tick(v)},
+        delta:{display:c => showPct && !!chg(sr, c.dataIndex), anchor:"end", align:"end", offset: showVal ? 18 : 3, rotation:0,
+          color:"#fff", borderRadius:5, padding:{top:1, bottom:0, left:3, right:3}, font:{size:8.5, weight:700},
+          backgroundColor:c => { const d = chg(sr, c.dataIndex); return !d || d.good == null ? "#8c8172" : d.good ? "#4f7a2e" : "#b5473a"; },
+          formatter:(v, c) => { const d = chg(sr, c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"}${Math.abs(d.p).toFixed(0)}%`; }}}}}))},
+    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: showPct ? (showVal ? 38 : 22) : 18}},
+      plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true},
+        tooltip:{...tooltip(), callbacks:{title:c => lab(W[c[0].dataIndex])[0],
+          label:c => { const sr = series[c.datasetIndex], d = chg(sr, c.dataIndex);
+            return ` ${sr.label}: ${c.raw == null ? "ไม่มีข้อมูล" : sr.fmt(c.raw)}${d ? `  (${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"} ${Math.abs(d.p).toFixed(1)}% จากสัปดาห์ก่อน)` : ""}`; },
+          afterBody:c => (W[c[0].dataIndex].extra || [])}}},
+      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkip:false, font:{size: tight ? 9.5 : 10.5},
+          callback:function(v, i){ const w = W[i], st = w.partial ? "*" : "";
+            if(tight) return [`${w.ws.getDate()}/${w.ws.getMonth()+1}–`, `${w.we.getDate()}/${w.we.getMonth()+1}${st}`];
+            return [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} –`, `${w.we.getDate()} ${TH[w.we.getMonth()]}${st}`]; }}},
+        ...Object.fromEntries(series.map((sr, k) => ["y" + k, {display: k < 2, position: k === 1 ? "right" : "left", beginAtZero:true, grace:"22%", border:{display:false},
+          grace: showPct ? "34%" : "22%", grid:{display: k === 0, color:css("--line"), drawTicks:false}, ticks:{callback:v => sr.tick(v), maxTicksLimit:5, color:sr.color, padding:4}}]))}}
+  }, sig + (tight ? "t" : mid ? "m" : ""));
+}
 function weeklyBars(o){
   const {canvas, insightEl, label, color, better, fmt, tick, W, sig, sum, second} = o;
   const lab = w => [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} – ${w.we.getDate()} ${TH[w.we.getMonth()]}`, w.partial ? "(ยังไม่ครบสัปดาห์)" : ""];
@@ -3135,6 +3342,9 @@ function weeklyBars(o){
   const good = (cur, prev) => better === "up" ? cur > prev : better === "down" ? cur < prev : null;
   const chg = i => { const cur = vals[i]; if(cur == null || (sum && W[i].partial)) return null; let j = i - 1; while(j >= 0 && vals[j] == null) j--; if(j < 0 || !vals[j]) return null;
     const p = (cur - vals[j]) / Math.abs(vals[j]) * 100; return {p, good: p === 0 ? null : good(cur, vals[j])}; };
+  const sv = second ? second.vals : [];
+  const chg2 = i => { if(!second) return null; const cur = sv[i]; if(cur == null || (second.sum && W[i].partial)) return null; let j = i - 1; while(j >= 0 && sv[j] == null) j--; if(j < 0 || !sv[j]) return null;
+    const p = (cur - sv[j]) / Math.abs(sv[j]) * 100; const g = second.better === "up" ? p > 0 : second.better === "down" ? p < 0 : null; return {p, good: p === 0 ? null : g}; };
   let best = -1;
   if(better) W.forEach((w,i) => { if(w.v == null || w.partial) return; if(best < 0 || good(w.v, W[best].v)) best = i; });
   let li = -1; for(let i = W.length - 1; i >= 0; i--) if(W[i].v != null && !(sum && W[i].partial)){ li = i; break; }
@@ -3159,21 +3369,27 @@ function weeklyBars(o){
             : tight
             ? {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"end", offset:3, rotation:-90, color:css("--text"), font:{size:10, weight:600}, formatter:v => tick(v)}
             : {display:c => c.dataset.data[c.dataIndex] != null, anchor:"end", align:"start", offset:4, color:"#fff", font:{size: mid ? 10 : 10.5, weight:600}, formatter:v => mid ? tick(v) : fmt(v)},
-          delta:{display:c => !tight && !second && !!chg(c.dataIndex), anchor:"end", align:"end", offset:2, color:"#fff", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600},
+          delta:{display:c => !tight && !!chg(c.dataIndex), anchor:"end", align:"end", offset: second ? 16 : 2, color:"#fff", borderRadius:6,
+            padding: second ? {top:1,bottom:0,left:3,right:3} : {top:2,bottom:1,left:5,right:5}, font:{size: second ? 8.5 : 9.5, weight:600},
             backgroundColor:c => { const d = chg(c.dataIndex); return !d || d.good == null ? "#8c8172" : d.good ? "#4f7a2e" : "#b5473a"; },
-            formatter:(v,c) => { const d = chg(c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"} ${Math.abs(d.p).toFixed(0)}%`; }}
+            formatter:(v,c) => { const d = chg(c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"}${second ? "" : " "}${Math.abs(d.p).toFixed(0)}%`; }}
         }}},
       {type:"line", label:"ค่าเฉลี่ย", data:W.map(() => avg), borderColor:"#8c8172", borderDash:[6,5], borderWidth:1.5, pointRadius:0, order:1, datalabels:{display:false}},
       ...(second ? [{type:"bar", label:second.label, data:second.vals, yAxisID:"y2", backgroundColor:W.map(w => second.color + (w.partial ? "55" : "cc")), borderRadius:8, maxBarThickness:72, barPercentage:.7, categoryPercentage:.8, order:3,
         // side by side: both values sit above their bars in the series colour
         datalabels:{labels:{value:{display:c => c.dataset.data[c.dataIndex] > 0, anchor:"end", align:"end", offset: tight ? 3 : 2, rotation: tight ? -90 : 0,
-          color: tight ? css("--text") : second.color, font:{size:9.5, weight:700}, formatter:v => second.tick(v)}}}}] : [])
+          color: tight ? css("--text") : second.color, font:{size:9.5, weight:700}, formatter:v => second.tick(v)},
+          // % change vs the previous week for the second series too (neutral colour: more spend is not good or bad by itself)
+          delta:{display:c => !tight && !!chg2(c.dataIndex), anchor:"end", align:"end", offset:16, color:"#fff", borderRadius:6, padding:{top:1,bottom:0,left:3,right:3}, font:{size:8.5, weight:600},
+            backgroundColor:c => { const d = chg2(c.dataIndex); return !d || d.good == null ? "#9a7a4e" : d.good ? "#4f7a2e" : "#b5473a"; },
+            formatter:(v, c) => { const d = chg2(c.dataIndex); return `${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"}${Math.abs(d.p).toFixed(0)}%`; }}}}}] : [])
     ]},
-    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: tight ? 44 : 22}},
+    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: tight ? 44 : second ? 40 : 22}},
       plugins:{legend:{...legendCfg(), align:"end", display:!mid && !(canvas === "ads-week" && fitDesk())}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{
           title:c => lab(W[c[0].dataIndex])[0],
-          label:c => c.datasetIndex === 1 ? ` ค่าเฉลี่ย: ${avg == null ? "-" : fmt(avg)}` : c.datasetIndex === 2 ? ` ${second.label}: ${second.fmt(c.raw || 0)}` : ` ${label}: ${c.raw == null ? "ไม่มีข้อมูล" : fmt(c.raw)}`,
+          label:c => { const pc = d => d ? `  (${d.p > 0 ? "▲" : d.p < 0 ? "▼" : "•"} ${Math.abs(d.p).toFixed(1)}% จากสัปดาห์ก่อน)` : "";
+            return c.datasetIndex === 1 ? ` ค่าเฉลี่ย: ${avg == null ? "-" : fmt(avg)}` : c.datasetIndex === 2 ? ` ${second.label}: ${second.fmt(c.raw || 0)}${pc(chg2(c.dataIndex))}` : ` ${label}: ${c.raw == null ? "ไม่มีข้อมูล" : fmt(c.raw)}${pc(chg(c.dataIndex))}`; },
           afterBody:c => (W[c[0].dataIndex].extra || [])}}},
       scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkip:false, font:{size: tight ? 9.5 : 10.5},
           // every bar is labelled with its own date range (Monday – Sunday)
@@ -3181,8 +3397,8 @@ function weeklyBars(o){
             if(tight) return [`${w.ws.getDate()}/${w.ws.getMonth()+1}–`, `${w.we.getDate()}/${w.we.getMonth()+1}${st}`];
             if(mid) return [`${w.ws.getDate()} ${TH[w.ws.getMonth()]} –`, `${w.we.getDate()} ${TH[w.we.getMonth()]}${st}`];
             return lab(w); }}},
-        y:{beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6, color: second ? color : undefined}},
-        ...(second ? {y2:{position:"right", beginAtZero:true, grace: tight ? "30%" : "18%", border:{display:false}, grid:{display:false}, ticks:{callback:v => second.tick(v), maxTicksLimit:5, color:second.color}}} : {})}}
+        y:{beginAtZero:true, grace: tight ? "30%" : second ? "28%" : "18%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{callback:v => tick(v), maxTicksLimit:5, padding:6, color: second ? color : undefined}},
+        ...(second ? {y2:{position:"right", beginAtZero:true, grace: tight ? "30%" : "28%", border:{display:false}, grid:{display:false}, ticks:{callback:v => second.tick(v), maxTicksLimit:5, color:second.color}}} : {})}}
   }, sig + (tight ? "t" : mid ? "m" : "") + (second ? "2" : ""));
 }
 /* week starts (Mondays) covering the chosen period, at least 8 weeks, at most 26 */
@@ -3224,7 +3440,9 @@ function renderAdsWeekly(){
   weeklyBars({canvas:"ads-week", insightEl:$("#awInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"aw" + mk + W.length, sum:["spend","msg","pur","val"].includes(mk)});
 }
 function renderAbWeekly(src){
-  const M = AB_MET[S.abMetric] || AB_MET.cpb, mk = S.abMetric in AB_MET ? S.abMetric : "cpb";
+  const sel = (Array.isArray(S.abMetrics) && S.abMetrics.length ? S.abMetrics : [S.abMetric]).filter(k => k in AB_MET);
+  if(!sel.length) sel.push("cpb");
+  const mk = sel[0], M = AB_MET[mk];
   const [a, b] = adsRange(); if(!a || !b) return;
   const weeks = weekStarts(a, b);
   const today = new Date(); today.setHours(0,0,0,0);
@@ -3237,21 +3455,42 @@ function renderAbWeekly(src){
     const ar = ads.filter(x => inW(x.date)), br = books.filter(r => inW(bookDate(r)));
     const sp = ar.reduce((t,x) => t + x.spend, 0), msg = ar.reduce((t,x) => t + x.msg, 0), nb = br.length, nw = br.filter(r => r.status === "WIN").length;
     const hasBook = cov && we >= cov[0] && ws <= cov[1], hasAds = ar.length > 0;
-    const v = { book: hasBook ? nb : null, cpb: hasBook && hasAds && nb ? sp / nb : null, rate: hasBook && msg ? nb / msg * 100 : null,
-      mpb: hasBook && nb && msg ? msg / nb : null, wrate: hasBook && nb ? nw / nb * 100 : null, cpw: hasBook && hasAds && nw ? sp / nw : null }[mk];
-    return {ws, we, v, partial: we > today, sp, msg, nb, nw};
+    const all = { book: hasBook ? nb : null, cpb: hasBook && hasAds && nb ? sp / nb : null, rate: hasBook && msg ? nb / msg * 100 : null,
+      mpb: hasBook && nb && msg ? msg / nb : null, wrate: hasBook && nb ? nw / nb * 100 : null, cpw: hasBook && hasAds && nw ? sp / nw : null };
+    const v = all[mk];
+    const days = Math.max(1, Math.round((Math.min(+we, +today) - +ws) / 864e5) + 1);
+    return {ws, we, v, all, partial: we > today, sp, msg, nb, nw, days};
   });
-  $("#abWeekMetric").textContent = M.label;
+  /* ยอดรวม = the week's total · เฉลี่ย/วัน = total ÷ days so far in that week (rates such as % or cost per booking stay as they are) */
+  const avg = S.abAgg === "avg", perDay = avg && mk === "book";
+  segSet($("#abAgg"), "a", avg ? "avg" : "sum");
+  $$("#abAgg button").forEach(b => b.onclick = () => { S.abAgg = b.dataset.a; renderAbWeekly(src); });
+  if(perDay) W.forEach(w => { if(w.v != null) w.v = w.v / w.days; });
+  $("#abWeekMetric").textContent = sel.length > 1 ? `ค่าที่เลือก (${sel.length})` : M.label + (perDay ? " เฉลี่ย/วัน" : "");
   const show = S.abWShow || (S.abWShow = {m:true, sp:true});
   const tg = $("#abWShow");
   tg.querySelector('[data-k="m"] i').style.background = M.color;
   tg.querySelectorAll("button").forEach(b => { b.classList.toggle("on", !!show[b.dataset.k]);
     b.onclick = () => { const k = b.dataset.k, o = k === "m" ? "sp" : "m"; show[k] = !show[k]; if(!show[k] && !show[o]) show[o] = true; renderAbWeekly(src); }; });
-  W.forEach(w => w.extra = [`Spend ${fmtB(w.sp)} · แชท ${fmtN(w.msg)}`, `Booking ${fmtN(w.nb)} · WIN ${fmtN(w.nw)}`]);
-  const SP = {label:"ค่าใช้จ่าย Ads", color:"#c08a3e", better:null, fmt:v => fmtB(v), tick:v => fmtK(v)};
-  if(show.m) weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"abw" + mk + W.length, sum: mk === "book",
-    second: show.sp ? {...SP, vals:W.map(w => w.sp > 0 ? w.sp : null)} : null});
-  else weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), ...SP, W:W.map(w => ({...w, v: w.sp > 0 ? w.sp : null})), sig:"abwsp" + W.length, sum:true});
+  W.forEach(w => w.extra = [`Spend ${fmtB(w.sp)} · แชท ${fmtN(w.msg)}`, `Booking ${fmtN(w.nb)} · WIN ${fmtN(w.nw)}`, ...(avg ? [`${w.days} วัน${w.partial ? " (ยังไม่ครบสัปดาห์)" : ""}`] : [])]);
+  const spv = w => w.sp > 0 ? (avg ? w.sp / w.days : w.sp) : null;
+  const SP = {label: avg ? "ค่าใช้จ่าย Ads เฉลี่ย/วัน" : "ค่าใช้จ่าย Ads", color:"#c08a3e", better:null, fmt:v => fmtB(v), tick:v => fmtK(v)};
+  const fmtM = perDay ? (v => v.toFixed(1)) : M.fmt, tickM = perDay ? (v => v.toFixed(1)) : M.tick;
+  const tag = avg ? "a" : "s";
+  // two or more values from the tiles: one bar per value, each on its own scale
+  if(show.m && sel.length > 1){
+    const PAL = ["#5e662d", "#8a6a43", "#356e6b", "#a3864a", "#7d9a4a", "#5f9a8f"];
+    const series = sel.map((k, i) => { const D = AB_MET[k], pd = avg && k === "book";
+      return {label: D.label + (pd ? " เฉลี่ย/วัน" : ""), color:PAL[i % PAL.length], better:D.better, sum: k === "book" && !avg,
+        fmt: pd ? (v => v.toFixed(1)) : D.fmt, tick: pd ? (v => v.toFixed(1)) : D.tick, vals:W.map(w => { const v = w.all[k]; return v == null ? null : pd ? v / w.days : v; })}; });
+    if(show.sp) series.push({...SP, sum:!avg, vals:W.map(spv)});
+    tg.querySelector('[data-k="m"] i').style.background = "linear-gradient(90deg," + PAL.slice(0, sel.length).join(",") + ")";
+    weeklyMulti({canvas:"ab-week", insightEl:$("#abInsight"), W, series, sig:"abwm" + sel.join("") + (show.sp ? "s" : "") + tag + W.length});
+    return;
+  }
+  if(show.m) weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), label:M.label + (perDay ? " เฉลี่ย/วัน" : ""), color:M.color, better:M.better, fmt:fmtM, tick:tickM, W, sig:"abw" + mk + tag + W.length, sum: mk === "book" && !avg,
+    second: show.sp ? {...SP, sum:!avg, vals:W.map(spv)} : null});
+  else weeklyBars({canvas:"ab-week", insightEl:$("#abInsight"), ...SP, W:W.map(w => ({...w, v: spv(w)})), sig:"abwsp" + tag + W.length, sum:!avg});
 }
 function renderAdsBookPage(){
   buildAbWeek();
@@ -3275,7 +3514,8 @@ function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
   const cov = S.sheets.length ? [monthStart(S.sheets[0].key), monthEnd(S.sheets[S.sheets.length-1].key)] : null;
   const partial = cov && a && b && (a < cov[0] || b > cov[1]);
   $("#abHint").textContent = `Booking = ${src === "new" ? "ลูกค้าใหม่ในชีท Prospect ตามวันที่เข้ามา" : src === "carry" ? "ยอดยกมาในชีท Prospect (นับวันแรกของเดือน)" : "ลูกค้าใหม่ + ยอดยกมาในชีท Prospect"}${partial && cov ? ` · ข้อมูล Booking มีช่วง ${dLabel(cov[0])} – ${dLabel(cov[1])}` : ""}${S.adsAcct ? " · ตัวกรองบัญชีแอดมีผลเฉพาะฝั่งโฆษณา" : ""}`;
-  const tile = (m, cls, lb, v, sub) => `<div class="${cls} ${S.abMetric === m ? "on" : ""}" data-m="${m}" role="button" tabindex="0" title="คลิกเพื่อดูในกราฟรายสัปดาห์"><span>${lb}</span><b>${v}</b><small>${sub}</small></div>`;
+  if(!Array.isArray(S.abMetrics) || !S.abMetrics.length) S.abMetrics = [S.abMetric in AB_MET ? S.abMetric : "cpb"];
+  const tile = (m, cls, lb, v, sub) => `<div class="${cls} ${S.abMetrics.includes(m) ? "on" : ""}" data-m="${m}" role="button" tabindex="0" title="คลิกเพื่อเลือก/ยกเลิกในกราฟรายสัปดาห์ (เลือกได้หลายค่า)"><span>${lb}</span><b>${v}</b><small>${sub}</small></div>`;
   $("#abKpis").innerHTML =
     tile("book", "key", `Booking (${src === "new" ? "ลูกค้าใหม่" : src === "carry" ? "ยอดยกมา" : "ทุกรายการ"})`, fmtN(nb), `จาก ${fmtN(msg)} ข้อความ`) +
     tile("cpb", "key", "ต้นทุนต่อ Booking", nb ? fmtB(sp / nb) : "-", `Spend ${fmtB(sp)} ÷ ${fmtN(nb)} Booking`) +
@@ -3283,7 +3523,10 @@ function renderAdsBooking(adRows, a, b, byMonth, keyOfD){
     tile("mpb", "g2", "แชทต่อ 1 Booking", nb ? (msg / nb).toFixed(1) : "-", "ข้อความ ÷ Booking") +
     tile("wrate", "g3", "WIN จาก Booking", nb ? (nw / nb * 100).toFixed(1) + "%" : "-", `WIN ${fmtN(nw)} คน จาก ${fmtN(nb)} Booking`) +
     tile("cpw", "g3", "ต้นทุนต่อ WIN", nw ? fmtB(sp / nw) : "-", "Spend ÷ WIN");
-  $$("#abKpis [data-m]").forEach(t => { const go = () => { S.abMetric = t.dataset.m; renderAdsBookPage(); };
+  // tap a tile to add it to / remove it from the weekly chart; at least one value stays selected
+  $$("#abKpis [data-m]").forEach(t => { const go = () => { const m = t.dataset.m, L = S.abMetrics;
+      S.abMetrics = L.includes(m) ? (L.length > 1 ? L.filter(x => x !== m) : L) : [...L, m];
+      S.abMetric = S.abMetrics[0]; renderAdsBookPage(); };
     t.onclick = go; t.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); go(); } }; });
   renderAbWeekly(src);
   // funnel: stage size is fixed (easy to read); the counts and the conversion % between stages carry the numbers
@@ -3687,6 +3930,39 @@ $("#chatFind").addEventListener("input", ev => { S.chatFind = ev.target.value; c
 $$("#chatCustF button").forEach(b => b.onclick = () => { S.chatCustF = b.dataset.f; renderChat(); });
 $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.dataset.m; renderChat(); });
 
+/* ================= INSTALL AS APP (home screen) =================
+   Phones can't be made to install a web page by themselves; this bar gives the one tap (Android) or the steps (iPhone). */
+(function installUI(){
+  const ua = navigator.userAgent, bar = $("#instBar");
+  const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const inFrame = (() => { try{ return window.top !== window; }catch(e){ return true; } })();
+  const mobile = /Android|iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  // offline-capable app shell for the GitHub Pages copy (needed by Android for the install button)
+  if("serviceWorker" in navigator && /github\.io$/.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(() => {});
+  if(standalone || inFrame || !mobile) return;
+  try{ if(localStorage.getItem("oneInstallHide") === "1") return; }catch(e){}
+  const ico = document.querySelector('link[rel="apple-touch-icon"]'); if(ico) $("#instIcon").src = ico.href;
+  const ios = /iPhone|iPad|iPod/i.test(ua) || navigator.platform === "MacIntel";
+  const inApp = /Line\/|FBAN|FBAV|Instagram|Messenger/i.test(ua);
+  const SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`;
+  const show = html => { $("#instMsg").innerHTML = html; bar.hidden = false; };
+  $("#instClose").onclick = () => { bar.hidden = true; try{ localStorage.setItem("oneInstallHide", "1"); }catch(e){} };
+  if(inApp){ show(`เปิดลิงก์นี้ใน${ios ? " Safari" : " Chrome"} ก่อน: กดเมนู ⋯ แล้วเลือก “เปิดในเบราว์เซอร์”`); return; }
+  if(ios){
+    show(/CriOS|FxiOS|EdgiOS/i.test(ua) ? `บน iPhone ต้องติดตั้งจาก Safari: คัดลอกลิงก์ไปเปิดใน Safari` : `กดปุ่มแชร์ ${SHARE} ด้านล่าง แล้วเลือก <b style="display:inline;font-size:inherit">“เพิ่มไปยังหน้าจอโฮม”</b>`);
+    return;
+  }
+  // Android / Chrome: real install button when the browser offers it
+  let deferred = null;
+  window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault(); deferred = e;
+    $("#instBtn").hidden = false; show("กดปุ่มเดียวเพื่อเพิ่มไอคอนไว้ที่หน้าจอหลัก");
+  });
+  $("#instBtn").onclick = async () => { if(!deferred) return; deferred.prompt(); const r = await deferred.userChoice.catch(() => null); deferred = null; if(r && r.outcome === "accepted") bar.hidden = true; };
+  window.addEventListener("appinstalled", () => { bar.hidden = true; });
+  setTimeout(() => { if(!deferred && bar.hidden) show(`กดเมนู ⋮ ของ Chrome แล้วเลือก “ติดตั้งแอป” หรือ “เพิ่มลงในหน้าจอหลัก”`); }, 3500);
+})();
+
 /* ================= RENDER ================= */
 function renderSubtitle(){
   let txt;
@@ -3740,8 +4016,9 @@ function goPage(p){
   document.body.dataset.page = p;
   // quick day buttons exist only on overview / trend / team pages; leave them for a month view elsewhere
   if(["today","yday","7d","14d"].includes(S.preset) && !["overview","trend","sales","doctor","proc"].includes(p)) setTimeout(() => setPreset("this"), 0);
-  // "ยอดยกมา" is not used on the trend page
-  if(p === "trend" && S.f.src === "carry"){ S.f.src = "all"; segSet($("#srcSeg"), "s", "all"); }
+  // the trend page always shows new customers only; the previous choice comes back on other pages
+  if(p === "trend"){ if(S.f.src !== "new"){ S._srcKeep = S.f.src; S.f.src = "new"; segSet($("#srcSeg"), "s", "new"); } }
+  else if(S._srcKeep){ S.f.src = S._srcKeep; S._srcKeep = null; segSet($("#srcSeg"), "s", S.f.src); }
   document.body.classList.toggle("p-compare", p==="compare");
   document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook" || p==="chat");
   document.body.classList.toggle("p-chat", p==="chat");
