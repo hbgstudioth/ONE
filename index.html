@@ -833,6 +833,66 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 @keyframes bkDay{0%,20%{background:rgba(255,255,255,.22);transform:scale(1)}30%{background:#fff;transform:scale(1.35)}40%,80%{background:#bff0e4;transform:scale(1)}100%{background:rgba(255,255,255,.22)}}
 @keyframes bkPop{0%{opacity:0;transform:translateY(10px) scale(.6)}12%{opacity:.95;transform:translateY(0) scale(1)}40%{opacity:.8;transform:translateY(-14px)}60%,100%{opacity:0;transform:translateY(-26px)}}
 @media (prefers-reduced-motion:reduce){ .mnyfx *,.bkfx *{animation:none !important} .mnyfx .coin,.mnyfx .note{display:none} }
+/* ===== paid customers card ===== */
+.chpay{position:relative;overflow:hidden}
+.chpay > :not(.payfx){position:relative;z-index:1}
+.wbadge.paid{background:color-mix(in srgb,#4f7a2e 16%,transparent);color:#4f7a2e}
+.wi.pay i{background:#4f7a2e}
+.wi .ptag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;margin-left:4px;vertical-align:1px}
+.wi .ptag.tk{background:color-mix(in srgb,#356e6b 18%,transparent);color:#356e6b}
+.wi .ptag.wt{background:color-mix(in srgb,#c08a3e 20%,transparent);color:#9a6a24}
+.payseg{flex:none;align-self:flex-start;margin-bottom:6px}
+.payseg button{padding:4px 10px;font-size:12px}
+.payseg button small{font-size:10.5px;opacity:.7;margin-left:2px}
+.wi.pay{grid-template-columns:10px minmax(0,1fr) auto auto}
+.wi .pamt{font-size:11.5px;font-weight:700;color:#4f7a2e}
+.wi .cpy{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:3px 9px;background:var(--card);color:var(--text);cursor:pointer;white-space:nowrap}
+.wi .cpy:hover{background:var(--soft)}
+.wi .cpy.ok{background:#4f7a2e;color:#fff;border-color:#4f7a2e}
+.wi .plink{font-size:12px;border-radius:8px;padding:3px 10px;background:color-mix(in srgb,#4f7a2e 14%,transparent);color:#4f7a2e;text-decoration:none;white-space:nowrap}
+.wi .plink:hover{background:#4f7a2e;color:#fff}
+.payfx{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.payfx .pcard{position:absolute;right:18px;top:12px;width:58px;height:38px;opacity:.16;animation:cardFloat 4.8s ease-in-out infinite}
+.payfx .pcard rect{fill:#4f7a2e}.payfx .pcard .strip{fill:#2f4a1b}.payfx .pcard .chip{fill:#e6c46a}
+.payfx .swipe{position:absolute;right:10px;top:18px;width:76px;height:26px;border-radius:8px;opacity:0;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,#4f7a2e 30%,transparent),transparent);animation:swipe 4.8s ease-in-out infinite}
+.payfx .okc{position:absolute;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;background:#4f7a2e;opacity:0;animation:okPop 3.6s ease-out infinite;animation-delay:var(--d)}
+.payfx .rcpt{position:absolute;bottom:-20px;font-size:13px;font-weight:700;color:#4f7a2e;opacity:0;animation:rcptUp 6.4s linear infinite;animation-delay:var(--d)}
+@keyframes cardFloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(5px) rotate(-2deg)}}
+@keyframes swipe{0%,30%{opacity:0;transform:translateX(30px)}45%{opacity:1}65%{opacity:0;transform:translateX(-40px)}100%{opacity:0}}
+@keyframes okPop{0%,55%{opacity:0;transform:scale(.3)}65%{opacity:.35;transform:scale(1.15)}80%{opacity:.25;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes rcptUp{0%{transform:translateY(0);opacity:0}15%{opacity:.22}100%{transform:translateY(-260px);opacity:0}}
+.bb.pay{box-shadow:0 0 0 2px #e6c46a}
+.bb .paytag{display:block;font-size:11px;font-weight:700;margin-bottom:2px;opacity:.95}
+@media (prefers-reduced-motion:reduce){ .payfx *{animation:none !important} }
+/* ===== presentation mode ===== */
+#p-adsbook .adsbook,#p-adsbook .abfun,#p-adsbook .abweek,#p-adsbook .abtablecard{position:relative}
+#p-adsbook .adsbook > h3,#p-adsbook .abfun > h3,#p-adsbook .abweek > h3,#p-adsbook .abtablecard > h3{padding-right:20px}
+.xbtn{position:absolute;top:6px;right:6px;z-index:5;width:16px;height:16px;border-radius:5px;padding:0;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  display:grid;place-items:center;cursor:pointer;opacity:.75;transition:all .2s var(--ease)}
+.xbtn svg{width:9px;height:9px}
+@media (pointer:coarse){ .xbtn{width:22px;height:22px} .xbtn svg{width:11px;height:11px} }
+.xbtn:hover{opacity:1;color:#fff;background:var(--p1);border-color:var(--p1)}
+#presBg{position:fixed;inset:0;z-index:94;background:rgba(28,26,18,.55);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:rowIn .3s var(--ease) both}
+#presBg[hidden]{display:none}
+.card.presenting{position:fixed !important;inset:calc(2.5vh / var(--z,1)) calc(2.5vw / var(--z,1)) !important;z-index:95 !important;margin:0 !important;width:auto !important;height:auto !important;max-height:none !important;
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 90px rgba(0,0,0,.35);animation:presIn .35s var(--ease) both}
+.card.presenting .xbtn{opacity:1;width:22px;height:22px;top:8px;right:8px;color:#fff;background:var(--p1);border-color:var(--p1)}
+.card.presenting .xbtn svg{width:12px;height:12px}
+.card.presenting > h3{font-size:clamp(16px,1.4vw,22px)}
+
+.card.presenting.abweek .grow{flex:1;min-height:0}
+/* non-chart cards: keep the natural shape and centre it in the screen */
+.card.presenting.adsbook > .abk,.card.presenting.abfun > .funnel,.card.presenting.abtablecard > .tbl-wrap{flex:none;margin-top:auto;margin-bottom:auto}
+.card.presenting.abtablecard > .tbl-wrap{overflow:visible}
+.card.presenting.abweek .abinsight{font-size:15px}
+.card.presenting .abtip,.card.presenting .mobhint{display:none}
+@keyframes presIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+body.is-presenting{overflow:hidden}
+/* a transformed or animated ancestor would trap the fixed card; switch those off while presenting */
+body.is-presenting .page.on,body.is-presenting #pages,body.is-presenting .main,body.is-presenting .abtop{animation:none !important;transform:none !important;filter:none !important;contain:none !important}
+body.is-presenting .card.presenting{animation:presIn .35s var(--ease) both}
+@media (max-width:760px){ .card.presenting{inset:8px !important} }
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1140,16 +1200,23 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-chat{height:var(--avail);grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto minmax(0,1fr) minmax(0,1fr) auto;gap:10px}
   #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
   #p-chat .chrow{display:contents}
-  #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3}
-  #p-chat .chhour{grid-column:1;grid-row:4} #p-chat .chspeed{grid-column:2;grid-row:4}
-  #p-chat .chsrc{grid-column:1 / 3;grid-row:5}
+  #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3 / 5}
+  #p-chat .chhour{grid-column:1;grid-row:4} #p-chat .chspeed{grid-column:2;grid-row:5;padding:6px 12px}
+  #p-chat .chsrc{grid-column:1;grid-row:5}
+  /* reply speed: compact (half size) */
+  #p-chat .chspeed h3{font-size:12.5px;margin-bottom:2px}
+  #p-chat .chspeed h3 .hint{font-size:10.5px}
+  #p-chat .chspeed .sp{font-size:11px;grid-template-columns:60px minmax(0,1fr) 34px 30px;gap:6px}
+  #p-chat .chspeed .sp .tr{height:6px}
+  #p-chat .chspeed .sp small{font-size:10px}
+  #p-chat .chsrc .srcwrap{gap:10px}
   #p-chat .chcust{grid-column:3;grid-row:3 / 6;height:auto;min-height:0}
   #p-chat .srcwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
   #p-chat .chspeed .speed{justify-content:space-between;gap:0}
   #p-chat .peaks .pl{display:none}
   #p-chat .peaks{flex-wrap:nowrap;overflow:hidden;font-size:11.5px}
   #p-chat .peaks span.pk{white-space:nowrap;padding:1px 8px}
-  #p-chat .chspeed .sp{font-size:12.5px}
+  #p-chat .chspeed .speed{gap:0}
   #p-chat .chspeed h3,#p-chat .chhour h3,#p-chat .chwait h3,#p-chat .chday h3{margin-bottom:4px}
   #p-chat .chsrc h3{margin-bottom:4px}
   #p-chat .adsrc .top b{font-size:clamp(20px,1.6vw,26px)}
@@ -1319,7 +1386,14 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         <div class="chk" id="chatKpis"></div>
         <div class="chrow">
           <div class="card ch flex chday"><h3>แชทรายวัน <span class="hint">แท่ง = แชทที่มีการคุย · เส้น = แชทใหม่</span></h3><div class="grow"><canvas id="chat-day"></canvas></div></div>
-          <div class="card ch flex chwait"><h3>รอตอบ <span class="wbadge" id="chatWaitN">0</span><span class="hint" id="chatWaitHint"></span></h3><div class="waitlist" id="chatWait"></div></div>
+          <div class="card ch flex chwait chpay"><div class="payfx" aria-hidden="true">
+              <svg class="pcard" viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="6"/><rect class="strip" x="1" y="9" width="58" height="7"/><rect class="chip" x="8" y="22" width="11" height="8" rx="2"/></svg>
+              <i class="swipe"></i>
+              <span class="okc" style="--d:0.0s;left:70%;top:18%">✓</span><span class="okc" style="--d:1.2s;left:82%;top:48%">✓</span><span class="okc" style="--d:2.4s;left:62%;top:66%">✓</span>
+              <span class="rcpt" style="--d:0.0s;left:12%">฿</span><span class="rcpt" style="--d:1.6s;left:34%">฿</span><span class="rcpt" style="--d:3.2s;left:52%">฿</span><span class="rcpt" style="--d:4.8s;left:88%">฿</span>
+            </div>
+            <h3>💳 รายชื่อลูกค้าที่ชำระเงินแล้ว <span class="wbadge paid" id="chatPayN">0</span><span class="hint" id="chatPayHint"></span></h3>
+            <div class="seg payseg" id="chatPayF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="track">Tracking</button><button data-f="wait">รอติดTag/รอโอน</button></div><div class="waitlist" id="chatPay"></div></div>
         </div>
         <div class="chrow chrow2">
           <div class="card ch flex chhour"><h3>ช่วงเวลาที่ลูกค้าทัก <span style="margin-left:auto"><div class="seg" id="chatHourMode"><i class="thumb"></i><button data-m="hour" class="on">รายชั่วโมง</button><button data-m="wd">รายวัน</button></div></span></h3>
@@ -3822,13 +3896,25 @@ function renderChat(){
       scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:12}}, y:{beginAtZero:true, grace:"15%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5, padding:6}}}}
   }, "chd" + (tight ? "t" : ""));
 
-  /* waiting list: last message of the room is from the customer, sent in the chosen period */
-  const now = Date.now();
-  const waits = chatConvs().filter(c => c.last && c.last.c && c.last.t >= a && c.last.t < e).sort((x,y) => x.last.t - y.last.t);
-  $("#chatWaitN").textContent = waits.length;
-  $("#chatWaitHint").textContent = `ลูกค้าทักในช่วงนี้แล้วยังไม่ได้ตอบ`;
-  $("#chatWait").innerHTML = waits.length ? waits.slice(0, 80).map(c => `<div class="wi"><i></i><div><b>${esc(c.name)}</b><small>${esc(c.page)} · “${esc(c.last.text.slice(0, 40))}${c.last.text.length > 40 ? "…" : ""}”</small></div>
-      <span class="w">${fmtDur(now - c.last.t)}</span><span style="display:flex;gap:4px"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>`).join("") : `<div class="empty">ไม่มีแชทค้างตอบ 🎉</div>`;
+  /* paid customers: rooms where an Omise payment link (linksplus.omise.co) was sent in the chosen period */
+  const PAY = /linksplus\.omise\.co/i;
+  /* Tag: Tracking = the room also has "You created an order", "คุณร้องขอไป" or "คุณสร้างคำสั่งซื้อมูลค่า" · รอติดTag = payment link only */
+  const ORDER = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อมูลค่า/i;
+  const paidAll = chatConvs().map(c => { const pm = c.msgs.filter(m => PAY.test(m.text) && m.t >= a && m.t < e);
+      const om = c.msgs.filter(m => ORDER.test(m.text)), amt = om.length ? (om[om.length - 1].text.match(/฿\s?([\d,]+(?:\.\d+)?)/) || om[om.length - 1].text.match(/มูลค่า\s*฿?\s*([\d,]+(?:\.\d+)?)/) || [])[1] : null;
+      return pm.length ? {c, pm, last:pm[pm.length - 1], track: om.length > 0, amt} : null; })
+    .filter(Boolean).sort((x,y) => y.last.t - x.last.t);
+  const nT = paidAll.filter(x => x.track).length, pf = S.chatPayF || "all";
+  const paid = paidAll.filter(x => pf === "all" || (pf === "track" ? x.track : !x.track));
+  $$("#chatPayF button").forEach(b => { const k = b.dataset.f; b.innerHTML = `${k === "all" ? "ทั้งหมด" : k === "track" ? "Tracking" : "รอติดTag/รอโอน"} <small>${k === "all" ? paidAll.length : k === "track" ? nT : paidAll.length - nT}</small>`;
+    b.onclick = () => { S.chatPayF = k; renderChat(); }; });
+  segSet($("#chatPayF"), "f", pf);
+  $("#chatPayN").textContent = paidAll.length;
+  $("#chatPayHint").textContent = "ตรวจจากลิงก์ชำระเงิน Omise ในแชท";
+  $("#chatPay").innerHTML = paid.length ? paid.map(({c, pm, last, track, amt}) => { const url = (last.text.match(/https?:\/\/linksplus\.omise\.co\/[\w-]+/i) || [""])[0];
+      return `<div class="wi pay"><i></i><div><b>${esc(c.name)}</b> <span class="ptag ${track ? "tk" : "wt"}">${track ? "Tracking" : "รอติดTag/รอโอน"}</span>${amt ? ` <span class="pamt">฿${esc(amt.replace(/\.00$/, ""))}</span>` : ""}<small>${esc(c.page)} · ส่งลิงก์ ${fmtWhen(last.t)}${pm.length > 1 ? ` · ${pm.length} ลิงก์` : ""}</small></div>
+      <button class="cpy" data-name="${esc(c.name)}" title="คัดลอกชื่อลูกค้า">⧉ คัดลอกชื่อ</button><span style="display:flex;gap:4px"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>`; }).join("")
+    : `<div class="empty">${paidAll.length ? "ไม่มีรายชื่อในกลุ่มนี้" : "ยังไม่มีลิงก์ชำระเงินในช่วงนี้"}</div>`;
 
   renderChatList(a, e);
 
@@ -3864,6 +3950,15 @@ function renderChat(){
   requestAnimationFrame(() => requestAnimationFrame(() => $$("#chatSpeed .tr i, #chatSrc .tr i").forEach(i => i.style.width = i.dataset.w + "%")));
 }
 $("#chatPage").onchange = ev => { S.chatPage = ev.target.value; renderChat(); };
+/* copy a customer's name (paid list) */
+document.addEventListener("click", async ev => {
+  const b = ev.target.closest(".cpy"); if(!b) return;
+  const name = b.dataset.name || "";
+  try{ await navigator.clipboard.writeText(name); }
+  catch(e){ const t = document.createElement("textarea"); t.value = name; t.style.position = "fixed"; t.style.opacity = "0"; document.body.appendChild(t); t.select(); try{ document.execCommand("copy"); }catch(_){} t.remove(); }
+  const old = b.textContent; b.textContent = "✓ คัดลอกแล้ว"; b.classList.add("ok");
+  setTimeout(() => { b.textContent = old; b.classList.remove("ok"); }, 1400);
+});
 
 /* ---------- customer list + conversation preview ---------- */
 const initial = n => (String(n).trim().match(/[\p{L}\p{N}]/u) || ["?"])[0].toUpperCase();
@@ -3914,7 +4009,9 @@ function openChatPreview(id){
     const out = a && e && (m.t < a || m.t >= e);
     let txt = esc(m.text.trim());
     if(m.c) txt = txt.replace(/((?:\+?66|0)[689][\d\s\-.]{8,12}\d)/g, '<span class="ph">$1</span>');
-    html += `<div class="bb ${m.c ? "c" : "a"} ${out ? "out" : ""}">${txt || `<span class="empty">(ไฟล์แนบ / สติกเกอร์)</span>`}<time>${String(m.t.getHours()).padStart(2,"0")}:${String(m.t.getMinutes()).padStart(2,"0")}</time></div>`;
+    const isOrder = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อมูลค่า/i.test(m.text), isPay = /linksplus\.omise\.co/i.test(m.text) || isOrder;
+    if(isPay) txt = `<span class="paytag">${isOrder ? "📦 สร้างออเดอร์แล้ว (Tracking)" : "💳 ลิงก์ชำระเงิน"}</span>` + txt;
+    html += `<div class="bb ${m.c ? "c" : "a"} ${out ? "out" : ""} ${isPay ? "pay" : ""}">${txt || `<span class="empty">(ไฟล์แนบ / สติกเกอร์)</span>`}<time>${String(m.t.getHours()).padStart(2,"0")}:${String(m.t.getMinutes()).padStart(2,"0")}</time></div>`;
   }
   if(c.last.c) html += `<div class="cvgap">ลูกค้ารอคำตอบมา ${fmtDur(Date.now() - c.last.t)}</div>`;
   $("#cvBody").innerHTML = html;
@@ -3962,6 +4059,62 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
   window.addEventListener("appinstalled", () => { bar.hidden = true; });
   setTimeout(() => { if(!deferred && bar.hidden) show(`กดเมนู ⋮ ของ Chrome แล้วเลือก “ติดตั้งแอป” หรือ “เพิ่มลงในหน้าจอหลัก”`); }, 3500);
 })();
+
+/* ================= PRESENTATION MODE (expand a card to full screen) =================
+   Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
+const PRESENT_CARDS = "#p-adsbook .adsbook, #p-adsbook .abfun, #p-adsbook .abweek, #p-adsbook .abtablecard";
+const XI = {open:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
+            close:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>`};
+let presentCard = null;
+const PRES_CHART_Z = 1.5;   // charts are zoomed 1.5× and redrawn sharp (higher pixel ratio)
+function setupPresent(){
+  $$(PRESENT_CARDS).forEach(card => {
+    if(card.querySelector(":scope > .xbtn")) return;
+    const b = document.createElement("button");
+    b.className = "xbtn"; b.type = "button"; b.title = "ขยายเต็มจอสำหรับพรีเซนต์"; b.setAttribute("aria-label", "ขยายการ์ด"); b.innerHTML = XI.open;
+    b.onclick = ev => { ev.stopPropagation(); presentCard === card ? closePresent() : openPresent(card); };
+    card.prepend(b);
+  });
+}
+function fitZoom(card){
+  /* scale the whole card so everything is visible at once, in proportion, with no scrolling:
+     charts get a size that keeps the plot wide and tall enough; other cards grow as large as fits */
+  const set = z => { card.style.zoom = z; card.style.setProperty("--z", z); };
+  set(1);
+  if(card.querySelector("canvas")){
+    const z = Math.max(1, Math.min(1.45, card.clientWidth / 1000, card.clientHeight / 600));
+    set(+z.toFixed(2)); return;
+  }
+  const over = () => card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1 ||
+    [...card.querySelectorAll(".tbl-wrap")].some(w => w.scrollWidth > w.clientWidth + 1 || w.scrollHeight > w.clientHeight + 1);
+  let lo = 1, hi = 2.6;
+  for(let k = 0; k < 9; k++){ const mid = (lo + hi) / 2; set(mid); if(over()) hi = mid; else lo = mid; }
+  set(+(lo * .97).toFixed(2));
+}
+function openPresent(card){
+  if(presentCard) closePresent(true);
+  presentCard = card;
+  let bg = $("#presBg"); if(!bg){ bg = document.createElement("div"); bg.id = "presBg"; bg.onclick = () => closePresent(); document.body.appendChild(bg); }
+  bg.hidden = false;
+  card.classList.add("presenting");
+  document.body.classList.add("is-presenting");
+  const b = card.querySelector(":scope > .xbtn"); b.innerHTML = XI.close; b.title = "ย่อกลับ"; b.setAttribute("aria-label", "ย่อการ์ด");
+  fitZoom(card);
+  if(card.querySelector("canvas")){ Chart.defaults.devicePixelRatio = (window.devicePixelRatio || 1) * PRES_CHART_Z; for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderAds(); }
+}
+function closePresent(quiet){
+  const card = presentCard; if(!card) return;
+  presentCard = null;
+  card.classList.remove("presenting"); card.style.zoom = ""; card.style.removeProperty("--z");
+  document.body.classList.remove("is-presenting");
+  const bg = $("#presBg"); if(bg) bg.hidden = true;
+  const b = card.querySelector(":scope > .xbtn"); if(b){ b.innerHTML = XI.open; b.title = "ขยายเต็มจอสำหรับพรีเซนต์"; b.setAttribute("aria-label", "ขยายการ์ด"); }
+  if(card.querySelector("canvas")){ Chart.defaults.devicePixelRatio = undefined; delete Chart.defaults.devicePixelRatio;
+    if(!quiet){ for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderAds(); } }
+}
+document.addEventListener("keydown", ev => { if(ev.key === "Escape" && presentCard) closePresent(); });
+window.addEventListener("resize", () => { if(presentCard){ presentCard.style.zoom = ""; presentCard.style.removeProperty("--z"); requestAnimationFrame(() => fitZoom(presentCard)); } });
+setupPresent();
 
 /* ================= RENDER ================= */
 function renderSubtitle(){
@@ -4012,6 +4165,7 @@ function moveNavThumb(){
   });
 }
 function goPage(p){
+  if(typeof closePresent === "function" && presentCard) closePresent();
   S.page = p;
   document.body.dataset.page = p;
   // quick day buttons exist only on overview / trend / team pages; leave them for a month view elsewhere
