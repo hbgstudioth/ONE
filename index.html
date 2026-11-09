@@ -866,7 +866,10 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 .bb .paytag{display:block;font-size:11px;font-weight:700;margin-bottom:2px;opacity:.95}
 @media (prefers-reduced-motion:reduce){ .payfx *{animation:none !important} }
 /* ===== presentation mode ===== */
-#p-adsbook .adsbook,#p-adsbook .abfun,#p-adsbook .abweek,#p-adsbook .abtablecard{position:relative}
+#p-adsbook .adsbook,#p-adsbook .abfun,#p-adsbook .abweek,#p-adsbook .abtablecard,#p-ads .adschart,#p-ads .adsweek,#p-ads .adstable{position:relative}
+#p-ads .adschart > h3,#p-ads .adsweek > h3,#p-ads .adstable > h3{padding-right:20px}
+.card.presenting.adschart .grow,.card.presenting.adsweek .grow{flex:1;min-height:0}
+.card.presenting.adstable > .tbl-wrap{flex:none;margin-top:auto;margin-bottom:auto;overflow:visible;max-height:none}
 #p-adsbook .adsbook > h3,#p-adsbook .abfun > h3,#p-adsbook .abweek > h3,#p-adsbook .abtablecard > h3{padding-right:20px}
 .xbtn{position:absolute;top:6px;right:6px;z-index:5;width:16px;height:16px;border-radius:5px;padding:0;border:1px solid var(--line);background:var(--card);color:var(--muted);
   display:grid;place-items:center;cursor:pointer;opacity:.75;transition:all .2s var(--ease)}
@@ -893,6 +896,10 @@ body.is-presenting{overflow:hidden}
 body.is-presenting .page.on,body.is-presenting #pages,body.is-presenting .main,body.is-presenting .abtop{animation:none !important;transform:none !important;filter:none !important;contain:none !important}
 body.is-presenting .card.presenting{animation:presIn .35s var(--ease) both}
 @media (max-width:760px){ .card.presenting{inset:8px !important} }
+#adsObj{display:none}
+body[data-page="ads"] #adsObj{display:inline-flex}
+#adsObj button small{font-size:11px;opacity:.75;margin-left:2px}
+.objtag{font-size:10.5px;font-weight:700;border-radius:5px;padding:0 5px;color:#fff;background:var(--oc)}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1321,6 +1328,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <span class="srcTag ads">Meta Ads</span>
           <div class="sel"><select id="adsAcct" aria-label="บัญชีโฆษณา"></select></div>
           <div class="sel"><select id="adsSvc" aria-label="บริการ"></select></div>
+          <div class="seg objseg" id="adsObj"><i class="thumb"></i></div>
           <div class="seg" id="adsGran"><i class="thumb"></i><button data-g="auto" class="on">อัตโนมัติ</button><button data-g="day">รายวัน</button><button data-g="month">รายเดือน</button></div>
           <span class="adshint" id="adsHint"></span>
         </div>
@@ -1919,19 +1927,27 @@ function adsService(name){
   if(!sv) sv = ADS_KW.find(k => String(name).includes(k)) || "อื่นๆ";
   return sv;
 }
+/* campaign objective from its name: …MSG… = Message, …AWN… = Awareness, …TP… = ThruPlay, the rest (TF.CL, Sale, POST …) = other */
+const adsObjective = camp => /AWN/i.test(camp) ? "AWN" : /(^|[^A-Za-z])TP([^A-Za-z]|$)/.test(camp) ? "TP" : /LDP/i.test(camp) ? "LDP" : /MSG/i.test(camp) ? "MSG" : "OTH";
+const ADS_OBJ = {MSG:{label:"MSG", name:"Message", color:"#8a6a43"}, AWN:{label:"AWN", name:"Awareness", color:"#356e6b"},
+  TP:{label:"TP", name:"ThruPlay", color:"#7d5a8a"}, LDP:{label:"LDP", name:"Landing page", color:"#b5654a"}, OTH:{label:"อื่นๆ", name:"Traffic / Sale", color:"#8c8172"}};
+/* which cards / weekly values make sense for each objective */
+const OBJ_CARDS = {"":["spend","msg","cpm","pur","cpp","val","roas"], MSG:["spend","msg","cpm","ctr","cpmi","pur","roas"],
+  AWN:["spend","imp","cpmi","clk","ctr","cpc"], TP:["spend","imp","cpmi","tp","cptp","ctr","cpc"], LDP:["spend","clk","cpc","ctr","imp","cpmi","pur"], OTH:["spend","clk","cpc","ctr","imp","cpmi","msg"]};
 function parseAds(rows){
   const hi = rows.findIndex(isAdsHeader); if(hi < 0) return null;
   const H = rows[hi].map(c => clean(c).toLowerCase());
   const col = (...keys) => H.findIndex(h => keys.some(k => h.includes(k)));
   const C = {date:col("วันที่","date"), acct:col("account name"), camp:col("campaign name"), spend:col("spend","ค่าใช้จ่าย"),
-    imp:col("impression"), clk:col("click"), msg:col("จำนวนข้อความ"), pur:col("จำนวนการซื้อ"), val:col("มูลค่าการซื้อ")};
+    imp:col("impression"), clk:col("click"), msg:col("จำนวนข้อความ"), pur:col("จำนวนการซื้อ"), val:col("มูลค่าการซื้อ"), tp:col("thruplay")};
   const out = [];
   for(const r of rows.slice(hi + 1)){
     const d = parseDate(clean(r[C.date])); if(!d) continue;
     const camp = clean(r[C.camp]);
     const st = (camp.match(/\b(TOF|MOF|BOF)\b/) || [])[1] || "-";
-    out.push({date:d, acct:clean(r[C.acct]) || "-", camp, svc:adsService(camp), stage:st,
-      spend:parseNum(r[C.spend]), imp:parseNum(r[C.imp]), clk:parseNum(r[C.clk]), msg:parseNum(r[C.msg]), pur:parseNum(r[C.pur]), val:parseNum(r[C.val])});
+    out.push({date:d, acct:clean(r[C.acct]) || "-", camp, svc:adsService(camp), stage:st, obj:adsObjective(camp),
+      spend:parseNum(r[C.spend]), imp:parseNum(r[C.imp]), clk:parseNum(r[C.clk]), msg:parseNum(r[C.msg]), pur:parseNum(r[C.pur]), val:parseNum(r[C.val]),
+      tp: C.tp >= 0 ? parseNum(r[C.tp]) : 0});
   }
   return out;
 }
@@ -3076,7 +3092,14 @@ const ADS_MET = {
   pur:{label:"จำนวนการซื้อ", short:"การซื้อ", color:"#356e6b"},
   cpp:{label:"ต้นทุนต่อการซื้อ", short:"ทุน/การซื้อ", color:"#b5654a", money:1, rate:1},
   val:{label:"มูลค่าการซื้อ", short:"มูลค่าซื้อ", color:"#7c9a6d", money:1},
-  roas:{label:"ROAS", short:"ROAS", color:"#8a6a43", rate:1}
+  roas:{label:"ROAS", short:"ROAS", color:"#8a6a43", rate:1},
+  imp:{label:"Impressions", short:"Impressions", color:"#356e6b"},
+  cpmi:{label:"CPM", short:"CPM", color:"#5f9a8f", money:1, rate:1},
+  clk:{label:"คลิก", short:"คลิก", color:"#a3864a"},
+  ctr:{label:"CTR", short:"CTR", color:"#7c9a6d", rate:1, pct:1},
+  cpc:{label:"ต้นทุนต่อคลิก CPC", short:"CPC", color:"#b5654a", money:1, rate:1},
+  tp:{label:"ThruPlay", short:"ThruPlay", color:"#7d5a8a"},
+  cptp:{label:"ต้นทุนต่อ ThruPlay", short:"ทุน/ThruPlay", color:"#9a7aa8", money:1, rate:1}
 };
 function toggleAdsMetric(id){
   const m = S.adsMetrics;
@@ -3086,15 +3109,17 @@ function toggleAdsMetric(id){
 }
 const fmtB2 = n => n == null ? "-" : "฿" + (Math.round(n * 100) / 100).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
 const fmtX = n => n == null ? "-" : n.toFixed(2) + "x";
+/* derived values from summed rows (shared by cards, chart, tables and the weekly chart) */
+const adsRates = g => ({cpm: g.msg ? g.spend / g.msg : null, cpp: g.pur ? g.spend / g.pur : null, roas: g.spend ? g.val / g.spend : null,
+  ctr: g.imp ? g.clk / g.imp * 100 : null, cpmi: g.imp ? g.spend / g.imp * 1000 : null, cpc: g.clk ? g.spend / g.clk : null, cptp: g.tp ? g.spend / g.tp : null});
 function adsAgg(rows, keyFn){
   const m = new Map();
   for(const x of rows){
     const k = keyFn ? keyFn(x) : "all";
-    if(!m.has(k)) m.set(k, {key:k, spend:0, imp:0, clk:0, msg:0, pur:0, val:0, n:0});
-    const g = m.get(k); g.spend += x.spend; g.imp += x.imp; g.clk += x.clk; g.msg += x.msg; g.pur += x.pur; g.val += x.val; g.n++;
+    if(!m.has(k)) m.set(k, {key:k, spend:0, imp:0, clk:0, msg:0, pur:0, val:0, tp:0, n:0});
+    const g = m.get(k); g.spend += x.spend; g.imp += x.imp; g.clk += x.clk; g.msg += x.msg; g.pur += x.pur; g.val += x.val; g.tp += x.tp || 0; g.n++;
   }
-  return [...m.values()].map(g => ({...g, cpm: g.msg ? g.spend / g.msg : null, cpp: g.pur ? g.spend / g.pur : null,
-    roas: g.spend ? g.val / g.spend : null, ctr: g.imp ? g.clk / g.imp * 100 : null}));
+  return [...m.values()].map(g => ({...g, ...adsRates(g)}));
 }
 /* "ทั้งหมด" on this page means every day that has ad data (Prospect sheets may start later) */
 /* Ads Spend has its own period buttons */
@@ -3114,10 +3139,11 @@ function adsRange(){
     }
   }
 }
+const objOk = (x, skip) => skip === "obj" || S.page !== "ads" || !S.adsObj || x.obj === S.adsObj;   // objective filter: Ads Spend page only
 function adsBase(skip){
   const [a, b] = adsRange();
   return (S.ads || []).filter(x => (!a || x.date >= a) && (!b || x.date <= b) &&
-    (skip === "acct" || !S.adsAcct || x.acct === S.adsAcct) && (skip === "svc" || !S.adsSvc || x.svc === S.adsSvc));
+    (skip === "acct" || !S.adsAcct || x.acct === S.adsAcct) && (skip === "svc" || !S.adsSvc || x.svc === S.adsSvc) && objOk(x, skip));
 }
 function fillAdsSelects(){
   const opt = (rows, key, all, cur) => {
@@ -3140,7 +3166,8 @@ function renderAds(){
   }
   fillAdsSelects();
   const rows = adsBase();
-  const T = adsAgg(rows)[0] || {spend:0, imp:0, clk:0, msg:0, pur:0, val:0, cpm:null, cpp:null, roas:null, ctr:null};
+  const T = adsAgg(rows)[0] || {spend:0, imp:0, clk:0, msg:0, pur:0, val:0, tp:0, cpm:null, cpp:null, roas:null, ctr:null, cpmi:null, cpc:null, cptp:null};
+  renderAdsObj();
   const [a, b] = adsRange();
   const ds = (S.ads||[]).map(x => +x.date);
   const lastData = ds.length ? new Date(Math.max(...ds)) : null;
@@ -3148,7 +3175,27 @@ function renderAds(){
   const nDays = a && endDay && endDay >= a ? Math.round((endDay - a) / 864e5) + 1 : 0;
   $("#adsUpdated").textContent = S.adsAt ? `อัปเดตล่าสุด ${new Date(S.adsAt).toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"})} น.` : "";
   $("#adsHint").textContent = `ข้อมูล ${dLabel(new Date(Math.min(...ds)))} – ${dLabel(lastData)} · ${fmtN(rows.length)} แถวในช่วงนี้`;
-  const K = [
+  const ids = OBJ_CARDS[S.adsObj || ""];
+  if(!S.adsMetrics.some(id => ids.includes(id))) S.adsMetrics = ids.slice(0, 2);
+  else S.adsMetrics = S.adsMetrics.filter(id => ids.includes(id));
+  const per = v => nDays ? v / nDays : 0;
+  const CARD = {
+    spend:[fmtB(T.spend), nDays ? `เฉลี่ย <b>${fmtB(T.spend / nDays)}</b>/วัน` : "", "#535b27,#7d8741"],
+    msg:[fmtN(T.msg), nDays ? `เฉลี่ย <b>${(T.msg / nDays).toFixed(1)}</b> ข้อความ/วัน` : "", "#7a5a36,#a98353"],
+    cpm:[fmtB2(T.cpm), "Spend ÷ ข้อความ"],
+    pur:[fmtN(T.pur), [nDays ? `เฉลี่ย <b>${(T.pur / nDays).toFixed(2)}</b>/วัน` : "", T.msg ? `${(T.pur / T.msg * 100).toFixed(1)}% ของข้อความ` : ""].filter(Boolean).join(" · "), "#2f6690,#5b9bc9"],
+    cpp:[fmtB2(T.cpp), "Spend ÷ การซื้อ"], val:[fmtB(T.val), ""], roas:[fmtX(T.roas), "มูลค่าการซื้อ ÷ Spend"],
+    imp:[fmtN(T.imp), nDays ? `เฉลี่ย <b>${fmtN(Math.round(per(T.imp)))}</b>/วัน` : "", "#356e6b,#5f9a8f"],
+    cpmi:[fmtB2(T.cpmi), "ต้นทุนต่อ 1,000 การแสดงผล"],
+    clk:[fmtN(T.clk), nDays ? `เฉลี่ย <b>${fmtN(Math.round(per(T.clk)))}</b>/วัน` : "", "#7a5a36,#a98353"],
+    ctr:[T.ctr == null ? "-" : T.ctr.toFixed(2) + "%", "คลิก ÷ Impressions"],
+    cpc:[fmtB2(T.cpc), "Spend ÷ คลิก"],
+    tp:[T.tp ? fmtN(T.tp) : "-", T.tp ? (nDays ? `เฉลี่ย <b>${fmtN(Math.round(per(T.tp)))}</b>/วัน` : "") : "ชีทยังไม่มีคอลัมน์ ThruPlay", "#5e4a6e,#8f72a0"],
+    cptp:[T.cptp == null ? "-" : fmtB2(T.cptp), T.tp ? "Spend ÷ ThruPlay" : "ต้องมีคอลัมน์ ThruPlay"]
+  };
+  // the first cards of each set and "จำนวนการซื้อ" (always blue) get a filled background
+  const K = ids.map((id, i) => [id, CARD[id][0], CARD[id][1], (i <= 2 || id === "pur") ? CARD[id][2] : undefined]);
+  const K_OLD = [
     ["spend", fmtB(T.spend), nDays ? `เฉลี่ย <b>${fmtB(T.spend / nDays)}</b>/วัน` : "", "#535b27,#7d8741"],
     ["msg", fmtN(T.msg), nDays ? `เฉลี่ย <b>${(T.msg / nDays).toFixed(1)}</b> ข้อความ/วัน` : "", "#7a5a36,#a98353"],
     ["cpm", fmtB2(T.cpm), "Spend ÷ ข้อความ"],
@@ -3179,21 +3226,21 @@ function renderAds(){
   requestAnimationFrame(() => segMove(cs));
   const cRows = S.adsChartSvc ? rows.filter(x => x.svc === S.adsChartSvc) : rows;
   const idx = new Map(keys.map((k,i) => [k,i]));
-  const B = keys.map(() => ({spend:0, msg:0, pur:0, val:0, clk:0}));
-  cRows.forEach(x => { const i = idx.get(keyOfD(x.date)); if(i == null) return; const o = B[i]; o.spend += x.spend; o.msg += x.msg; o.pur += x.pur; o.val += x.val; o.clk += x.clk; });
-  const valOf = (o, id) => id === "cpm" ? (o.msg ? o.spend / o.msg : null) : id === "cpp" ? (o.pur ? o.spend / o.pur : null) : id === "roas" ? (o.spend ? o.val / o.spend : null) : o[id];
+  const B = keys.map(() => ({spend:0, msg:0, pur:0, val:0, clk:0, imp:0, tp:0}));
+  cRows.forEach(x => { const i = idx.get(keyOfD(x.date)); if(i == null) return; const o = B[i]; o.spend += x.spend; o.msg += x.msg; o.pur += x.pur; o.val += x.val; o.clk += x.clk; o.imp += x.imp; o.tp += x.tp || 0; });
+  const valOf = (o, id) => id in o && !["cpm","cpp","roas","ctr","cpmi","cpc","cptp"].includes(id) ? o[id] : adsRates(o)[id];
   const sel = S.adsMetrics.filter(id => ADS_MET[id]);
   const many = keys.length > 16;
   // the first non-rate metric is drawn as bars, every other metric as a line with its own scale
   const barId = sel.find(id => !ADS_MET[id].rate);
-  const fmtM = (id, v) => v == null ? "-" : ADS_MET[id].money ? (ADS_MET[id].rate ? fmtB2(v) : fmtB(v)) : id === "roas" ? fmtX(v) : fmtN(v);
-  const fmtTick = (id, v) => ADS_MET[id].money ? fmtK(v) : id === "roas" ? v.toFixed(1) + "x" : fmtK(v);
+  const fmtM = (id, v) => v == null ? "-" : ADS_MET[id].money ? (ADS_MET[id].rate ? fmtB2(v) : fmtB(v)) : id === "roas" ? fmtX(v) : ADS_MET[id].pct ? v.toFixed(2) + "%" : fmtN(v);
+  const fmtTick = (id, v) => ADS_MET[id].money ? fmtK(v) : id === "roas" ? v.toFixed(1) + "x" : ADS_MET[id].pct ? v.toFixed(1) + "%" : fmtK(v);
   const showLbl = true;
   const aSlot = slotPx("ads-chart", keys.length), aTight = aSlot < 34;
   const datasets = sel.map((id, n) => {
     const M = ADS_MET[id], data = B.map(o => valOf(o, id)), isBar = id === barId;
     // bar values sit inside the top of each bar; line values float above their points in a small pill, so they never cover each other
-    const fmtL = v => M.money ? fmtK(v) : id === "roas" ? v.toFixed(2) + "x" : fmtK(v);
+    const fmtL = v => M.money ? fmtK(v) : id === "roas" ? v.toFixed(2) + "x" : M.pct ? v.toFixed(1) + "%" : fmtK(v);
     const lbl = isBar
       ? (aTight
           ? {display:c => c.dataset.data[c.dataIndex] ? "auto" : false, anchor:"end", align:"end", offset:2, rotation:-90, color:css("--text"), font:{size:9, weight:600}, formatter:fmtL}
@@ -3225,13 +3272,13 @@ function renderAds(){
   $("#adsChartHint").textContent = sel.map(id => ADS_MET[id].short).join(" · ") + "  ·  คลิกการ์ดด้านบนเพื่อเลือกค่าที่แสดง";
   /* total and daily average of each chosen value for the service shown (รวม / จมูก / ดึงหน้า …) */
   {
-    const t = cRows.reduce((o,x) => (o.spend += x.spend, o.msg += x.msg, o.pur += x.pur, o.val += x.val, o), {spend:0, msg:0, pur:0, val:0});
+    const t = cRows.reduce((o,x) => (o.spend += x.spend, o.msg += x.msg, o.pur += x.pur, o.val += x.val, o.clk += x.clk, o.imp += x.imp, o.tp += x.tp || 0, o), {spend:0, msg:0, pur:0, val:0, clk:0, imp:0, tp:0});
     const days = nDays || keys.length || 1;
     const chip = id => { const M = ADS_MET[id];
       if(M.rate){ const v = valOf(t, id); return `<span class="sc" style="--mc:${M.color}"><i></i>${M.short} <b>${fmtM(id, v)}</b><em>ทั้งช่วง</em></span>`; }
       const avg = t[id] / days;
-      return `<span class="sc" style="--mc:${M.color}"><i></i>${M.short} รวม <b>${fmtM(id, t[id])}</b><em>เฉลี่ย ${id === "pur" ? avg.toFixed(2) : id === "msg" ? avg.toFixed(1) : fmtB(avg)}/วัน</em></span>`; };
-    $("#adsChartSum").innerHTML = `<span class="svn">${esc(S.adsChartSvc || "รวมทุกบริการ")}</span>` + sel.map(chip).join("");
+      return `<span class="sc" style="--mc:${M.color}"><i></i>${M.short} รวม <b>${fmtM(id, t[id])}</b><em>เฉลี่ย ${id === "pur" ? avg.toFixed(2) : id === "msg" ? avg.toFixed(1) : M.money ? fmtB(avg) : fmtN(Math.round(avg))}/วัน</em></span>`; };
+    $("#adsChartSum").innerHTML = `<span class="svn">${esc(S.adsChartSvc || "รวมทุกบริการ")}${S.adsObj ? " · " + ADS_OBJ[S.adsObj].label : ""}</span>` + sel.map(chip).join("");
   }
   // dashed line at the average of the bar value (per day, or per month when grouped by month)
   if(barId){
@@ -3252,7 +3299,7 @@ function renderAds(){
 
   /* tables */
   const money = v => fmtB(v), m2 = v => fmtB2(v);
-  const metricCols = [
+  let metricCols = [
     {k:"spend", label:"Spend", num:1, fmt:money},
     {k:"share", label:"สัดส่วน", num:1, fmt:v => v == null ? "-" : v.toFixed(1) + "%"},
     {k:"msg", label:"ข้อความ", num:1, fmt:fmtN},
@@ -3262,8 +3309,17 @@ function renderAds(){
     {k:"val", label:"มูลค่าซื้อ", num:1, fmt:money},
     {k:"roas", label:"ROAS", num:1, fmt:fmtX}
   ];
+  if(["AWN","TP","LDP","OTH"].includes(S.adsObj)){
+    const pct = v => v == null ? "-" : v.toFixed(2) + "%";
+    const extra = S.adsObj === "TP" ? [{k:"tp", label:"ThruPlay", num:1, fmt:v => v ? fmtN(v) : "-"}, {k:"cptp", label:"ทุน/ThruPlay", num:1, fmt:v => v == null ? "-" : fmtB2(v)}]
+      : S.adsObj === "OTH" ? [{k:"msg", label:"ข้อความ", num:1, fmt:fmtN}]
+      : S.adsObj === "LDP" ? [{k:"pur", label:"การซื้อ", num:1, fmt:fmtN}, {k:"cpp", label:"ทุน/การซื้อ", num:1, fmt:m2}] : [];
+    metricCols.splice(2, metricCols.length - 2, {k:"imp", label:"Impressions", num:1, fmt:fmtN}, {k:"cpmi", label:"CPM", num:1, fmt:m2},
+      {k:"clk", label:"คลิก", num:1, fmt:fmtN}, {k:"ctr", label:"CTR", num:1, fmt:pct}, {k:"cpc", label:"CPC", num:1, fmt:m2}, ...extra);
+  }
   const withShare = g => g.map(x => ({...x, share: T.spend ? x.spend / T.spend * 100 : null}));
-  const foot = {spend:fmtB(T.spend), share:"100%", msg:fmtN(T.msg), cpm:fmtB2(T.cpm), pur:fmtN(T.pur), cpp:fmtB2(T.cpp), val:fmtB(T.val), roas:fmtX(T.roas)};
+  const foot = {spend:fmtB(T.spend), share:"100%", msg:fmtN(T.msg), cpm:fmtB2(T.cpm), pur:fmtN(T.pur), cpp:fmtB2(T.cpp), val:fmtB(T.val), roas:fmtX(T.roas),
+    imp:fmtN(T.imp), cpmi:fmtB2(T.cpmi), clk:fmtN(T.clk), ctr:T.ctr == null ? "-" : T.ctr.toFixed(2) + "%", cpc:fmtB2(T.cpc), tp:T.tp ? fmtN(T.tp) : "-", cptp:T.cptp == null ? "-" : fmtB2(T.cptp)};
   const tab = S.adsTab;
   if(tab === "svc"){
     $("#adsTblTitle").textContent = "สรุปแยกบริการ";
@@ -3280,10 +3336,21 @@ function renderAds(){
       g, {k:"d", d:-1}, {d:"รวม", ...foot}, {fit:true});
   }else{
     $("#adsTblTitle").textContent = "สรุปแยกแคมเปญ";
-    const g = withShare(adsAgg(rows, x => x.camp)).map(x => { const r0 = rows.find(y => y.camp === x.key); return {...x, svc:r0.svc, acct:r0.acct, stage:r0.stage}; });
-    dataTable("t-ads", [{k:"key", label:"แคมเปญ", wrap:1, fmt:(v,r) => `<b style="font-weight:500">${esc(v)}</b><div class="md">${esc(r.acct)} · ${esc(r.svc)} · ${esc(r.stage)}</div>`},
+    const g = withShare(adsAgg(rows, x => x.camp)).map(x => { const r0 = rows.find(y => y.camp === x.key); return {...x, svc:r0.svc, acct:r0.acct, stage:r0.stage, obj:r0.obj}; });
+    dataTable("t-ads", [{k:"key", label:"แคมเปญ", wrap:1, fmt:(v,r) => `<b style="font-weight:500">${esc(v)}</b><div class="md">${esc(r.acct)} · ${esc(r.svc)} · ${esc(r.stage)} · <span class="objtag" style="--oc:${ADS_OBJ[r.obj].color}">${ADS_OBJ[r.obj].label}</span></div>`},
       ...metricCols.filter(c => c.k !== "share")], g, {k:"spend", d:-1}, {key:"รวม", ...foot}, {fit:true});
   }
+}
+/* objective buttons with each group's spend in the period */
+function renderAdsObj(){
+  const g = adsAgg(adsBase("obj"), x => x.obj), tot = g.reduce((t,x) => t + x.spend, 0);
+  const sp = k => (g.find(x => x.key === k) || {spend:0}).spend;
+  const seg = $("#adsObj");
+  seg.innerHTML = `<i class="thumb"></i><button data-o="" class="${S.adsObj ? "" : "on"}">ทุกวัตถุประสงค์</button>` +
+    Object.entries(ADS_OBJ).filter(([k]) => sp(k) > 0 || S.adsObj === k).map(([k, o]) =>
+      `<button data-o="${k}" class="${S.adsObj === k ? "on" : ""}" title="${o.name} · ${fmtB(sp(k))} (${tot ? (sp(k) / tot * 100).toFixed(0) : 0}%)"><span class="dot" style="background:${o.color}"></span>${o.label} <small>${o.name}</small></button>`).join("");
+  seg.querySelectorAll("button").forEach(b => b.onclick = () => { S.adsObj = b.dataset.o; renderAds(); });
+  requestAnimationFrame(() => segMove(seg));
 }
 $("#adsAcct").onchange = e => { S.adsAcct = e.target.value; rerenderAds(); };
 $("#adsSvc").onchange = e => { S.adsSvc = e.target.value; rerenderAds(); };
@@ -3485,6 +3552,13 @@ function weekStarts(a, b){
 /* ---------- Ads Spend: weekly comparison ---------- */
 const AW_MET = {
   spend:{label:"Spend", color:"#5e662d", better:null, fmt:v => fmtB(v), tick:v => fmtK(v)},
+  imp:{label:"Impressions", color:"#356e6b", better:"up", fmt:v => fmtN(v), tick:v => fmtK(v)},
+  cpmi:{label:"CPM", color:"#5f9a8f", better:"down", fmt:v => fmtB2(v), tick:v => fmtK(v)},
+  clk:{label:"คลิก", color:"#a3864a", better:"up", fmt:v => fmtN(v), tick:v => fmtK(v)},
+  ctr:{label:"CTR", color:"#7c9a6d", better:"up", fmt:v => v.toFixed(2) + "%", tick:v => v.toFixed(1) + "%"},
+  cpc:{label:"CPC", color:"#b5654a", better:"down", fmt:v => fmtB2(v), tick:v => fmtK(v)},
+  tp:{label:"ThruPlay", color:"#7d5a8a", better:"up", fmt:v => fmtN(v), tick:v => fmtK(v)},
+  cptp:{label:"ทุน/ThruPlay", color:"#9a7aa8", better:"down", fmt:v => fmtB2(v), tick:v => fmtK(v)},
   msg:{label:"ข้อความ", color:"#8a6a43", better:"up", fmt:v => fmtN(v), tick:v => fmtK(v)},
   cpm:{label:"ทุน/ข้อความ", color:"#c08a3e", better:"down", fmt:v => fmtB2(v), tick:v => fmtK(v)},
   pur:{label:"การซื้อ", color:"#356e6b", better:"up", fmt:v => fmtN(v), tick:v => fmtN(v)},
@@ -3493,25 +3567,25 @@ const AW_MET = {
   roas:{label:"ROAS", color:"#8a6a43", better:"up", fmt:v => v.toFixed(2) + "x", tick:v => v.toFixed(2) + "x"}
 };
 function renderAdsWeekly(){
-  const mk = S.awMetric in AW_MET ? S.awMetric : "spend", M = AW_MET[mk];
+  const wIds = OBJ_CARDS[S.adsObj || ""].filter(k => AW_MET[k]);
+  const mk = wIds.includes(S.awMetric) ? S.awMetric : "spend", M = AW_MET[mk];
   const seg = $("#awMetric");
-  seg.innerHTML = `<i class="thumb"></i>` + Object.entries(AW_MET).map(([k,m]) => `<button data-m="${k}" class="${k === mk ? "on" : ""}">${m.label}</button>`).join("");
+  seg.innerHTML = `<i class="thumb"></i>` + Object.entries(AW_MET).filter(([k]) => wIds.includes(k)).map(([k,m]) => `<button data-m="${k}" class="${k === mk ? "on" : ""}">${m.label}</button>`).join("");
   seg.querySelectorAll("button").forEach(btn => btn.onclick = () => { S.awMetric = btn.dataset.m; renderAdsWeekly(); });
   requestAnimationFrame(() => segMove(seg));
   $("#awMetricTag").textContent = M.label;
   const [a, b] = adsRange(); if(!a || !b) return;
   const today = new Date(); today.setHours(0,0,0,0);
-  const ads = (S.ads || []).filter(x => (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc));
+  const ads = (S.ads || []).filter(x => (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc) && objOk(x));
   const first = ads.length ? new Date(Math.min(...ads.map(x => +x.date))) : null;
   const W = weekStarts(a, b).map(ws => {
     const we = addDays(ws, 6), ar = ads.filter(x => x.date >= ws && x.date <= we);
-    const t = ar.reduce((o,x) => (o.spend += x.spend, o.msg += x.msg, o.pur += x.pur, o.val += x.val, o), {spend:0, msg:0, pur:0, val:0});
+    const t = ar.reduce((o,x) => (o.spend += x.spend, o.msg += x.msg, o.pur += x.pur, o.val += x.val, o.clk += x.clk, o.imp += x.imp, o.tp += x.tp || 0, o), {spend:0, msg:0, pur:0, val:0, clk:0, imp:0, tp:0});
     const has = ar.length > 0 && !(first && we < first);
-    const v = !has ? null : {spend:t.spend, msg:t.msg, pur:t.pur, val:t.val,
-      cpm: t.msg ? t.spend / t.msg : null, cpp: t.pur ? t.spend / t.pur : null, roas: t.spend ? t.val / t.spend : null}[mk];
+    const v = !has ? null : ({...t, ...adsRates(t)})[mk];
     return {ws, we, v, partial: we > today, extra:[`Spend ${fmtB(t.spend)} · ข้อความ ${fmtN(t.msg)}`, `การซื้อ ${fmtN(t.pur)} · มูลค่า ${fmtB(t.val)}`]};
   });
-  weeklyBars({canvas:"ads-week", insightEl:$("#awInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"aw" + mk + W.length, sum:["spend","msg","pur","val"].includes(mk)});
+  weeklyBars({canvas:"ads-week", insightEl:$("#awInsight"), label:M.label, color:M.color, better:M.better, fmt:M.fmt, tick:M.tick, W, sig:"aw" + mk + W.length, sum:["spend","msg","pur","val","imp","clk","tp"].includes(mk)});
 }
 function renderAbWeekly(src){
   const sel = (Array.isArray(S.abMetrics) && S.abMetrics.length ? S.abMetrics : [S.abMetric]).filter(k => k in AB_MET);
@@ -4062,7 +4136,7 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 
 /* ================= PRESENTATION MODE (expand a card to full screen) =================
    Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
-const PRESENT_CARDS = "#p-adsbook .adsbook, #p-adsbook .abfun, #p-adsbook .abweek, #p-adsbook .abtablecard";
+const PRESENT_CARDS = "#p-adsbook .adsbook, #p-adsbook .abfun, #p-adsbook .abweek, #p-adsbook .abtablecard, #p-ads .adschart, #p-ads .adsweek, #p-ads .adstable";
 const XI = {open:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
             close:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>`};
 let presentCard = null;
