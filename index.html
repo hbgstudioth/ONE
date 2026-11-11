@@ -524,7 +524,10 @@ body.p-chat #adsGran{display:none}
 .cr{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 6px;border-radius:10px;border-bottom:1px solid var(--line)}
 .cr:hover{background:var(--soft)}
 .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:600;color:#fff;background:linear-gradient(135deg,#7d8741,#535b27);font-size:14px;flex:none}
-.cr .nm{display:flex;align-items:center;gap:6px;min-width:0}
+.cr .nm{display:flex;align-items:center;gap:4px;min-width:0;flex-wrap:wrap}
+.cr .nm b{flex:0 1 auto;max-width:100%}
+.cr .nm .stag,.cr .nm .tg{margin-left:0}
+.cfind .seg{flex-wrap:wrap;height:auto}
 .cr .nm b{font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cr .lm{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cr .mt{font-size:11px;color:var(--muted)}
@@ -918,6 +921,37 @@ body[data-page="ads"] #adsObj{display:inline-flex}
 @keyframes pulseT{0%,100%{box-shadow:0 0 0 0 rgba(181,71,58,.45)}50%{box-shadow:0 0 0 4px rgba(181,71,58,0)}}
 /* customers page: no "3 เดือน" */
 body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
+.pgchips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto;min-width:0}
+.pgchips button{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;cursor:pointer;white-space:nowrap;
+  border:1px solid color-mix(in srgb,var(--pc) 35%,transparent);background:color-mix(in srgb,var(--pc) 8%,var(--card));color:var(--text);transition:all .2s var(--ease)}
+.pgchips button i{width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.pgchips button small{font-size:11px;opacity:.7}
+.pgchips button:hover{background:color-mix(in srgb,var(--pc) 18%,var(--card))}
+.pgchips button.on{background:var(--pc);border-color:var(--pc);color:#fff}
+.pgchips button.on i{background:#fff}
+.chhead .hint{flex-basis:100%;margin-left:0 !important}
+.stag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;margin-left:5px;vertical-align:1px;white-space:nowrap}
+.stag small{font-size:9.5px;font-weight:600;opacity:.8}
+.stag.ads{background:color-mix(in srgb,#3f6f9e 16%,transparent);color:#2f5f8e}
+.stag.cmt{background:color-mix(in srgb,#c08a3e 20%,transparent);color:#8a5a2b}
+.stag.org{background:color-mix(in srgb,#4f7a2e 16%,transparent);color:#3f6a22}
+#p-chat .adsrc .top b.sc2,.adsrc .top b.sc2{font-size:13px !important;font-weight:700;color:#8a5a2b}
+#p-chat .adsrc .top b.sa,#p-chat .adsrc .top b.so,.adsrc .top b.sa,.adsrc .top b.so{font-size:13px !important;font-weight:700}
+#p-chat .adsrc .top{align-items:center;gap:8px}
+.adsrc .sa{color:#2f5f8e} .adsrc .so{color:#3f6a22}
+.adsrc .tr.two{background:color-mix(in srgb,#4f7a2e 45%,transparent)}
+.adsrc .tr.two i{background:linear-gradient(90deg,#3f6f9e,#5b8fc4) !important}
+/* chat page buttons: แชท = light green · Preview = light yellow */
+#p-chat .pvb,#chatModal .pvb{background:#fdf8e2;border-color:#f5eac5;color:#6e560e}
+#p-chat .pvb:hover{background:#f9efc5;border-color:#ecdfad;color:#4d3c08}
+.cr .rtb{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.cr .cpy{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:3px 9px;background:var(--card);color:var(--text);cursor:pointer;white-space:nowrap}
+.cr .cpy:hover{background:var(--soft)}
+.cr .cpy.ok{background:#4f7a2e;color:#fff;border-color:#4f7a2e}
+.cr .cpy.ico{font-size:10.5px;padding:0 6px;line-height:18px;border-radius:6px;color:var(--muted)}
+.cr .chatlink{font-size:12px;border-radius:8px;padding:3px 10px;text-decoration:none;white-space:nowrap}
+#p-chat .cr .chatlink,#p-chat .wi a:not(.plink),#cvLink{background:#eef8e9 !important;border:1px solid #daecd2;color:#2f5d1f !important}
+#p-chat .cr .chatlink:hover,#p-chat .wi a:not(.plink):hover,#cvLink:hover{background:#e1f2d9 !important}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1260,6 +1294,12 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-chat .chday,#p-chat .chhour,#p-chat .chwait,#p-chat .chspeed{height:auto;max-height:none;min-height:0}
   #p-chat .chday h3 .hint{display:none}
   #p-chat .usnote{display:none}
+  #p-chat .chhead .hint{display:none}
+  #p-chat .chlist{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #p-chat .chlist div{padding:3px 8px;font-size:12px;gap:6px}
+  #p-chat .chlist div small{width:32px}
+  #p-chat .adsrc .top b:not(.sa):not(.so){font-size:clamp(18px,1.4vw,22px)}
+  #p-chat .adsrc small{font-size:10.5px}   /* one header line on a computer; the note is the header tooltip */
   #p-chat .chsrc{padding:8px 14px}
   #p-chat .chk .kc{padding:8px 12px}
 }
@@ -1417,7 +1457,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
       <section class="page" id="p-chat">
         <div class="card chhead">
           <span class="chic">💬</span><b>แชทลูกค้า</b>
-          <div class="sel"><select id="chatPage" aria-label="เพจ"></select></div>
+          <div class="pgchips" id="chatPages" role="group" aria-label="เพจ"></div>
           <span class="hint" id="chatHint"></span>
         </div>
         <div class="chk" id="chatKpis"></div>
@@ -1438,7 +1478,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="card ch flex chspeed"><h3>ความเร็วในการตอบ <span class="hint" id="chatSpeedHint"></span></h3><div class="speed" id="chatSpeed"></div></div>
         </div>
         <div class="card ch flex chcust"><h3>รายชื่อลูกค้า <span class="wbadge n" id="chatCustN">0</span><span class="hint">คุยในช่วงที่เลือก · ล่าสุดก่อน</span></h3>
-          <div class="cfind"><input id="chatFind" placeholder="ค้นหาชื่อ หรือข้อความ" autocomplete="off"><div class="seg" id="chatCustF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="wait">รอตอบ</button><button data-f="phone">มีเบอร์</button></div></div>
+          <div class="cfind"><input id="chatFind" placeholder="ค้นหาชื่อ หรือข้อความ" autocomplete="off"><div class="seg" id="chatCustF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="wait">รอตอบ</button><button data-f="phone">มีเบอร์</button><button data-f="ads">Ads</button><button data-f="org">Organic</button><button data-f="cmt">คอมเมนต์</button></div></div>
           <div class="custlist" id="chatCust"></div></div>
         <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
         <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
@@ -1987,12 +2027,15 @@ async function fetchAds(mcp){
     const rows = Object.values(map).find(rs => rs.slice(0,5).some(isAdsHeader));
     const cr = Object.values(map).find(rs => rs.slice(0,5).some(isChatHeader));
     if(cr){ S.chat = parseChats(cr); S.chatErr = ""; } else S.chatErr = "NOCHAT";
+    const cc = Object.values(map).find(rs => rs.slice(0,5).some(isChatCustHeader));
+    if(cc) S.chatCust = parseChatCust(cc);
     const p = rows && parseAds(rows); if(!p) throw new Error("NOADS"); return p;
   }
   const url = q => cb => `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq?tqx=out:json;responseHandler:${cb}&headers=1&${q}&_=${Date.now()}`;
   const tries = [gid ? url("gid=" + encodeURIComponent(gid)) : null, url("sheet=Meta_Ads"), url("gid=0")].filter(Boolean);
   // chat messages live in the same file (tab Chat_Messages)
   try{ const c = parseChats(tableToRows(await jsonpCall(url("sheet=Chat_Messages"), 30000))); if(c){ S.chat = c; S.chatErr = ""; } }catch(e){ S.chatErr = "NOCHAT"; }
+  try{ const cc = parseChatCust(tableToRows(await jsonpCall(url("sheet=Chat_Customers"), 30000))); if(cc) S.chatCust = cc; }catch(e){}
   for(const t of tries){
     try{ const p = parseAds(tableToRows(await jsonpCall(t, 25000))); if(p && p.length) return p; }catch(e){}
   }
@@ -2002,6 +2045,35 @@ async function fetchAds(mcp){
 /* ================= CHAT (tab Chat_Messages) =================
    Columns: วันเวลา · ช่องทาง · Page ID · ชื่อเพจ · Customer ID · ชื่อลูกค้า · ผู้ส่ง (ลูกค้า/แอดมิน) · ข้อความ · ไฟล์แนบ · Conversation ID · Message ID · ลิงก์แชท */
 const isChatHeader = r => r && r.some(c => /conversation id/i.test(c)) && r.some(c => /ผู้ส่ง/.test(c));
+/* tab Chat_Customers: one row per customer · แหล่งที่มา (Organic / Ads) · วันที่ทักจากแอด · ทักครั้งแรก */
+const isChatCustHeader = r => r && r.some(c => /customer id/i.test(c)) && r.some(c => /แหล่งที่มา/.test(c));
+function parseChatCust(rows){
+  const hi = rows.findIndex(isChatCustHeader); if(hi < 0) return null;
+  const H = rows[hi].map(c => clean(c).toLowerCase()), col = k => H.findIndex(h => h.includes(k));
+  const C = {cid:col("customer id"), src:col("แหล่งที่มา"), ad:col("วันที่ทักจากแอด"), first:col("ทักครั้งแรก")};
+  const m = new Map();
+  for(const r of rows.slice(hi + 1)){
+    const id = clean(r[C.cid]); if(!id) continue;
+    const src = /ads?|โฆษณา/i.test(clean(r[C.src])) ? "Ads" : clean(r[C.src]) ? "Organic" : "";
+    m.set(id, {src, adAt: C.ad >= 0 ? chatTime(r[C.ad]) : null, first: C.first >= 0 ? chatTime(r[C.first]) : null});
+  }
+  return m;
+}
+/* where the customer came from, and when they first messaged (earliest of the sheet value and the first message we have) */
+function chatOrigin(c){
+  const x = (S.chatCust && S.chatCust.get(c.cid)) || {};
+  // Ads wins: a customer who started Organic but came back later from an ad (วันที่ทักจากแอด filled, or source Ads) is Ads
+  const src = (x.adAt || x.src === "Ads") ? "Ads" : x.src;
+  const viaAd = src === "Ads" && x.src === "Organic";
+  const cands = [x.first, x.adAt, c.msgs.find(m => m.c)?.t, c.msgs[0]?.t].filter(Boolean);
+  // the page opened the chat by privately replying to this person's comment (Meta inserts "คุณกำลังตอบกลับความคิดเห็น…")
+  const cmt = c._cmt ?? (c._cmt = c.msgs.some(m => !m.c && CMT_RE.test(m.text)));
+  return {src, viaAd, cmt, adAt:x.adAt || null, first: cands.length ? new Date(Math.min(...cands.map(Number))) : null};
+}
+const CMT_RE = /คุณกำลังตอบกลับความคิดเห็น|you(?:'|’)re replying to a comment|replying to a comment/i;
+const cmtTag = o => o && o.cmt ? `<span class="stag cmt" title="เพจเริ่มแชทจากการตอบกลับคอมเมนต์ใต้โพสต์">💬 คอมเมนต์</span>` : "";
+// anyone who ever came from an ad is simply "Ads" (no separate "started Organic" label)
+const srcTag = src => !src ? "" : `<span class="stag ${src === "Ads" ? "ads" : "org"}">${src === "Ads" ? "📣 Ads" : "🌱 Organic"}</span>`;
 function chatTime(v){
   const t = clean(v), m = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?/);
   if(m) return new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +(m[6]||0));
@@ -3973,7 +4045,11 @@ function renderChat(){
   const h = adsHeader();      // shared period bar (also sets the date inputs)
   const [a0, b0] = adsRange();
   const pages = [...new Set((S.chat || []).map(c => c.page))].sort();
-  $("#chatPage").innerHTML = `<option value="">ทุกเพจ (${pages.length})</option>` + pages.map(p => `<option value="${esc(p)}" ${p === S.chatPage ? "selected" : ""}>${esc(p)}</option>`).join("");
+  const PGC = ["#5e662d", "#8a6a43", "#356e6b", "#b5654a", "#7d5a8a", "#3f6f9e", "#a3864a"];
+  const cnt = p => (S.chat || []).filter(c => c.page === p).length;
+  $("#chatPages").innerHTML = `<button data-p="" class="${S.chatPage ? "" : "on"}" style="--pc:#6b6656">ทุกเพจ <small>${pages.length}</small></button>` +
+    pages.map((p, i) => `<button data-p="${esc(p)}" class="${p === S.chatPage ? "on" : ""}" style="--pc:${PGC[i % PGC.length]}" title="${esc(p)}"><i></i>${esc(p)} <small>${fmtN(cnt(p))}</small></button>`).join("");
+  $$("#chatPages button").forEach(b => b.onclick = () => { S.chatPage = b.dataset.p; renderChat(); });
   if(!(S.chat || []).length){
     $("#chatHint").textContent = S.chatErr ? "ยังอ่านแท็บ Chat_Messages ไม่ได้ · ตรวจว่าชีท Meta Ads มีแท็บนี้และแชร์แบบทุกคนที่มีลิงก์" : "กำลังโหลด…";
     $("#chatKpis").innerHTML = ""; return;
@@ -3985,6 +4061,7 @@ function renderChat(){
   const len = e - a, pa = new Date(+a - len);
   const C = chatStats(a, e), P = chatStats(pa, a);
   const am = adsMsgs(a, e), pam = adsMsgs(pa, a);
+  $(".chhead").title = `นับจากแท็บแชทในชีต · ข้อมูลแชท ${dLabel(dMin)} – ${dLabel(dMax)} · ตัวกรองบัญชี/บริการมีผลเฉพาะ Message จากโฆษณา`;
   $("#chatHint").textContent = `นับจากแท็บแชทในชีต · ข้อมูลแชท ${dLabel(dMin)} – ${dLabel(dMax)} · ตัวกรองบัญชี/บริการมีผลเฉพาะ Message จากโฆษณา`;
   const rate = C.active ? C.replied / C.active : null, prate = P.active ? P.replied / P.active : null;
   const deepSel = `<select id="chatDeepSel">${[5,10,20,30].map(n => `<option ${n === +S.chatDeep ? "selected" : ""}>${n}</option>`).join("")}</select>`;
@@ -4030,7 +4107,8 @@ function renderChat(){
   $("#chatPayN").textContent = paidAll.length;
   $("#chatPayHint").textContent = "ตรวจจากลิงก์ชำระเงิน Omise ในแชท";
   $("#chatPay").innerHTML = paid.length ? paid.map(({c, pm, last, track, amt}) => { const url = (last.text.match(/https?:\/\/linksplus\.omise\.co\/[\w-]+/i) || [""])[0];
-      return `<div class="wi pay"><i></i><div><b>${esc(c.name)}</b> <span class="ptag ${track ? "tk" : "wt"}">${track ? "Tracking" : "รอติดTag/รอโอน"}</span>${amt ? ` <span class="pamt">฿${esc(amt.replace(/\.00$/, ""))}</span>` : ""}<small>${esc(c.page)} · ส่งลิงก์ ${fmtWhen(last.t)}${pm.length > 1 ? ` · ${pm.length} ลิงก์` : ""}</small></div>
+      const og = chatOrigin(c);
+      return `<div class="wi pay"><i></i><div><b>${esc(c.name)}</b> ${srcTag(og.src)}${cmtTag(og)}<span class="ptag ${track ? "tk" : "wt"}">${track ? "Tracking" : "รอติดTag/รอโอน"}</span>${amt ? ` <span class="pamt">฿${esc(amt.replace(/\.00$/, ""))}</span>` : ""}<small>${esc(c.page)} · ส่งลิงก์ ${fmtWhen(last.t)}${pm.length > 1 ? ` · ${pm.length} ลิงก์` : ""}</small></div>
       <button class="cpy" data-name="${esc(c.name)}" title="คัดลอกชื่อลูกค้า">⧉ คัดลอกชื่อ</button><span style="display:flex;gap:4px"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>`; }).join("")
     : `<div class="empty">${paidAll.length ? "ไม่มีรายชื่อในกลุ่มนี้" : "ยังไม่มีลิงก์ชำระเงินในช่วงนี้"}</div>`;
 
@@ -4059,15 +4137,22 @@ function renderChat(){
     return `<div class="sp"><span>${l}</span><div class="tr"><i style="background:${col}" data-w="${(n / nR * 100).toFixed(1)}"></i></div><b>${fmtN(n)}</b><small>${(n / nR * 100).toFixed(0)}%</small></div>`; }).join("");
 
   /* source & channels */
-  const adsPct = C.neu ? Math.min(1, am / C.neu) : null;
+  const newRooms = chatConvs().filter(c => c.first && c.first >= a && c.first < e).map(chatOrigin);
+  const nAds = newRooms.filter(o => o.src === "Ads").length, nOrg = newRooms.filter(o => o.src === "Organic").length, nCmt = newRooms.filter(o => o.cmt).length;
+  const hasSrc = !!(S.chatCust && S.chatCust.size), known = nAds + nOrg;
+  const adsPct = hasSrc ? (known ? nAds / known : null) : C.neu ? Math.min(1, am / C.neu) : null;
   const chs = Object.entries(C.ch).sort((x,y) => y[1] - x[1]), pgs = Object.entries(C.pages).sort((x,y) => y[1] - x[1]);
-  $("#chatSrc").innerHTML = `<div class="adsrc"><div class="top"><span>แชทใหม่ที่มาจากโฆษณา (ประมาณ)</span><b>${adsPct == null ? "-" : (adsPct * 100).toFixed(0) + "%"}</b></div>
-      <div class="tr"><i data-w="${adsPct == null ? 0 : (adsPct * 100).toFixed(1)}"></i></div><small>Meta Ads นับ Message ${fmtN(am)} · แชทใหม่ทั้งหมด ${fmtN(C.neu)}${dpill(am, pam) ? " · Message จากแอด " + dpill(am, pam) : ""}</small></div>
-    <div class="chlist">${chs.map(([k,v]) => `<div>💬<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}
-      ${pgs.map(([k,v]) => `<div>📄<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}</div>`;
+  $("#chatSrc").innerHTML = hasSrc
+    ? `<div class="adsrc"><div class="top"><span>แชทใหม่จาก <b class="sa">📣 Ads ${fmtN(nAds)}</b> · <b class="so">🌱 Organic ${fmtN(nOrg)}</b> · <b class="sc2">💬 คอมเมนต์ ${fmtN(nCmt)}</b></span><b>${adsPct == null ? "-" : (adsPct * 100).toFixed(0) + "%"} Ads</b></div>
+      <div class="tr two"><i data-w="${adsPct == null ? 0 : (adsPct * 100).toFixed(1)}"></i></div><small>ตามแท็บ Chat_Customers (แหล่งที่มา) · แชทใหม่ ${fmtN(newRooms.length)} ห้อง${newRooms.length - known ? ` · ไม่ระบุ ${fmtN(newRooms.length - known)}` : ""} · Meta Ads นับ Message ${fmtN(am)}</small></div>`
+    : `<div class="adsrc"><div class="top"><span>แชทใหม่ที่มาจากโฆษณา (ประมาณ)</span><b>${adsPct == null ? "-" : (adsPct * 100).toFixed(0) + "%"}</b></div>
+      <div class="tr"><i data-w="${adsPct == null ? 0 : (adsPct * 100).toFixed(1)}"></i></div><small>Meta Ads นับ Message ${fmtN(am)} · แชทใหม่ทั้งหมด ${fmtN(C.neu)}${dpill(am, pam) ? " · Message จากแอด " + dpill(am, pam) : ""}</small></div>`;
+  $("#chatSrc").innerHTML += `
+<div class="chlist">${chs.map(([k,v]) => `<div title="${esc(k)}">💬<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}
+      ${pgs.map(([k,v]) => `<div title="${esc(k)}">📄<span>${esc(k)}</span><b>${fmtN(v)}</b><small>${(v / (C.active || 1) * 100).toFixed(0)}%</small></div>`).join("")}</div>`;
   requestAnimationFrame(() => requestAnimationFrame(() => $$("#chatSpeed .tr i, #chatSrc .tr i").forEach(i => i.style.width = i.dataset.w + "%")));
 }
-$("#chatPage").onchange = ev => { S.chatPage = ev.target.value; renderChat(); };
+
 /* copy a customer's name (paid list) */
 document.addEventListener("click", async ev => {
   const b = ev.target.closest(".cpy"); if(!b) return;
@@ -4089,16 +4174,18 @@ function renderChatList(a, e){
   let list = chatConvs().filter(c => c.msgs.some(m => m.c && m.t >= a && m.t < e));
   if(f === "wait") list = list.filter(c => c.last && c.last.c);
   if(f === "phone") list = list.filter(c => phoneOf(c));
+  if(f === "ads" || f === "org") list = list.filter(c => chatOrigin(c).src === (f === "ads" ? "Ads" : "Organic"));
+  if(f === "cmt") list = list.filter(c => chatOrigin(c).cmt);
   if(q) list = list.filter(c => c.name.toLowerCase().includes(q) || c.msgs.some(m => m.text.toLowerCase().includes(q)));
   list.sort((x,y) => y.last.t - x.last.t);
   $("#chatCustN").textContent = fmtN(list.length);
   $("#chatCust").innerHTML = list.length ? list.slice(0, 300).map(c => {
-    const nc = c.msgs.filter(m => m.c).length, na = c.msgs.length - nc, ph = phoneOf(c), lt = c.last.text.trim();
+    const nc = c.msgs.filter(m => m.c).length, na = c.msgs.length - nc, ph = phoneOf(c), lt = c.last.text.trim(), og = chatOrigin(c);
     return `<div class="cr"><div class="av">${esc(initial(c.name))}</div>
-      <div style="min-width:0"><div class="nm"><b>${esc(c.name)}</b>${c.last.c ? `<span class="tg w">รอตอบ</span>` : ""}${ph ? `<span class="tg p">📞 มีเบอร์</span>` : ""}</div>
+      <div style="min-width:0"><div class="nm"><b>${esc(c.name)}</b><button class="cpy ico" data-name="${esc(c.name)}" title="คัดลอกชื่อลูกค้า" aria-label="คัดลอกชื่อ">⧉ คัดลอก</button>${srcTag(og.src)}${cmtTag(og)}${c.last.c ? `<span class="tg w">รอตอบ</span>` : ""}${ph ? `<span class="tg p">📞 มีเบอร์</span>` : ""}</div>
         <div class="lm">${c.last.c ? "" : "เพจ: "}${lt ? esc(lt.slice(0, 60)) : "<i>(ไฟล์/สติกเกอร์)</i>"}</div>
-        <div class="mt">${esc(c.page)} · ลูกค้า ${nc} · เพจ ${na} ข้อความ</div></div>
-      <div class="rt"><span class="mt">${fmtWhen(c.last.t)}</span><button class="pvb" data-cv="${esc(c.id)}">Preview</button></div></div>`; }).join("")
+        <div class="mt">${og.first ? `ทักครั้งแรก ${fmtWhen(og.first)} · ` : ""}${esc(c.page)} · ลูกค้า ${nc} · เพจ ${na} ข้อความ</div></div>
+      <div class="rt"><span class="mt">${fmtWhen(c.last.t)}</span><span class="rtb"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a class="chatlink" href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div></div>`; }).join("")
     + (list.length > 300 ? `<div class="empty">แสดง 300 จาก ${fmtN(list.length)} ห้อง · ใช้ช่องค้นหาเพื่อหาคนอื่น</div>` : "")
     : `<div class="empty">ไม่พบลูกค้าในช่วงนี้</div>`;
 }
@@ -4114,7 +4201,8 @@ function openChatPreview(id){
   const rts = []; let wait = null;
   for(const m of c.msgs){ if(m.c){ if(wait == null) wait = m.t; } else if(wait != null){ rts.push(m.t - wait); wait = null; } }
   const med = rts.length ? [...rts].sort((x,y) => x - y)[Math.floor(rts.length / 2)] : null;
-  $("#cvStats").innerHTML = `<span>ทักครั้งแรก <b>${dLabel(c.msgs[0].t)}</b></span><span>ล่าสุด <b>${fmtWhen(c.last.t)}</b></span>
+  const og = chatOrigin(c);
+  $("#cvStats").innerHTML = `${og.src ? `<span>${srcTag(og.src)}${cmtTag(og)}</span>` : ""}<span>ทักครั้งแรก <b>${og.first ? fmtWhen(og.first) : dLabel(c.msgs[0].t)}</b></span><span>ล่าสุด <b>${fmtWhen(c.last.t)}</b></span>
     <span>ลูกค้า <b>${nc}</b> · เพจ <b>${c.msgs.length - nc}</b> ข้อความ</span>${med != null ? `<span>เพจตอบกลับ (มัธยฐาน) <b>${fmtDur(med)}</b></span>` : ""}
     ${ph ? `<span>📞 <b>${esc(ph)}</b></span>` : ""}${c.last.c ? `<span style="color:#b5473a">รอตอบ <b>${fmtDur(Date.now() - c.last.t)}</b></span>` : ""}`;
   // bubbles with day separators; messages outside the chosen period are dimmed
