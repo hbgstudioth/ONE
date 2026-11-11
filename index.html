@@ -411,6 +411,15 @@ body.p-upsale #filters{display:none}
 .ushero .ans{font-size:clamp(20px,2.1vw,30px);font-weight:600;line-height:1.35}
 .ushero .ans em{font-style:normal;color:#356e6b}
 .ushero .ans small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:2px}
+.usmini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.usmini > div{border-radius:12px;padding:8px 12px;color:#fff;min-width:0}
+.usmini .m1{background:linear-gradient(135deg,#535b27,#7d8741)}
+.usmini .m2{background:linear-gradient(135deg,#356e6b,#5f9a8f)}
+.usmini .m3{background:linear-gradient(135deg,#7a5a36,#a98353)}
+.usmini span{display:block;font-size:11.5px;opacity:.88}
+.usmini b{display:block;font-size:clamp(18px,1.6vw,24px);font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
+.usmini small{display:block;font-size:11px;opacity:.88;line-height:1.35}
+@media (max-width:640px){ .usmini{grid-template-columns:1fr} }
 .rates{display:grid;grid-template-columns:150px minmax(0,1fr) 92px;gap:8px 12px;align-items:center;font-size:13px}
 .rates .tr{height:26px;border-radius:9px;background:var(--soft);overflow:hidden;position:relative}
 .rates .tr i{position:absolute;inset:0 auto 0 0;border-radius:9px;width:0;transition:width 1.1s var(--ease)}
@@ -900,6 +909,15 @@ body.is-presenting .card.presenting{animation:presIn .35s var(--ease) both}
 body[data-page="ads"] #adsObj{display:inline-flex}
 #adsObj button small{font-size:11px;opacity:.75;margin-left:2px}
 .objtag{font-size:10.5px;font-weight:700;border-radius:5px;padding:0 5px;color:#fff;background:var(--oc)}
+.atw .atag{margin-left:0;margin-top:2px}
+.atag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;margin-left:4px;white-space:nowrap;vertical-align:1px}
+.atag.today{background:#b5473a;color:#fff;animation:pulseT 1.8s ease-in-out infinite}
+.atag.soon{background:color-mix(in srgb,#c08a3e 22%,transparent);color:#8a5e1f}
+.atag.later{background:color-mix(in srgb,#356e6b 16%,transparent);color:#356e6b}
+.atag.past{background:var(--soft);color:var(--muted)}
+@keyframes pulseT{0%,100%{box-shadow:0 0 0 0 rgba(181,71,58,.45)}50%{box-shadow:0 0 0 4px rgba(181,71,58,0)}}
+/* customers page: no "3 เดือน" */
+body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -927,6 +945,17 @@ body[data-page="ads"] #adsObj{display:inline-flex}
 .modal.on{opacity:1;pointer-events:auto}
 .modal .box{width:min(540px,100%);max-height:90vh;overflow:auto;padding:22px;transform:translateY(16px) scale(.98);transition:transform .45s var(--ease)}
 .modal.on .box{transform:none}
+#dayModal .box{width:min(1040px,96vw)}
+#dayModal #dayList{max-height:min(66vh,620px) !important;overflow-y:auto;overflow-x:hidden}
+#dayModal .dt{width:100%;font-size:13px}
+#dayModal .dt td,#dayModal .dt th{padding:7px 8px;white-space:normal}
+#custModal .cbox{width:min(1040px,96vw)}
+#custModal .dgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+#custModal .cprog{margin:10px 0 12px}
+#custHist .tbl-wrap{overflow-x:hidden}
+#custHist .dt{width:100%;font-size:12.5px}
+#custHist .dt td,#custHist .dt th{padding:6px 7px;white-space:normal}
+@media (max-width:760px){ #custModal .dgrid{grid-template-columns:1fr 1fr} #dayModal .dt th:nth-child(3),#dayModal .dt td:nth-child(3){display:none} }
 .modal h2{margin:0 0 4px;font-size:20px;font-weight:500}
 .modal p.d{margin:0 0 14px;color:var(--muted);font-size:13.5px;line-height:1.6}
 .fld{display:block;margin-bottom:12px}
@@ -2519,7 +2548,7 @@ function buildDimPages(){
         <div class="card ch flex dcard"><h3>${share}</h3><div class="dwrap"><div class="grow"><canvas id="dn-${dim}"></canvas></div><div class="dleg" id="lg-${dim}"></div></div></div>
         <div class="card ch flex chcard"><h3>ยอดตาม ${DIMS[dim].label} <span class="hint">Actual Received</span></h3><div class="grow"><canvas id="bar-${dim}"></canvas></div></div>
       </div>
-      <div class="dimR"><div class="card rankcard"><h3>${{sales:"🏆 Ranking ทีม Sales", doctor:"🏅 Ranking แพทย์", proc:"✨ Top 5 Services"}[dim]} ${dim === "sales" ? `<span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><div class="seg" id="rankSrc"><i class="thumb"></i><button data-s="pros" class="on">Prospect</button><button data-s="rev">Input Revenue</button></div><div class="seg" id="rankBy-${dim}"><i class="thumb"></i><button data-r="n">Booked</button><button data-r="win">WIN</button><button data-r="act" class="on">Actual</button></div><div class="seg" id="rankByRev" hidden><i class="thumb"></i><button data-r="amt" class="on">ยอดขาย</button><button data-r="n">รายการ</button></div></span>` : `<span class="hint" style="margin-left:auto">วัดจาก Case</span>`}</h3><div class="${{sales:"ranks", doctor:"podium", proc:"top5"}[dim]}" id="rankList-${dim}"></div></div>
+      <div class="dimR"><div class="card rankcard"><h3>${{sales:"🏆 Ranking ทีม Sales", doctor:"🏅 Ranking แพทย์", proc:"✨ Top 5 Services"}[dim]} ${dim === "sales" ? `<span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><div class="seg" id="rankSrc"><i class="thumb"></i><button data-s="pros" class="on">Prospect</button><button data-s="rev">Input Revenue</button></div><div class="seg" id="rankBy-${dim}" hidden><i class="thumb"></i><button data-r="n" class="on">Booked</button></div><div class="seg" id="rankByRev" hidden><i class="thumb"></i><button data-r="amt" class="on">ยอดขาย</button></div></span>` : `<span class="hint" style="margin-left:auto">วัดจาก Case</span>`}</h3><div class="${{sales:"ranks", doctor:"podium", proc:"top5"}[dim]}" id="rankList-${dim}"></div></div>
       <div class="card ch flex tcard"><h3>ผลงานแยกตาม ${DIMS[dim].label} <span class="hint">คลิกแถวเพื่อกรอง · คลิกหัวตารางเพื่อเรียง</span></h3><div class="tbl-wrap" id="t-${dim}"></div></div></div>`;
   }
 }
@@ -2539,17 +2568,16 @@ const confettiFx = () => `<div class="confetti" aria-hidden="true">${Array.from(
   `<i style="left:${(k * 4.6 + (k % 3) * 1.7) % 100}%;background:${CONF_C[k % CONF_C.length]};--d:${((k * .37) % 4).toFixed(2)}s;--s:${(3.6 + (k % 5) * .45).toFixed(2)}s;--r:${(k % 2 ? 1 : -1) * (180 + k * 23)}deg;--w:${k % 3 ? 6 : 4}px"></i>`).join("")}</div>`;
 /* doctors: podium for the top 3 (2nd · 1st · 3rd) */
 function renderRankRev(note){
-  const by = S.rankByRev || "amt";
-  segSet($("#rankByRev"), "r", by);
+  const by = "amt";
   $$("#rankByRev button").forEach(b => b.onclick = () => { S.rankByRev = b.dataset.r; renderRankRev(note); });
   const [a, b] = range();
   const rows = (S.rev || []).filter(x => (!a || x.date >= a) && (!b || x.date <= b));
   const m = new Map(); rows.forEach(x => { const k = (x.sales || "-").trim() || "-"; const o = m.get(k) || {key:k, amt:0, n:0}; o.amt += x.amt; o.n++; m.set(k, o); });
   const tot = rows.reduce((t,x) => t + x.amt, 0);
   const L = [...m.values()].filter(x => x.key !== "-").sort((x,y) => (y[by] - x[by]) || (y.amt - x.amt));
-  note.textContent = `📄 ที่มา: ชีท “${CFG.revenueSheet || DEFAULT_CFG.revenueSheet}” · Sales (D) · ยอด = หน้าร้าน (B) + ออนไลน์ (C) · ${a && b ? `${dLabel(a)} – ${dLabel(b)}` : "ทุกช่วง"} · รวม ${fmtB(tot)}`;
-  const fv = (x, k) => k === "amt" ? fmtB(x.amt) : fmtN(x.n) + " รายการ";
-  const sub = x => `${by === "amt" ? fmtN(x.n) + " รายการ" : fmtB(x.amt)} · ${tot ? (x.amt / tot * 100).toFixed(0) : 0}% ของยอดรวม`;
+  note.textContent = `📄 ที่มา: ชีท “${CFG.revenueSheet || DEFAULT_CFG.revenueSheet}” · Sales (D) · ยอดขาย = หน้าร้าน (B) + ออนไลน์ (C) · ${a && b ? `${dLabel(a)} – ${dLabel(b)}` : "ทุกช่วง"} · รวม ${fmtB(tot)}`;
+  const fv = (x, k) => fmtB(x.amt);
+  const sub = x => `${tot ? (x.amt / tot * 100).toFixed(0) : 0}% ของยอดรวม`;
   $("#rankList-sales").innerHTML = !(S.rev || []).length ? `<div class="rk-more">ยังไม่พบข้อมูลชีท Input Revenue</div>`
     : L.length ? L.slice(0, 4).map((x, i) => `<div class="rk r${i+1}" style="--tc:${TROPHY[i]};animation-delay:${i*60}ms">${sparkFx(i === 0 ? 8 : 5 - i, i === 0 ? 3.2 : 4.5 + i)}
       <div class="tro">${trophySvg(TROPHY[i])}<span>${i+1}</span></div>
@@ -2583,20 +2611,19 @@ function renderTop5(g){
 function renderRank(g){
   const src = S.rankSrc || "pros";
   segSet($("#rankSrc"), "s", src);
-  $("#rankBy-sales").hidden = src !== "pros"; $("#rankByRev").hidden = src !== "rev";
+  $("#rankBy-sales").hidden = true; $("#rankByRev").hidden = true;   // one measure per source: Booked (Prospect) · ยอดขาย (Input Revenue)
   $$("#rankSrc button").forEach(b => b.onclick = () => { S.rankSrc = b.dataset.s; renderRank(g); });
   let note = $("#rankNote");
   if(!note){ note = document.createElement("div"); note.id = "rankNote"; note.className = "rknote"; $("#rankList-sales").before(note); }
   if(src === "rev"){ renderRankRev(note); return; }
   const shs = [...new Set(filtered().map(r => r.sheet))].sort();
-  note.textContent = `📄 ที่มา: ชีท ${shs.length ? shs.map(n => `“${n}”`).join(", ") : "Prospect"} · คอลัมน์ Sales`;
-  const by = S.rankBy || "act";
+  note.textContent = `📄 ที่มา: ชีท ${shs.length ? shs.map(n => `“${n}”`).join(", ") : "Prospect"} · คอลัมน์ Sales · วัดจาก Booked`;
+  const by = "n";
   segSet($("#rankBy-sales"), "r", by);
   const L = rankRows(g, by), fv = rankVal;
   $("#rankList-sales").innerHTML = L.length ? L.slice(0, 4).map((x, i) => `<div class="rk r${i+1}" style="--tc:${TROPHY[i]};animation-delay:${i*60}ms">${sparkFx(i === 0 ? 8 : 5 - i, i === 0 ? 3.2 : 4.5 + i)}
       <div class="tro">${trophySvg(TROPHY[i])}<span>${i+1}</span></div>
-      <div class="rn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${fv(x, by)}</div>
-        <small>${["n","win","act"].filter(k => k !== by).map(k => fv(x, k)).join(" · ")}</small></div></div>`).join("")
+      <div class="rn"><b title="${esc(x.key)}">${esc(x.key)}</b><div class="rv">${fv(x, by)}</div></div></div>`).join("")
     + (L.length > 4 ? `<div class="rk-more">${L.slice(4).map((x, i) => `<span>${i+5}. ${esc(x.key)} <b>${fv(x, by)}</b></span>`).join("")}</div>` : "")
     : `<div class="rk-more">ยังไม่มีข้อมูลในช่วงนี้</div>`;
   $$("#rankBy-sales button").forEach(b => b.onclick = () => { S.rankBy = b.dataset.r; renderRank(g); });
@@ -2618,9 +2645,12 @@ function renderDim(dim){
   ], g, {k:"act", d:-1}, {key:"รวมทั้งหมด", n:fmtN(t.n), win:fmtN(t.win), dep:fmtN(t.dep), act:fmtB(t.act), avg:fmtB(t.avg)},
     {fit:true, onRow:r => toggleFilter(dim, r.key), rowClass:r => (S.f[dim] && (dim==="proc" ? procMatch(r.key, S.f[dim]) : S.f[dim]===r.key)) ? "sel" : ""});
 }
+/* Input Revenue rows that pass the Sales / Services filters at the top (column D Sales, column E procedure) */
+const revPass = x => (!S.f.sales || String(x.sales || "").split(/\s*(?:,|x|×|&|\+|\/|และ)\s*/i).map(t => t.trim()).includes(S.f.sales) || String(x.sales || "").trim() === S.f.sales)
+  && (!S.f.proc || procMatch(x.proc, S.f.proc) || (!S.f.proc.startsWith("~") && String(x.proc || "").includes(S.f.proc)));
 function renderRevenue(){
   const [a, b] = range();
-  const rows = (S.rev||[]).filter(x => a && b && x.date >= a && x.date <= b);
+  const rows = (S.rev||[]).filter(x => a && b && x.date >= a && x.date <= b && revPass(x));
   /* explain an empty period instead of showing a blank chart */
   const box = $("#revEmpty"), ri = S.revInfo || {}, name = CFG.revenueSheet || DEFAULT_CFG.revenueSheet;
   const formula = `={'${name}'!A:H}`;
@@ -2699,6 +2729,15 @@ function renderTrend(){
 /* The calendar and the appointment list follow the month chosen in the top filter;
    the ‹ › buttons can still move away from it until the top filter changes again */
 function calFromPeriod(){ const [, b] = range(); return b ? keyOf(b.getFullYear(), b.getMonth()) : calDefault(); }
+/* appointment vs today: วันนี้ / พรุ่งนี้ / อีก N วัน (coming) / ผ่านมาแล้ว N วัน (past) */
+function apptTag(d){
+  const t = new Date(), t0 = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  const n = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - t0) / 864e5);
+  if(n === 0) return `<span class="atag today">● ถึงวันนัดวันนี้</span>`;
+  if(n === 1) return `<span class="atag soon">พรุ่งนี้</span>`;
+  if(n > 1) return `<span class="atag ${n <= 7 ? "soon" : "later"}">อีก ${n} วัน</span>`;
+  return `<span class="atag past">ผ่านมาแล้ว ${-n} วัน</span>`;
+}
 function renderCustomers(){
   if(S.calFollow || !S.calMonth){ S.calMonth = calFromPeriod(); S.calFollow = false; }
   const q = S.search.toLowerCase(), byMonth = S.custMode !== "all";
@@ -2714,7 +2753,7 @@ function renderCustomers(){
   dataTable("t-customers", [
     {k:"name", label:"ลูกค้า", fmt:v=>`<b style="font-weight:500">${esc(v)}</b>`},
     {k:"proc", label:"หัตถการ"},
-    {k:"apptD", label:"วันนัด", fmt:(v,r)=> v ? `${DOW[(v.getDay()+6)%7]} ${dLabel(v)}` : `<span class="muted">${esc(r.appt||"-")}</span>`},
+    {k:"apptD", label:"วันนัด", fmt:(v,r)=> v ? `${DOW[(v.getDay()+6)%7]} ${dLabel(v)}<div class="atw">${apptTag(v)}</div>` : `<span class="muted">${esc(r.appt||"-")}</span>`},
     {k:"_more", label:"", fmt:(v,r)=>`<button class="more-btn" data-id="${esc(r.id)}">ดูเพิ่มเติม</button>`}
   ], rows.map(r => ({...r, apptD:parseDate(r.appt)})), {k:"apptD", d:1});
 }
@@ -3784,6 +3823,11 @@ function renderUpsale(){
     $("#usHero").innerHTML = `<div class="ttl">สรุปเพื่อให้ถึงเป้า ${fmtB(T)} ใน ${keyLabel(nk)} · อ้างอิง${SN}</div>
       <div class="ans">แชท → Booking ต้องเพิ่มจาก ${usFmtPct(B.chatRate)} เป็น <em>${usFmtPct(N.needRate)}</em>
         <small>เพิ่มขึ้น ${pts.toFixed(2)} จุด (${usUp(N.needRate, B.chatRate)}) · Booking ต้องได้ ${fmtN(Math.ceil(N.needBook))} คน จากเดิม ${fmtN(B.book)} คน (+${fmtN(Math.ceil(N.needBook) - B.book)} คน) โดยแชทเท่าเดิม ${fmtN(B.chats)} และยอดต่อ Booking เท่าเดิม ${fmtB(B.bill)}</small></div>
+      <div class="usmini">
+        <div class="m1"><span>ยอดขายต้องเพิ่ม</span><b>+${(T / B.sales * 100 - 100).toFixed(1)}%</b><small>+${fmtB(T - B.sales)} · ${fmtB(B.sales)} → ${fmtB(T)}</small></div>
+        <div class="m2"><span>Booking ต้องเพิ่ม</span><b>+${fmtN(Math.ceil(N.needBook) - B.book)} คน</b><small>${fmtN(B.book)} → ${fmtN(Math.ceil(N.needBook))} คน (${usUp(Math.ceil(N.needBook), B.book)})</small></div>
+        <div class="m3"><span>ยอดต่อบิล (ต่อ Booking)</span><b>${fmtB(B.bill)}</b><small>เท่าเดิม · ถ้า Booking ไม่เพิ่ม ต้องได้ ${fmtB(N.needBill)} (${usUp(N.needBill, B.bill)})</small></div>
+      </div>
       <div class="rates">
         <span>ตอนนี้ (${keyLabel(B.k)})</span><div class="tr"><i class="now" data-w="${(B.chatRate / mx * 100).toFixed(1)}"></i></div><b>${usFmtPct(B.chatRate)}</b>
         <span>ต้องได้</span><div class="tr"><i class="need" data-w="${(N.needRate / mx * 100).toFixed(1)}"></i></div><b style="color:#356e6b">${usFmtPct(N.needRate)}</b>
