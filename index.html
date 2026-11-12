@@ -880,6 +880,11 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 /* ===== presentation mode ===== */
 #p-adsbook .adsbook,#p-adsbook .abfun,#p-adsbook .abweek,#p-adsbook .abtablecard,#p-ads .adschart,#p-ads .adsweek,#p-ads .adstable{position:relative}
 #p-ads .adschart > h3,#p-ads .adsweek > h3,#p-ads .adstable > h3{padding-right:20px}
+.card.has-x{position:relative}
+.card.has-x > h3{padding-right:20px}
+.card.presenting .tbl-wrap,.card.presenting .custlist,.card.presenting .waitlist{flex:1;min-height:0;overflow:auto;max-height:none}
+.card.presenting .grow{flex:1;min-height:0}
+.card.presenting.chcust,.card.presenting.chwait,.card.presenting.chday,.card.presenting.chhour,.card.presenting.chspeed,.card.presenting.chsrc{height:auto !important;max-height:none !important}
 .card.presenting.adschart .grow,.card.presenting.adsweek .grow{flex:1;min-height:0}
 .card.presenting.adstable > .tbl-wrap{flex:none;margin-top:auto;margin-bottom:auto;overflow:visible;max-height:none}
 #p-adsbook .adsbook > h3,#p-adsbook .abfun > h3,#p-adsbook .abweek > h3,#p-adsbook .abtablecard > h3{padding-right:20px}
@@ -952,6 +957,18 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .cr .chatlink{font-size:12px;border-radius:8px;padding:3px 10px;text-decoration:none;white-space:nowrap}
 #p-chat .cr .chatlink,#p-chat .wi a:not(.plink),#cvLink{background:#eef8e9 !important;border:1px solid #daecd2;color:#2f5d1f !important}
 #p-chat .cr .chatlink:hover,#p-chat .wi a:not(.plink):hover,#cvLink:hover{background:#e1f2d9 !important}
+/* money coin beside the revenue figures */
+.mcoin{display:inline-grid;place-items:center;width:17px;height:17px;margin-right:6px;vertical-align:-3px;border-radius:50%;perspective:60px;
+  background:radial-gradient(circle at 35% 30%,#fff6cf,#e9bd52 58%,#b98a26);box-shadow:0 0 0 1.5px rgba(185,138,38,.35),0 2px 4px rgba(185,138,38,.35);
+  animation:coinSpin 2.8s ease-in-out infinite;position:relative;overflow:hidden}
+.mcoin em{font-style:normal;font-size:10px;font-weight:800;color:#7a5612;line-height:1}
+.mcoin::after{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.75) 50%,transparent 60%);transform:translateX(-120%);animation:coinShine 2.8s ease-in-out infinite}
+#revKpis > div:nth-child(2) .mcoin,#revKpis > div:nth-child(2) .mcoin::after{animation-delay:.35s}
+#revKpis > div:nth-child(3) .mcoin,#revKpis > div:nth-child(3) .mcoin::after{animation-delay:.7s}
+#revKpis > div:nth-child(4) .mcoin,#revKpis > div:nth-child(4) .mcoin::after{animation-delay:1.05s}
+@keyframes coinSpin{0%,55%,100%{transform:rotateY(0)}75%{transform:rotateY(180deg)}}
+@keyframes coinShine{0%,60%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){ .mcoin,.mcoin::after{animation:none} }
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1462,7 +1479,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         </div>
         <div class="chk" id="chatKpis"></div>
         <div class="chrow">
-          <div class="card ch flex chday"><h3>แชทรายวัน <span class="hint">แท่ง = แชทที่มีการคุย · เส้น = แชทใหม่</span></h3><div class="grow"><canvas id="chat-day"></canvas></div></div>
+          <div class="card ch flex chday"><h3>แชทรายวัน <span class="hint">แท่งเขียว = แชทที่มีการคุย · แท่งน้ำตาล = แชทใหม่</span></h3><div class="grow"><canvas id="chat-day"></canvas></div></div>
           <div class="card ch flex chwait chpay"><div class="payfx" aria-hidden="true">
               <svg class="pcard" viewBox="0 0 60 40"><rect x="1" y="1" width="58" height="38" rx="6"/><rect class="strip" x="1" y="9" width="58" height="7"/><rect class="chip" x="8" y="22" width="11" height="8" rx="2"/></svg>
               <i class="swipe"></i>
@@ -2542,7 +2559,7 @@ function lineChart(id, rows, hintEl){
       plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true},
         tooltip:{...tooltip(), callbacks:{label:c=> c.datasetIndex === 0 ? ` Booking: ${c.raw}${s.vals && s.vals[c.dataIndex] ? ` (ใหม่ ${s.vals[c.dataIndex].nw || 0})` : ""}` : ` เฉลี่ย: ${(+c.raw).toFixed(1)}`}}},
       scales:{ x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:10}},
-        y:{beginAtZero:true, grace:"15%", grid:{color:css("--line")}, ticks:{precision:0, maxTicksLimit:6}} }}
+        y:{beginAtZero:true, grace:"30%", grid:{color:css("--line")}, ticks:{precision:0, maxTicksLimit:6}} }}
   }, "bk" + (tight ? "t" : ""));
   return s;
 }
@@ -2612,6 +2629,108 @@ function renderSvcCards(rows){
   $$("#svcCards .svc").forEach(c => c.onclick = () => toggleFilter("proc", c.dataset.svc));
 }
 function renderOverview(){ const rows = filtered(); renderKpis(rows); renderSvcCards(rows); }
+/* ===== animated icons above the bar labels on the daily trend page =====
+   bar-rev (money): a gold ฿ coin that spins · ln-trend (bookings): a small person that bobs */
+const BAR_ICON = {"bar-rev":"coin", "ln-trend":"person", "ads-chart":"metric"};
+/* Ads chart: an icon that fits each value */
+const METRIC_ICON = {spend:"coin", val:"coin", cpm:"coin", cpp:"coin", cpmi:"coin", cpc:"coin", cptp:"coin", msg:"bubble", pur:"bag", clk:"pointer", imp:"eye", tp:"play", roas:"spark", ctr:"spark"};
+function drawIcon(ctx, kind, x, y, r, t, i, color){
+  ctx.save();
+  if(kind === "coin"){
+    // round flat coin with a big ฿ (10% smaller than the bag), bobbing and pulsing gently
+    const bob = Math.sin(t * 3 + i * .5) * 1.3, s = 1 + Math.sin(t * 3.2 + i * .45) * .06;
+    const col = color || "#9a7444", R = r * 1.035, inv = color === "invert";
+    ctx.translate(x, y + bob); ctx.scale(s, s);
+    ctx.fillStyle = inv ? "#fff" : col; ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = inv ? (ctx._coinInk || "#5e662d") : "#fff";
+    ctx.font = `800 ${Math.round(R * 1.3)}px sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("฿", 0, R * .07);
+  }else if(kind === "person"){
+    const bob = Math.sin(t * 3 + i * .5) * 1.6;
+    ctx.translate(x, y + bob); ctx.fillStyle = color || "#8a6a43";
+    ctx.beginPath(); ctx.arc(0, -r * .55, r * .45, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-r * .8, r * .75); ctx.quadraticCurveTo(-r * .8, -r * .05, 0, -r * .05); ctx.quadraticCurveTo(r * .8, -r * .05, r * .8, r * .75); ctx.closePath(); ctx.fill();
+  }else if(kind === "bubble"){
+    const s = 1 + Math.sin(t * 3.2 + i * .45) * .08;
+    ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+    const w = r * 1.9, h = r * 1.35;
+    ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2 - r * .15, w, h, r * .45); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-r * .3, h / 2 - r * .2); ctx.lineTo(-r * .55, h / 2 + r * .35); ctx.lineTo(r * .1, h / 2 - r * .2); ctx.fill();
+    ctx.fillStyle = "#fff"; const ph = Math.floor(t * 3 + i) % 3;
+    for(let k = -1; k <= 1; k++){ ctx.globalAlpha = k + 1 === ph ? 1 : .55; ctx.beginPath(); ctx.arc(k * r * .5, -r * .15, r * .16, 0, Math.PI * 2); ctx.fill(); }
+  }else if(kind === "bag"){
+    const bob = Math.sin(t * 3 + i * .5) * 1.4;
+    ctx.translate(x, y + bob); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = Math.max(1.2, r * .2);
+    ctx.beginPath(); ctx.roundRect(-r * .8, -r * .25, r * 1.6, r * 1.15, r * .25); ctx.fill();
+    ctx.beginPath(); ctx.arc(0, -r * .25, r * .45, Math.PI, 0); ctx.stroke();
+  }else if(kind === "eye"){
+    const blink = Math.abs(Math.sin(t * 1.4 + i * .3)) < .12 ? .15 : 1;
+    ctx.translate(x, y); ctx.scale(1, blink); ctx.fillStyle = "#fff"; ctx.strokeStyle = color; ctx.lineWidth = Math.max(1.2, r * .2);
+    ctx.beginPath(); ctx.ellipse(0, 0, r, r * .62, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = color; ctx.beginPath(); ctx.arc(Math.sin(t * 1.6 + i) * r * .25, 0, r * .32, 0, Math.PI * 2); ctx.fill();
+  }else if(kind === "pointer"){
+    const tap = Math.max(0, Math.sin(t * 4 + i * .6)) * r * .35;
+    ctx.translate(x - r * .3, y - r * .6 + tap); ctx.fillStyle = color;
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, r * 1.5); ctx.lineTo(r * .4, r * 1.1); ctx.lineTo(r * .75, r * 1.75); ctx.lineTo(r * .98, r * 1.62); ctx.lineTo(r * .65, r * .98); ctx.lineTo(r * 1.15, r * .98); ctx.closePath(); ctx.fill();
+  }else if(kind === "play"){
+    const s = 1 + Math.sin(t * 3 + i * .5) * .1;
+    ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.moveTo(-r * .3, -r * .45); ctx.lineTo(r * .5, 0); ctx.lineTo(-r * .3, r * .45); ctx.closePath(); ctx.fill();
+  }else if(kind === "spark"){
+    const s = .8 + Math.abs(Math.sin(t * 2.5 + i * .4)) * .4;
+    ctx.translate(x, y); ctx.rotate(t * .8 + i); ctx.scale(s, s); ctx.fillStyle = color;
+    ctx.beginPath(); for(let k = 0; k < 8; k++){ const a = k * Math.PI / 4, rr = k % 2 ? r * .35 : r; ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } ctx.closePath(); ctx.fill();
+  }
+  ctx.restore();
+}
+const ICON_OFF = matchMedia("(prefers-reduced-motion: reduce)").matches;
+Chart.register({
+  id:"barIcons",
+  afterDraw(ch){
+    const mode = BAR_ICON[ch.canvas.id]; if(!mode) return;
+    const ctx = ch.ctx, t = ICON_OFF ? 0 : performance.now() / 1000, top0 = ch.chartArea.top - 30;
+    const sets = ch.data.datasets.map((d, k) => ({d, m:ch.getDatasetMeta(k)})).filter(o => !o.m.hidden && o.m.data.length);
+    const bars = sets.filter(o => o.m.type === "bar");
+    // icons above every bar (a stacked bar gets one icon on its total)
+    if(bars.length){
+      const kind = mode === "metric" ? METRIC_ICON[bars[0].d.metricId] : mode;
+      const color = mode === "metric" ? (ADS_MET[bars[0].d.metricId] || {}).color : null;
+      const rotated = bars.some(o => o.d.datalabels && o.d.datalabels.rotation === -90);
+      const inside = mode === "metric";
+      if(kind) for(let i = 0; i < bars[0].m.data.length; i++){
+        let top = Infinity, w = 0, x = 0, tot = 0;
+        for(const o of bars){ const el = o.m.data[i]; if(!el) continue; const v = +o.d.data[i] || 0; if(v <= 0) continue; tot += v;
+          const p = el.getProps(["x","y","width"], true); top = Math.min(top, p.y); w = Math.max(w, p.width); x = p.x; }
+        if(!tot || !isFinite(top)) continue;
+        const r = Math.max(5, Math.min(9, w * .36));
+        if(inside){
+          // Ads chart: inside the bar, below its value — only when the bar is wide and tall enough (daily view with many thin bars: none)
+          const base = bars[0].m.data[i].getProps(["base"], true).base;
+          if(rotated || w < 20 || base - top < r * 2 + 34) continue;
+          ctx._coinInk = color; drawIcon(ctx, kind, x, top + 22 + r, Math.min(r, 7), t, i, kind === "coin" ? "invert" : "#ffffff");
+          continue;
+        }
+        const y = top - 26 - r * 1.2;
+        if(y - r * 1.4 < ch.chartArea.top - 26) continue;   // no room above this bar's label: skip rather than cover the number or the legend
+        drawIcon(ctx, kind, x, y, r, t, i, color);
+      }
+    }
+    // Ads chart lines: one icon at the latest point of each line, above its label
+    if(mode === "metric") for(const o of sets.filter(o => o.m.type === "line")){
+      const kind = METRIC_ICON[o.d.metricId]; if(!kind) continue;
+      let k = o.d.data.length - 1; while(k >= 0 && o.d.data[k] == null) k--; if(k < 0) continue;
+      // beside the last point (right of it, or left when there is no room) so it never covers a value label
+      const p = o.m.data[k].getProps(["x","y"], true), right = p.x + 18 <= ch.width - 4;
+      drawIcon(ctx, kind, right ? p.x + 16 : p.x - 16, p.y, 7, t, k, (ADS_MET[o.d.metricId] || {}).color);
+    }
+  }
+});
+
+(function iconLoop(){
+  if(!ICON_OFF && !document.hidden && (S.page === "trend" || S.page === "ads"))
+    for(const id in BAR_ICON){ const c = charts[id]; if(c && c.canvas.offsetParent && !Chart.animator.running(c)) c.draw(); }
+  setTimeout(() => requestAnimationFrame(iconLoop), 40);
+})();
 function buildDimPages(){
   for(const dim of Object.keys(DIMS)){
     const share = dim==="doctor" ? "สัดส่วน Booked ตามแพทย์" : `สัดส่วนยอดตาม ${DIMS[dim].label}`;
@@ -2759,11 +2878,13 @@ function renderRevenue(){
   const dayVals = byMonth ? [] : vals.map((v,i)=>({v, d:days[i]}));
   const best = dayVals.reduce((m,x)=> x.v.amt > (m ? m.v.amt : 0) ? x : m, null);
   const activeDays = vals.filter(v=>v.amt>0).length;
+  // a spinning coin beside every money value so it reads as baht at a glance
+  const COIN = "";
   if(S.rev.length) $("#revKpis").innerHTML =
-    `<div><span>รายได้รวมในช่วง</span><b>${fmtB(total)}</b><small>${fmtN(rows.length)} รายการ</small></div>` +
-    `<div><span>เฉลี่ยต่อวัน</span><b>${fmtB(nDays ? total/nDays : 0)}</b><small>${nDays} วัน (นับถึงวันนี้)</small></div>` +
-    `<div><span>วันที่รายได้สูงสุด</span><b>${best ? fmtB(best.v.amt) : "-"}</b><small>${best ? dLabel(best.d) : (byMonth ? "ดูแบบรายเดือน" : "-")}</small></div>` +
-    `<div><span>หน้าร้าน / ออนไลน์</span><b>${fmtK(shop)} / ${fmtK(online)}</b><small>${pct(shop,total).toFixed(0)}% / ${pct(online,total).toFixed(0)}%</small></div>`;
+    `<div><span>${COIN}รายได้รวมในช่วง</span><b>${fmtB(total)}</b><small>${fmtN(rows.length)} รายการ</small></div>` +
+    `<div><span>${COIN}เฉลี่ยต่อวัน</span><b>${fmtB(nDays ? total/nDays : 0)}</b><small>${nDays} วัน (นับถึงวันนี้)</small></div>` +
+    `<div><span>${COIN}วันที่รายได้สูงสุด</span><b>${best ? fmtB(best.v.amt) : "-"}</b><small>${best ? dLabel(best.d) : (byMonth ? "ดูแบบรายเดือน" : "-")}</small></div>` +
+    `<div><span>${COIN}หน้าร้าน / ออนไลน์</span><b>${fmtK(shop)} / ${fmtK(online)}</b><small>${pct(shop,total).toFixed(0)}% / ${pct(online,total).toFixed(0)}%</small></div>`;
   $("#revHint").innerHTML = `<span class="avgpill" title="${ri.n ? `อ่านจากชีท ${fmtN(ri.n)} แถว · ${dLabel(ri.from)} – ${dLabel(ri.to)} · วิธี: ${ri.method}${ri.skipped ? ` · อ่านวันที่ไม่ได้ ${ri.skipped} แถว` : ""}` : ""}">วันที่มีรายได้ <b>${activeDays}</b></span>`;
   $("#revInfo").innerHTML = ri.n ? `ข้อมูลรายได้ทั้งหมด ${fmtN(ri.n)} แถว · ${dLabel(ri.from)} – ${dLabel(ri.to)}${ri.skipped ? ` · <span style="color:var(--lost)">อ่านวันที่ไม่ได้ ${ri.skipped} แถว</span>` : ""} · <a onclick="openModal()">ตรวจการอ่านข้อมูล</a>` : `<a onclick="openModal()">ตรวจการอ่านข้อมูล</a>`;
   const totLbl = {display:c => vals[c.dataIndex] && vals[c.dataIndex].amt > 0 ? "auto" : false, anchor:"end", align:"end", offset:2,
@@ -2773,12 +2894,13 @@ function renderRevenue(){
       {label:"หน้าร้าน", data:vals.map(v=>v.shop), backgroundColor:"rgba(138,106,67,.88)", borderRadius:4, stack:"r", datalabels:{display:false}},
       {label:"ออนไลน์", data:vals.map(v=>v.online), backgroundColor:"rgba(212,178,128,.8)", borderRadius:4, stack:"r", datalabels:totLbl}
     ]},
-    options:{maintainAspectRatio:false, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:18}},
+    options:{maintainAspectRatio:false, animation:{duration:900, easing:"easeOutQuart"}, layout:{padding:{top:22}},
       plugins:{legend:legendCfg(), datalabels:{display:true},
         tooltip:{...tooltip(), mode:"index", intersect:false, callbacks:{label:c=>` ${c.dataset.label}: ${fmtB(c.raw)}`, footer:c=>`รวม ${fmtB(vals[c[0].dataIndex].amt)} · ${vals[c[0].dataIndex].n} รายการ`}}},
       scales:{x:{stacked:true, grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:10}},
-        y:{stacked:true, beginAtZero:true, grace:"12%", grid:{color:css("--line")}, ticks:{callback:v=>fmtK(v), maxTicksLimit:5}}}}
-  }, byMonth ? "m" : "d");
+        // headroom above the tallest bar for its label and money icon
+        y:{stacked:true, beginAtZero:true, suggestedMax:Math.max(1, ...vals.map(v => v.amt)) * 1.32, grid:{color:css("--line")}, ticks:{callback:v=>fmtK(v), maxTicksLimit:5}}}}
+  }, byMonth ? "m2" : "d2");
   const trows = vals.map((v,i)=>({d:days[i], label:labels[i], ...v})).filter(x=>x.n>0);
   dataTable("t-rev", [
     {k:"d", label: byMonth ? "เดือน" : "วันที่", fmt:(v,r)=> byMonth ? esc(r.label) : `${DOW[(v.getDay()+6)%7]} ${dLabel(v)}`},
@@ -3351,7 +3473,7 @@ function renderAds(){
   const datasets = sel.map((id, n) => {
     const M = ADS_MET[id], data = B.map(o => valOf(o, id)), isBar = id === barId;
     // bar values sit inside the top of each bar; line values float above their points in a small pill, so they never cover each other
-    const fmtL = v => M.money ? fmtK(v) : id === "roas" ? v.toFixed(2) + "x" : M.pct ? v.toFixed(1) + "%" : fmtK(v);
+    const fmtL = v => M.money ? "฿" + fmtK(v) : id === "roas" ? v.toFixed(2) + "x" : M.pct ? v.toFixed(1) + "%" : fmtK(v);
     const lbl = isBar
       ? (aTight
           ? {display:c => c.dataset.data[c.dataIndex] ? "auto" : false, anchor:"end", align:"end", offset:2, rotation:-90, color:css("--text"), font:{size:9, weight:600}, formatter:fmtL}
@@ -3359,10 +3481,10 @@ function renderAds(){
       : {display:c => c.dataset.data[c.dataIndex] == null ? false : (sel.length <= 3 && !aTight ? true : "auto"), anchor:"center", align:"top", offset:6,
           color:"#fff", backgroundColor:M.color, borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600}, formatter:fmtL};
     return isBar
-      ? {type:"bar", label:M.short, data, yAxisID:"y_" + id, order:9, borderRadius:6, maxBarThickness:34, barPercentage:.7, categoryPercentage:.8,
+      ? {type:"bar", label:M.short, metricId:id, data, yAxisID:"y_" + id, order:9, borderRadius:6, maxBarThickness:34, barPercentage:.7, categoryPercentage:.8,
           backgroundColor:c => { const {chart} = c, ar = chart.chartArea; if(!ar) return M.color; const g = chart.ctx.createLinearGradient(0, ar.top, 0, ar.bottom); g.addColorStop(0, M.color); g.addColorStop(1, M.color + "88"); return g; },
           datalabels:lbl}
-      : {type:"line", label:M.short, data, yAxisID:"y_" + id, order:n, borderColor:M.color, backgroundColor:M.color, borderWidth:2, tension:.35, spanGaps:true,
+      : {type:"line", label:M.short, metricId:id, data, yAxisID:"y_" + id, order:n, borderColor:M.color, backgroundColor:M.color, borderWidth:2, tension:.35, spanGaps:true,
           borderDash: M.rate ? [5,4] : undefined, pointRadius: many ? 0 : 3, pointHoverRadius:5, pointBackgroundColor:"#fff", pointBorderWidth:2, datalabels:lbl};
   });
   const scales = {x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:14}}};
@@ -4081,15 +4203,16 @@ function renderChat(){
   const act = days.map(d => (C.dayActive.get(iso(d)) || new Set()).size), nw = days.map(d => C.dayNew.get(iso(d)) || 0);
   const tight = slotPx("chat-day", days.length) < 30;
   upsert("chat-day", {type:"bar", data:{labels:days.map(d => days.length <= 8 ? `${DOW[(d.getDay()+6)%7]} ${d.getDate()}` : `${d.getDate()} ${TH[d.getMonth()]}`), datasets:[
-      {type:"bar", label:"แชทที่มีการคุย", data:act, backgroundColor:"rgba(124,154,109,.7)", borderRadius:5, maxBarThickness:40, order:2,
-        datalabels:{display:c => c.dataset.data[c.dataIndex] > 0 ? "auto" : false, anchor:"end", align: tight ? "end" : "start", offset:2, rotation: tight ? -90 : 0, color: tight ? css("--text") : "#fff", font:{size:9.5, weight:600}}},
-      {type:"line", label:"แชทใหม่", data:nw, borderColor:"#8a6a43", backgroundColor:"#8a6a43", borderWidth:2, tension:.35, pointRadius: days.length > 20 ? 0 : 3, pointBackgroundColor:"#fff", pointBorderWidth:2, order:1,
-        datalabels:{display:c => !tight && c.dataset.data[c.dataIndex] > 0 ? "auto" : false, align:"top", offset:4, color:"#fff", backgroundColor:"#8a6a43", borderRadius:6, padding:{top:2,bottom:1,left:5,right:5}, font:{size:9.5, weight:600}}}
+      // two bars per day side by side: rooms that talked (green) and new rooms (brown), values above each bar
+      ...[["แชทที่มีการคุย", act, "#7c9a6d"], ["แชทใหม่", nw, "#a9824f"]].map(([label, data, col]) => ({type:"bar", label, data, backgroundColor:col + "d9", borderRadius:5, maxBarThickness:30,
+        barPercentage:.9, categoryPercentage:.78,
+        datalabels:{display:c => c.dataset.data[c.dataIndex] > 0, anchor:"end", align:"end", offset:2, rotation: tight ? -90 : 0, color:col, font:{size: tight ? 8.5 : 9.5, weight:700}}}))
     ]},
-    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top:18}}, interaction:{mode:"index", intersect:false},
-      plugins:{legend:{...legendCfg(), align:"end", display:!fitDesk()}, datalabels:{display:true}, tooltip:{...tooltip()}},
-      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:12}}, y:{beginAtZero:true, grace:"15%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5, padding:6}}}}
-  }, "chd" + (tight ? "t" : ""));
+    options:{maintainAspectRatio:false, animation:{duration:800, easing:"easeOutQuart"}, layout:{padding:{top: tight ? 26 : 18}}, interaction:{mode:"index", intersect:false},
+      plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true}, tooltip:{...tooltip()}},
+      scales:{x:{grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:12}},
+        y:{beginAtZero:true, grace:"14%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5, padding:6}}}}
+  }, "chd3" + (tight ? "t" : ""));
 
   /* paid customers: rooms where an Omise payment link (linksplus.omise.co) was sent in the chosen period */
   const PAY = /linksplus\.omise\.co/i;
@@ -4268,7 +4391,10 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 
 /* ================= PRESENTATION MODE (expand a card to full screen) =================
    Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
-const PRESENT_CARDS = "#p-adsbook .adsbook, #p-adsbook .abfun, #p-adsbook .abweek, #p-adsbook .abtablecard, #p-ads .adschart, #p-ads .adsweek, #p-ads .adstable";
+const PRESENT_CARDS = ["#p-adsbook .adsbook", "#p-adsbook .abfun", "#p-adsbook .abweek", "#p-adsbook .abtablecard", "#p-ads .adschart", "#p-ads .adsweek", "#p-ads .adstable",
+  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust",
+  "#p-compare .mcard", "#p-compare .revcmp", "#p-compare .revsales", "#p-compare .cbottom .chcard"].join(", ");
+const rerenderPresentPage = () => ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
 const XI = {open:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
             close:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>`};
 let presentCard = null;
@@ -4277,6 +4403,7 @@ function setupPresent(){
   $$(PRESENT_CARDS).forEach(card => {
     if(card.querySelector(":scope > .xbtn")) return;
     const b = document.createElement("button");
+    card.classList.add("has-x");
     b.className = "xbtn"; b.type = "button"; b.title = "ขยายเต็มจอสำหรับพรีเซนต์"; b.setAttribute("aria-label", "ขยายการ์ด"); b.innerHTML = XI.open;
     b.onclick = ev => { ev.stopPropagation(); presentCard === card ? closePresent() : openPresent(card); };
     card.prepend(b);
@@ -4293,8 +4420,13 @@ function fitZoom(card){
   }
   const over = () => card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1 ||
     [...card.querySelectorAll(".tbl-wrap")].some(w => w.scrollWidth > w.clientWidth + 1 || w.scrollHeight > w.clientHeight + 1);
-  let lo = 1, hi = 2.6;
+  let lo = 1, hi = card.querySelector(".custlist, .waitlist") ? 1.6 : 2.6;   // scrolling lists: keep enough rows on screen
   for(let k = 0; k < 9; k++){ const mid = (lo + hi) / 2; set(mid); if(over()) hi = mid; else lo = mid; }
+  if(lo <= 1.02 && card.querySelector(".tbl-wrap, .custlist, .waitlist")){
+    // too long to fit at any size: size by width only (max 1.6×) and let the list scroll inside the card
+    const wide = () => card.scrollWidth > card.clientWidth + 1 || [...card.querySelectorAll(".tbl-wrap")].some(w => w.scrollWidth > w.clientWidth + 1);
+    lo = 1; hi = 1.6; for(let k = 0; k < 7; k++){ const mid = (lo + hi) / 2; set(mid); if(wide()) hi = mid; else lo = mid; }
+  }
   set(+(lo * .97).toFixed(2));
 }
 function openPresent(card){
@@ -4306,7 +4438,7 @@ function openPresent(card){
   document.body.classList.add("is-presenting");
   const b = card.querySelector(":scope > .xbtn"); b.innerHTML = XI.close; b.title = "ย่อกลับ"; b.setAttribute("aria-label", "ย่อการ์ด");
   fitZoom(card);
-  if(card.querySelector("canvas")){ Chart.defaults.devicePixelRatio = (window.devicePixelRatio || 1) * PRES_CHART_Z; for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderAds(); }
+  if(card.querySelector("canvas")){ Chart.defaults.devicePixelRatio = (window.devicePixelRatio || 1) * PRES_CHART_Z; for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderPresentPage(); }
 }
 function closePresent(quiet){
   const card = presentCard; if(!card) return;
@@ -4316,7 +4448,7 @@ function closePresent(quiet){
   const bg = $("#presBg"); if(bg) bg.hidden = true;
   const b = card.querySelector(":scope > .xbtn"); if(b){ b.innerHTML = XI.open; b.title = "ขยายเต็มจอสำหรับพรีเซนต์"; b.setAttribute("aria-label", "ขยายการ์ด"); }
   if(card.querySelector("canvas")){ Chart.defaults.devicePixelRatio = undefined; delete Chart.defaults.devicePixelRatio;
-    if(!quiet){ for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderAds(); } }
+    if(!quiet){ for(const k in charts){ try{ charts[k].destroy(); }catch(e){} delete charts[k]; } rerenderPresentPage(); } }
 }
 document.addEventListener("keydown", ev => { if(ev.key === "Escape" && presentCard) closePresent(); });
 window.addEventListener("resize", () => { if(presentCard){ presentCard.style.zoom = ""; presentCard.style.removeProperty("--z"); requestAnimationFrame(() => fitZoom(presentCard)); } });
