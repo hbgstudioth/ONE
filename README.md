@@ -103,3 +103,8 @@ GitHub Pages จะอัปเดตเองภายใน 1–2 นาที
 - `sw.js` ช่วยให้ Android แสดงปุ่ม “ติดตั้งแอป” และเปิดแอปได้แม้สัญญาณไม่ดี (ข้อมูลยังดึงจาก Google Sheet ทุกครั้งที่ออนไลน์)
 - เมื่อเปิดลิงก์บนมือถือครั้งแรก จะมีแถบแนะนำการเพิ่มไปหน้าจอโฮม (กด ✕ เพื่อซ่อน)
 - QR Code: ONE-Dashboard-QR.png → https://hbgstudioth.github.io/ONE/
+
+## เมนู Lead center
+
+อ่านจากไฟล์ Lead center 2026 (Google Sheet แยกต่างหาก) แต่ละชีท = 1 เพจ ต้องแชร์แบบ "ทุกคนที่มีลิงก์ – ผู้มีสิทธิ์อ่าน"
+ระบบอ่านจากชื่อชีท: ONE Clinic  Surgery / เสริมจมูก by ONE Surgery / ดึงหน้า Facelift by ONE Surgery / เสริมหน้าอก ทำนม by ONE Surgery
