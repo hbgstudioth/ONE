@@ -1037,6 +1037,15 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .ldst{width:100%;font-size:13px}
 .ldst td,.ldst th{padding:4px 8px}
 .ldhead,.ldbar{padding-top:6px;padding-bottom:6px}
+/* column groups: แหล่งที่มา (Ads / Organic) · ช่องทาง (FB / IG) · Ad */
+.ldst .grp th{font-size:11px;font-weight:700;text-align:center;padding:3px 6px;border-radius:8px 8px 0 0}
+.ldst .g1{background:color-mix(in srgb,#3f6f9e 7%,transparent)}
+.ldst .g2{background:color-mix(in srgb,#d6249f 6%,transparent)}
+.ldst .g3{background:color-mix(in srgb,#c08a3e 8%,transparent)}
+.ldst .grp th.g1{color:#2f5f8e;background:color-mix(in srgb,#3f6f9e 16%,transparent)}
+.ldst .grp th.g2{color:#a01f74;background:color-mix(in srgb,#d6249f 14%,transparent)}
+.ldst .grp th.g3{color:#8a5e1f;background:color-mix(in srgb,#c08a3e 18%,transparent)}
+.ldst .gs{border-left:2px solid var(--card)}
 .ldst-row{cursor:pointer}
 .ldst-row:hover td{background:var(--soft)}
 .ldst-row.on td{background:color-mix(in srgb,var(--p1) 12%,transparent);font-weight:600}
@@ -1048,6 +1057,9 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .ldlb.on small{color:#fff}
 .cr.ld{grid-template-columns:34px minmax(0,1fr)}
 .cr .stg{font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;color:#fff;background:var(--sc);white-space:nowrap}
+.adsum{flex:none;font-size:12px;color:var(--muted);background:color-mix(in srgb,#3f6f9e 8%,var(--card));border:1px solid color-mix(in srgb,#3f6f9e 22%,transparent);border-radius:10px;padding:5px 10px;margin-bottom:6px;line-height:1.5}
+.adsum b{color:#2f5f8e;font-weight:700}
+.adsum small{font-size:10.5px}
 .adtog{font:inherit;font-size:12.5px;border:1px solid color-mix(in srgb,#3f6f9e 40%,transparent);border-radius:999px;padding:5px 12px;background:var(--card);color:#2f5f8e;cursor:pointer;white-space:nowrap}
 .adtog small{font-size:11px;opacity:.75}
 .adtog:hover{background:color-mix(in srgb,#3f6f9e 10%,transparent)}
@@ -1618,6 +1630,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="abinsight" id="ldCmpIns"></div><div class="grow"><canvas id="ld-cmp"></canvas></div></div>
         <div class="card ch flex ldlist"><h3>รายชื่อลูกค้า <span class="wbadge n" id="ldN">0</span><span class="hint">ล่าสุดก่อน</span></h3>
           <div class="cfind"><input id="ldFind" placeholder="ค้นหาชื่อ ป้ายกำกับ Ad ID หรือเบอร์โทร" autocomplete="off"><button class="adtog" id="ldAdF" type="button">👁 มี Ad ID</button><div class="seg" id="ldStageF"><i class="thumb"></i></div></div>
+          <div class="adsum" id="ldAdSum"></div>
           <div class="custlist" id="ldList"></div></div>
       </section>
 
@@ -4743,10 +4756,12 @@ function renderLead(){
     stages.filter(st => LD_STAGES.some(x => x[0] === st) || cnt(st)).map(st => `<div class="kc st ${"fx-" + st.replace(/\s+/g, "").toLowerCase()}" style="--sc:${ldStageColor(st)}">${LD_FX[st] || ""}<div class="l"><i class="sd"></i>${esc(st)}</div><div class="v vv"><span>${fmtN(cnt(st))}<small>คน</small></span><i></i><span>${pc(cnt(st))}<small>ของ Lead</small></span></div>${pill(cnt(st), pcnt(st), st === "Not Qualified" ? "down" : "up")}</div>`).join("");
   // stage breakdown: 100% bar + per stage rows with the Ads / Organic split
   $("#ldStage").innerHTML = !N ? `<div class="rk-more">ไม่มี Lead ในช่วงนี้</div>` : `<div class="ldbar100">${stages.filter(cnt).map(st => `<i style="flex:${cnt(st)};background:${ldStageColor(st)}" title="${esc(st)} ${fmtN(cnt(st))} (${pc(cnt(st))})">${cnt(st) / N > .06 ? pc(cnt(st)) : ""}</i>`).join("")}</div>
-    <table class="dt fitw ldst"><thead><tr><th>ระยะ</th><th class="num">ลูกค้า</th><th class="num">%</th><th class="num">📣 Ads</th><th class="num">🌱 Organic</th><th class="num">💬 FB</th><th class="num">📷 IG</th></tr></thead><tbody>
+    <table class="dt fitw ldst"><thead>
+      <tr class="grp"><th colspan="3"></th><th colspan="2" class="g1">แหล่งที่มา</th><th colspan="2" class="g2">ช่องทาง</th><th class="g3">Ad</th></tr>
+      <tr><th>ระยะ</th><th class="num">ลูกค้า</th><th class="num">%</th><th class="num g1 gs">📣 Ads</th><th class="num g1">🌱 Organic</th><th class="num g2 gs">💬 FB</th><th class="num g2">📷 IG</th><th class="num g3 gs" title="เฉลี่ยจำนวน Ad ที่เห็น เฉพาะคนที่มี Ad ID ในป้ายกำกับ">👁 Ad/คน</th></tr></thead><tbody>
     ${stages.filter(st => cnt(st) || LD_STAGES.some(x => x[0] === st)).map(st => { const r2 = rows.filter(x => x.stage === st), ad = r2.filter(x => x.src === "Ads").length;
-      return `<tr class="ldst-row ${S.ldStageF === st ? "on" : ""}" data-st="${esc(st)}"><td><i class="sd" style="background:${ldStageColor(st)}"></i>${esc(st)}</td><td class="num"><b>${fmtN(r2.length)}</b></td><td class="num">${pc(r2.length)}</td><td class="num">${fmtN(ad)}</td><td class="num">${fmtN(r2.length - ad)}</td><td class="num">${fmtN(r2.filter(x => x.ch === "FB").length)}</td><td class="num">${fmtN(r2.filter(x => x.ch === "IG").length)}</td></tr>`; }).join("")}
-    </tbody><tfoot><tr><td>รวม</td><td class="num">${fmtN(N)}</td><td class="num">100%</td><td class="num">${fmtN(rows.filter(x => x.src === "Ads").length)}</td><td class="num">${fmtN(rows.filter(x => x.src !== "Ads").length)}</td><td class="num">${fmtN(rows.filter(x => x.ch === "FB").length)}</td><td class="num">${fmtN(rows.filter(x => x.ch === "IG").length)}</td></tr></tfoot></table>
+      return `<tr class="ldst-row ${S.ldStageF === st ? "on" : ""}" data-st="${esc(st)}"><td><i class="sd" style="background:${ldStageColor(st)}"></i>${esc(st)}</td><td class="num"><b>${fmtN(r2.length)}</b></td><td class="num">${pc(r2.length)}</td><td class="num g1 gs">${fmtN(ad)}</td><td class="num g1">${fmtN(r2.length - ad)}</td><td class="num g2 gs">${fmtN(r2.filter(x => x.ch === "FB").length)}</td><td class="num g2">${fmtN(r2.filter(x => x.ch === "IG").length)}</td><td class="num g3 gs">${(() => { const w = r2.filter(x => x.adIds.length); return w.length ? (w.reduce((t, x) => t + x.adIds.length, 0) / w.length).toFixed(2) + ` <small class="muted">(${w.length})</small>` : "-"; })()}</td></tr>`; }).join("")}
+    </tbody><tfoot><tr><td>รวม</td><td class="num">${fmtN(N)}</td><td class="num">100%</td><td class="num g1 gs">${fmtN(rows.filter(x => x.src === "Ads").length)}</td><td class="num g1">${fmtN(rows.filter(x => x.src !== "Ads").length)}</td><td class="num g2 gs">${fmtN(rows.filter(x => x.ch === "FB").length)}</td><td class="num g2">${fmtN(rows.filter(x => x.ch === "IG").length)}</td><td class="num g3 gs">${(() => { const w = rows.filter(x => x.adIds.length); return w.length ? (w.reduce((t, x) => t + x.adIds.length, 0) / w.length).toFixed(2) : "-"; })()}</td></tr></tfoot></table>
 `;
   $$("#ldStage .ldst-row").forEach(tr => tr.onclick = () => { S.ldStageF = S.ldStageF === tr.dataset.st ? "" : tr.dataset.st; renderLead(); });
   // daily (or weekly for long ranges) new leads stacked by stage
@@ -4786,6 +4801,12 @@ function renderLead(){
   $("#ldAdF").innerHTML = `👁 มี Ad ID <small>${fmtN(withAd)}</small>`;
   const list = rows.filter(x => (!S.ldAdF || x.adIds.length) && (!sf || x.stage === sf) && (!q || x.name.toLowerCase().includes(q) || x.labels.some(l => l.toLowerCase().includes(q)) || x.adIds.some(id => id.includes(q)) || x.phone.includes(q))).sort((p, r) => r.t - p.t);
   $("#ldN").textContent = fmtN(list.length);
+  // how many ads the people in this group saw, on average (from the ad_id labels)
+  { const grp = rows.filter(x => (!sf || x.stage === sf) && (!q || x.name.toLowerCase().includes(q) || x.labels.some(l => l.toLowerCase().includes(q)) || x.adIds.some(id => id.includes(q)) || x.phone.includes(q)));
+    const withA = grp.filter(x => x.adIds.length), ads = withA.reduce((t, x) => t + x.adIds.length, 0), uniq = new Set(withA.flatMap(x => x.adIds)).size;
+    $("#ldAdSum").innerHTML = !grp.length ? "" : `<b>${esc(sf || "ทุกระยะ")}</b> ${fmtN(grp.length)} คน · มี Ad ID <b>${fmtN(withA.length)}</b> คน (${(withA.length / grp.length * 100).toFixed(1)}%)
+      · เห็น Ad เฉลี่ย <b>${withA.length ? (ads / withA.length).toFixed(2) : "0"}</b> ตัว/คน <small>(เฉพาะคนที่มี Ad ID)</small>
+      · <b>${(ads / grp.length).toFixed(2)}</b> ตัว/คน <small>(เฉลี่ยทุกคนในกลุ่ม)</small> · Ad ที่เกี่ยวข้อง ${fmtN(uniq)} ตัว`; }
   $("#ldList").innerHTML = list.length ? list.slice(0, 300).map(x => `<div class="cr ld"><div class="av" style="background:${ldStageColor(x.stage)}">${esc(initial(x.name))}</div>
       <div style="min-width:0"><div class="nm"><b>${esc(x.name)}</b><button class="cpy ico" data-name="${esc(x.name)}" title="คัดลอกชื่อ">⧉ คัดลอก</button>${srcTag(x.src)}<span class="chtag ${x.ch === "IG" ? "ig" : x.ch === "FB" ? "fb" : ""}">${x.ch === "IG" ? "📷 IG" : x.ch === "FB" ? "💬 FB" : esc(x.ch)}</span><span class="stg" style="--sc:${ldStageColor(x.stage)}">${esc(x.stage)}</span></div>
         <div class="mt">สร้างเมื่อ ${DOW[(x.t.getDay()+6)%7]} ${dLabel(x.t)} ${String(x.t.getHours()).padStart(2,"0")}:${String(x.t.getMinutes()).padStart(2,"0")} · ${esc(x.chRaw || x.ch)}${S.ldPage ? "" : " · " + esc(x.page)}${x.phone ? " · 📞 " + esc(x.phone) : ""}</div>
