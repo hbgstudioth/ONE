@@ -973,7 +973,38 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 /* ===== Lead center ===== */
 #p-lead{display:none}
 /* lead page: more cards than one screen holds, so rows keep a readable height and the page scrolls */
-#p-lead.on{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto 330px 300px 380px;gap:12px}
+#p-lead.on{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 330px 300px 380px;gap:12px}
+.ldconv{grid-column:1 / -1;grid-row:4;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px;
+  background:linear-gradient(90deg,color-mix(in srgb,#4f7a2e 12%,var(--card)),var(--card));border-left:4px solid #4f7a2e}
+.ldconv .cvt{font-size:13px;font-weight:500;white-space:nowrap}
+.ldconv .cvt b{color:#3f6a22}
+.ldconv .cvn{font-size:12px;color:var(--muted);white-space:nowrap}
+.ldconv .cvl{display:flex;flex-wrap:wrap;gap:5px;flex:1 1 300px;min-width:0}
+.ldconv .adid.cv{font:inherit;font-size:11.5px;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,#4f7a2e 40%,transparent);border-radius:6px;padding:1px 8px;background:var(--card);color:#3f6a22;cursor:pointer}
+.ldconv .adid.cv small{color:var(--muted);margin-left:2px}
+.ldconv .adid.cv.ok{background:#4f7a2e;color:#fff}
+.ldconv{flex-wrap:nowrap !important;overflow:hidden}
+.ldconv.click{cursor:pointer}
+.ldconv.click:hover{background:linear-gradient(90deg,color-mix(in srgb,#4f7a2e 18%,var(--card)),var(--card))}
+.ldconv .cvl{flex-wrap:nowrap !important;overflow:hidden}
+.ldconv .adchip{font-size:11.5px;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,#4f7a2e 40%,transparent);border-radius:6px;padding:1px 8px;background:var(--card);color:#3f6a22;white-space:nowrap}
+.ldconv .adchip small{color:var(--muted);margin-left:2px}
+.ldconv .more{font-size:11.5px;color:var(--muted);white-space:nowrap;align-self:center}
+.ldconv .cvopen{margin-left:auto;white-space:nowrap}
+.cvmbox{width:min(1000px,96vw) !important;max-height:88vh !important;display:flex;flex-direction:column;padding:0 !important;overflow:hidden}
+.cvmhead{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.cvmhead > div{flex:1;min-width:0}
+.cvmhead h2{margin:0;font-size:17px}
+.cvmhead .d{margin:3px 0 0;font-size:12px;color:var(--muted)}
+.cvmhead .cvb{display:flex;gap:6px}
+.cvmbody{flex:1;min-height:0;overflow:auto;padding:4px 16px 14px}
+.cvmt{width:100%;font-size:13px}
+.cvmt td{vertical-align:top;padding:7px 8px}
+.cvmt .adid.cv{font:inherit;font-size:12.5px;font-variant-numeric:tabular-nums;border:1px solid color-mix(in srgb,#4f7a2e 40%,transparent);border-radius:6px;padding:1px 8px;background:var(--card);color:#3f6a22;cursor:pointer}
+.cvmt .adid.cv.ok{background:#4f7a2e;color:#fff}
+.cvmt td:last-child{white-space:normal !important;min-width:280px}
+.cvp{display:inline-block;margin:0 10px 3px 0;white-space:nowrap}
+.cvp small{color:var(--muted);font-size:11px}
 .ldhead{grid-column:1 / -1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px}
 .ldhead .chic{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center}
 .ldhead > b{font-size:16px;font-weight:600}
@@ -1018,10 +1049,10 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .ldk .kc .vv small{font-size:11px;font-weight:400;opacity:.85;margin-top:2px}
 .ldk .kc .vv i{width:1.5px;background:rgba(255,255,255,.55);border-radius:2px}
 .sd{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sc);margin-right:6px;vertical-align:0}
-.ldstage{grid-column:1;grid-row:4;min-height:0}
-.ldday{grid-column:1;grid-row:5;min-height:0}
-.ldcmp{grid-column:1 / -1;grid-row:6;min-height:0}
-.ldlist{grid-column:2;grid-row:4 / 6;min-height:0;padding:10px 14px}
+.ldstage{grid-column:1;grid-row:5;min-height:0}
+.ldday{grid-column:1;grid-row:6;min-height:0}
+.ldcmp{grid-column:1 / -1;grid-row:7;min-height:0}
+.ldlist{grid-column:2;grid-row:5 / 7;min-height:0;padding:10px 14px}
 .ldcmp h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .ldcmp .hint{font-size:11.5px;color:var(--muted);font-weight:300}
 .ldcmpctl{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
@@ -1622,6 +1653,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <span class="hint" id="ldHint"></span>
         </div>
         <div class="ldk" id="ldKpis"></div>
+        <div class="card ldconv" id="ldConv"></div>
         <div class="card ch flex ldstage"><h3>ลูกค้าแต่ละระยะ <span class="hint">% ของ Lead ในช่วงที่เลือก · แยก Ads / Organic · FB / IG</span></h3><div class="ldstagebody" id="ldStage"></div></div>
         <div class="card ch flex ldday"><h3>Lead ใหม่รายวัน <span class="hint" id="ldDayHint">แยกตามระยะปัจจุบัน</span></h3><div class="grow"><canvas id="ld-day"></canvas></div></div>
         <div class="card ch flex ldcmp"><h3>เปรียบเทียบ <span class="hint">ไม่ขึ้นกับช่วงวันที่ · ใช้เพจ / แหล่งที่มา / ช่องทางที่เลือก</span>
@@ -1760,6 +1792,13 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   <div class="itx"><b>ติดตั้ง ONE Dashboard เป็นแอป</b><span id="instMsg"></span></div>
   <button class="ibtn" id="instBtn" hidden>ติดตั้งแอป</button>
   <button class="ix" id="instClose" aria-label="ปิด">✕</button>
+</div>
+<div class="modal" id="convModal" role="dialog" aria-modal="true" aria-labelledby="cvmTitle">
+  <div class="card box cvmbox">
+    <div class="cvmhead"><div><h2 id="cvmTitle">🎯 Ad ID ของลูกค้า Converted</h2><p class="d" id="cvmSub"></p></div>
+      <span class="cvb"><button class="btn-soft" id="cvmCsv">⬇ ส่งออก CSV</button><button class="btn-soft" id="cvmCopy">⧉ คัดลอก</button></span><button class="cvx" id="cvmClose" aria-label="ปิด">✕</button></div>
+    <div class="cvmbody tbl-wrap" id="cvmBody"></div>
+  </div>
 </div>
 <div class="modal" id="chatModal" role="dialog" aria-modal="true" aria-labelledby="cvName">
   <div class="card box cvbox">
@@ -4707,6 +4746,43 @@ function renderLeadCmp(pages){
     sig:"ldc" + mode + mk + W.length});
 }
 $$("#ldCmpMode button").forEach(b => b.onclick = () => { S.ldCmpMode = b.dataset.m; renderLeadCmp(S.lead); });
+/* thin card: the ad ids carried by Converted customers (current page / period / source / channel), with a CSV export */
+function openConvModal(L, nWith, nConv){
+  const [a, b] = ldRange();
+  $("#cvmSub").textContent = `${S.ldPage || "ทุกเพจ"} · ${a && b ? `${dLabel(a)} – ${dLabel(b)}` : "ทุกช่วงเวลา"} · ${fmtN(L.length)} Ad · ลูกค้า Converted ที่มี Ad ID ${fmtN(nWith)} จาก ${fmtN(nConv)} คน`;
+  $("#cvmBody").innerHTML = `<table class="dt fitw cvmt"><thead><tr><th>#</th><th>Ad ID</th><th class="num">คน Converted</th><th>ลูกค้า</th></tr></thead><tbody>${L.map(([id, ps], k) =>
+    `<tr><td class="muted">${k + 1}</td><td><button class="adid cv" data-id="${id}" title="กดเพื่อคัดลอก Ad ID">${id}</button></td><td class="num"><b>${ps.length}</b></td>
+     <td>${ps.map(x => `<span class="cvp">${esc(x.name)} <small>${dLabel(x.t)} · ${x.ch}</small></span>`).join("")}</td></tr>`).join("")}</tbody></table>`;
+  $("#convModal").classList.add("on");
+}
+$("#cvmClose").onclick = () => $("#convModal").classList.remove("on");
+$("#convModal").onclick = ev => { if(ev.target.id === "convModal") $("#convModal").classList.remove("on"); };
+document.addEventListener("keydown", ev => { if(ev.key === "Escape") $("#convModal").classList.remove("on"); });
+function renderLeadConv(rows){
+  const conv = rows.filter(x => x.stage === "Converted"), withA = conv.filter(x => x.adIds.length);
+  const m = new Map(); withA.forEach(x => x.adIds.forEach(id => { if(!m.has(id)) m.set(id, []); m.get(id).push(x); }));
+  const L = [...m.entries()].sort((a, b) => b[1].length - a[1].length);
+  S._ldConvRows = L.flatMap(([id, ps]) => ps.map(x => [id, x.name, `${iso(x.t)} ${String(x.t.getHours()).padStart(2,"0")}:${String(x.t.getMinutes()).padStart(2,"0")}`, x.page.replace(/\s{2,}/g, " "), x.ch, x.src, x.adIds.length, x.labels.join(" / ")]));
+  // compact strip: summary + the top 3 ads; the whole list opens in a popup
+  $("#ldConv").innerHTML = `<span class="cvt">🎯 Ad ID ของลูกค้า <b>Converted</b></span>
+    <span class="cvn">${L.length ? `${fmtN(L.length)} Ad · ${fmtN(withA.length)} จาก ${fmtN(conv.length)} คน` : `ยังไม่มี Ad ID ในกลุ่ม Converted (${fmtN(conv.length)} คน)`}</span>
+    <span class="cvl">${L.slice(0, 3).map(([id, ps]) => `<span class="adchip">Ad ${id} <small>${ps.length} คน</small></span>`).join("")}${L.length > 3 ? `<span class="more">+${fmtN(L.length - 3)} Ad</span>` : ""}</span>
+    ${L.length ? `<button class="btn-soft cvopen" type="button">ดูทั้งหมด ›</button>` : ""}`;
+  $("#ldConv").classList.toggle("click", !!L.length);
+  $("#ldConv").onclick = () => { if(L.length) openConvModal(L, withA.length, conv.length); };
+  const csv = () => "\ufeff" + [["Ad ID", "ชื่อลูกค้า", "สร้างเมื่อ", "เพจ", "ช่องทาง", "แหล่งที่มา", "จำนวน Ad ที่เห็น", "ป้ายกำกับอื่น"], ...S._ldConvRows]
+    .map((r, k) => r.map((v, c) => c === 0 && k > 0 ? `="${v}"` : `"${String(v ?? "").replace(/"/g, '""')}"`).join(",")).join("\r\n");
+  $("#cvmCsv").onclick = () => {
+    const [a, b] = ldRange(), name = `converted-ad-ids_${(S.ldPage || "all-pages").replace(/[^\w\u0E00-\u0E7F]+/g, "-")}_${a ? iso(a) : "all"}${b ? "_" + iso(b) : ""}.csv`;
+    try{ const url = URL.createObjectURL(new Blob([csv()], {type:"text/csv;charset=utf-8"})), el = document.createElement("a");
+      el.href = url; el.download = name; document.body.appendChild(el); el.click(); el.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000); toast("ส่งออก CSV แล้ว"); }
+    catch(e){ toast("ดาวน์โหลดไม่ได้ในหน้านี้ · ใช้ปุ่มคัดลอกแทน"); }
+  };
+  $("#cvmCopy").onclick = async () => {
+    const tsv = [["Ad ID", "ชื่อลูกค้า", "สร้างเมื่อ", "เพจ", "ช่องทาง", "แหล่งที่มา", "จำนวน Ad ที่เห็น", "ป้ายกำกับอื่น"], ...S._ldConvRows].map(r => r.join("\t")).join("\n");
+    try{ await navigator.clipboard.writeText(tsv); toast("คัดลอกแล้ว · วางใน Excel / Google Sheet ได้เลย"); }catch(e){ toast("คัดลอกไม่ได้"); }
+  };
+}
 function renderLead(){
   if(!S.lead){
     $("#ldHint").textContent = S.leadErr ? "อ่านชีท Lead center ไม่ได้ · ตรวจว่าแชร์แบบทุกคนที่มีลิงก์" : "กำลังโหลด Lead center…";
@@ -4788,6 +4864,7 @@ function renderLead(){
       plugins:{legend:{...legendCfg(), align:"end"}, datalabels:{display:true}, tooltip:{...tooltip(), callbacks:{footer:c => `รวม ${c.reduce((t,x) => t + x.raw, 0)} คน`}}},
       scales:{x:{stacked:true, grid:{display:false}, ticks:{maxRotation:0, autoSkipPadding:12, font:{size: tight ? 9.5 : 11}}}, y:{stacked:true, beginAtZero:true, grace:"12%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5}}}}
   }, "ldd2" + (weekly ? "w" : "d") + stages.join(""));
+  renderLeadConv(rows);
   renderLeadCmp(pages);
   // customer list
   const sf = S.ldStageF || "";
@@ -4827,7 +4904,7 @@ $("#ldMonth").onchange = ev => { S.ldPreset = ev.target.value ? "m:" + ev.target
 document.addEventListener("click", async ev => {
   const b = ev.target.closest(".adid"); if(!b) return;
   try{ await navigator.clipboard.writeText(b.dataset.id); }catch(e){}
-  const t = b.textContent; b.textContent = "✓ คัดลอก ID แล้ว"; b.classList.add("ok"); setTimeout(() => { b.textContent = t; b.classList.remove("ok"); }, 1300);
+  const t = b.innerHTML; b.textContent = "✓ คัดลอก ID แล้ว"; b.classList.add("ok"); setTimeout(() => { b.innerHTML = t; b.classList.remove("ok"); }, 1300);
 });
 $("#ldFind").addEventListener("input", ev => { S.ldFind = ev.target.value; clearTimeout(S._ldf); S._ldf = setTimeout(renderLead, 220); });
 
