@@ -1048,6 +1048,15 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .ldlb.on small{color:#fff}
 .cr.ld{grid-template-columns:34px minmax(0,1fr)}
 .cr .stg{font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;color:#fff;background:var(--sc);white-space:nowrap}
+.adtog{font:inherit;font-size:12.5px;border:1px solid color-mix(in srgb,#3f6f9e 40%,transparent);border-radius:999px;padding:5px 12px;background:var(--card);color:#2f5f8e;cursor:pointer;white-space:nowrap}
+.adtog small{font-size:11px;opacity:.75}
+.adtog:hover{background:color-mix(in srgb,#3f6f9e 10%,transparent)}
+.adtog.on{background:#3f6f9e;color:#fff;border-color:#3f6f9e}
+.cr .adids{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:3px}
+.cr .adids b{font-size:10.5px;font-weight:700;color:#2f5f8e;background:color-mix(in srgb,#3f6f9e 14%,transparent);border-radius:5px;padding:0 6px}
+.cr .adid{font:inherit;font-size:10.5px;font-variant-numeric:tabular-nums;border:1px dashed color-mix(in srgb,#3f6f9e 45%,transparent);border-radius:5px;padding:0 6px;background:transparent;color:#2f5f8e;cursor:pointer}
+.cr .adid:hover{background:color-mix(in srgb,#3f6f9e 10%,transparent)}
+.cr .adid.ok{background:#4f7a2e;color:#fff;border-color:#4f7a2e}
 .cr .lbs{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
 .cr .lbs span{font-size:10.5px;border-radius:5px;padding:0 6px;background:var(--soft);color:var(--muted)}
 #ldStageF button small{font-size:10.5px;opacity:.7}
@@ -1608,7 +1617,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
             <div class="seg" id="ldCmpMetric"><i class="thumb"></i></div></span></h3>
           <div class="abinsight" id="ldCmpIns"></div><div class="grow"><canvas id="ld-cmp"></canvas></div></div>
         <div class="card ch flex ldlist"><h3>รายชื่อลูกค้า <span class="wbadge n" id="ldN">0</span><span class="hint">ล่าสุดก่อน</span></h3>
-          <div class="cfind"><input id="ldFind" placeholder="ค้นหาชื่อ ป้ายกำกับ หรือเบอร์โทร" autocomplete="off"><div class="seg" id="ldStageF"><i class="thumb"></i></div></div>
+          <div class="cfind"><input id="ldFind" placeholder="ค้นหาชื่อ ป้ายกำกับ Ad ID หรือเบอร์โทร" autocomplete="off"><button class="adtog" id="ldAdF" type="button">👁 มี Ad ID</button><div class="seg" id="ldStageF"><i class="thumb"></i></div></div>
           <div class="custlist" id="ldList"></div></div>
       </section>
 
@@ -4614,7 +4623,8 @@ function parseLeads(rows, page){
     const ads = /เสียค่าใช้จ่าย|paid|ads?|โฆษณา/i.test(srcRaw) || labels.some(x => /messenger_ads|การตอบสนองต่อโฆษณา|^ad_id\./i.test(x));
     const chRaw = clean(r[C.ch]), ch = /instagram|^ig$/i.test(chRaw) ? "IG" : /messenger|facebook|^fb$/i.test(chRaw) ? "FB" : (chRaw || "-");
     out.push({page, t, name, src: ads ? "Ads" : "Organic", ch, chRaw, stage:ldStageName(clean(r[C.st])), owner:clean(r[C.own]),
-      labels:labels.filter(x => !LD_HIDE_LABEL.test(x)), phone:clean(r[C.ph]), email:clean(r[C.em])});
+      labels:labels.filter(x => !LD_HIDE_LABEL.test(x)), phone:clean(r[C.ph]), email:clean(r[C.em]),
+      adIds:[...new Set(labels.map(x => (x.match(/^ad_id\.(\d+)/i) || [])[1]).filter(Boolean))]});
   }
   return out;
 }
@@ -4770,11 +4780,16 @@ function renderLead(){
   $$("#ldStageF button").forEach(bt => bt.onclick = () => { S.ldStageF = bt.dataset.st; renderLead(); });
   requestAnimationFrame(() => segMove($("#ldStageF")));
   const q = (S.ldFind || "").trim().toLowerCase();
-  const list = rows.filter(x => (!sf || x.stage === sf) && (!q || x.name.toLowerCase().includes(q) || x.labels.some(l => l.toLowerCase().includes(q)) || x.phone.includes(q))).sort((p, r) => r.t - p.t);
+  // "มี Ad ID" toggle: only people whose ป้ายกำกับ carries at least one ad_id
+  const withAd = rows.filter(x => (!sf || x.stage === sf) && x.adIds.length).length;
+  $("#ldAdF").classList.toggle("on", !!S.ldAdF);
+  $("#ldAdF").innerHTML = `👁 มี Ad ID <small>${fmtN(withAd)}</small>`;
+  const list = rows.filter(x => (!S.ldAdF || x.adIds.length) && (!sf || x.stage === sf) && (!q || x.name.toLowerCase().includes(q) || x.labels.some(l => l.toLowerCase().includes(q)) || x.adIds.some(id => id.includes(q)) || x.phone.includes(q))).sort((p, r) => r.t - p.t);
   $("#ldN").textContent = fmtN(list.length);
   $("#ldList").innerHTML = list.length ? list.slice(0, 300).map(x => `<div class="cr ld"><div class="av" style="background:${ldStageColor(x.stage)}">${esc(initial(x.name))}</div>
       <div style="min-width:0"><div class="nm"><b>${esc(x.name)}</b><button class="cpy ico" data-name="${esc(x.name)}" title="คัดลอกชื่อ">⧉ คัดลอก</button>${srcTag(x.src)}<span class="chtag ${x.ch === "IG" ? "ig" : x.ch === "FB" ? "fb" : ""}">${x.ch === "IG" ? "📷 IG" : x.ch === "FB" ? "💬 FB" : esc(x.ch)}</span><span class="stg" style="--sc:${ldStageColor(x.stage)}">${esc(x.stage)}</span></div>
         <div class="mt">สร้างเมื่อ ${DOW[(x.t.getDay()+6)%7]} ${dLabel(x.t)} ${String(x.t.getHours()).padStart(2,"0")}:${String(x.t.getMinutes()).padStart(2,"0")} · ${esc(x.chRaw || x.ch)}${S.ldPage ? "" : " · " + esc(x.page)}${x.phone ? " · 📞 " + esc(x.phone) : ""}</div>
+        ${x.adIds.length ? `<div class="adids"><b>👁 เห็น ${x.adIds.length} Ad</b>${x.adIds.map(id => `<button class="adid" data-id="${id}" title="Ad ID ${id} · กดเพื่อคัดลอก">Ad ${id}</button>`).join("")}</div>` : ""}
         ${x.labels.length ? `<div class="lbs">${x.labels.map(l => `<span>${esc(l)}</span>`).join("")}</div>` : ""}</div></div>`).join("")
       + (list.length > 300 ? `<div class="empty">แสดง 300 จาก ${fmtN(list.length)} คน · ใช้ช่องค้นหาหรือเลือกระยะเพื่อหาคนอื่น</div>` : "")
     : `<div class="empty">ไม่พบลูกค้าตามเงื่อนไข</div>`;
@@ -4782,11 +4797,17 @@ function renderLead(){
 $$("#ldPreset button").forEach(b => b.onclick = () => { S.ldPreset = b.dataset.p; renderLead(); });
 $$("#ldSrc button").forEach(b => b.onclick = () => { S.ldSrc = b.dataset.s; renderLead(); });
 $$("#ldCh button").forEach(b => b.onclick = () => { S.ldCh = b.dataset.c; renderLead(); });
+$("#ldAdF").onclick = () => { S.ldAdF = !S.ldAdF; renderLead(); };
 $("#ldMonth").onchange = ev => { S.ldPreset = ev.target.value ? "m:" + ev.target.value : "all"; renderLead(); };
 ["#ldFrom", "#ldTo"].forEach(sel => $(sel).addEventListener("change", () => {
   const f = $("#ldFrom").value, t = $("#ldTo").value;
   if(f && t){ S.ldPreset = "custom"; S.ldFrom = new Date(f + "T00:00"); S.ldTo = new Date(t + "T00:00"); renderLead(); }
 }));
+document.addEventListener("click", async ev => {
+  const b = ev.target.closest(".adid"); if(!b) return;
+  try{ await navigator.clipboard.writeText(b.dataset.id); }catch(e){}
+  const t = b.textContent; b.textContent = "✓ คัดลอก ID แล้ว"; b.classList.add("ok"); setTimeout(() => { b.textContent = t; b.classList.remove("ok"); }, 1300);
+});
 $("#ldFind").addEventListener("input", ev => { S.ldFind = ev.target.value; clearTimeout(S._ldf); S._ldf = setTimeout(renderLead, 220); });
 
 /* ================= RENDER ================= */
