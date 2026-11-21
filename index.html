@@ -353,6 +353,7 @@ table.dt{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
 body.p-ads #filters{display:none}
 body.p-upsale #filters{display:none}
 body.p-lead #filters{display:none}
+body.p-camp #filters{display:none}
 #p-upsale{display:none}
 #p-upsale.on{display:flex;flex-direction:column;gap:12px}
 .usctl{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:flex-end;padding:14px 16px}
@@ -970,6 +971,200 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 @keyframes coinSpin{0%,55%,100%{transform:rotateY(0)}75%{transform:rotateY(180deg)}}
 @keyframes coinShine{0%,60%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
 @media (prefers-reduced-motion:reduce){ .mcoin,.mcoin::after{animation:none} }
+/* ===== MSG Campaign ===== */
+#p-camp{display:none}
+#p-camp.on{display:flex;flex-direction:column;gap:12px}
+.cphead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px}
+.cphead .chic{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center}
+.cphead > b{font-size:16px;font-weight:600}
+.cphead .hint{margin-left:auto;font-size:12px;color:var(--muted)}
+.cpbar{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;padding:8px 14px}
+.cpf1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cpf1 .lb{font-size:12px;color:var(--muted);font-weight:500}
+.cpchips{display:flex;flex-wrap:wrap;gap:5px}
+.cpchips button{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 11px;cursor:pointer;
+  border:1px solid color-mix(in srgb,var(--cc,#6b6656) 35%,transparent);background:color-mix(in srgb,var(--cc,#6b6656) 7%,var(--card));color:var(--text)}
+.cpchips button i{width:8px;height:8px;border-radius:50%;background:var(--cc)}
+.cpchips button small{font-size:11px;opacity:.7}
+.cpchips button.on{background:var(--cc,#5e662d);border-color:var(--cc,#5e662d);color:#fff}
+.cpchips button.on i{background:#fff}
+.cpsum h3.sub{margin-top:14px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.cpr.click{cursor:pointer}
+.cpr.on{background:color-mix(in srgb,var(--p1) 10%,transparent);box-shadow:inset 3px 0 0 var(--p1)}
+.cpr b.q,.cpr .head b.q,.cpr small b.q{color:#a9782f} .cpr b.l,.cpr small b.l{color:#7d7566}
+.cpr .tgs{display:flex;gap:4px;margin-bottom:2px}
+.cpr .tg.au{background:#8c8172}
+#cpMonths button small{font-size:10px;color:#b5473a;margin-left:2px}
+.cpk{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.cpk .kc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:9px 12px;min-width:0;box-shadow:var(--shadow);border-left:4px solid var(--sc,var(--line))}
+.cpk .kc.hero{background:linear-gradient(135deg,#535b27,#7d8741);color:#fff;border:0}
+.cpk .kc .l{font-size:12px;color:var(--muted)}
+.cpk .kc .v{font-size:clamp(20px,1.7vw,26px);font-weight:600;font-variant-numeric:tabular-nums}
+.cpk .kc .s{font-size:11.5px;color:var(--muted)}
+.cpk .kc.hero .l,.cpk .kc.hero .s{color:rgba(255,255,255,.88)}
+.cpk .kc.st{border:0;color:#fff;background:linear-gradient(135deg,var(--sc),color-mix(in srgb,var(--sc) 62%,#fff))}
+.cpk .kc.st .l{color:rgba(255,255,255,.92)}
+.cpk .kc .vv{display:flex;align-items:flex-end;gap:10px;line-height:1.1}
+.cpk .kc .vv span{display:flex;flex-direction:column;font-size:clamp(19px,1.6vw,25px);font-weight:700;font-variant-numeric:tabular-nums}
+.cpk .kc .vv small{font-size:10.5px;font-weight:400;opacity:.85;margin-top:1px}
+.cpk .kc .vv i{width:1.5px;align-self:stretch;margin:3px 0 14px;background:rgba(255,255,255,.5)}
+.cpk .kc.st .dp,.cpk .kc.hero .dp{background:rgba(255,255,255,.22);color:#fff}
+.cpk .kc.st .dp em{color:rgba(255,255,255,.85)}
+.cpwarn{grid-column:1 / -1;font-size:12.5px;background:color-mix(in srgb,#c08a3e 14%,var(--card));border:1px solid color-mix(in srgb,#c08a3e 35%,transparent);border-radius:10px;padding:6px 12px;color:#7a5412}
+.cprow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.cprow .cpr{grid-template-columns:minmax(0,1fr) 64px minmax(0,1.6fr) 52px 62px 70px}
+.cpflow{min-height:0}
+.cpmonth{min-height:340px}
+.cpwhy{margin-top:10px;border:1px dashed var(--line);border-radius:12px;padding:8px 14px;background:var(--soft)}
+.cpwhy .t{font-size:12.5px;font-weight:600;margin-bottom:2px}
+.cpwhy .wr{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:start;padding:4px 0;font-size:12.5px;line-height:1.5}
+.cpwhy .wt{justify-self:start;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 10px;color:#fff;white-space:nowrap}
+.cpwhy .w1{background:#b5654a} .cpwhy .w2{background:#7d5a8a} .cpwhy .w3{background:#c08a3e} .cpwhy .w4{background:#3f6f9e} .cpwhy .w5{background:#8c8172}
+@media (max-width:760px){ .cpwhy .wr{grid-template-columns:1fr;gap:2px} }
+/* buyers by targeting segment */
+.cpbuy h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cpbuy .sw{margin-left:auto;font-size:12px;font-weight:400;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer}
+.sgh,.sg{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.4fr) 84px 70px 110px;gap:10px;align-items:center;padding:6px 4px;border-bottom:1px solid var(--line)}
+.sgh{font-size:11.5px;color:var(--muted)}
+.sgh .num,.sg .num{text-align:right;font-variant-numeric:tabular-nums}
+.sg .nm{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.sg .nm b{font-size:13.5px;font-weight:600}
+.sg .nm small{font-size:10.5px;color:var(--muted)}
+.sg .tg{font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;color:#fff}
+.sg .pb{display:flex;align-items:center;gap:6px}
+.sg .pb i{display:block;height:16px;border-radius:5px;min-width:3px}
+.sg .pb b{font-size:14px;color:#2f5f8e}
+.sg.zero{opacity:.55}
+.sg .best{font-style:normal;font-size:10px;font-weight:700;border-radius:5px;padding:0 5px;background:#4f7a2e;color:#fff}
+.sgn{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+@media (max-width:760px){ .sgh{display:none} .sg{grid-template-columns:1fr 1fr 1fr} .sg .nm,.sg .pb{grid-column:1 / -1} }
+/* audience that bought */
+.bbars{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.bbar{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:center}
+.bbar .bl{font-size:12.5px;display:flex;flex-direction:column}
+.bbar .bl b{font-size:15px}
+.bbar .bt{display:flex;height:30px;border-radius:9px;overflow:hidden;background:var(--soft)}
+.bbar .bt i{display:grid;place-items:center;color:#fff;font-style:normal;font-size:11.5px;font-weight:700;min-width:4px;white-space:nowrap;overflow:hidden}
+.btiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.bt1{border:1px solid var(--line);border-top:4px solid var(--ac);border-radius:12px;padding:10px 12px;background:color-mix(in srgb,var(--ac) 5%,var(--card))}
+.bt1 .h{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.bt1 .h b{font-size:14px}
+.bt1 .h small{margin-left:auto;font-size:11px;color:var(--muted)}
+.bt1 .best{font-size:10px;font-weight:700;border-radius:6px;padding:0 6px;background:#4f7a2e;color:#fff}
+.bt1 .nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 6px}
+.bt1 .nums span{display:flex;flex-direction:column}
+.bt1 .nums em{font-style:normal;font-size:11px;color:var(--muted)}
+.bt1 .nums b{font-size:22px;font-weight:700;line-height:1.15}
+.bt1 .nums span:first-child b{color:#3f6a22} .bt1 .nums span:last-child b{color:#2f5f8e}
+.bt1 .nums small{font-size:10.5px;color:var(--muted)}
+.bt1 .rt{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
+.bt1 .rt b{color:var(--text)}
+.cpwhy .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+.cpwhy .s b{color:var(--text)}
+/* ===== Campaign Quality motion (bars grow in, a few gentle loops) ===== */
+#p-camp .cpk .kc{position:relative;overflow:hidden}
+#p-camp .cu{font-style:normal;font-variant-numeric:tabular-nums}
+#p-camp .cpk .kc > :not(.ldfx){position:relative;z-index:1}
+@keyframes cpGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes cpRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cpShine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(220%)}}
+@keyframes cpPulse{0%,100%{box-shadow:0 0 0 0 rgba(79,122,46,.45)}50%{box-shadow:0 0 0 5px rgba(79,122,46,0)}}
+#p-camp .qb .bar,#p-camp .ib i,#p-camp .sg .pb i,#p-camp .pw i,#p-camp .bbar .bt{transform-origin:left center;animation:cpGrow .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 45ms)}
+#p-camp .cpr,#p-camp .sg,#p-camp .rc .ri{animation:cpRise .45s ease both;animation-delay:calc(var(--i,0) * 35ms)}
+#p-camp .qb .bar{position:relative}
+#p-camp .qb .bar::after{content:"";position:absolute;inset:0;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);animation:cpShine 4.5s ease-in-out infinite;animation-delay:calc(1s + var(--i,0) * 120ms);pointer-events:none}
+#p-camp .best,#p-camp .sg .best{animation:cpPulse 2.2s ease-in-out infinite}
+.rc .pw{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:5px}
+.rc .pw span{height:8px;border-radius:4px;background:var(--soft);overflow:hidden;display:block}
+.rc .pw i{display:block;height:100%;border-radius:4px;min-width:2px}
+.rc .pw .c i{background:linear-gradient(90deg,#6e9a4a,#4f7a2e)}
+.rc .pw .p{direction:ltr}
+.rc .pw .p i{background:linear-gradient(90deg,#5b8fc4,#3f6f9e)}
+@media (prefers-reduced-motion:reduce){ #p-camp *{animation:none !important} }
+.rsum{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;margin-bottom:10px}
+.rsum b{font-size:15px}
+.rcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rc{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.rc .rh{padding:8px 12px;display:flex;flex-direction:column;gap:1px;position:relative}
+.rc.o .rh{background:color-mix(in srgb,#4f7a2e 14%,var(--card))} .rc.e .rh{background:color-mix(in srgb,#3f6f9e 14%,var(--card))} .rc.b .rh{background:color-mix(in srgb,#c08a3e 16%,var(--card))}
+.rc .rh b{font-size:14px} .rc.o .rh b{color:#3f6a22} .rc.e .rh b{color:#2f5f8e} .rc.b .rh b{color:#8a5e1f}
+.rc .rh small{font-size:11px;color:var(--muted)}
+.rc .rh .n{position:absolute;right:10px;top:9px;font-size:11px;color:var(--muted)}
+.rc .ri{padding:7px 12px;border-top:1px solid var(--line)}
+.rc .rn{font-size:12.5px;font-weight:600;line-height:1.35;word-break:break-word}
+.rc .rs{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:3px;font-size:11px;color:var(--muted)}
+.rc .pp{display:flex;align-items:center;gap:4px;white-space:nowrap}
+.rc .pp i{font-style:normal;font-size:12px;font-weight:700;border-radius:6px;padding:0 6px}
+.rc .pp i.c{background:color-mix(in srgb,#4f7a2e 14%,transparent);color:#3f6a22}
+.rc .pp i.p{background:color-mix(in srgb,#3f6f9e 14%,transparent);color:#2f5f8e}
+.rc .pp i.ar{color:var(--muted);padding:0}
+.rc .re{padding:10px 12px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+@media (max-width:900px){ .rcols{grid-template-columns:1fr} }
+.cpana{background:color-mix(in srgb,#c08a3e 8%,var(--card));border:1px solid color-mix(in srgb,#c08a3e 28%,transparent);border-radius:12px;padding:8px 14px;margin-bottom:10px}
+.cpana .t{font-size:13px;font-weight:600;margin-bottom:2px}
+.cpana ul{margin:0;padding-left:18px}
+.cpana li{font-size:12.5px;line-height:1.6;color:var(--text)}
+.cpana li b{font-weight:700}
+.cpana .an{font-weight:600;color:#2f5f8e}
+.cpr.head .num small,.cpr.head small{display:block;font-size:9.5px;font-weight:400;opacity:.8}
+.cpk .kc .l small,.cpk .kc .s small{font-size:10px;opacity:.85}
+.cplegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin-bottom:8px}
+.cplegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.cplegend i.c1,.cpf .b1 i{background:#4f7a2e} .cplegend i.c2,.cpf .b2 i{background:#3f6f9e}
+.cpf,.cpf-head{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr) 16px minmax(0,1fr) 112px;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line)}
+.cpf-head{font-size:11.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.cpf-head .r{text-align:right}
+.cpf .nm{display:flex;flex-direction:column;min-width:0}
+.cpf .nm b{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cpf .nm small{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cpf .b1,.cpf .b2{display:flex;align-items:center;gap:5px;height:18px}
+.cpf .b1{flex-direction:row-reverse}
+.cpf .b1 i,.cpf .b2 i{display:block;height:100%;border-radius:4px;min-width:2px}
+.cpf em{font-style:normal;font-weight:700;font-size:12.5px}
+.cpf .b1 em{color:#3f6a22} .cpf .b2 em{color:#2f5f8e}
+.cpf .mid{color:var(--muted);text-align:center}
+.cpf .rl{font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;text-align:center;white-space:nowrap}
+.cpf .rl.o{background:color-mix(in srgb,#4f7a2e 15%,transparent);color:#3f6a22}
+.cpf .rl.e{background:color-mix(in srgb,#3f6f9e 15%,transparent);color:#2f5f8e}
+.cpf .rl.b{background:color-mix(in srgb,#c08a3e 18%,transparent);color:#8a5e1f}
+.cpf-note{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+.cptable h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cptable .hint{font-size:12px;color:var(--muted);font-weight:300}
+.cpsort{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:400}
+.cpsort .seg button{padding:4px 9px;font-size:12px}
+.cpr{display:grid;grid-template-columns:minmax(0,1.6fr) 90px minmax(0,2fr) 64px 76px 86px;gap:10px;align-items:center;padding:8px 6px;border-bottom:1px solid var(--line);border-radius:8px}
+.cpr:hover{background:var(--soft)}
+.cpr.open{background:color-mix(in srgb,var(--p1) 8%,transparent)}
+.cpr.head,.cpr.foot{cursor:default;font-size:11.5px;color:var(--muted)}
+.cpr.head:hover{background:none}
+.cpr.foot{border-top:2px solid var(--line);border-bottom:0;color:var(--text);font-size:13px}
+.cpr.foot:hover{background:none}
+.cpr .num{text-align:right;font-variant-numeric:tabular-nums}
+.cpr .nm{display:flex;flex-direction:column;min-width:0}
+.cpr .nm b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cpr .nm b.full,.cpf .nm b.full{white-space:normal;overflow:visible;font-size:12.5px;line-height:1.35;word-break:break-word}
+.cptable .cpr{grid-template-columns:minmax(0,2.2fr) 80px minmax(0,1.8fr) 60px 72px 86px}
+.cpr .nm small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cpr .tg{align-self:flex-start;font-size:10px;font-weight:700;border-radius:5px;padding:0 6px;color:#fff;background:#8c8172;margin-bottom:2px}
+.cpr .tg.tof{background:#3f6f9e} .cpr .tg.mof{background:#c08a3e} .cpr .tg.bof{background:#4f7a2e}
+.cpr .ib{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.cpr .ib i{display:block;height:4px;border-radius:3px;background:#a98353;max-width:100%}
+.cpr .qb{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cpr .qb .bar{display:flex;height:18px;border-radius:6px;overflow:hidden;background:var(--soft)}
+.cpr .qb .bar i{display:grid;place-items:center;font-style:normal;font-size:10.5px;font-weight:700;color:#fff;min-width:0}
+.cpr .qb .bar i.q{background:#c08a3e} .cpr .qb .bar i.l{background:#a39a88} .cpr .qb .bar i.c{background:#4f7a2e;min-width:4px}
+.cpr .qb small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cpr b.c{color:#3f6a22} .cpr b.p{color:#2f5f8e}
+.cpsets{margin:0 6px 8px 24px;padding:6px 10px;border-left:3px solid var(--p1);background:var(--soft);border-radius:0 8px 8px 0}
+.cps{display:grid;grid-template-columns:minmax(0,1fr) 110px 90px 100px;gap:10px;font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--line)}
+.cps.head{font-size:11px;color:var(--muted)}
+.cps.note{display:block;font-size:11px;color:var(--muted);border:0}
+.cps .num{text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:1180px){ .cpk{grid-template-columns:1fr 1fr} .cpk .kc.hero{grid-column:1 / -1} .cprow{grid-template-columns:1fr}
+  .cpr{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:4px} .cpr .nm{grid-column:1 / -1} .cpr .qb{grid-column:1 / -1;order:9}
+  .cpr.head{display:none} .cpf,.cpf-head{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 12px minmax(0,1fr)} .cpf .rl,.cpf-head > :last-child{display:none} }
+
 /* ===== Lead center ===== */
 #p-lead{display:none}
 /* lead page: more cards than one screen holds, so rows keep a readable height and the page scrolls */
@@ -1506,6 +1701,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
       <button data-page="adsbook"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg></span><span class="t">Ads × Booking</span></button>
       <button data-page="chat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><span class="t">Chat</span></button>
       <button data-page="lead"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><span class="t">Lead center</span></button>
+      <button data-page="camp"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7.2 6H13a3 3 0 0 1 3 3v6.8M16.8 18H11a3 3 0 0 1-3-3V8.2"/></svg></span><span class="t">Campaign Quality</span></button>
     </nav>
     <div class="side-label side-label2">ประมาณการยอดขาย</div>
     <nav class="nav" id="nav3">
@@ -1666,6 +1862,34 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="custlist" id="ldList"></div></div>
       </section>
 
+      <!-- Campaign Quality: lead quality and first / last ad per campaign, audience and funnel -->
+      <section class="page" id="p-camp">
+        <div class="card cphead">
+          <span class="chic">🧭</span><b>Campaign Quality</b>
+          <div class="pgchips" id="cpAcc"></div>
+          <span class="hint" id="cpHint"></span>
+        </div>
+        <div class="card cpbar">
+          <div class="cpf1"><span class="lb">เดือน</span><div class="seg" id="cpMonths"><i class="thumb"></i></div></div>
+          <div class="cpf1"><span class="lb">Audience</span><div class="cpchips" id="cpAudF"></div></div>
+          <div class="cpf1"><span class="lb">Funnel</span><div class="cpchips" id="cpFunF"></div></div>
+        </div>
+        <div class="cpk" id="cpKpis"></div>
+        <div class="cprow">
+          <div class="card ch cpsum"><h3>สรุปตาม Audience <span class="hint">จากชื่อ Ad Set · กดแถวเพื่อกรอง</span></h3><div id="cpAud"></div></div>
+          <div class="card ch cpsum"><h3>สรุปตาม Funnel <span class="hint">จากชื่อแคมเปญ · กดแถวเพื่อกรอง</span></h3><div id="cpFun"></div></div>
+        </div>
+        <div class="card ch cpbuy"><h3>ลูกค้าซื้อจากกลุ่มเป้าหมายไหน <span class="hint">อ่านจากชื่อ Ad Set · 🏁 Ad สุดท้าย (Ads Manager)</span>
+            <label class="sw"><input type="checkbox" id="cpBuyAll"> แสดงกลุ่มที่ยังไม่มีการซื้อ</label></h3><div id="cpBuy"></div></div>
+        <div class="card ch cpflow"><h3>ลูกค้าที่ซื้อ เริ่มจากแคมเปญไหน · ปิดที่แคมเปญไหน <span class="hint">Ad แรก → Ad สุดท้าย</span></h3>
+          <div class="cplegend"><span><i class="c1"></i><b>🚪 Ad แรก (Lead Center)</b> = Converted · แคมเปญที่ลูกค้า<b>ทักครั้งแรก</b></span><span><i class="c2"></i><b>🏁 Ad สุดท้าย (Ads Manager)</b> = Purchase · แคมเปญที่ลูกค้า<b>เห็นเป็นตัวสุดท้าย</b>ก่อนซื้อ</span></div>
+          <div id="cpFlow"></div></div>
+        <div class="card ch cptable"><h3>แคมเปญ <span class="wbadge n" id="cpN">0</span>
+            <span class="hint">กดแถวเพื่อดู Ad Set</span>
+            <span class="cpsort">เรียงตาม <div class="seg" id="cpSort"><i class="thumb"></i><button data-s="lead" class="on">Leads</button><button data-s="ib">แชท</button><button data-s="qr">% Qualified</button><button data-s="c">Ad แรก</button><button data-s="p">Ad สุดท้าย</button></div></span></h3>
+          <div class="cplist" id="cpList"></div></div>
+      </section>
+
       <!-- Up Sale -->
       <section class="page" id="p-upsale">
         <div class="card usctl">
@@ -1824,6 +2048,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
 const DEFAULT_CFG = { sheetId:"1J4wB_uJUi5igKAEazMI437rXEzpxMkHW7O_V2YlkJRk", pattern:"Prospect {MMM} {YYYY}", lookback:12, sheets:"", refresh:60, revenueSheet:"Input Revenue", revenueCsv:"", apiKey:"",
   adsSheetId:"1ClBl0lhTd0m4jP1byK74vwBTfEC6YlS_0_hcKut7d54", adsGid:"58728027",
   leadSheetId:"1eyXa8lptdwx5sTyzxTOYzEKPNYSy1-L8c1urkzdKVsQ",
+  campFiles:"ONE – Nose=12W6CM9w_a6ja1LtUoXxi_XySZNYvJnYd7YApzvivOww|ONE – Main=1bl3hVYuNlaNv1S57CFwnCXV3musT4CCMObrHxqSGKio=จมูก",
   leadSheets:"ONE Clinic  Surgery|เสริมจมูก by ONE Surgery|ดึงหน้า Facelift by ONE Surgery|เสริมหน้าอก ทำนม by ONE Surgery" };
 let CFG = {...DEFAULT_CFG};
 try{ Object.assign(CFG, JSON.parse(localStorage.getItem("pd_cfg")||"{}")); }catch(e){}
@@ -2303,8 +2528,8 @@ const S = {
   rankSort:{proc:"act", sales:"act", doctor:"n"},
   cmp:{type:"month", periods:[], base:"prev", metric:"n", dim:"sales", view:"total", rmetric:"avg"}
 };
-const PAGES = ["overview","compare","trend","ads","adsbook","chat","lead","upsale","sales","doctor","proc","customers"];
-const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", chat:"Chat · แชทลูกค้า", lead:"Lead center", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
+const PAGES = ["overview","compare","trend","ads","adsbook","chat","lead","camp","upsale","sales","doctor","proc","customers"];
+const PAGE_TITLES = {overview:"ภาพรวม", compare:"เปรียบเทียบ", trend:"แนวโน้มรายวัน", ads:"Ads Spend", adsbook:"Ads × Booking", chat:"Chat · แชทลูกค้า", lead:"Lead center", camp:"Campaign Quality", upsale:"Up Sale · ประมาณการยอดขาย", sales:"ทีม Sales", doctor:"แพทย์", proc:"Services", customers:"ลูกค้าทั้งหมด"};
 const DIMS = {
   proc:{field:"proc", title:"Services", label:"Services", skipEmpty:false},
   sales:{field:"sales", title:"Sales", label:"Sales", skipEmpty:false},
@@ -4571,8 +4796,8 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 const PRESENT_CARDS = ["#p-adsbook .adsbook", "#p-adsbook .abfun", "#p-adsbook .abweek", "#p-adsbook .abtablecard", "#p-ads .adschart", "#p-ads .adsweek", "#p-ads .adstable",
   "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust",
   "#p-compare .mcard", "#p-compare .revcmp", "#p-compare .revsales", "#p-compare .cbottom .chcard",
-  "#p-lead .ldstage", "#p-lead .ldday", "#p-lead .ldcmp", "#p-lead .ldlist"].join(", ");
-const rerenderPresentPage = () => S.page === "lead" ? renderLead() : ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
+  "#p-lead .ldstage", "#p-lead .ldday", "#p-lead .ldcmp", "#p-lead .ldlist", "#p-camp .cpflow", "#p-camp .cpsum", "#p-camp .cpbuy", "#p-camp .cptable"].join(", ");
+const rerenderPresentPage = () => S.page === "lead" ? renderLead() : S.page === "camp" ? renderCamp() : ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
 const XI = {open:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
             close:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>`};
 let presentCard = null;
@@ -4694,7 +4919,10 @@ async function fetchLeads(mcp){
     try{ const res = await jsonpCall(url, 30000);
       const tb = res && res.table; if(tb) rows = [(tb.cols || []).map(c => c.label || ""), ...(tb.rows || []).map(r => (r.c || []).map(c => c == null ? "" : (typeof c.v === "string" ? c.v : (c.f ?? c.v ?? ""))))];
     }catch(e){}
-    pages.push({name:name.replace(/\s{2,}/g, " ").trim(), rows:parseLeads(rows, name)});
+    // a tab that does not exist comes back as the first tab: treat an exact repeat as "no data yet"
+    const sig = rows.length > 1 ? rows.length + "|" + JSON.stringify(rows[1]) + "|" + JSON.stringify(rows[rows.length - 1]) : "";
+    const dup = sig && pages.some(p => p._sig === sig);
+    pages.push({name:name.replace(/\s{2,}/g, " ").trim(), rows: dup ? [] : parseLeads(rows, name), _sig: dup ? "" : sig});
   }
   return pages;
 }
@@ -4908,6 +5136,254 @@ document.addEventListener("click", async ev => {
 });
 $("#ldFind").addEventListener("input", ev => { S.ldFind = ev.target.value; clearTimeout(S._ldf); S._ldf = setTimeout(renderLead, 220); });
 
+/* ================= MSG CAMPAIGN (one Google Sheet per ad account, one tab per month) =================
+   tab layout: title row · header "Campaign ID, Campaign, Ad Set, แชท (IB), Purchase, Qualified, Lost, Converted (Lead Center), Total Leads, %…"
+   a campaign row carries the campaign's Qualified / Lost / Converted; the rows below it with an empty Campaign ID are more ad sets (แชท / Purchase per ad set) */
+const TH_MON = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+function parseCampSheet(rows, tab){
+  const hi = rows.findIndex(r => r && r.some(c => /campaign id/i.test(c))); if(hi < 0) return null;
+  const H = rows[hi].map(c => clean(c).toLowerCase()), col = k => H.findIndex(h => h.includes(k));
+  // header names first; fixed positions as a fallback (Google's published-sheet reader blanks text headers inside number columns)
+  const pick = (i, d) => i >= 0 ? i : d;
+  const C = {id:pick(col("campaign id"), 0), name:pick(H.findIndex(h => h === "campaign"), 1), set:pick(col("ad set"), 2), ib:pick(col("แชท"), 3), p:pick(col("purchase"), 4),
+    q:pick(col("qualified"), 5), l:pick(col("lost"), 6), c:pick(col("converted"), 7)};
+  const title = clean((rows[0] || [])[0]);
+  const m = tab.match(/(\S+)\s+(\d{4})/), mi = m ? TH_MON.indexOf(m[1]) : -1;
+  const camps = []; let cur = null, filled = false;
+  for(const r of rows.slice(hi + 1)){
+    const a = clean(r[C.id]), b = clean(r[C.name]), set = clean(r[C.set]);
+    if(/^รวม/.test(a) || /^รวม/.test(b)) break;
+    if(!a && !set) continue;
+    if(a){ cur = {id:a, name:b, sets:[], ib:0, p:0, q:parseNum(r[C.q]), l:parseNum(r[C.l]), c:parseNum(r[C.c])}; camps.push(cur);
+      if(clean(r[C.q]) !== "" || clean(r[C.l]) !== "" || clean(r[C.c]) !== "") filled = filled || (cur.q + cur.l + cur.c > 0); }
+    if(cur && set){ const ib = parseNum(r[C.ib]), pu = parseNum(r[C.p]); cur.sets.push({name:set, ib, p:pu}); cur.ib += ib; cur.p += pu; }
+  }
+  return {tab, key: mi >= 0 ? keyOf(+m[2], mi) : tab, title, filled, camps};
+}
+async function fetchCamp(mcp){
+  // "name=fileId" or "name=fileId=keyword": with a keyword only campaigns whose name contains it are used (ONE – Main: จมูก only)
+  const files = (CFG.campFiles || DEFAULT_CFG.campFiles).split("|").map(x => { const [n, id, kw] = x.split("="); return {name:n.trim(), id:(id || "").trim(), kw:(kw || "").trim()}; }).filter(x => x.id);
+  const only = (f, m) => { if(!m || !f.kw) return m; const camps = m.camps.filter(c => c.name.includes(f.kw));
+    return {...m, camps, filled: camps.some(c => c.q + c.l + c.c > 0)}; };
+  const out = [];
+  for(const f of files){
+    const months = [];
+    if(mcp){
+      const map = await loadWorkbookMcp(mcp, f.id);
+      for(const [tab, rows] of Object.entries(map)){ const m = only(f, parseCampSheet(rows, tab)); if(m && m.camps.length) months.push(m); }
+    }else{
+      // published page: try one tab per month (named like "ส.ค. 2026") from Jan 2026 to this month
+      const now = new Date();
+      for(let d = new Date(2026, 0, 1); d <= now; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)){
+        const tab = `${TH_MON[d.getMonth()]} ${d.getFullYear()}`;
+        const url = cb => `https://docs.google.com/spreadsheets/d/${encodeURIComponent(f.id)}/gviz/tq?tqx=out:json;responseHandler:${cb}&headers=0&sheet=${encodeURIComponent(tab)}&_=${Date.now()}`;
+        try{ const res = await jsonpCall(url, 20000), tb = res && res.table; if(!tb) continue;
+          const rows = (tb.rows || []).map(r => (r.c || []).map(c => c == null ? "" : (typeof c.v === "string" ? c.v : (c.f ?? c.v ?? ""))));
+          // Google returns the first tab when a tab name is missing, so keep it only if its title row names this month
+          const m = only(f, parseCampSheet(rows, tab));
+          if(m && m.camps.length && m.title.includes(tab) && !months.some(x => x.title === m.title)) months.push(m); }catch(e){}
+      }
+    }
+    months.sort((a, b) => String(a.key).localeCompare(String(b.key)));
+    out.push({...f, months, note: f.kw ? `เฉพาะแคมเปญ${f.kw}` : ""});
+  }
+  return out;
+}
+/* "[NN][จมูก🔵] - TOF - EGM.MSG(LAL3%) - ABO - 190826 - S01" → stage TOF, audience LAL3%, start 19/08/26 */
+function campInfo(name){
+  const parts = name.split(/\s+-\s+/), stage = (parts.find(p => /^(TOF|MOF|BOF)$/i.test(p)) || "").toUpperCase();
+  const aud = (name.match(/MSG\(([^)]*)\)(?:\(([^)]*)\))?/) || []).slice(1).filter(Boolean).join(" ");
+  const dt = (name.match(/-\s(\d{2})(\d{2})(\d{2})(?:\s|$)/) || []);
+  const tag = (name.match(/^((?:\[[^\]]+\])+)/) || [])[1] || "";
+  const extra = parts.slice(5).join(" · ");
+  return {stage, aud: aud || "-", start: dt[1] ? `${dt[1]}/${dt[2]}/${dt[3]}` : "", tag, extra};
+}
+function campMerge(months){
+  // add up the chosen month(s) by Campaign ID
+  const m = new Map();
+  months.forEach(mo => mo.camps.forEach(c => {
+    if(!m.has(c.id)) m.set(c.id, {id:c.id, name:c.name, ib:0, p:0, q:0, l:0, c:0, sets:new Map(), months:[]});
+    const x = m.get(c.id); x.ib += c.ib; x.p += c.p; x.q += c.q; x.l += c.l; x.c += c.c; x.months.push(mo.key);
+    c.sets.forEach(st => { const y = x.sets.get(st.name) || {name:st.name, ib:0, p:0}; y.ib += st.ib; y.p += st.p; x.sets.set(st.name, y); });
+  }));
+  return [...m.values()].map(x => ({...x, sets:[...x.sets.values()].sort((a, b) => b.ib - a.ib), lead:x.q + x.l + x.c}));
+}
+/* audience from the ad set name (campaign name as a fallback) · funnel from the campaign name */
+const CP_AUD = [["Interest", "#3f6f9e"], ["Broad", "#8a6a43"], ["Lookalike", "#7d5a8a"], ["Retarget", "#b5654a"], ["Demographic", "#356e6b"], ["อื่นๆ", "#8c8172"]];
+const CP_FUN = [["TOF", "#3f6f9e", "ดึงคนใหม่"], ["MOF", "#c08a3e", "คนที่เคยเห็น/ทัก"], ["BOF", "#4f7a2e", "ใกล้ซื้อ"], ["-", "#8c8172", "ไม่ระบุ"]];
+const cpAudColor = a => (CP_AUD.find(x => x[0] === a) || CP_AUD[5])[1];
+function cpAudience(set, camp){
+  const t = ` ${set} `, c = camp || "";
+  if(/demo(graphic)?\b|\bDG\b/i.test(t)) return "Demographic";
+  if(/\bRTG\b|retarget/i.test(t)) return "Retarget";
+  if(/\bLAL|lookalike/i.test(t)) return "Lookalike";
+  if(/\sBROAD\s|\s-\sB\s-/i.test(t)) return "Broad";
+  if(/\s-\s(T-)?In\s-|\s-\sIn\.|\s-\sIn\s[A-Za-z]|interest/i.test(t)) return "Interest";
+  const m = (c.match(/MSG\(([^)]*)\)/) || [])[1] || "";
+  if(/RTG/i.test(m)) return "Retarget"; if(/LAL/i.test(m)) return "Lookalike"; if(/^B$/i.test(m)) return "Broad"; if(/In/i.test(m)) return "Interest"; if(/demo/i.test(m)) return "Demographic";
+  return "อื่นๆ";
+}
+/* the targeting part of an ad set name:
+   "[NN][จมูก🔵] - In - First jobber - B21 - 35 - 150826" → First jobber · "… - LAL3%.P - B25 - 45 - 190826 - S02" → LAL3%.P
+   "… - RTG EGM30D B -25 - 45 - 210826" → RTG EGM30D · "… - BROAD - B25 - 45 - 070826" → Broad */
+function cpSegment(set, aud){
+  const parts = set.split(/\s+-\s+/).map(x => x.trim()).filter(Boolean).filter(x => !/^\[.*\]$/.test(x) && !/^(\[[^\]]+\])+$/.test(x));
+  const isMeta = x => /^[BFM]?\d{2}(\s*-\s*\d{2})?$|^\d{6,7}$|^S\d{1,2}$|^-?\d+$/i.test(x);
+  const clean2 = x => x.replace(/\s+[BFM]\s*-?\d*$/i, "").trim();
+  if(aud === "Interest"){ const i = parts.findIndex(x => /^(T-)?In$/i.test(x)); let v = i >= 0 ? parts[i + 1] : (parts.find(x => /^In[.\s]/i.test(x)) || parts[0]);
+    v = (v || "").replace(/^In[.\s]+/i, "").trim(); return v && !isMeta(v) ? v : "Interest"; }
+  if(aud === "Demographic"){ const i = parts.findIndex(x => /demo/i.test(x)); const v = parts[i + 1]; return v && !isMeta(v) ? "Demo · " + v.replace(/-\s*([BFM]\d{2}.*)?$/i, "").trim() : "Demographic"; }
+  if(aud === "Broad") return "Broad";
+  if(aud === "Lookalike"){ const v = parts.find(x => /LAL/i.test(x)); return v ? clean2(v) : "Lookalike"; }
+  if(aud === "Retarget"){ const i = parts.findIndex(x => /RTG/i.test(x)); if(i < 0) return "Retarget";
+    let v = clean2(parts[i]); if(v.toUpperCase() === "RTG" && parts[i + 1] && !isMeta(parts[i + 1])) v += " " + parts[i + 1]; return v; }
+  const v = parts.find(x => !isMeta(x)); return v ? clean2(v) : aud;
+}
+const cpFunnel = name => ((name.match(/\b(TOF|MOF|BOF)\b/i) || [])[1] || "-").toUpperCase();
+function cpSum(list){ return list.reduce((t, x) => (t.ib += x.ib, t.p += x.p, t.q += x.q, t.l += x.l, t.c += x.c, t.n++, t.sets += x.sets.length, t), {ib:0, p:0, q:0, l:0, c:0, n:0, sets:0}); }
+/* one row: name · แชท · quality bar (Qualified / Lost / Converted %) · Leads · Ad แรก · Ad สุดท้าย */
+function cpRow(o){
+  const L = o.q + o.l + o.c, w = v => L ? v / L * 100 : 0;
+  return `<div class="cpr ${o.cls || ""}" ${o.attr || ""} style="--i:${(cpRow.k = (cpRow.k || 0) + 1) % 14}">
+    <span class="nm">${o.tag || ""}<b class="${o.nmCls || ""}" title="${esc(o.title || o.name)}">${o.name}</b><small>${o.sub || ""}</small></span>
+    <span class="num ib"><b>${fmtN(o.ib)}</b>${o.mxIb ? `<i style="width:${(o.ib / o.mxIb * 100).toFixed(1)}%"></i>` : ""}</span>
+    <span class="qb">${L ? `<span class="bar"><i class="q" style="flex:${o.q}">${w(o.q) >= 11 ? w(o.q).toFixed(0) + "%" : ""}</i><i class="l" style="flex:${o.l}">${w(o.l) >= 11 ? w(o.l).toFixed(0) + "%" : ""}</i><i class="c" style="flex:${o.c}"></i></span>
+      <small><b class="q">Q ${fmtN(o.q)}</b> ${w(o.q).toFixed(1)}% · <b class="l">L ${fmtN(o.l)}</b> ${w(o.l).toFixed(1)}% · <b class="c">C ${fmtN(o.c)}</b> ${w(o.c).toFixed(1)}%</small>` : `<small class="muted">ยังไม่กรอก Lead</small>`}</span>
+    <span class="num">${L ? fmtN(L) : "-"}</span><span class="num"><b class="c">${o.c || "-"}</b></span><span class="num"><b class="p">${o.p || "-"}</b></span></div>`;
+}
+const CP_HEAD = first => `<div class="cpr head"><span>${first}</span><span class="num">แชท<small>ประมาณการ Meta</small></span><span>คุณภาพ Lead · <b class="q">Qualified</b> · <b class="l">Lost</b> · <b class="c">Converted</b> <small>(Lead Center)</small></span><span class="num">Leads</span><span class="num">🚪 Ad แรก<small>Lead Center</small></span><span class="num">🏁 Ad สุดท้าย<small>Ads Manager</small></span></div>`;
+/* numbers count up from 0 on each render of Campaign Quality (respects reduced motion) */
+function cpCountUp(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  $$("#p-camp .cu").forEach(el => { const n = +el.dataset.n, d = +el.dataset.d || 0, suf = el.dataset.s || "", t0 = performance.now(), dur = 750;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3), v = n * e;
+      el.textContent = (d ? v.toFixed(d) : fmtN(Math.round(v))) + suf; if(k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step); });
+}
+function renderCamp(){
+  if(!S.camp){
+    $("#cpHint").textContent = S.campErr ? "อ่านไฟล์แคมเปญไม่ได้ · ตรวจว่าแชร์แบบทุกคนที่มีลิงก์" : "กำลังโหลดข้อมูลแคมเปญ…";
+    if(!S.campLoading){ S.campLoading = true;
+      getMcp().then(fetchCamp).then(d => { S.camp = d; S.campErr = ""; }).catch(e => { S.campErr = e && e.message || "ERR"; })
+        .finally(() => { S.campLoading = false; if(S.page === "camp") renderCamp(); }); }
+    return;
+  }
+  const accs = S.camp; if(!accs.length) return;
+  if(!accs.some(a => a.name === S.cpAcc)) S.cpAcc = accs[0].name;
+  const acc = accs.find(a => a.name === S.cpAcc), PGC = ["#5e662d", "#8a6a43", "#356e6b", "#b5654a", "#7d5a8a"];
+  $("#cpAcc").innerHTML = accs.map((a, i) => `<button data-a="${esc(a.name)}" class="${a.name === S.cpAcc ? "on" : ""}" style="--pc:${PGC[i % PGC.length]}"><i></i>${esc(a.name)} <small>${a.months.length} เดือน${a.note ? " · " + esc(a.note) : ""}</small></button>`).join("");
+  $$("#cpAcc button").forEach(b => b.onclick = () => { S.cpAcc = b.dataset.a; S.cpMonth = null; renderCamp(); });
+  const months = acc.months;
+  if(S.cpMonth == null || (S.cpMonth !== "all" && !months.some(m => m.key === S.cpMonth))){
+    const lf = [...months].reverse().find(m => m.filled); S.cpMonth = lf ? lf.key : (months.length ? months[months.length - 1].key : "all"); }
+  $("#cpMonths").innerHTML = `<i class="thumb"></i>` + months.map(m => `<button data-m="${m.key}" class="${S.cpMonth === m.key ? "on" : ""}">${keyLabel(m.key)}${m.filled ? "" : ` <small>ยังไม่กรอก Lead</small>`}</button>`).join("") + `<button data-m="all" class="${S.cpMonth === "all" ? "on" : ""}">รวมทุกเดือน</button>`;
+  $$("#cpMonths button").forEach(b => b.onclick = () => { S.cpMonth = b.dataset.m; renderCamp(); });
+  requestAnimationFrame(() => segMove($("#cpMonths")));
+  const sel = S.cpMonth === "all" ? months : months.filter(m => m.key === S.cpMonth), filled = sel.some(m => m.filled);
+  $("#cpHint").textContent = `📄 ${sel.map(m => m.title.split("|").pop().trim()).join(", ")} · Meta Ads Manager + Lead Center`;
+  $("#subtitle").textContent = `${acc.name}  ·  ${S.cpMonth === "all" ? "รวมทุกเดือน" : keyLabel(S.cpMonth)}  ·  แคมเปญ MSG`;
+  // campaigns of the chosen month(s) with audience (dominant ad set audience, by chats) and funnel
+  const tagCamp = x => { const a = {}; x.sets.forEach(st => { const k = cpAudience(st.name, x.name); a[k] = (a[k] || 0) + st.ib + .001; });
+    const aud = Object.entries(a).sort((p, q) => q[1] - p[1])[0]; return {...x, aud: aud ? aud[0] : cpAudience("", x.name), mixed:Object.keys(a).length > 1, fun:cpFunnel(x.name)}; };
+  const allC = campMerge(sel).map(tagCamp);
+  const af = S.cpAud || "", ff = S.cpFun || "";
+  const camps = allC.filter(x => (!af || x.aud === af) && (!ff || x.fun === ff));
+  // filter chips with counts
+  const chip = (id, list, cur, key, colorOf) => { const n = k => allC.filter(x => x[key] === k && (key === "aud" ? (!ff || x.fun === ff) : (!af || x.aud === af))).length;
+    $(id).innerHTML = `<button data-v="" class="${cur ? "" : "on"}">ทั้งหมด</button>` + list.filter(k => n(k) || k === cur).map(k => `<button data-v="${k}" class="${cur === k ? "on" : ""}" style="--cc:${colorOf(k)}"><i></i>${k} <small>${n(k)}</small></button>`).join(""); };
+  chip("#cpAudF", CP_AUD.map(x => x[0]), af, "aud", cpAudColor);
+  chip("#cpFunF", CP_FUN.map(x => x[0]), ff, "fun", k => (CP_FUN.find(x => x[0] === k) || CP_FUN[3])[1]);
+  $$("#cpAudF button").forEach(b => b.onclick = () => { S.cpAud = b.dataset.v; renderCamp(); });
+  $$("#cpFunF button").forEach(b => b.onclick = () => { S.cpFun = b.dataset.v; renderCamp(); });
+  const T = cpSum(camps), lead = T.q + T.l + T.c, pc = v => lead ? (v / lead * 100).toFixed(1) + "%" : "-";
+  // previous month (same filters) for the % change pills
+  const idx = months.findIndex(m => m.key === S.cpMonth), prevM = S.cpMonth !== "all" && idx > 0 ? months[idx - 1] : null;
+  const PT = prevM ? cpSum(campMerge([prevM]).map(tagCamp).filter(x => (!af || x.aud === af) && (!ff || x.fun === ff))) : null;
+  const pill = (k, better) => PT && (k === "ib" || k === "p" || (prevM.filled && filled)) ? dpill(T[k], PT[k], better) : "";
+  const fl = [af, ff].filter(Boolean).join(" · ");
+  const cu = (v, d = 0, suf = "") => `<em class="cu" data-n="${v}" data-d="${d}" data-s="${suf}">${d ? (+v).toFixed(d) : fmtN(v)}${suf}</em>`;
+  $("#cpKpis").innerHTML = `
+    <div class="kc hero">${LD_FX.all}<div class="l">แคมเปญ${fl ? " · " + esc(fl) : ""}</div><div class="v">${cu(T.n)}</div><div class="s">${fmtN(T.sets)} Ad Set · ${fmtN(T.ib)} แชท <small>(ประมาณการจาก Meta)</small></div>${pill("ib", "up")}</div>
+    <div class="kc st" style="--sc:#c08a3e">${LD_FX["Qualified"]}<div class="l">Qualified</div><div class="v vv"><span>${cu(T.q)}<small>คน</small></span><i></i><span>${lead ? cu(T.q / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("q", "up")}</div>
+    <div class="kc st" style="--sc:#8c8172">${LD_FX["Not Qualified"]}<div class="l">Lost</div><div class="v vv"><span>${cu(T.l)}<small>คน</small></span><i></i><span>${lead ? cu(T.l / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("l", "down")}</div>
+    <div class="kc st" style="--sc:#4f7a2e">${LD_FX["Intake"]}<div class="l">🚪 Ad แรก · Converted <small>(Lead Center)</small></div><div class="v vv"><span>${cu(T.c)}<small>คน</small></span><i></i><span>${lead ? cu(T.c / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("c", "up")}</div>
+    <div class="kc st" style="--sc:#3f6f9e">${LD_FX["Converted"]}<div class="l">🏁 Ad สุดท้าย · Purchase <small>(Ads Manager)</small></div><div class="v vv"><span>${cu(T.p)}<small>การซื้อ</small></span><i></i><span>${T.ib ? cu(T.p / T.ib * 100, 2, "%") : "-"}<small>ของแชท</small></span></div>${pill("p", "up")}</div>`;
+  cpCountUp();
+  if(!filled) $("#cpKpis").insertAdjacentHTML("beforeend", `<div class="cpwarn">⚠️ ${S.cpMonth === "all" ? "บางเดือน" : keyLabel(S.cpMonth)} ยังไม่ได้กรอก Qualified / Lost / Converted ในชีท · แชทและ Ad สุดท้าย (Purchase) ใช้ได้ตามปกติ</div>`);
+  // audience / funnel / month summaries (same row style as the campaign list)
+  const grp = (key, list) => list.map(k => ({k, ...cpSum(allC.filter(x => x[key] === k && (key === "aud" ? (!ff || x.fun === ff) : (!af || x.aud === af))))})).filter(g => g.n);
+  const GA = grp("aud", CP_AUD.map(x => x[0])), GF = grp("fun", CP_FUN.map(x => x[0]));
+  const mxA = Math.max(1, ...GA.map(g => g.ib)), mxF = Math.max(1, ...GF.map(g => g.ib));
+  $("#cpAud").innerHTML = CP_HEAD("Audience") + GA.map(g => cpRow({...g, name:`<i class="dot" style="background:${cpAudColor(g.k)}"></i>${g.k}`, title:g.k, sub:`${g.n} แคมเปญ · ${g.sets} Ad Set`, mxIb:mxA,
+    cls:"click" + (af === g.k ? " on" : ""), attr:`data-aud="${g.k}"`})).join("");
+  $("#cpFun").innerHTML = CP_HEAD("Funnel") + GF.map(g => { const f = CP_FUN.find(x => x[0] === g.k) || CP_FUN[3];
+    return cpRow({...g, name:`<i class="dot" style="background:${f[1]}"></i>${g.k}`, title:g.k, sub:`${f[2]} · ${g.n} แคมเปญ`, mxIb:mxF, cls:"click" + (ff === g.k ? " on" : ""), attr:`data-fun="${g.k}"`}); }).join("");
+  $$("#cpAud [data-aud]").forEach(r => r.onclick = () => { S.cpAud = S.cpAud === r.dataset.aud ? "" : r.dataset.aud; renderCamp(); });
+  $$("#cpFun [data-fun]").forEach(r => r.onclick = () => { S.cpFun = S.cpFun === r.dataset.fun ? "" : r.dataset.fun; renderCamp(); });
+
+  // buyers by targeting segment, read from the ad set name (purchases are recorded per ad set)
+  { const segs = new Map();
+    camps.forEach(x => x.sets.forEach(st => { const a = cpAudience(st.name, x.name), g = cpSegment(st.name, a), k = a + "|" + g;
+      if(!segs.has(k)) segs.set(k, {aud:a, seg:g, ib:0, p:0, sets:[]}); const o = segs.get(k); o.ib += st.ib; o.p += st.p; o.sets.push(st.name); }));
+    const all = [...segs.values()].sort((a, b) => b.p - a.p || b.ib - a.ib);
+    const show = S.cpBuyAll ? all : all.filter(o => o.p);
+    const tp = all.reduce((t, o) => t + o.p, 0), mxp = Math.max(1, ...all.map(o => o.p)), best = all.filter(o => o.p && o.ib >= 30).sort((a, b) => b.p / b.ib - a.p / a.ib)[0];
+    $("#cpBuyAll").checked = !!S.cpBuyAll;
+    $("#cpBuy").innerHTML = !all.length ? `<div class="rk-more">ไม่มีข้อมูล</div>` :
+      `<div class="sgh"><span>กลุ่มเป้าหมาย (จากชื่อ Ad Set)</span><span>🏁 การซื้อ (Ad สุดท้าย)</span><span class="num">% ของการซื้อ</span><span class="num">แชท</span><span class="num">ซื้อต่อ 100 แชท</span></div>` +
+      show.map(o => `<div class="sg ${o.p ? "" : "zero"}" title="${esc(o.sets.join("\n"))}">
+        <span class="nm"><span class="tg" style="background:${cpAudColor(o.aud)}">${o.aud}</span><b>${esc(o.seg)}</b><small>${o.sets.length} Ad Set</small></span>
+        <span class="pb"><i style="width:${(o.p / mxp * 100).toFixed(1)}%;background:${cpAudColor(o.aud)}"></i><b>${o.p || "-"}</b></span>
+        <span class="num">${tp && o.p ? (o.p / tp * 100).toFixed(0) + "%" : "-"}</span>
+        <span class="num">${fmtN(o.ib)}</span>
+        <span class="num">${o.ib ? (o.p / o.ib * 100).toFixed(2) : "-"}${best === o ? ` <em class="best">ดีสุด</em>` : ""}</span></div>`).join("") +
+      `<div class="sgn">รวม ${fmtN(tp)} การซื้อ จาก ${fmtN(all.filter(o => o.p).length)} กลุ่ม${all.length - all.filter(o => o.p).length ? ` · อีก ${all.length - all.filter(o => o.p).length} กลุ่มยังไม่มีการซื้อ` : ""} ·
+        นับจาก Purchase ราย Ad Set (Ads Manager) · Ad แรก (Lead Center) กรอกระดับแคมเปญ จึงแยกตามกลุ่มเป้าหมายไม่ได้ · ชี้เมาส์ที่แถวเพื่อดูชื่อ Ad Set · "ดีสุด" นับเฉพาะกลุ่มที่มีแชทตั้งแต่ 30</div>`;
+    $("#cpBuyAll").onchange = ev => { S.cpBuyAll = ev.target.checked; renderCamp(); };
+  }
+  // first ad → last ad
+  const short = x => `${x.fun} · ${x.aud}${campInfo(x.name).start ? " · เริ่ม " + campInfo(x.name).start : ""}`;
+  const flow = camps.filter(x => x.c || x.p).sort((a, b) => (b.c + b.p) - (a.c + a.p));
+  const mx = Math.max(1, ...flow.map(x => Math.max(x.c, x.p)));
+  const role = x => x.c > x.p ? ["🚪 เริ่มลูกค้า", "o"] : x.p > x.c ? ["🏁 ปิดการขาย", "e"] : ["🔁 ทั้งเริ่มและปิด", "b"];
+  // three plain columns: campaigns that START buyers · that CLOSE buyers · that do both
+  const mxf = Math.max(1, ...flow.map(x => Math.max(x.c, x.p)));
+  const col = (cls, icon, title, desc, list) => `<div class="rc ${cls}"><div class="rh"><b>${icon} ${title}</b><small>${desc}</small><span class="n">${list.length} แคมเปญ</span></div>
+    ${list.length ? list.map(x => `<div class="ri" title="${esc(x.name)} · ${esc(x.id)}"><div class="rn">${esc(x.name)}</div><div class="rs"><span>${esc(x.fun)} · ${esc(x.aud)}</span>
+      <span class="pp"><i class="c">🚪 ${x.c}</i><i class="ar">→</i><i class="p">🏁 ${x.p}</i></span></div>
+      <div class="pw"><span class="c"><i style="width:${(x.c / mxf * 100).toFixed(1)}%"></i></span><span class="p"><i style="width:${(x.p / mxf * 100).toFixed(1)}%"></i></span></div></div>`).join("") : `<div class="re">ไม่มี</div>`}</div>`;
+  const starts = flow.filter(x => x.c > x.p).sort((a, b) => b.c - a.c), closes = flow.filter(x => x.p > x.c).sort((a, b) => b.p - a.p), both = flow.filter(x => x.p === x.c).sort((a, b) => b.p - a.p);
+  $("#cpFlow").innerHTML = !flow.length ? `<div class="rk-more">ยังไม่มีลูกค้าที่ซื้อในช่วงนี้</div>` :
+    `<div class="rsum"><span>🚪 ลูกค้าที่ซื้อ <b>${fmtN(T.c)}</b> คน เริ่มจาก <b>${flow.filter(x => x.c).length}</b> แคมเปญ</span><span>🏁 <b>${fmtN(T.p)}</b> การซื้อ ปิดที่ <b>${flow.filter(x => x.p).length}</b> แคมเปญ</span></div>
+    <div class="rcols">${col("o", "🚪", "เริ่มลูกค้า", "ลูกค้าทักครั้งแรกจากแคมเปญนี้ มากกว่าซื้อปิดที่นี่", starts)}${col("e", "🏁", "ปิดการขาย", "ลูกค้าเห็นเป็นแอดสุดท้ายก่อนซื้อ มากกว่าเริ่มที่นี่", closes)}${col("b", "🔁", "ทั้งเริ่มและปิด", "เริ่มและปิดเท่ากัน", both)}</div>` +
+    `<div class="cpwhy"><div class="t">📝 ทำไม Ad แรก (${fmtN(T.c)} คน) กับ Ad สุดท้าย (${fmtN(T.p)} การซื้อ) ไม่เท่ากัน</div>
+      <div class="wr"><span class="wt w1">ขั้นตอนไม่ครบ</span><span>สร้างคำสั่งซื้อในแชทแล้ว แต่ลืมย้ายระยะเป็น Converted · หรือย้ายเป็น Converted แล้ว แต่ลูกค้าจ่ายนอกแชท Meta เลยไม่เห็น</span></div>
+      <div class="wr"><span class="wt w2">กดย้อนหลัง</span><span>Lead Center นับไว้ที่เดือนที่ลูกค้าเข้ามา · Ads Manager นับเดือนที่สร้างคำสั่งซื้อ · กดย้อนหลังเลยไปอยู่คนละเดือน</span></div>
+      <div class="wr"><span class="wt w3">สร้างคำสั่งซื้อซ้ำ</span><span>ลูกค้าคนเดียวมีคำสั่งซื้อ 2 ครั้ง ฝั่ง Ads นับ 2 แต่ฝั่ง Lead นับ 1 คน (ต.ค.–พ.ย. 2026 พบ 1 คน)</span></div>
+      <div class="wr"><span class="wt w4">เกินเวลาที่ Meta นับ</span><span>Meta ให้เครดิตแอดเฉพาะการซื้อภายใน 1 วันหลังเห็น / 7 วันหลังคลิก · ซื้อช้ากว่านั้นจะไม่นับให้แคมเปญไหน</span></div>
+      <div class="wr"><span class="wt w5">มีแค่แคมเปญ MSG</span><span>ถ้าแอดแรกหรือแอดสุดท้ายเป็นแคมเปญอื่น (AWN, TF.CL, POST) จะไม่อยู่ในตารางนี้</span></div>
+      <div class="s">✔ ยอดรวมทั้งเดือนควร<b>ใกล้กัน</b>ถ้าทำงานครบ · รายแคมเปญไม่เท่ากันเป็นเรื่องปกติ · ดู "รวมทุกเดือน" ช่วยลดผลจากการกดย้อนหลัง</div></div>`;
+
+  // campaign list
+  const sk = S.cpSort || "lead";
+  segSet($("#cpSort"), "s", sk);
+  const kf = x => sk === "qr" ? (x.lead ? x.q / x.lead : -1) : x[sk];
+  const list = [...camps].sort((a, b) => kf(b) - kf(a) || b.ib - a.ib);
+  $("#cpN").textContent = fmtN(list.length);
+  const mxIb = Math.max(1, ...list.map(x => x.ib));
+  $("#cpList").innerHTML = CP_HEAD("แคมเปญ") + list.map(x => { const ci = campInfo(x.name), open = S.cpOpen === x.id;
+      return cpRow({...x, name:esc(x.name), title:x.name, mxIb, nmCls:"full", cls:"click" + (open ? " open" : ""), attr:`data-id="${esc(x.id)}"`,
+        tag:`<span class="tgs"><span class="tg ${x.fun.toLowerCase()}">${x.fun}</span><span class="tg au" style="background:${cpAudColor(x.aud)}">${x.aud}${x.mixed ? " +" : ""}</span></span>`,
+        sub:`${ci.start ? "เริ่ม " + ci.start + " · " : ""}${ci.extra ? esc(ci.extra) + " · " : ""}${esc(x.id)}`}) +
+        (open ? `<div class="cpsets"><div class="cps head"><span>Ad Set</span><span>Audience</span><span class="num">แชท (IB)</span><span class="num">🏁 Ad สุดท้าย</span></div>${x.sets.map(st => { const a = cpAudience(st.name, x.name);
+          return `<div class="cps"><span>${esc(st.name)}</span><span><i class="dot" style="background:${cpAudColor(a)}"></i>${a}</span><span class="num">${fmtN(st.ib)}</span><span class="num">${st.p || "-"}</span></div>`; }).join("")}
+          <div class="cps note">Qualified / Lost / Converted กรอกไว้ระดับแคมเปญ จึงไม่แยกตาม Ad Set</div></div>` : ""); }).join("") +
+    `<div class="cpr foot"><span class="nm"><b>รวม</b><small>${fmtN(list.length)} แคมเปญ · ${fmtN(T.sets)} Ad Set</small></span><span class="num"><b>${fmtN(T.ib)}</b></span>
+      <span class="qb">${lead ? `<small><b class="q">Q ${fmtN(T.q)}</b> ${pc(T.q)} · <b class="l">L ${fmtN(T.l)}</b> ${pc(T.l)} · <b class="c">C ${fmtN(T.c)}</b> ${pc(T.c)}</small>` : ""}</span><span class="num">${lead ? fmtN(lead) : "-"}</span><span class="num"><b class="c">${fmtN(T.c)}</b></span><span class="num"><b class="p">${fmtN(T.p)}</b></span></div>`;
+  $$("#cpList .cpr[data-id]").forEach(r => r.onclick = () => { S.cpOpen = S.cpOpen === r.dataset.id ? "" : r.dataset.id; renderCamp(); });
+}
+$$("#cpSort button").forEach(b => b.onclick = () => { S.cpSort = b.dataset.s; renderCamp(); });
+
 /* ================= RENDER ================= */
 function renderSubtitle(){
   let txt;
@@ -4937,6 +5413,7 @@ function render(){
   else if(p==="adsbook") renderAdsBookPage();
   else if(p==="chat") renderChat();
   else if(p==="lead") renderLead();
+  else if(p==="camp") renderCamp();
   else if(p==="upsale") renderUpsale();
 }
 
@@ -4971,6 +5448,7 @@ function goPage(p){
   document.body.classList.toggle("p-ads", p==="ads" || p==="adsbook" || p==="chat");
   document.body.classList.toggle("p-chat", p==="chat");
   document.body.classList.toggle("p-lead", p==="lead");
+  document.body.classList.toggle("p-camp", p==="camp");
   document.body.classList.toggle("p-upsale", p==="upsale");
   $$(".nav button[data-page]").forEach(b => b.classList.toggle("on", b.dataset.page===p));
   $$(".page").forEach(s => s.classList.toggle("on", s.id==="p-"+p));
@@ -5027,7 +5505,7 @@ function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"
 let loading = false, lastSig = "";
 async function load(manual){
   if(loading) return; loading = true;
-  if(manual){ S.lead = null; if(S.page === "lead") setTimeout(renderLead, 0); }
+  if(manual){ S.lead = null; if(S.page === "lead") setTimeout(renderLead, 0); S.camp = null; if(S.page === "camp") setTimeout(renderCamp, 0); }
   setSync("load", "กำลังซิงก์…");
   try{
     const mcp = await getMcp();
