@@ -460,7 +460,9 @@ body.p-chat #adsGran{display:none}
 .chhead b{font-size:16px;font-weight:600}
 .chhead .sel{flex:0 1 260px}
 .chhead .hint{margin-left:auto;font-size:12px;color:var(--muted)}
-.chk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.chk{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.chk .kc .v small.u{font-size:11px;font-weight:400;color:var(--muted)}
+.chk .kc.hero .v small.u{color:rgba(255,255,255,.8)}
 .chk .kc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:0;box-shadow:var(--shadow);animation:rowIn .5s var(--ease) both}
 .chk .kc.hero{background:linear-gradient(135deg,#535b27,#7d8741);color:#fff;border:0}
 .chk .kc .l{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
@@ -990,7 +992,7 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .cpchips button.on i{background:#fff}
 .cpsum h3.sub{margin-top:14px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
-.cpr.click{cursor:pointer}
+.cpr.click{cursor:pointer;transition:background .3s ease}
 .cpr.on{background:color-mix(in srgb,var(--p1) 10%,transparent);box-shadow:inset 3px 0 0 var(--p1)}
 .cpr b.q,.cpr .head b.q,.cpr small b.q{color:#a9782f} .cpr b.l,.cpr small b.l{color:#7d7566}
 .cpr .tgs{display:flex;gap:4px;margin-bottom:2px}
@@ -1067,13 +1069,15 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 #p-camp .cu{font-style:normal;font-variant-numeric:tabular-nums}
 #p-camp .cpk .kc > :not(.ldfx){position:relative;z-index:1}
 @keyframes cpGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes cpRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cpRise{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @keyframes cpShine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(220%)}}
 @keyframes cpPulse{0%,100%{box-shadow:0 0 0 0 rgba(79,122,46,.45)}50%{box-shadow:0 0 0 5px rgba(79,122,46,0)}}
-#p-camp .qb .bar,#p-camp .ib i,#p-camp .sg .pb i,#p-camp .pw i,#p-camp .bbar .bt{transform-origin:left center;animation:cpGrow .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 45ms)}
-#p-camp .cpr,#p-camp .sg,#p-camp .rc .ri{animation:cpRise .45s ease both;animation-delay:calc(var(--i,0) * 35ms)}
+#p-camp .qb .bar,#p-camp .ib i,#p-camp .sg .pb i,#p-camp .pw i,#p-camp .bbar .bt{transform-origin:left center;animation:cpGrow 1.3s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+#p-camp .cpr,#p-camp .sg,#p-camp .rc .ri{animation:cpRise .8s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+#p-camp .cpsets,.qex{animation:cpOpen .45s cubic-bezier(.22,.61,.36,1) both;transform-origin:top}
+@keyframes cpOpen{from{opacity:0;transform:scaleY(.92)}to{opacity:1;transform:none}}
 #p-camp .qb .bar{position:relative}
-#p-camp .qb .bar::after{content:"";position:absolute;inset:0;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);animation:cpShine 4.5s ease-in-out infinite;animation-delay:calc(1s + var(--i,0) * 120ms);pointer-events:none}
+#p-camp .qb .bar::after{content:"";position:absolute;inset:0;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:cpShine 7s ease-in-out infinite;animation-delay:calc(2s + var(--i,0) * 160ms);pointer-events:none}
 #p-camp .best,#p-camp .sg .best{animation:cpPulse 2.2s ease-in-out infinite}
 .rc .pw{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:5px}
 .rc .pw span{height:8px;border-radius:4px;background:var(--soft);overflow:hidden;display:block}
@@ -1300,6 +1304,38 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 #ldStageF button small{font-size:10.5px;opacity:.7}
 
 @media (max-width:1180px){ #p-lead.on{display:flex;flex-direction:column} .ldk{grid-template-columns:1fr 1fr} .ldk .kc.hero{grid-column:1 / -1} .ldday{height:300px} .ldcmp{height:360px} .ldlist{height:560px} }
+/* ===== chat: what customers ask ===== */
+.chq h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chq .hint{font-size:11.5px;color:var(--muted);font-weight:300;margin-left:auto}
+.qwrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.qleft{display:flex;flex-direction:column;gap:8px;min-width:0}
+.qtiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.qtile{font:inherit;text-align:left;display:flex;flex-direction:column;gap:4px;padding:8px 10px;border-radius:12px;cursor:pointer;color:var(--text);
+  border:1px solid color-mix(in srgb,var(--qc) 28%,var(--line));background:color-mix(in srgb,var(--qc) 6%,var(--card));
+  transition:background .3s ease,border-color .3s ease,transform .3s ease;animation:cpRise .8s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+.qtile:hover{background:color-mix(in srgb,var(--qc) 12%,var(--card));transform:translateY(-1px)}
+.qtile.on{border-color:var(--qc);background:color-mix(in srgb,var(--qc) 16%,var(--card));box-shadow:inset 0 0 0 1px var(--qc)}
+.qtile .qn{display:flex;align-items:center;gap:6px;font-size:12px;line-height:1.3;min-height:31px}
+.qtile .qn i{width:9px;height:9px;border-radius:3px;background:var(--qc);flex:none}
+.qtile .qv{display:flex;align-items:baseline;gap:5px}
+.qtile .qv b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.qtile .qv small{font-size:11px;color:var(--muted)}
+.qtile .qb{height:6px;border-radius:4px;background:color-mix(in srgb,var(--qc) 12%,transparent);overflow:hidden}
+.qtile .qb i{display:block;height:100%;border-radius:4px;background:var(--qc);transform-origin:left;animation:cpGrow 1.3s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+.qexbox{display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-height:38px;padding:8px 10px;border:1px dashed var(--line);border-radius:12px;background:var(--soft)}
+.qexbox .ph{font-size:12px;color:var(--muted)}
+.qexbox .h{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;width:100%;margin-bottom:2px}
+.qexbox .h i{width:9px;height:9px;border-radius:3px;background:var(--qc)}
+.qexbox .ex{font-size:11.5px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:3px 8px;animation:cpRise .5s ease both}
+.qtop{border-left:1px solid var(--line);padding-left:14px}
+.qtop .t{font-size:12.5px;font-weight:600;margin-bottom:4px}
+.qtop .t small{font-weight:400;color:var(--muted);font-size:10.5px}
+.qt{display:grid;grid-template-columns:18px minmax(0,1fr) 36px;gap:8px;align-items:center;font-size:12px;padding:3px 0;border-bottom:1px dashed var(--line);animation:cpRise .8s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+.qt .r{font-size:11px;color:var(--muted);text-align:center}
+.qt .x{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qt b{text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:1180px){ .qwrap{grid-template-columns:1fr} .qtop{border-left:0;padding-left:0} .qtiles{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:600px){ .qtiles{grid-template-columns:1fr 1fr} }
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1615,7 +1651,8 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-upsale .mixs{gap:8px}
 }
 @media (min-width:1181px) and (min-height:620px){
-  #p-chat{height:var(--avail);grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto minmax(0,1fr) minmax(0,1fr) auto;gap:10px}
+  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
+  #p-chat .chq{grid-column:1 / -1;grid-row:6}
   #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
   #p-chat .chrow{display:contents}
   #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3 / 5}
@@ -1628,7 +1665,11 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-chat .chspeed .sp .tr{height:6px}
   #p-chat .chspeed .sp small{font-size:10px}
   #p-chat .chsrc .srcwrap{gap:10px}
-  #p-chat .chcust{grid-column:3;grid-row:3 / 6;height:auto;min-height:0}
+  #p-chat .chcust{grid-column:3;grid-row:3 / 6;height:auto;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+  #p-chat .chcust .custlist{flex:1;min-height:0;overflow-y:auto}
+  #p-chat .chsrc,#p-chat .chspeed{min-height:0;overflow:hidden}
+  #p-chat .chwait{min-height:0;overflow:hidden;display:flex;flex-direction:column}
+  #p-chat .chwait .waitlist{flex:1;min-height:0;overflow-y:auto}
   #p-chat .srcwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
   #p-chat .chspeed .speed{justify-content:space-between;gap:0}
   #p-chat .peaks .pl{display:none}
@@ -1831,6 +1872,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="cfind"><input id="chatFind" placeholder="ค้นหาชื่อ หรือข้อความ" autocomplete="off"><div class="seg" id="chatCustF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="wait">รอตอบ</button><button data-f="phone">มีเบอร์</button><button data-f="ads">Ads</button><button data-f="org">Organic</button><button data-f="cmt">คอมเมนต์</button></div></div>
           <div class="custlist" id="chatCust"></div></div>
         <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
+        <div class="card ch chq"><h3>💬 ลูกค้าถามอะไรบ่อย <span class="hint" id="chatQHint"></span></h3><div class="qwrap" id="chatQ"></div></div>
         <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
       </section>
 
@@ -4593,6 +4635,11 @@ function renderChat(){
     `<div class="kc hero"><div class="l">แชททั้งหมด</div><div class="v">${fmtN(C.active)}</div><div class="s">ลูกค้าทัก ${fmtN(C.active)} ห้อง</div>${dpill(C.active, P.active)}</div>`,
     `<div class="kc"><div class="l">แชทใหม่</div><div class="v">${fmtN(C.neu)}</div><div class="s">Message จากโฆษณา (Meta) ${fmtN(am)}</div>${dpill(C.neu, P.neu)}</div>`,
     `<div class="kc"><div class="l">ข้อความจากลูกค้า</div><div class="v">${fmtN(C.cust)}</div><div class="s">เพจตอบ ${fmtN(C.admin)} ข้อความ</div>${dpill(C.cust, P.cust)}</div>`,
+    (() => { // average messages a customer sends per room in the period (and the typical / median room)
+      const per = (from, to) => { const v = chatConvs().map(c => c.msgs.filter(m => m.c && m.t >= from && m.t < to).length).filter(n => n > 0).sort((x, y) => x - y);
+        return {avg: v.length ? v.reduce((t, n) => t + n, 0) / v.length : null, med: v.length ? v[Math.floor(v.length / 2)] : null, one: v.length ? v.filter(n => n === 1).length / v.length : null}; };
+      const X = per(a, e), Y = per(pa, a);
+      return `<div class="kc"><div class="l">ลูกค้าส่งข้อความ (เฉลี่ย)</div><div class="v">${X.avg == null ? "-" : X.avg.toFixed(1)} <small class="u">ครั้ง/คน</small></div><div class="s">${X.med == null ? "" : `ส่วนใหญ่ ${X.med} · ครั้งเดียว ${(X.one * 100).toFixed(0)}%`}</div>${dpill(X.avg, Y.avg)}</div>`; })(),
     `<div class="kc"><div class="l">อัตราการตอบ</div><div class="v">${rate == null ? "-" : (rate * 100).toFixed(1) + "%"}</div><div class="s">ตอบแล้ว ${fmtN(C.replied)} จาก ${fmtN(C.active)} ห้อง</div>${dpill(rate, prate)}</div>`,
     `<div class="kc"><div class="l">เวลาตอบกลับ (มัธยฐาน)</div><div class="v">${C.median == null ? "-" : fmtDur(C.median)}</div><div class="s">${C.mean == null ? "" : `เฉลี่ย ${fmtDur(C.mean)} · ตอบใน 15 นาที ${(C.in15 * 100).toFixed(0)}%`}</div>${dpill(C.median, P.median, "down")}</div>`,
     `<div class="kc"><div class="l">แชทคุย &gt; ${deepSel} ข้อความ</div><div class="v">${fmtN(C.deep)}</div><div class="s">${C.active ? (C.deep / C.active * 100).toFixed(1) : "0.0"}% ของแชททั้งหมด</div>${dpill(C.deep, P.deep)}</div>`,
@@ -4638,6 +4685,7 @@ function renderChat(){
     : `<div class="empty">${paidAll.length ? "ไม่มีรายชื่อในกลุ่มนี้" : "ยังไม่มีลิงก์ชำระเงินในช่วงนี้"}</div>`;
 
   renderChatList(a, e);
+  renderChatQ(a, e);
 
   /* busy hours */
   segSet($("#chatHourMode"), "m", S.chatHourMode);
@@ -4693,6 +4741,60 @@ const initial = n => (String(n).trim().match(/[\p{L}\p{N}]/u) || ["?"])[0].toUpp
 const fmtWhen = t => { const d = new Date(), y = addDays(new Date(d.getFullYear(), d.getMonth(), d.getDate()), -1), hm = `${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}`;
   return t >= addDays(y, 1) ? hm : t >= y ? `เมื่อวาน ${hm}` : `${t.getDate()} ${TH[t.getMonth()]} ${hm}`; };
 const phoneOf = c => { for(const m of c.msgs) if(m.c){ const x = m.text.replace(/[\s\-.()]/g, "").match(PHONE_RE); if(x) return x[0]; } return ""; };
+/* what customers ask: customer messages in the period sorted into topics by keywords, counted per chat room */
+const CHAT_Q = [
+  ["ราคา / ค่าใช้จ่าย", "#c08a3e", /ราคา|เท่า(ไร|ไหร่|หร่)|กี่บาท|ค่าใช้จ่าย|งบ|price|how much|แพง|ถูก/i],
+  ["โปรโมชั่น / ผ่อนชำระ", "#b5654a", /โปร|ส่วนลด|ลดราคา|ผ่อน|บัตรเครดิต|0%|แพ็กเกจ|แพคเกจ|promotion/i],
+  ["นัดหมาย / คิว / ปรึกษา", "#3f6f9e", /นัด|คิว|จอง|ว่าง(ไหม|มั้ย)|วันไหน|เข้าไป|ปรึกษา|consult|ประเมิน|ตรวจ/i],
+  ["เทคนิค / วัสดุ", "#7d5a8a", /ซิลิ|กระดูก|เนื้อเยื่อ|ผิวหนัง|open|close|เปิด|ปลายจมูก|สันจมูก|ปีกจมูก|เทคนิค|วัสดุ|แบบไหน|ทรง|3d|โด่ง/i],
+  ["พักฟื้น / ผลข้างเคียง", "#5f9a8f", /บวม|เจ็บ|ปวด|พักฟื้น|กี่วัน|ตัดไหม|หาย|ช้ำ|อักเสบ|ติดเชื้อ|แผล|ดมยา|ฉีดยาชา|หลังทำ/i],
+  ["แก้ไข / ทำซ้ำ", "#8a6a43", /แก้(?!ม|ว|ไข้)|ทำมาแล้ว|เคยทำ|ซ่อม|ทะลุ|เอียง|ถอด|เปลี่ยนซิ/i],
+  ["แพทย์", "#356e6b", /หมอ|แพทย์|doctor|ศัลย/i],
+  ["รีวิว / ผลงาน", "#a3864a", /รีวิว|ผลงาน|ขอดูรูป|ขอรูป|ก่อนหลัง|before|after|ตัวอย่าง(งาน|เคส)/i],
+  ["ที่ตั้ง / การเดินทาง", "#4f7a2e", /อยู่(ที่)?ไหน|สาขา|แผนที่|ที่จอด|ใกล้|bts|mrt|location|map|ทาง(ไป|มา)/i],
+  ["มัดจำ / การชำระเงิน", "#9a7aa8", /มัดจำ|โอน|ชำระ|จ่าย|บัญชี|สลิป|qr|พร้อมเพย์/i]
+];
+const IS_SYS = /ตอบกลับโฆษณา|replied to (an|your) ad|ตอบกลับความคิดเห็น/i;
+function renderChatQ(a, e){
+  const convs = chatConvs();
+  const T = CHAT_Q.map(([name, color, re]) => ({name, color, re, rooms:new Set(), msgs:0, ex:[]}));
+  const freq = new Map(); let asked = new Set(), total = 0;
+  convs.forEach(c => c.msgs.forEach(m => {
+    if(!m.c || m.t < a || m.t >= e) return;
+    const t = String(m.text || "").trim(); if(!t || t.length < 2 || IS_SYS.test(t) || /^\(ไฟล์/.test(t)) return;
+    total++;
+    let hit = false;
+    T.forEach(q => { if(q.re.test(t)){ hit = true; q.msgs++; q.rooms.add(c.id); if(q.ex.length < 40 && t.length <= 90) q.ex.push(t); } });
+    if(hit) asked.add(c.id);
+    // frequent identical questions (short, normalised)
+    const k = t.toLowerCase().replace(/(\s|[.!?~]|ค่ะ|คะ|ครับ|คับ|นะ|จ้า+|😊|🙏|💚|🧡|❤️)+$/u, "").replace(/\s+/g, " ");
+    if(k.length >= 3 && k.length <= 50) freq.set(k, (freq.get(k) || 0) + 1);
+  }));
+  const rooms = convs.filter(c => c.msgs.some(m => m.c && m.t >= a && m.t < e)).length;
+  const list = T.filter(q => q.rooms.size).sort((x, y) => y.rooms.size - x.rooms.size);
+  const mx = Math.max(1, ...list.map(q => q.rooms.size));
+  $("#chatQHint").textContent = `จากข้อความลูกค้า ${fmtN(total)} ข้อความ ใน ${fmtN(rooms)} ห้อง · จัดหมวดจากคำในข้อความ (1 ข้อความอยู่ได้หลายหมวด)`;
+  const open = S.chatQOpen;
+  const top = [...freq.entries()].filter(([, n]) => n >= 2).sort((x, y) => y[1] - x[1]).slice(0, 10);
+  const uniq = arr => [...new Set(arr)].slice(0, 6);
+  setHTMLIf($("#chatQ"), !list.length ? `<div class="rk-more">ยังไม่มีข้อความลูกค้าในช่วงนี้</div>` :
+    `<div class="qleft"><div class="qtiles">${list.map((q, i) => `<button class="qtile" data-q="${esc(q.name)}" style="--qc:${q.color};--i:${i}">
+        <span class="qn"><i></i>${esc(q.name)}</span>
+        <span class="qv"><b>${fmtN(q.rooms.size)}</b><small>ห้อง · ${rooms ? (q.rooms.size / rooms * 100).toFixed(0) : 0}%</small></span>
+        <span class="qb"><i style="width:${(q.rooms.size / mx * 100).toFixed(1)}%"></i></span>
+      </button>`).join("")}</div>
+      <div class="qexbox" id="chatQEx"><span class="ph">กดหมวดด้านบนเพื่อดูตัวอย่างข้อความจริงของลูกค้า</span></div></div>
+    <div class="qtop"><div class="t">ข้อความที่พิมพ์ซ้ำบ่อย <small>(รวมปุ่มตอบด่วน)</small></div>${top.length ? top.map(([k, n], i) => `<div class="qt" style="--i:${i}"><span class="r">${i + 1}</span><span class="x" title="${esc(k)}">“${esc(k)}”</span><b>${fmtN(n)}</b></div>`).join("") : `<div class="rk-more">ยังไม่มีข้อความที่ซ้ำกัน</div>`}</div>`);
+  // tap a topic → its example messages appear in the box under the tiles
+  S._chatQ = Object.fromEntries(list.map(q => [q.name, {ex:uniq(q.ex), color:q.color, rooms:q.rooms.size, msgs:q.msgs}]));
+  const showEx = name => { const box = $("#chatQEx"); if(!box) return;
+    $$("#chatQ .qtile").forEach(t => t.classList.toggle("on", t.dataset.q === name));
+    const d = name && S._chatQ[name];
+    box.innerHTML = d ? `<span class="h" style="--qc:${d.color}"><i></i>${esc(name)} · ${fmtN(d.rooms)} ห้อง · ${fmtN(d.msgs)} ข้อความ</span>${d.ex.map(x => `<span class="ex">“${esc(x)}”</span>`).join("") || `<span class="ph">ไม่มีตัวอย่างสั้น ๆ</span>`}`
+      : `<span class="ph">กดหมวดด้านบนเพื่อดูตัวอย่างข้อความจริงของลูกค้า</span>`; };
+  $$("#chatQ .qtile").forEach(t => t.onclick = () => { S.chatQOpen = S.chatQOpen === t.dataset.q ? "" : t.dataset.q; showEx(S.chatQOpen); });
+  showEx(S.chatQOpen && S._chatQ[S.chatQOpen] ? S.chatQOpen : "");
+}
 function renderChatList(a, e){
   const q = (S.chatFind || "").trim().toLowerCase(), f = S.chatCustF || "all";
   segSet($("#chatCustF"), "f", f);
@@ -5253,10 +5355,17 @@ function cpRow(o){
 }
 const CP_HEAD = first => `<div class="cpr head"><span>${first}</span><span class="num">แชท<small>ประมาณการ Meta</small></span><span>คุณภาพ Lead · <b class="q">Qualified</b> · <b class="l">Lost</b> · <b class="c">Converted</b> <small>(Lead Center)</small></span><span class="num">Leads</span><span class="num">🚪 Ad แรก<small>Lead Center</small></span><span class="num">🏁 Ad สุดท้าย<small>Ads Manager</small></span></div>`;
 /* numbers count up from 0 on each render of Campaign Quality (respects reduced motion) */
+/* write a section only when its HTML changed, so untouched parts don't replay their motion */
+function cpSetsHTML(x){ return `<div class="cpsets" data-for="${esc(x.id)}"><div class="cps head"><span>Ad Set</span><span>Audience</span><span class="num">แชท (IB)</span><span class="num">🏁 Ad สุดท้าย</span></div>${x.sets.map(st => { const a = cpAudience(st.name, x.name);
+          return `<div class="cps"><span>${esc(st.name)}</span><span><i class="dot" style="background:${cpAudColor(a)}"></i>${a}</span><span class="num">${fmtN(st.ib)}</span><span class="num">${st.p || "-"}</span></div>`; }).join("")}
+          <div class="cps note">Qualified / Lost / Converted กรอกไว้ระดับแคมเปญ จึงไม่แยกตาม Ad Set</div></div>`; }
+function setHTMLIf(el, html){ if(!el || el._h === html) return false; el._h = html; el.innerHTML = html; return true; }
 function cpCountUp(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  $$("#p-camp .cu").forEach(el => { const n = +el.dataset.n, d = +el.dataset.d || 0, suf = el.dataset.s || "", t0 = performance.now(), dur = 750;
-    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3), v = n * e;
+  S._cuPrev = S._cuPrev || [];
+  $$("#cpKpis .cu").forEach((el, idx) => { const n = +el.dataset.n, d = +el.dataset.d || 0, suf = el.dataset.s || "", t0 = performance.now(), dur = 1100;
+    const from = S._cuPrev[idx] ?? 0; S._cuPrev[idx] = n;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4), v = from + (n - from) * e;
       el.textContent = (d ? v.toFixed(d) : fmtN(Math.round(v))) + suf; if(k < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step); });
 }
@@ -5302,22 +5411,24 @@ function renderCamp(){
   const pill = (k, better) => PT && (k === "ib" || k === "p" || (prevM.filled && filled)) ? dpill(T[k], PT[k], better) : "";
   const fl = [af, ff].filter(Boolean).join(" · ");
   const cu = (v, d = 0, suf = "") => `<em class="cu" data-n="${v}" data-d="${d}" data-s="${suf}">${d ? (+v).toFixed(d) : fmtN(v)}${suf}</em>`;
-  $("#cpKpis").innerHTML = `
+  const ch_cpKpis = setHTMLIf($("#cpKpis"), `
     <div class="kc hero">${LD_FX.all}<div class="l">แคมเปญ${fl ? " · " + esc(fl) : ""}</div><div class="v">${cu(T.n)}</div><div class="s">${fmtN(T.sets)} Ad Set · ${fmtN(T.ib)} แชท <small>(ประมาณการจาก Meta)</small></div>${pill("ib", "up")}</div>
     <div class="kc st" style="--sc:#c08a3e">${LD_FX["Qualified"]}<div class="l">Qualified</div><div class="v vv"><span>${cu(T.q)}<small>คน</small></span><i></i><span>${lead ? cu(T.q / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("q", "up")}</div>
     <div class="kc st" style="--sc:#8c8172">${LD_FX["Not Qualified"]}<div class="l">Lost</div><div class="v vv"><span>${cu(T.l)}<small>คน</small></span><i></i><span>${lead ? cu(T.l / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("l", "down")}</div>
     <div class="kc st" style="--sc:#4f7a2e">${LD_FX["Intake"]}<div class="l">🚪 Ad แรก · Converted <small>(Lead Center)</small></div><div class="v vv"><span>${cu(T.c)}<small>คน</small></span><i></i><span>${lead ? cu(T.c / lead * 100, 1, "%") : "-"}<small>ของ Lead</small></span></div>${pill("c", "up")}</div>
-    <div class="kc st" style="--sc:#3f6f9e">${LD_FX["Converted"]}<div class="l">🏁 Ad สุดท้าย · Purchase <small>(Ads Manager)</small></div><div class="v vv"><span>${cu(T.p)}<small>การซื้อ</small></span><i></i><span>${T.ib ? cu(T.p / T.ib * 100, 2, "%") : "-"}<small>ของแชท</small></span></div>${pill("p", "up")}</div>`;
-  cpCountUp();
-  if(!filled) $("#cpKpis").insertAdjacentHTML("beforeend", `<div class="cpwarn">⚠️ ${S.cpMonth === "all" ? "บางเดือน" : keyLabel(S.cpMonth)} ยังไม่ได้กรอก Qualified / Lost / Converted ในชีท · แชทและ Ad สุดท้าย (Purchase) ใช้ได้ตามปกติ</div>`);
+    <div class="kc st" style="--sc:#3f6f9e">${LD_FX["Converted"]}<div class="l">🏁 Ad สุดท้าย · Purchase <small>(Ads Manager)</small></div><div class="v vv"><span>${cu(T.p)}<small>การซื้อ</small></span><i></i><span>${T.ib ? cu(T.p / T.ib * 100, 2, "%") : "-"}<small>ของแชท</small></span></div>${pill("p", "up")}</div>`);
+  if(ch_cpKpis) cpCountUp();
+  if(ch_cpKpis && !filled) $("#cpKpis").insertAdjacentHTML("beforeend", `<div class="cpwarn">⚠️ ${S.cpMonth === "all" ? "บางเดือน" : keyLabel(S.cpMonth)} ยังไม่ได้กรอก Qualified / Lost / Converted ในชีท · แชทและ Ad สุดท้าย (Purchase) ใช้ได้ตามปกติ</div>`);
   // audience / funnel / month summaries (same row style as the campaign list)
   const grp = (key, list) => list.map(k => ({k, ...cpSum(allC.filter(x => x[key] === k && (key === "aud" ? (!ff || x.fun === ff) : (!af || x.aud === af))))})).filter(g => g.n);
   const GA = grp("aud", CP_AUD.map(x => x[0])), GF = grp("fun", CP_FUN.map(x => x[0]));
   const mxA = Math.max(1, ...GA.map(g => g.ib)), mxF = Math.max(1, ...GF.map(g => g.ib));
-  $("#cpAud").innerHTML = CP_HEAD("Audience") + GA.map(g => cpRow({...g, name:`<i class="dot" style="background:${cpAudColor(g.k)}"></i>${g.k}`, title:g.k, sub:`${g.n} แคมเปญ · ${g.sets} Ad Set`, mxIb:mxA,
-    cls:"click" + (af === g.k ? " on" : ""), attr:`data-aud="${g.k}"`})).join("");
-  $("#cpFun").innerHTML = CP_HEAD("Funnel") + GF.map(g => { const f = CP_FUN.find(x => x[0] === g.k) || CP_FUN[3];
-    return cpRow({...g, name:`<i class="dot" style="background:${f[1]}"></i>${g.k}`, title:g.k, sub:`${f[2]} · ${g.n} แคมเปญ`, mxIb:mxF, cls:"click" + (ff === g.k ? " on" : ""), attr:`data-fun="${g.k}"`}); }).join("");
+  cpRow.k = 0;
+  const ch_cpAud = setHTMLIf($("#cpAud"), CP_HEAD("Audience") + GA.map(g => cpRow({...g, name:`<i class="dot" style="background:${cpAudColor(g.k)}"></i>${g.k}`, title:g.k, sub:`${g.n} แคมเปญ · ${g.sets} Ad Set`, mxIb:mxA,
+    cls:"click" + (af === g.k ? " on" : ""), attr:`data-aud="${g.k}"`})).join(""));
+  cpRow.k = 0;
+  const ch_cpFun = setHTMLIf($("#cpFun"), CP_HEAD("Funnel") + GF.map(g => { const f = CP_FUN.find(x => x[0] === g.k) || CP_FUN[3];
+    return cpRow({...g, name:`<i class="dot" style="background:${f[1]}"></i>${g.k}`, title:g.k, sub:`${f[2]} · ${g.n} แคมเปญ`, mxIb:mxF, cls:"click" + (ff === g.k ? " on" : ""), attr:`data-fun="${g.k}"`}); }).join(""));
   $$("#cpAud [data-aud]").forEach(r => r.onclick = () => { S.cpAud = S.cpAud === r.dataset.aud ? "" : r.dataset.aud; renderCamp(); });
   $$("#cpFun [data-fun]").forEach(r => r.onclick = () => { S.cpFun = S.cpFun === r.dataset.fun ? "" : r.dataset.fun; renderCamp(); });
 
@@ -5329,7 +5440,7 @@ function renderCamp(){
     const show = S.cpBuyAll ? all : all.filter(o => o.p);
     const tp = all.reduce((t, o) => t + o.p, 0), mxp = Math.max(1, ...all.map(o => o.p)), best = all.filter(o => o.p && o.ib >= 30).sort((a, b) => b.p / b.ib - a.p / a.ib)[0];
     $("#cpBuyAll").checked = !!S.cpBuyAll;
-    $("#cpBuy").innerHTML = !all.length ? `<div class="rk-more">ไม่มีข้อมูล</div>` :
+    const ch_cpBuy = setHTMLIf($("#cpBuy"), !all.length ? `<div class="rk-more">ไม่มีข้อมูล</div>` :
       `<div class="sgh"><span>กลุ่มเป้าหมาย (จากชื่อ Ad Set)</span><span>🏁 การซื้อ (Ad สุดท้าย)</span><span class="num">% ของการซื้อ</span><span class="num">แชท</span><span class="num">ซื้อต่อ 100 แชท</span></div>` +
       show.map(o => `<div class="sg ${o.p ? "" : "zero"}" title="${esc(o.sets.join("\n"))}">
         <span class="nm"><span class="tg" style="background:${cpAudColor(o.aud)}">${o.aud}</span><b>${esc(o.seg)}</b><small>${o.sets.length} Ad Set</small></span>
@@ -5338,7 +5449,7 @@ function renderCamp(){
         <span class="num">${fmtN(o.ib)}</span>
         <span class="num">${o.ib ? (o.p / o.ib * 100).toFixed(2) : "-"}${best === o ? ` <em class="best">ดีสุด</em>` : ""}</span></div>`).join("") +
       `<div class="sgn">รวม ${fmtN(tp)} การซื้อ จาก ${fmtN(all.filter(o => o.p).length)} กลุ่ม${all.length - all.filter(o => o.p).length ? ` · อีก ${all.length - all.filter(o => o.p).length} กลุ่มยังไม่มีการซื้อ` : ""} ·
-        นับจาก Purchase ราย Ad Set (Ads Manager) · Ad แรก (Lead Center) กรอกระดับแคมเปญ จึงแยกตามกลุ่มเป้าหมายไม่ได้ · ชี้เมาส์ที่แถวเพื่อดูชื่อ Ad Set · "ดีสุด" นับเฉพาะกลุ่มที่มีแชทตั้งแต่ 30</div>`;
+        นับจาก Purchase ราย Ad Set (Ads Manager) · Ad แรก (Lead Center) กรอกระดับแคมเปญ จึงแยกตามกลุ่มเป้าหมายไม่ได้ · ชี้เมาส์ที่แถวเพื่อดูชื่อ Ad Set · "ดีสุด" นับเฉพาะกลุ่มที่มีแชทตั้งแต่ 30</div>`);
     $("#cpBuyAll").onchange = ev => { S.cpBuyAll = ev.target.checked; renderCamp(); };
   }
   // first ad → last ad
@@ -5353,7 +5464,7 @@ function renderCamp(){
       <span class="pp"><i class="c">🚪 ${x.c}</i><i class="ar">→</i><i class="p">🏁 ${x.p}</i></span></div>
       <div class="pw"><span class="c"><i style="width:${(x.c / mxf * 100).toFixed(1)}%"></i></span><span class="p"><i style="width:${(x.p / mxf * 100).toFixed(1)}%"></i></span></div></div>`).join("") : `<div class="re">ไม่มี</div>`}</div>`;
   const starts = flow.filter(x => x.c > x.p).sort((a, b) => b.c - a.c), closes = flow.filter(x => x.p > x.c).sort((a, b) => b.p - a.p), both = flow.filter(x => x.p === x.c).sort((a, b) => b.p - a.p);
-  $("#cpFlow").innerHTML = !flow.length ? `<div class="rk-more">ยังไม่มีลูกค้าที่ซื้อในช่วงนี้</div>` :
+  const ch_cpFlow = setHTMLIf($("#cpFlow"), !flow.length ? `<div class="rk-more">ยังไม่มีลูกค้าที่ซื้อในช่วงนี้</div>` :
     `<div class="rsum"><span>🚪 ลูกค้าที่ซื้อ <b>${fmtN(T.c)}</b> คน เริ่มจาก <b>${flow.filter(x => x.c).length}</b> แคมเปญ</span><span>🏁 <b>${fmtN(T.p)}</b> การซื้อ ปิดที่ <b>${flow.filter(x => x.p).length}</b> แคมเปญ</span></div>
     <div class="rcols">${col("o", "🚪", "เริ่มลูกค้า", "ลูกค้าทักครั้งแรกจากแคมเปญนี้ มากกว่าซื้อปิดที่นี่", starts)}${col("e", "🏁", "ปิดการขาย", "ลูกค้าเห็นเป็นแอดสุดท้ายก่อนซื้อ มากกว่าเริ่มที่นี่", closes)}${col("b", "🔁", "ทั้งเริ่มและปิด", "เริ่มและปิดเท่ากัน", both)}</div>` +
     `<div class="cpwhy"><div class="t">📝 ทำไม Ad แรก (${fmtN(T.c)} คน) กับ Ad สุดท้าย (${fmtN(T.p)} การซื้อ) ไม่เท่ากัน</div>
@@ -5362,7 +5473,7 @@ function renderCamp(){
       <div class="wr"><span class="wt w3">สร้างคำสั่งซื้อซ้ำ</span><span>ลูกค้าคนเดียวมีคำสั่งซื้อ 2 ครั้ง ฝั่ง Ads นับ 2 แต่ฝั่ง Lead นับ 1 คน (ต.ค.–พ.ย. 2026 พบ 1 คน)</span></div>
       <div class="wr"><span class="wt w4">เกินเวลาที่ Meta นับ</span><span>Meta ให้เครดิตแอดเฉพาะการซื้อภายใน 1 วันหลังเห็น / 7 วันหลังคลิก · ซื้อช้ากว่านั้นจะไม่นับให้แคมเปญไหน</span></div>
       <div class="wr"><span class="wt w5">มีแค่แคมเปญ MSG</span><span>ถ้าแอดแรกหรือแอดสุดท้ายเป็นแคมเปญอื่น (AWN, TF.CL, POST) จะไม่อยู่ในตารางนี้</span></div>
-      <div class="s">✔ ยอดรวมทั้งเดือนควร<b>ใกล้กัน</b>ถ้าทำงานครบ · รายแคมเปญไม่เท่ากันเป็นเรื่องปกติ · ดู "รวมทุกเดือน" ช่วยลดผลจากการกดย้อนหลัง</div></div>`;
+      <div class="s">✔ ยอดรวมทั้งเดือนควร<b>ใกล้กัน</b>ถ้าทำงานครบ · รายแคมเปญไม่เท่ากันเป็นเรื่องปกติ · ดู "รวมทุกเดือน" ช่วยลดผลจากการกดย้อนหลัง</div></div>`);
 
   // campaign list
   const sk = S.cpSort || "lead";
@@ -5371,16 +5482,29 @@ function renderCamp(){
   const list = [...camps].sort((a, b) => kf(b) - kf(a) || b.ib - a.ib);
   $("#cpN").textContent = fmtN(list.length);
   const mxIb = Math.max(1, ...list.map(x => x.ib));
-  $("#cpList").innerHTML = CP_HEAD("แคมเปญ") + list.map(x => { const ci = campInfo(x.name), open = S.cpOpen === x.id;
-      return cpRow({...x, name:esc(x.name), title:x.name, mxIb, nmCls:"full", cls:"click" + (open ? " open" : ""), attr:`data-id="${esc(x.id)}"`,
+  cpRow.k = 0;
+  const ch_cpList = setHTMLIf($("#cpList"), CP_HEAD("แคมเปญ") + list.map(x => { const ci = campInfo(x.name), open = S.cpOpen === x.id;
+      return cpRow({...x, name:esc(x.name), title:x.name, mxIb, nmCls:"full", cls:"click", attr:`data-id="${esc(x.id)}"`,
         tag:`<span class="tgs"><span class="tg ${x.fun.toLowerCase()}">${x.fun}</span><span class="tg au" style="background:${cpAudColor(x.aud)}">${x.aud}${x.mixed ? " +" : ""}</span></span>`,
         sub:`${ci.start ? "เริ่ม " + ci.start + " · " : ""}${ci.extra ? esc(ci.extra) + " · " : ""}${esc(x.id)}`}) +
-        (open ? `<div class="cpsets"><div class="cps head"><span>Ad Set</span><span>Audience</span><span class="num">แชท (IB)</span><span class="num">🏁 Ad สุดท้าย</span></div>${x.sets.map(st => { const a = cpAudience(st.name, x.name);
-          return `<div class="cps"><span>${esc(st.name)}</span><span><i class="dot" style="background:${cpAudColor(a)}"></i>${a}</span><span class="num">${fmtN(st.ib)}</span><span class="num">${st.p || "-"}</span></div>`; }).join("")}
-          <div class="cps note">Qualified / Lost / Converted กรอกไว้ระดับแคมเปญ จึงไม่แยกตาม Ad Set</div></div>` : ""); }).join("") +
+        ""; }).join("") +
     `<div class="cpr foot"><span class="nm"><b>รวม</b><small>${fmtN(list.length)} แคมเปญ · ${fmtN(T.sets)} Ad Set</small></span><span class="num"><b>${fmtN(T.ib)}</b></span>
-      <span class="qb">${lead ? `<small><b class="q">Q ${fmtN(T.q)}</b> ${pc(T.q)} · <b class="l">L ${fmtN(T.l)}</b> ${pc(T.l)} · <b class="c">C ${fmtN(T.c)}</b> ${pc(T.c)}</small>` : ""}</span><span class="num">${lead ? fmtN(lead) : "-"}</span><span class="num"><b class="c">${fmtN(T.c)}</b></span><span class="num"><b class="p">${fmtN(T.p)}</b></span></div>`;
-  $$("#cpList .cpr[data-id]").forEach(r => r.onclick = () => { S.cpOpen = S.cpOpen === r.dataset.id ? "" : r.dataset.id; renderCamp(); });
+      <span class="qb">${lead ? `<small><b class="q">Q ${fmtN(T.q)}</b> ${pc(T.q)} · <b class="l">L ${fmtN(T.l)}</b> ${pc(T.l)} · <b class="c">C ${fmtN(T.c)}</b> ${pc(T.c)}</small>` : ""}</span><span class="num">${lead ? fmtN(lead) : "-"}</span><span class="num"><b class="c">${fmtN(T.c)}</b></span><span class="num"><b class="p">${fmtN(T.p)}</b></span></div>`);
+  S._cpById = new Map(list.map(x => [x.id, x]));
+  { // keep the opened campaign's ad sets in place without redrawing the list
+    const cur = $("#cpList .cpsets"), want = S.cpOpen && S._cpById.has(S.cpOpen) ? S.cpOpen : "";
+    if((cur ? cur.dataset.for : "") !== want){
+      $$("#cpList .cpsets").forEach(el => el.remove()); $$("#cpList .cpr.open").forEach(el => el.classList.remove("open"));
+      const row = want && [...$$("#cpList .cpr[data-id]")].find(r => r.dataset.id === want);
+      if(row){ row.classList.add("open"); row.insertAdjacentHTML("afterend", cpSetsHTML(S._cpById.get(want))); }
+    }
+  }
+  $$("#cpList .cpr[data-id]").forEach(r => r.onclick = () => {
+    const id = r.dataset.id, nx = r.nextElementSibling, isOpen = nx && nx.classList.contains("cpsets");
+    $$("#cpList .cpsets").forEach(el => el.remove()); $$("#cpList .cpr.open").forEach(el => el.classList.remove("open"));
+    S.cpOpen = isOpen ? "" : id;
+    if(!isOpen){ const x = S._cpById.get(id); if(x){ r.classList.add("open"); r.insertAdjacentHTML("afterend", cpSetsHTML(x)); } }
+  });
 }
 $$("#cpSort button").forEach(b => b.onclick = () => { S.cpSort = b.dataset.s; renderCamp(); });
 
