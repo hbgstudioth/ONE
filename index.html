@@ -854,6 +854,44 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 .chpay > :not(.payfx){position:relative;z-index:1}
 .wbadge.paid{background:color-mix(in srgb,#4f7a2e 16%,transparent);color:#4f7a2e}
 .wi.pay i{background:#4f7a2e}
+.chdays h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chhour h3 > span{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#chatHourUnit button,#chatHourMode button{padding:4px 9px;font-size:12px}
+.chdays .hint{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:300}
+.dwrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) minmax(0,.8fr);gap:16px;align-items:end}
+.dstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-self:stretch}
+.ds{border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;background:var(--card)}
+.ds small{font-size:11px;color:var(--muted)}
+.ds b{font-size:24px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;color:#2c5c59}
+.ds b.sm{font-size:18px}
+.ds.src .sr{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:6px;margin-top:2px}
+.ds.src .sr span{font-size:12px}
+.ds.src .sr b{font-size:18px}
+.ds.src .sr em{font-size:11px}
+.ds em{font-style:normal;font-size:11px;color:var(--muted)}
+.ds.main{background:linear-gradient(135deg,#356e6b,#5f9a8f);border:0;color:#fff}
+.ds.main small,.ds.main em{color:rgba(255,255,255,.85)} .ds.main b{color:#fff;font-size:30px}
+.dhist{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:end;height:calc(var(--bh,90px) + 60px);border-bottom:1px solid var(--line);padding-bottom:4px}
+.dhist span.click{cursor:pointer;border-radius:10px;transition:background .3s ease}
+.dhist span.click:hover{background:color-mix(in srgb,#356e6b 8%,transparent)}
+.dhist span.click:hover i{filter:brightness(1.08)}
+#daysModal .dd{color:#2c5c59}
+#daysModal .chatlink,#daysModal .pvb{font-size:12px}
+#daysModal .chatlink{border-radius:8px;padding:3px 10px;text-decoration:none;background:#eef8e9;border:1px solid #daecd2;color:#2f5d1f}
+#daysModal .pvb{background:#fdf8e2;border-color:#f5eac5;color:#6e560e}
+.dhist span{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%}
+.dhist b{font-size:15px;font-weight:700}
+.dhist i{display:block;height:calc(var(--h) * var(--bh,90px));width:62%;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#7fb3a8,#356e6b);transform-origin:bottom;animation:pdGrow 1.2s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 90ms)}
+.dhist small{font-size:11px;color:var(--text);white-space:nowrap}
+.dhist em{font-style:normal;font-size:10.5px;color:var(--muted)}
+.dslow{align-self:stretch;border-left:1px solid var(--line);padding-left:14px}
+.dslow .t{font-size:12px;font-weight:600;margin-bottom:4px}
+.dslow .r{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.dslow .r span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dslow .n{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+@media (max-width:1180px){ .dwrap{grid-template-columns:1fr} .dslow{border-left:0;padding-left:0} }
+@keyframes pdGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.wi .pdays{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;margin-left:4px;background:color-mix(in srgb,#356e6b 14%,transparent);color:#2c5c59;white-space:nowrap}
 .wi .ptag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:0 6px;margin-left:4px;vertical-align:1px}
 .wi .ptag.tk{background:color-mix(in srgb,#356e6b 18%,transparent);color:#356e6b}
 .wi .ptag.wt{background:color-mix(in srgb,#c08a3e 20%,transparent);color:#9a6a24}
@@ -910,6 +948,16 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 .card.presenting.adsbook > .abk,.card.presenting.abfun > .funnel,.card.presenting.abtablecard > .tbl-wrap{flex:none;margin-top:auto;margin-bottom:auto}
 .card.presenting.abtablecard > .tbl-wrap{overflow:visible}
 .card.presenting.abweek .abinsight{font-size:15px}
+/* presenting: the two chat summary cards use the extra height instead of leaving it empty */
+.card.presenting.chdays{justify-content:center}
+.card.presenting.chdays .dwrap{flex:1;align-items:center}
+.card.presenting.chdays .dhist{--bh:min(42vh,380px)}
+.card.presenting.chdays .ds b{font-size:30px} .card.presenting.chdays .ds.main b{font-size:40px}
+.card.presenting.chdays .dslow .r{font-size:14px;padding:6px 0}
+.card.presenting.chq .qwrap{flex:1;align-content:center}
+.card.presenting.chq .qtile{padding:14px 14px}
+.card.presenting.chq .qtile .qv b{font-size:28px}
+.card.presenting.chq .qt{font-size:14px;padding:6px 0}
 .card.presenting .abtip,.card.presenting .mobhint{display:none}
 @keyframes presIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
 body.is-presenting{overflow:hidden}
@@ -1336,6 +1384,11 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .qt b{text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:1180px){ .qwrap{grid-template-columns:1fr} .qtop{border-left:0;padding-left:0} .qtiles{grid-template-columns:repeat(3,minmax(0,1fr))} }
 @media (max-width:600px){ .qtiles{grid-template-columns:1fr 1fr} }
+.phexp{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:-2px 0 6px;padding:6px 8px;border-radius:10px;background:color-mix(in srgb,#4f7a2e 8%,var(--card));border:1px solid color-mix(in srgb,#4f7a2e 25%,transparent)}
+.phexp[hidden]{display:none}
+.phexp > span{font-size:12.5px;margin-right:auto}
+.phexp > span small{color:var(--muted);font-size:11px}
+.phexp .btn-soft{font-size:12px;padding:4px 10px}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1651,8 +1704,9 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-upsale .mixs{gap:8px}
 }
 @media (min-width:1181px) and (min-height:620px){
-  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
-  #p-chat .chq{grid-column:1 / -1;grid-row:6}
+  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
+  #p-chat .chdays{grid-column:1 / -1;grid-row:6}
+  #p-chat .chq{grid-column:1 / -1;grid-row:7}
   #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
   #p-chat .chrow{display:contents}
   #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3 / 5}
@@ -1864,14 +1918,16 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
             <div class="seg payseg" id="chatPayF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="track">Tracking</button><button data-f="wait">รอติดTag/รอโอน</button></div><div class="waitlist" id="chatPay"></div></div>
         </div>
         <div class="chrow chrow2">
-          <div class="card ch flex chhour"><h3>ช่วงเวลาที่ลูกค้าทัก <span style="margin-left:auto"><div class="seg" id="chatHourMode"><i class="thumb"></i><button data-m="hour" class="on">รายชั่วโมง</button><button data-m="wd">รายวัน</button></div></span></h3>
+          <div class="card ch flex chhour"><h3>ช่วงเวลาที่ลูกค้าทัก <span style="margin-left:auto"><div class="seg" id="chatHourMode"><i class="thumb"></i><button data-m="hour" class="on">รายชั่วโมง</button><button data-m="wd">รายวัน</button></div><div class="seg" id="chatHourUnit"><i class="thumb"></i><button data-u="room" class="on">จำนวนแชท</button><button data-u="msg">จำนวนข้อความ</button></div></span></h3>
             <div class="peaks" id="chatPeaks"></div><div class="grow"><canvas id="chat-hour"></canvas></div></div>
           <div class="card ch flex chspeed"><h3>ความเร็วในการตอบ <span class="hint" id="chatSpeedHint"></span></h3><div class="speed" id="chatSpeed"></div></div>
         </div>
         <div class="card ch flex chcust"><h3>รายชื่อลูกค้า <span class="wbadge n" id="chatCustN">0</span><span class="hint">คุยในช่วงที่เลือก · ล่าสุดก่อน</span></h3>
+          <div class="phexp" id="chatPhExp" hidden><span id="chatPhN"></span><button class="btn-soft" id="chatPhCsv" type="button">⬇ ส่งออกเบอร์ CSV</button><button class="btn-soft" id="chatPhCopy" type="button" title="คัดลอกไปวางใน Excel / Google Sheet">⧉ คัดลอก</button></div>
           <div class="cfind"><input id="chatFind" placeholder="ค้นหาชื่อ หรือข้อความ" autocomplete="off"><div class="seg" id="chatCustF"><i class="thumb"></i><button data-f="all" class="on">ทั้งหมด</button><button data-f="wait">รอตอบ</button><button data-f="phone">มีเบอร์</button><button data-f="ads">Ads</button><button data-f="org">Organic</button><button data-f="cmt">คอมเมนต์</button></div></div>
           <div class="custlist" id="chatCust"></div></div>
         <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
+        <div class="card ch chdays"><h3>⏱ ลูกค้าใช้เวลากี่วันถึงตัดสินใจซื้อ <span class="hint">นับจากทักครั้งแรก → สร้างคำสั่งซื้อ (ลูกค้า Tracking) · นับตามวันที่ในปฏิทิน: ทักวันนี้ ซื้อพรุ่งนี้ = 1 วันถัดมา</span></h3><div id="chatPayDays"></div></div>
         <div class="card ch chq"><h3>💬 ลูกค้าถามอะไรบ่อย <span class="hint" id="chatQHint"></span></h3><div class="qwrap" id="chatQ"></div></div>
         <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
       </section>
@@ -2058,6 +2114,12 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   <div class="itx"><b>ติดตั้ง ONE Dashboard เป็นแอป</b><span id="instMsg"></span></div>
   <button class="ibtn" id="instBtn" hidden>ติดตั้งแอป</button>
   <button class="ix" id="instClose" aria-label="ปิด">✕</button>
+</div>
+<div class="modal" id="daysModal" role="dialog" aria-modal="true" aria-labelledby="dmTitle">
+  <div class="card box cvmbox">
+    <div class="cvmhead"><div><h2 id="dmTitle"></h2><p class="d" id="dmSub"></p></div><button class="cvx" id="dmClose" aria-label="ปิด">✕</button></div>
+    <div class="cvmbody tbl-wrap" id="dmBody"></div>
+  </div>
 </div>
 <div class="modal" id="convModal" role="dialog" aria-modal="true" aria-labelledby="cvmTitle">
   <div class="card box cvmbox">
@@ -4569,16 +4631,17 @@ function chatConvs(){ return (S.chat || []).filter(c => !S.chatPage || c.page ==
 /* everything the page shows for one period [a, e) */
 function chatStats(a, e){
   const inR = t => t >= a && t < e, deepN = +S.chatDeep || 10;
-  const o = {active:0, neu:0, cust:0, admin:0, replied:0, deep:0, phone:0, rts:[], hours:Array(24).fill(0), wd:Array(7).fill(0), dayActive:new Map(), dayNew:new Map(), ch:{}, pages:{}};
+  const o = {active:0, neu:0, cust:0, admin:0, replied:0, deep:0, phone:0, rts:[], hours:Array(24).fill(0), wd:Array(7).fill(0), hoursR:Array(24).fill(0), wdR:Array(7).fill(0), dayActive:new Map(), dayNew:new Map(), ch:{}, pages:{}};
   for(const c of chatConvs()){
     let hasC = false, firstCin = null, nIn = 0, gotPhone = false, rep = false, wait = null;
+    const hSet = new Set(), wSet = new Set();
     for(const m of c.msgs){
       const r = inR(m.t);
       if(r) nIn++;
       if(m.c){
         if(r){
           o.cust++; hasC = true; if(!firstCin) firstCin = m.t;
-          o.hours[m.t.getHours()]++; o.wd[(m.t.getDay() + 6) % 7]++;
+          o.hours[m.t.getHours()]++; o.wd[(m.t.getDay() + 6) % 7]++; hSet.add(m.t.getHours()); wSet.add((m.t.getDay() + 6) % 7);
           const dk = iso(m.t); if(!o.dayActive.has(dk)) o.dayActive.set(dk, new Set()); o.dayActive.get(dk).add(c.id);
           if(!gotPhone && PHONE_RE.test(m.text.replace(/[\s\-.()]/g, ""))) gotPhone = true;
         }
@@ -4589,6 +4652,7 @@ function chatStats(a, e){
         if(firstCin && m.t > firstCin) rep = true;
       }
     }
+    hSet.forEach(h => o.hoursR[h]++); wSet.forEach(w => o.wdR[w]++);
     if(hasC){ o.active++; if(rep) o.replied++; if(nIn > deepN) o.deep++; if(gotPhone) o.phone++; o.ch[c.ch] = (o.ch[c.ch] || 0) + 1; o.pages[c.page] = (o.pages[c.page] || 0) + 1; }
     if(c.first && inR(c.first)){ o.neu++; const dk = iso(c.first); o.dayNew.set(dk, (o.dayNew.get(dk) || 0) + 1); }
   }
@@ -4669,7 +4733,10 @@ function renderChat(){
   const ORDER = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อมูลค่า/i;
   const paidAll = chatConvs().map(c => { const pm = c.msgs.filter(m => PAY.test(m.text) && m.t >= a && m.t < e);
       const om = c.msgs.filter(m => ORDER.test(m.text)), amt = om.length ? (om[om.length - 1].text.match(/฿\s?([\d,]+(?:\.\d+)?)/) || om[om.length - 1].text.match(/มูลค่า\s*฿?\s*([\d,]+(?:\.\d+)?)/) || [])[1] : null;
-      return pm.length ? {c, pm, last:pm[pm.length - 1], track: om.length > 0, amt} : null; })
+      let days = null;
+      if(om.length){ const f = chatOrigin(c).first, o = om[0].t;
+        if(f && o >= f){ const d0 = new Date(f.getFullYear(), f.getMonth(), f.getDate()), d1 = new Date(o.getFullYear(), o.getMonth(), o.getDate()); days = Math.round((d1 - d0) / 864e5); } }
+      return pm.length ? {c, pm, last:pm[pm.length - 1], track: om.length > 0, amt, days, orderAt: om.length ? om[0].t : null} : null; })
     .filter(Boolean).sort((x,y) => y.last.t - x.last.t);
   const nT = paidAll.filter(x => x.track).length, pf = S.chatPayF || "all";
   const paid = paidAll.filter(x => pf === "all" || (pf === "track" ? x.track : !x.track));
@@ -4678,9 +4745,35 @@ function renderChat(){
   segSet($("#chatPayF"), "f", pf);
   $("#chatPayN").textContent = paidAll.length;
   $("#chatPayHint").textContent = "ตรวจจากลิงก์ชำระเงิน Omise ในแชท";
-  $("#chatPay").innerHTML = paid.length ? paid.map(({c, pm, last, track, amt}) => { const url = (last.text.match(/https?:\/\/linksplus\.omise\.co\/[\w-]+/i) || [""])[0];
+  { // how long Tracking customers took from the first message to the order
+    const D = paidAll.filter(x => x.track && x.days != null).map(x => x.days).sort((p, q) => p - q);
+    const avg = D.length ? D.reduce((t, n) => t + n, 0) / D.length : null, med = D.length ? D[Math.floor(D.length / 2)] : null;
+    const band = (lo, hi) => D.filter(n => n >= lo && n <= hi).length;
+    const BR = [["วันเดียวกับที่ทัก", 0, 0], ["1–3 วันถัดมา", 1, 3], ["4–7 วันถัดมา", 4, 7], ["8–30 วันถัดมา", 8, 30], ["เกิน 30 วัน", 31, 1e9]];
+    const B = BR.map(([l, lo, hi]) => [l, band(lo, hi)]);
+    const mxB = Math.max(1, ...B.map(b => b[1]));
+    const T2 = paidAll.filter(x => x.track && x.days != null);
+    const by = src => { const v = T2.filter(x => chatOrigin(x.c).src === src).map(x => x.days); return v.length ? {n:v.length, avg:v.reduce((t, n) => t + n, 0) / v.length} : null; };
+    const fA = by("Ads"), fO = by("Organic"), w3 = D.filter(n => n <= 3).length;
+    const slow = [...T2].sort((p, q) => q.days - p.days).slice(0, 3);
+    S._dayBands = BR.map(([l, lo, hi]) => ({l, list:T2.filter(x => x.days >= lo && x.days <= hi).sort((p, q) => q.days - p.days || q.orderAt - p.orderAt)}));
+    $("#chatPayDays").innerHTML = !D.length ? `<div class="rk-more">ยังไม่มีลูกค้า Tracking ในช่วงนี้</div>` : `<div class="dwrap">
+      <div class="dstats">
+        <div class="ds main"><small>เฉลี่ย</small><b>${avg.toFixed(1)}</b><em>วัน</em></div>
+        <div class="ds"><small>ส่วนใหญ่ (ค่ากลาง)</small><b>${med}</b><em>วัน</em></div>
+        <div class="ds"><small>ซื้อภายใน 3 วัน</small><b>${(w3 / D.length * 100).toFixed(0)}%</b><em>${w3} จาก ${D.length} คน</em></div>
+        <div class="ds src"><small>เฉลี่ยแยกตามที่มา</small>
+          <div class="sr"><span>📣 Ads</span><b>${fA ? fA.avg.toFixed(1) : "-"}</b><em>วัน · ${fA ? fA.n : 0} คน</em></div>
+          <div class="sr"><span>🌱 Organic</span><b>${fO ? fO.avg.toFixed(1) : "-"}</b><em>วัน · ${fO ? fO.n : 0} คน</em></div></div>
+      </div>
+      <div class="dhist">${B.map(([l, n], k) => `<span class="${n ? "click" : ""}" data-band="${k}" style="--i:${k}" title="${n ? `กดเพื่อดูรายชื่อ ${n} คน` : ""}"><b>${n}</b><i style="--h:${Math.max(.03, n / mxB).toFixed(3)}"></i><small>${l}</small><em>${(n / D.length * 100).toFixed(0)}%</em></span>`).join("")}</div>
+      <div class="dslow"><div class="t">ใช้เวลานานที่สุด</div>${slow.map(x => `<div class="r"><span>${esc(x.c.name)}</span><b>${x.days} วันถัดมา</b></div>`).join("")}<div class="n">ชี้เมาส์ที่ป้าย ⏱ ในการ์ดรายชื่อลูกค้าที่ชำระเงินแล้ว เพื่อดูวันทักครั้งแรกและวันสร้างคำสั่งซื้อ</div></div>
+    </div>`;
+    $$("#chatPayDays .dhist span.click").forEach(sp => sp.onclick = () => openDaysModal(+sp.dataset.band));
+  }
+  $("#chatPay").innerHTML = paid.length ? paid.map(({c, pm, last, track, amt, days, orderAt}) => { const url = (last.text.match(/https?:\/\/linksplus\.omise\.co\/[\w-]+/i) || [""])[0];
       const og = chatOrigin(c);
-      return `<div class="wi pay"><i></i><div><b>${esc(c.name)}</b> ${srcTag(og.src)}${cmtTag(og)}<span class="ptag ${track ? "tk" : "wt"}">${track ? "Tracking" : "รอติดTag/รอโอน"}</span>${amt ? ` <span class="pamt">฿${esc(amt.replace(/\.00$/, ""))}</span>` : ""}<small>${esc(c.page)} · ส่งลิงก์ ${fmtWhen(last.t)}${pm.length > 1 ? ` · ${pm.length} ลิงก์` : ""}</small></div>
+      return `<div class="wi pay"><i></i><div><b>${esc(c.name)}</b> ${srcTag(og.src)}${cmtTag(og)}<span class="ptag ${track ? "tk" : "wt"}">${track ? "Tracking" : "รอติดTag/รอโอน"}</span>${amt ? ` <span class="pamt">฿${esc(amt.replace(/\.00$/, ""))}</span>` : ""}${days != null ? `<span class="pdays" title="ทักครั้งแรก ${fmtWhen(chatOrigin(c).first)} → สร้างคำสั่งซื้อ ${fmtWhen(orderAt)}">⏱ ${days === 0 ? "ซื้อวันเดียวกับที่ทัก" : `ซื้อ ${days} วันถัดมา`}</span>` : ""}<small>${esc(c.page)} · ส่งลิงก์ ${fmtWhen(last.t)}${pm.length > 1 ? ` · ${pm.length} ลิงก์` : ""}</small></div>
       <button class="cpy" data-name="${esc(c.name)}" title="คัดลอกชื่อลูกค้า">⧉ คัดลอกชื่อ</button><span style="display:flex;gap:4px"><button class="pvb" data-cv="${esc(c.id)}">Preview</button>${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>`; }).join("")
     : `<div class="empty">${paidAll.length ? "ไม่มีรายชื่อในกลุ่มนี้" : "ยังไม่มีลิงก์ชำระเงินในช่วงนี้"}</div>`;
 
@@ -4689,18 +4782,21 @@ function renderChat(){
 
   /* busy hours */
   segSet($("#chatHourMode"), "m", S.chatHourMode);
-  const isH = S.chatHourMode !== "wd", arr = isH ? C.hours : C.wd, tot = arr.reduce((t,v) => t + v, 0) || 1;
+  const unitMsg = S.chatHourUnit === "msg";
+  segSet($("#chatHourUnit"), "u", unitMsg ? "msg" : "room");
+  $$("#chatHourUnit button").forEach(b => b.onclick = () => { S.chatHourUnit = b.dataset.u; renderChat(); });
+  const isH = S.chatHourMode !== "wd", arr = isH ? (unitMsg ? C.hours : C.hoursR) : (unitMsg ? C.wd : C.wdR), tot = arr.reduce((t,v) => t + v, 0) || 1;
   const labs = isH ? arr.map((_, i) => String(i).padStart(2, "0")) : ["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
   const order = arr.map((v,i) => [v,i]).sort((x,y) => y[0] - x[0]).filter(x => x[0] > 0).slice(0, 3);
-  $("#chatPeaks").innerHTML = `<span class="pl">ช่วงที่ลูกค้าทักมากสุด</span> ` + order.map(([v,i], k) => `<span class="pk ${k === 0 ? "top" : ""}"><b>${isH ? `${labs[i]}:00–${String((i + 1) % 24).padStart(2,"0")}:00` : ["จันทร์","อังคาร","พุธ","พฤหัสฯ","ศุกร์","เสาร์","อาทิตย์"][i]}</b> ${(v / tot * 100).toFixed(0)}%</span>`).join("");
+  $("#chatPeaks").innerHTML = `<span class="pl">ช่วงที่ลูกค้าทักมากสุด <small>(${unitMsg ? "นับข้อความ" : "นับแชท"})</small></span> ` + order.map(([v,i], k) => `<span class="pk ${k === 0 ? "top" : ""}"><b>${isH ? `${labs[i]}:00–${String((i + 1) % 24).padStart(2,"0")}:00` : ["จันทร์","อังคาร","พุธ","พฤหัสฯ","ศุกร์","เสาร์","อาทิตย์"][i]}</b> ${(v / tot * 100).toFixed(0)}%</span>`).join("");
   const topI = order.length ? order[0][1] : -1;
   const hT = slotPx("chat-hour", arr.length) < 22;
-  upsert("chat-hour", {type:"bar", data:{labels:labs, datasets:[{label:"ข้อความจากลูกค้า", data:arr, borderRadius:4, maxBarThickness:34,
+  upsert("chat-hour", {type:"bar", data:{labels:labs, datasets:[{label: unitMsg ? "ข้อความจากลูกค้า" : "แชท (ห้อง) ที่ลูกค้าทัก", data:arr, borderRadius:4, maxBarThickness:34,
       backgroundColor:arr.map((_, i) => i === topI ? "#4f7a2e" : "rgba(124,154,109,.55)"),
       datalabels:{display:c => c.dataIndex === topI || (!hT && c.dataset.data[c.dataIndex] > 0 && !isH) ? true : false, anchor:"end", align:"end", offset:1, color:css("--text"), font:{size:10, weight:600}}}]},
     options:{maintainAspectRatio:false, animation:{duration:700}, layout:{padding:{top:16}}, plugins:{legend:{display:false}, datalabels:{display:true}, tooltip:{...tooltip()}},
       scales:{x:{grid:{display:false}, ticks:{autoSkip:true, maxRotation:0, callback:function(v, i){ return isH && hT && i % 3 ? "" : labs[i]; }}}, y:{beginAtZero:true, grace:"12%", border:{display:false}, grid:{color:css("--line"), drawTicks:false}, ticks:{precision:0, maxTicksLimit:5}}}}
-  }, "chh" + (isH ? "h" : "w"));
+  }, "chh" + (isH ? "h" : "w") + (unitMsg ? "m" : "r"));
 
   /* reply speed */
   const B = [["≤ 5 นาที", 0, 3e5, "#4f7a2e"], ["5–15 นาที", 3e5, 9e5, "#7c9a6d"], ["15–60 นาที", 9e5, 36e5, "#c08a3e"], ["1–4 ชม.", 36e5, 144e5, "#d07a4a"], ["4–24 ชม.", 144e5, 864e5, "#b5654a"], ["> 1 วัน", 864e5, Infinity, "#b5473a"]];
@@ -4755,6 +4851,21 @@ const CHAT_Q = [
   ["มัดจำ / การชำระเงิน", "#9a7aa8", /มัดจำ|โอน|ชำระ|จ่าย|บัญชี|สลิป|qr|พร้อมเพย์/i]
 ];
 const IS_SYS = /ตอบกลับโฆษณา|replied to (an|your) ad|ตอบกลับความคิดเห็น/i;
+/* popup: who bought in a day band, and how many days each took */
+function openDaysModal(k){
+  const g = (S._dayBands || [])[k]; if(!g) return;
+  $("#dmTitle").textContent = `⏱ ตัดสินใจซื้อ ${g.l} · ${g.list.length} คน`;
+  $("#dmSub").textContent = "นับจากทักครั้งแรก → สร้างคำสั่งซื้อครั้งแรก · ลูกค้า Tracking ในช่วงที่เลือก";
+  $("#dmBody").innerHTML = `<table class="dt fitw cvmt"><thead><tr><th>ลูกค้า</th><th class="num">ใช้เวลา</th><th>ทักครั้งแรก</th><th>สร้างคำสั่งซื้อ</th><th class="num">ยอด</th><th></th></tr></thead><tbody>${g.list.map(x => { const og = chatOrigin(x.c);
+    return `<tr><td><b>${esc(x.c.name)}</b> ${srcTag(og.src)}<div class="muted" style="font-size:11px">${esc(x.c.page)}</div></td>
+      <td class="num"><b class="dd">${x.days === 0 ? "วันเดียวกับที่ทัก" : x.days + " วันถัดมา"}</b></td><td>${og.first ? fmtWhen(og.first) : "-"}</td><td>${x.orderAt ? fmtWhen(x.orderAt) : "-"}</td>
+      <td class="num">${x.amt ? "฿" + esc(x.amt.replace(/\.00$/, "")) : "-"}</td>
+      <td><span style="display:flex;gap:4px;justify-content:flex-end"><button class="pvb" data-cv="${esc(x.c.id)}">Preview</button>${x.c.link ? `<a class="chatlink" href="${esc(x.c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></td></tr>`; }).join("")}</tbody></table>`;
+  $("#daysModal").classList.add("on");
+}
+$("#dmClose").onclick = () => $("#daysModal").classList.remove("on");
+$("#daysModal").onclick = ev => { if(ev.target.id === "daysModal") $("#daysModal").classList.remove("on"); };
+document.addEventListener("keydown", ev => { if(ev.key === "Escape") $("#daysModal").classList.remove("on"); });
 function renderChatQ(a, e){
   const convs = chatConvs();
   const T = CHAT_Q.map(([name, color, re]) => ({name, color, re, rooms:new Set(), msgs:0, ex:[]}));
@@ -4806,6 +4917,28 @@ function renderChatList(a, e){
   if(q) list = list.filter(c => c.name.toLowerCase().includes(q) || c.msgs.some(m => m.text.toLowerCase().includes(q)));
   list.sort((x,y) => y.last.t - x.last.t);
   $("#chatCustN").textContent = fmtN(list.length);
+  // phone export: shown on the "มีเบอร์" filter; exports every listed customer that left a phone number (current period, page and search)
+  { const withPh = list.filter(c => phoneOf(c)); const box = $("#chatPhExp");
+    box.hidden = f !== "phone" || !withPh.length;
+    // phones only, international format: 0812345678 → +66812345678 (duplicates removed)
+    const intl = p => { const d = String(p).replace(/\D/g, ""); return d.startsWith("66") ? "+" + d : d.startsWith("0") ? "+66" + d.slice(1) : "+66" + d; };
+    // keep only complete Thai numbers (+66 followed by 8–9 digits); partial numbers typed in chat are left out
+    const phones = () => [...new Set(withPh.map(c => intl(phoneOf(c))))].filter(p => /^\+66\d{8,9}$/.test(p));
+    { const ok = phones().length, bad = new Set(withPh.map(c => intl(phoneOf(c)))).size - ok;
+      $("#chatPhN").innerHTML = `📞 <b>${fmtN(ok)}</b> เบอร์ <small>(ส่งออกเป็น +66${bad > 0 ? ` · ข้ามเบอร์ไม่ครบ ${bad}` : ""})</small>`; }
+    $("#chatPhCsv").onclick = () => {
+      // phone kept as text (="081…") so Excel / Google Sheets keep the leading 0
+      const csv = ["phone", ...phones()].join("\r\n");
+      const [a0, b0] = adsRange(), name = `chat-phones_${S.chatPage ? S.chatPage.replace(/[^\w\u0E00-\u0E7F]+/g, "-") : "all-pages"}_${a0 ? iso(a0) : "all"}${b0 ? "_" + iso(b0) : ""}.csv`;
+      try{ const url = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"})), el = document.createElement("a");
+        el.href = url; el.download = name; document.body.appendChild(el); el.click(); el.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000); toast(`ส่งออก ${phones().length} เบอร์แล้ว`); }
+      catch(err){ toast("ดาวน์โหลดไม่ได้ในหน้านี้ · ใช้ปุ่มคัดลอกแทน"); }
+    };
+    $("#chatPhCopy").onclick = async () => {
+      const tsv = phones().join("\n");
+      try{ await navigator.clipboard.writeText(tsv); toast("คัดลอกแล้ว · วางใน Excel / Google Sheet ได้เลย"); }catch(err){ toast("คัดลอกไม่ได้"); }
+    };
+  }
   $("#chatCust").innerHTML = list.length ? list.slice(0, 300).map(c => {
     const nc = c.msgs.filter(m => m.c).length, na = c.msgs.length - nc, ph = phoneOf(c), lt = c.last.text.trim(), og = chatOrigin(c);
     return `<div class="cr"><div class="av">${esc(initial(c.name))}</div>
@@ -4896,7 +5029,7 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 /* ================= PRESENTATION MODE (expand a card to full screen) =================
    Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
 const PRESENT_CARDS = ["#p-adsbook .adsbook", "#p-adsbook .abfun", "#p-adsbook .abweek", "#p-adsbook .abtablecard", "#p-ads .adschart", "#p-ads .adsweek", "#p-ads .adstable",
-  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust",
+  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust", "#p-chat .chdays", "#p-chat .chq", "#p-chat .chdays", "#p-chat .chq",
   "#p-compare .mcard", "#p-compare .revcmp", "#p-compare .revsales", "#p-compare .cbottom .chcard",
   "#p-lead .ldstage", "#p-lead .ldday", "#p-lead .ldcmp", "#p-lead .ldlist", "#p-camp .cpflow", "#p-camp .cpsum", "#p-camp .cpbuy", "#p-camp .cptable"].join(", ");
 const rerenderPresentPage = () => S.page === "lead" ? renderLead() : S.page === "camp" ? renderCamp() : ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
@@ -4925,7 +5058,9 @@ function fitZoom(card){
   }
   const over = () => card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1 ||
     [...card.querySelectorAll(".tbl-wrap")].some(w => w.scrollWidth > w.clientWidth + 1 || w.scrollHeight > w.clientHeight + 1);
-  let lo = 1, hi = card.querySelector(".custlist, .waitlist") ? 1.6 : 2.6;   // scrolling lists: keep enough rows on screen
+  // never zoom so far that the card's own layout has to squeeze (keep at least ~90% of its normal width)
+  const wMax = card._w0 ? card.clientWidth / (card._w0 * .9) : 2.6;
+  let lo = 1, hi = Math.max(1, Math.min(card.querySelector(".custlist, .waitlist") ? 1.6 : 2.6, wMax));   // scrolling lists: keep enough rows on screen
   for(let k = 0; k < 9; k++){ const mid = (lo + hi) / 2; set(mid); if(over()) hi = mid; else lo = mid; }
   if(lo <= 1.02 && card.querySelector(".tbl-wrap, .custlist, .waitlist")){
     // too long to fit at any size: size by width only (max 1.6×) and let the list scroll inside the card
@@ -4935,6 +5070,7 @@ function fitZoom(card){
   set(+(lo * .97).toFixed(2));
 }
 function openPresent(card){
+  card._w0 = card.offsetWidth;   // its normal width, so presenting keeps the same layout
   if(presentCard) closePresent(true);
   presentCard = card;
   let bg = $("#presBg"); if(!bg){ bg = document.createElement("div"); bg.id = "presBg"; bg.onclick = () => closePresent(); document.body.appendChild(bg); }
