@@ -871,11 +871,57 @@ body[data-page="trend"] .trendnote{display:inline-flex}
 .ds em{font-style:normal;font-size:11px;color:var(--muted)}
 .ds.main{background:linear-gradient(135deg,#356e6b,#5f9a8f);border:0;color:#fff}
 .ds.main small,.ds.main em{color:rgba(255,255,255,.85)} .ds.main b{color:#fff;font-size:30px}
-.dhist{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:end;height:calc(var(--bh,90px) + 60px);border-bottom:1px solid var(--line);padding-bottom:4px}
+.dhist{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:end;height:calc(var(--bh,90px) + 76px);border-bottom:1px solid var(--line);padding-bottom:4px}
+/* came-back card */
+.chgap h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chgap .hint{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:300}
+.gwrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) minmax(0,.7fr);gap:16px;align-items:end}
+.gstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-self:stretch}
+.gstats .ds.main{background:linear-gradient(135deg,#7d5a8a,#a07fb0)}
+.gstats .ds b{color:#5e4a6e}
+.gstats .ds.main b{color:#fff}
+.gstats .ds.paid b{color:#3f6a22}
+.gmid{display:flex;flex-direction:column;gap:6px;min-width:0}
+.card.presenting.chdays #chatPayDays,.card.presenting.chgap #chatGap{flex:1;display:flex;align-items:center;min-height:0}
+.card.presenting.chdays .dwrap,.card.presenting.chgap .gwrap{width:100%;align-items:center}
+.card.presenting .dhist{--bh:150px}
+.card.presenting .dstats,.card.presenting .dslow,.card.presenting .gstats,.card.presenting .gnote{align-self:center}
+.card.presenting .dstats .ds{min-height:0}
+.card.presenting .ghist{height:230px}
+.dhist u.dgo{text-decoration:none;font-size:10px;font-weight:600;color:#fff;background:#356e6b;border-radius:999px;padding:0 7px;margin-top:1px;transition:filter .3s ease}
+.dhist u.dgo.z{background:transparent}
+.dhist span.click:hover u.dgo{filter:brightness(1.15)}
+.chdays .ghint{color:#2c5c59;background:color-mix(in srgb,#356e6b 10%,transparent)}
+.ghint{align-self:center;font-size:12px;color:#3f6a22;font-weight:600;background:color-mix(in srgb,#4f7a2e 10%,transparent);border-radius:999px;padding:3px 12px;animation:ghPulse 2.8s ease-in-out infinite}
+@keyframes ghPulse{0%,100%{opacity:.7}50%{opacity:1}}
+#chatGap .ghist em.go{display:flex;flex-direction:column;align-items:center;line-height:1.25;cursor:pointer}
+#chatGap .ghist em.go u{text-decoration:none;font-size:10px;font-weight:600;color:#fff;background:#4f7a2e;border-radius:999px;padding:0 7px;margin-top:2px;transition:filter .3s ease}
+#chatGap .ghist span.click:hover em.go u{filter:brightness(1.15)}
+.ghist{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end;height:170px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.ghist > span{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;border-radius:10px}
+.ghist > span.click{cursor:pointer;transition:background .3s ease}
+.ghist > span.click:hover{background:color-mix(in srgb,#7d5a8a 8%,transparent)}
+.ghist b{font-size:15px;font-weight:700}
+.ghist .stk{display:flex;flex-direction:column;width:62%;border-radius:8px 8px 3px 3px;overflow:hidden;transform-origin:bottom;animation:pdGrow 1.2s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 90ms)}
+.ghist .stk i{display:block;min-height:0}
+.ghist .stk i.o,.gnote .lg i.o{background:linear-gradient(180deg,#b9a3c4,#8f72a0)}
+.ghist .stk i.p,.gnote .lg i.p{background:#4f7a2e}
+.ghist small{font-size:11px;white-space:nowrap}
+.ghist em{font-style:normal;font-size:10.5px;color:#3f6a22;font-weight:600}
+.gnote{align-self:stretch;border-left:1px solid var(--line);padding-left:14px;display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}
+.gnote b{color:var(--text)}
+.gnote .lg{display:flex;flex-direction:column;gap:4px}
+.gnote .lg span{display:flex;align-items:center;gap:6px}
+.gnote .lg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+#daysModal tr.pd td{background:color-mix(in srgb,#4f7a2e 6%,transparent)}
+.gpaid{font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;background:color-mix(in srgb,#c08a3e 18%,transparent);color:#8a5e1f;white-space:nowrap}
+.gpaid.tk{background:color-mix(in srgb,#356e6b 16%,transparent);color:#2c5c59}
+@media (max-width:1180px){ .gwrap{grid-template-columns:1fr} .gnote{border-left:0;padding-left:0} .ghist{gap:4px} .ghist small{font-size:9.5px;white-space:normal;text-align:center} }
 .dhist span.click{cursor:pointer;border-radius:10px;transition:background .3s ease}
 .dhist span.click:hover{background:color-mix(in srgb,#356e6b 8%,transparent)}
 .dhist span.click:hover i{filter:brightness(1.08)}
 #daysModal .dd{color:#2c5c59}
+#daysModal table tr{display:table-row !important} #daysModal table td,#daysModal table th{display:table-cell !important}
 #daysModal .chatlink,#daysModal .pvb{font-size:12px}
 #daysModal .chatlink{border-radius:8px;padding:3px 10px;text-decoration:none;background:#eef8e9;border:1px solid #daecd2;color:#2f5d1f}
 #daysModal .pvb{background:#fdf8e2;border-color:#f5eac5;color:#6e560e}
@@ -1364,6 +1410,7 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .qtile:hover{background:color-mix(in srgb,var(--qc) 12%,var(--card));transform:translateY(-1px)}
 .qtile.on{border-color:var(--qc);background:color-mix(in srgb,var(--qc) 16%,var(--card));box-shadow:inset 0 0 0 1px var(--qc)}
 .qtile .qn{display:flex;align-items:center;gap:6px;font-size:12px;line-height:1.3;min-height:31px}
+.qtile .qn .qrk{font-style:normal;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:var(--qc);color:#fff;flex:none}
 .qtile .qn i{width:9px;height:9px;border-radius:3px;background:var(--qc);flex:none}
 .qtile .qv{display:flex;align-items:baseline;gap:5px}
 .qtile .qv b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
@@ -1389,6 +1436,20 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .phexp > span{font-size:12.5px;margin-right:auto}
 .phexp > span small{color:var(--muted);font-size:11px}
 .phexp .btn-soft{font-size:12px;padding:4px 10px}
+/* phones: the page name in the top bar is shown in full (up to two lines) */
+@media (max-width:760px){
+  .topbar{gap:8px;padding-left:10px;padding-right:10px}
+  .top-mid{margin-left:2px !important;overflow:visible}
+  .top-mid h1{white-space:normal;font-size:15.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+  /* page name on its own row so it is never cut */
+  .topbar{flex-wrap:wrap;row-gap:4px}
+  .top-mid{order:3;flex:1 1 100%;margin-left:0 !important;padding:2px 2px 0}
+  .top-mid h1{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:17px}
+  .top-actions{gap:4px;margin-left:auto}
+  .top-actions .icon-btn{width:34px;height:34px}
+}
+.vi{display:inline-flex;width:1.05em;height:1.05em;vertical-align:-.16em;flex:none}
+.vi svg{width:100%;height:100%}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1412,7 +1473,7 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .lgA{background:var(--p1)} .lgB{background:#c08a3e}
 
 /* Modal & toast */
-.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(30,28,20,.4);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.modal{position:fixed;inset:0;z-index:130;display:grid;place-items:center;padding:20px;background:rgba(30,28,20,.4);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
 .modal.on{opacity:1;pointer-events:auto}
 .modal .box{width:min(540px,100%);max-height:90vh;overflow:auto;padding:22px;transform:translateY(16px) scale(.98);transition:transform .45s var(--ease)}
 .modal.on .box{transform:none}
@@ -1704,9 +1765,10 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-upsale .mixs{gap:8px}
 }
 @media (min-width:1181px) and (min-height:620px){
-  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
+  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto auto auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
   #p-chat .chdays{grid-column:1 / -1;grid-row:6}
-  #p-chat .chq{grid-column:1 / -1;grid-row:7}
+  #p-chat .chgap{grid-column:1 / -1;grid-row:7}
+  #p-chat .chq{grid-column:1 / -1;grid-row:8}
   #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
   #p-chat .chrow{display:contents}
   #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3 / 5}
@@ -1928,6 +1990,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
           <div class="custlist" id="chatCust"></div></div>
         <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
         <div class="card ch chdays"><h3>⏱ ลูกค้าใช้เวลากี่วันถึงตัดสินใจซื้อ <span class="hint">นับจากทักครั้งแรก → สร้างคำสั่งซื้อ (ลูกค้า Tracking) · นับตามวันที่ในปฏิทิน: ทักวันนี้ ซื้อพรุ่งนี้ = 1 วันถัดมา</span></h3><div id="chatPayDays"></div></div>
+        <div class="card ch chgap"><h3>🔁 ลูกค้าหายไปแล้วกลับมาคุย <span class="hint">ลูกค้าเงียบไปเกิน 1 วัน (24 ชม.) แล้วกลับมาส่งข้อความในช่วงที่เลือก · นับช่วงที่หายไปนานที่สุดของแต่ละคน</span></h3><div id="chatGap"></div></div>
         <div class="card ch chq"><h3>💬 ลูกค้าถามอะไรบ่อย <span class="hint" id="chatQHint"></span></h3><div class="qwrap" id="chatQ"></div></div>
         <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
       </section>
@@ -4766,7 +4829,8 @@ function renderChat(){
           <div class="sr"><span>📣 Ads</span><b>${fA ? fA.avg.toFixed(1) : "-"}</b><em>วัน · ${fA ? fA.n : 0} คน</em></div>
           <div class="sr"><span>🌱 Organic</span><b>${fO ? fO.avg.toFixed(1) : "-"}</b><em>วัน · ${fO ? fO.n : 0} คน</em></div></div>
       </div>
-      <div class="dhist">${B.map(([l, n], k) => `<span class="${n ? "click" : ""}" data-band="${k}" style="--i:${k}" title="${n ? `กดเพื่อดูรายชื่อ ${n} คน` : ""}"><b>${n}</b><i style="--h:${Math.max(.03, n / mxB).toFixed(3)}"></i><small>${l}</small><em>${(n / D.length * 100).toFixed(0)}%</em></span>`).join("")}</div>
+      <div class="gmid"><div class="ghint">👆 คลิกที่แท่งหรือปุ่ม “ดูรายชื่อ” เพื่อดูว่าใครซื้อในช่วงนี้ และใช้เวลากี่วัน</div>
+      <div class="dhist">${B.map(([l, n], k) => `<span class="${n ? "click" : ""}" data-band="${k}" style="--i:${k}" title="${n ? `กดเพื่อดูรายชื่อ ${n} คน` : ""}"><b>${n}</b><i style="--h:${Math.max(.03, n / mxB).toFixed(3)}"></i><small>${l}</small><em>${(n / D.length * 100).toFixed(0)}%</em>${n ? `<u class="dgo">ดูรายชื่อ ›</u>` : `<u class="dgo z">&nbsp;</u>`}</span>`).join("")}</div></div>
       <div class="dslow"><div class="t">ใช้เวลานานที่สุด</div>${slow.map(x => `<div class="r"><span>${esc(x.c.name)}</span><b>${x.days} วันถัดมา</b></div>`).join("")}<div class="n">ชี้เมาส์ที่ป้าย ⏱ ในการ์ดรายชื่อลูกค้าที่ชำระเงินแล้ว เพื่อดูวันทักครั้งแรกและวันสร้างคำสั่งซื้อ</div></div>
     </div>`;
     $$("#chatPayDays .dhist span.click").forEach(sp => sp.onclick = () => openDaysModal(+sp.dataset.band));
@@ -4779,6 +4843,7 @@ function renderChat(){
 
   renderChatList(a, e);
   renderChatQ(a, e);
+  renderChatGap(a, e);
 
   /* busy hours */
   segSet($("#chatHourMode"), "m", S.chatHourMode);
@@ -4866,6 +4931,60 @@ function openDaysModal(k){
 $("#dmClose").onclick = () => $("#daysModal").classList.remove("on");
 $("#daysModal").onclick = ev => { if(ev.target.id === "daysModal") $("#daysModal").classList.remove("on"); };
 document.addEventListener("keydown", ev => { if(ev.key === "Escape") $("#daysModal").classList.remove("on"); });
+/* customers who went quiet for more than a day and came back: how long they were away, and which of them paid */
+const GAP_BANDS = [["1–2 วัน", 1, 2], ["2–3 วัน", 2, 3], ["3–7 วัน", 3, 7], ["1–2 สัปดาห์", 7, 14], ["2–4 สัปดาห์", 14, 30], ["เกิน 30 วัน", 30, 1e9]];
+function renderChatGap(a, e){
+  const PAYRE = /linksplus\.omise\.co/i, ORDRE = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อมูลค่า/i;
+  const out = [];
+  let active = 0;
+  chatConvs().forEach(c => {
+    const cm = c.msgs.filter(m => m.c && !IS_SYS.test(m.text || "")).sort((x, y) => x.t - y.t);
+    if(cm.some(m => m.t >= a && m.t < e)) active++;
+    let best = null;
+    for(let i = 1; i < cm.length; i++){ if(cm[i].t < a || cm[i].t >= e) continue;
+      const d = (cm[i].t - cm[i - 1].t) / 864e5; if(d > 1 && (!best || d > best.d)) best = {d, from:cm[i - 1].t, back:cm[i].t}; }
+    if(!best) return;
+    const track = c.msgs.some(m => !m.c && ORDRE.test(m.text || "")), paid = track;   // paid = Tracking only (a payment link alone does not count)
+    out.push({c, ...best, paid, track});
+  });
+  const D = out.map(x => x.d).sort((p, q) => p - q), nP = out.filter(x => x.paid).length;
+  const box = $("#chatGap");
+  if(!out.length){ setHTMLIf(box, `<div class="rk-more">ยังไม่มีลูกค้าที่หายไปเกิน 1 วันแล้วกลับมาในช่วงนี้</div>`); return; }
+  const avg = D.reduce((t, n) => t + n, 0) / D.length, med = D[Math.floor(D.length / 2)], w3 = D.filter(d => d <= 3).length;
+  S._gapBands = GAP_BANDS.map(([l, lo, hi]) => ({l, list: out.filter(x => x.d > lo && x.d <= hi).sort((p, q) => (q.paid - p.paid) || (q.d - p.d))}));
+  const mx = Math.max(1, ...S._gapBands.map(g => g.list.length));
+  const fmtD = d => d < 2 ? `${Math.round(d * 24)} ชม.` : `${d.toFixed(1)} วัน`;
+  setHTMLIf(box, `<div class="gwrap">
+    <div class="gstats">
+      <div class="ds main"><small>กลับมาคุยอีกครั้ง</small><b>${fmtN(out.length)}</b><em>คน · ${active ? (out.length / active * 100).toFixed(0) : 0}% ของคนที่ทักในช่วงนี้</em></div>
+      <div class="ds"><small>ส่วนใหญ่หายไป (ค่ากลาง)</small><b>${med.toFixed(1)}</b><em>วัน</em></div>
+      <div class="ds"><small>หายไปเฉลี่ย</small><b>${avg.toFixed(1)}</b><em>วัน</em></div>
+      <div class="ds paid"><small>💳 ในนี้ชำระเงินแล้ว (Tracking)</small><b>${fmtN(nP)}</b><em>คน · ${(nP / out.length * 100).toFixed(0)}% ของคนที่กลับมา</em></div>
+    </div>
+    <div class="gmid"><div class="ghint">👆 คลิกที่แท่งหรือป้าย 💳 เพื่อดูคนที่ซื้อในช่วงระยะนี้</div><div class="ghist">${S._gapBands.map((g, k) => { const n = g.list.length, p = g.list.filter(x => x.paid).length, H = Math.max(3, Math.round(n / mx * 100));
+      return `<span class="${p ? "click" : ""}" data-gb="${k}" style="--i:${k}" title="${p ? `กดเพื่อดูลูกค้า Tracking ${p} คน` : "ไม่มีลูกค้า Tracking ในช่วงนี้"}">
+        <b>${n}</b><span class="stk" style="height:${H}px"><i class="o" style="flex:${n - p}"></i><i class="p" style="flex:${p}"></i></span>
+        <small>${g.l}</small><em class="${p ? "go" : ""}">${p ? `💳 ${p} คน <u>ดูรายชื่อ ›</u>` : "&nbsp;"}</em></span>`; }).join("")}</div></div>
+    <div class="gnote"><div class="lg"><span><i class="o"></i>กลับมาคุย</span><span><i class="p"></i>ชำระเงินแล้ว (Tracking)</span></div>
+      <div>✔ <b>${(w3 / D.length * 100).toFixed(0)}%</b> กลับมาภายใน 3 วัน</div>
+      <div>คลิกแท่งเพื่อดูคนที่ซื้อ (Tracking) ในช่วงระยะนั้น</div></div>
+  </div>`);
+  $$("#chatGap .ghist > span.click").forEach(sp => sp.onclick = () => openGapModal(+sp.dataset.gb));
+}
+function openGapModal(k){
+  const g = (S._gapBands || [])[k]; if(!g) return;
+  const fmtD = d => d < 2 ? `${Math.round(d * 24)} ชม.` : `${d.toFixed(1)} วัน`, nP = g.list.filter(x => x.paid).length;
+  // only the customers who bought (Tracking)
+  const list = g.list.filter(x => x.paid);
+  $("#dmTitle").textContent = `🔁 หายไป ${g.l} แล้วกลับมาคุย · 💳 ชำระแล้ว ${list.length} คน`;
+  $("#dmSub").textContent = `แสดงเฉพาะลูกค้า Tracking · จากทั้งหมด ${g.list.length} คนที่กลับมาคุยในช่วงนี้ · นับช่วงที่หายไปนานที่สุดของแต่ละคน`;
+  $("#dmBody").innerHTML = !list.length ? `<div class="rk-more">ไม่มีลูกค้า Tracking ในช่วงนี้</div>` : `<table class="dt fitw cvmt"><thead><tr><th>ลูกค้า</th><th class="num">หายไป</th><th>ข้อความก่อนหายไป</th><th>กลับมาคุย</th><th>สถานะ</th><th></th></tr></thead><tbody>${list.map(x => { const og = chatOrigin(x.c);
+    return `<tr class="${x.paid ? "pd" : ""}"><td><b>${esc(x.c.name)}</b> ${srcTag(og.src)}<div class="muted" style="font-size:11px">${esc(x.c.page)}</div></td>
+      <td class="num"><b class="dd">${fmtD(x.d)}</b></td><td>${fmtWhen(x.from)}</td><td>${fmtWhen(x.back)}</td>
+      <td>${x.paid ? `<span class="gpaid tk">💳 Tracking</span>` : `<span class="muted">-</span>`}</td>
+      <td><span style="display:flex;gap:4px;justify-content:flex-end"><button class="pvb" data-cv="${esc(x.c.id)}">Preview</button>${x.c.link ? `<a class="chatlink" href="${esc(x.c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></td></tr>`; }).join("")}</tbody></table>`;
+  $("#daysModal").classList.add("on");
+}
 function renderChatQ(a, e){
   const convs = chatConvs();
   const T = CHAT_Q.map(([name, color, re]) => ({name, color, re, rooms:new Set(), msgs:0, ex:[]}));
@@ -4890,7 +5009,7 @@ function renderChatQ(a, e){
   const uniq = arr => [...new Set(arr)].slice(0, 6);
   setHTMLIf($("#chatQ"), !list.length ? `<div class="rk-more">ยังไม่มีข้อความลูกค้าในช่วงนี้</div>` :
     `<div class="qleft"><div class="qtiles">${list.map((q, i) => `<button class="qtile" data-q="${esc(q.name)}" style="--qc:${q.color};--i:${i}">
-        <span class="qn"><i></i>${esc(q.name)}</span>
+        <span class="qn"><em class="qrk">${i + 1}</em>${esc(q.name)}</span>
         <span class="qv"><b>${fmtN(q.rooms.size)}</b><small>ห้อง · ${rooms ? (q.rooms.size / rooms * 100).toFixed(0) : 0}%</small></span>
         <span class="qb"><i style="width:${(q.rooms.size / mx * 100).toFixed(1)}%"></i></span>
       </button>`).join("")}</div>
@@ -5029,7 +5148,7 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 /* ================= PRESENTATION MODE (expand a card to full screen) =================
    Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
 const PRESENT_CARDS = ["#p-adsbook .adsbook", "#p-adsbook .abfun", "#p-adsbook .abweek", "#p-adsbook .abtablecard", "#p-ads .adschart", "#p-ads .adsweek", "#p-ads .adstable",
-  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust", "#p-chat .chdays", "#p-chat .chq", "#p-chat .chdays", "#p-chat .chq",
+  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust", "#p-chat .chdays", "#p-chat .chgap", "#p-chat .chq",
   "#p-compare .mcard", "#p-compare .revcmp", "#p-compare .revsales", "#p-compare .cbottom .chcard",
   "#p-lead .ldstage", "#p-lead .ldday", "#p-lead .ldcmp", "#p-lead .ldlist", "#p-camp .cpflow", "#p-camp .cpsum", "#p-camp .cpbuy", "#p-camp .cptable"].join(", ");
 const rerenderPresentPage = () => S.page === "lead" ? renderLead() : S.page === "camp" ? renderCamp() : ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
@@ -5643,6 +5762,37 @@ function renderCamp(){
   });
 }
 $$("#cpSort button").forEach(b => b.onclick = () => { S.cpSort = b.dataset.s; renderCamp(); });
+
+/* ================= VECTOR ICONS INSTEAD OF EMOJI =================
+   UI emoji (📣 💳 ⏱ …) are swapped for line icons as the page renders; customer text (chat bubbles, quoted messages) is left as typed */
+const EMOJI_ICON = {"🏁": "<path d=\"M5 21V4\"/><path d=\"M5 4h11l-1.6 4L16 12H5\"/>", "💬": "<path d=\"M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z\"/>", "📄": "<path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5M9 13h6M9 17h6\"/>", "💳": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2.5\"/><path d=\"M3 10h18M7 15h3\"/>", "🚪": "<path d=\"M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5\"/><path d=\"M10 17l5-5-5-5M15 12H3\"/>", "📣": "<path d=\"M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z\"/><path d=\"M17 9a4 4 0 0 1 0 6M19.5 6.5a8 8 0 0 1 0 11\"/>", "🌱": "<path d=\"M12 21v-9\"/><path d=\"M12 12C12 7.5 8.5 4 4 4c0 4.5 3.5 8 8 8z\"/><path d=\"M12 14c0-4 3-7 8-7 0 4-3 7-8 7z\"/>", "⏱": "<circle cx=\"12\" cy=\"13\" r=\"8\"/><path d=\"M12 9v4l2.5 2M9 2h6\"/>", "🔁": "<path d=\"M17 2l4 4-4 4\"/><path d=\"M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4\"/><path d=\"M21 13v2a3 3 0 0 1-3 3H3\"/>", "🔄": "<path d=\"M21 12a9 9 0 0 1-15.4 6.4L3 16M3 12a9 9 0 0 1 15.4-6.4L21 8\"/><path d=\"M21 3v5h-5M3 21v-5h5\"/>", "📷": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><circle cx=\"17.3\" cy=\"6.7\" r=\".9\" fill=\"currentColor\" stroke=\"none\"/>", "👁": "<path d=\"M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "📞": "<path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z\"/>", "🎯": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"1.3\" fill=\"currentColor\"/>", "⬇": "<path d=\"M12 3v12M7 10l5 5 5-5M5 21h14\"/>", "👆": "<path d=\"M9 11V5a2 2 0 0 1 4 0v6M13 10a2 2 0 0 1 4 0v2M17 11.5a2 2 0 0 1 4 0V15a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L5.4 15a2 2 0 0 1 3.1-2.5l.5.6\"/>", "✔": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "✓": "<path d=\"M5 12.5l4.5 4.5L19 7.5\"/>", "✕": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "⏳": "<path d=\"M6 2h12M6 22h12M7 2c0 5 5 6 5 10s-5 5-5 10M17 2c0 5-5 6-5 10s5 5 5 10\"/>", "👤": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21a8 8 0 0 1 16 0\"/>", "🧭": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15.5 8.5l-2 5-5 2 2-5z\"/>", "🏆": "<path d=\"M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z\"/><path d=\"M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4\"/>", "🏅": "<circle cx=\"12\" cy=\"15\" r=\"5\"/><path d=\"M8.6 10.8L6 3h4l2 4 2-4h4l-2.6 7.8\"/>", "✨": "<path d=\"M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z\"/><path d=\"M19 17v4M17 19h4\"/>", "📦": "<path d=\"M21 8l-9-5-9 5v8l9 5 9-5z\"/><path d=\"M3 8l9 5 9-5M12 13v8\"/>", "⚠": "<path d=\"M12 3l10 18H2z\"/><path d=\"M12 10v5M12 18h.01\"/>", "📝": "<path d=\"M4 20h4L19 9l-4-4L4 16z\"/><path d=\"M14 6l4 4\"/>", "🔒": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V7a4 4 0 0 1 8 0v4\"/>", "🔌": "<path d=\"M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5\"/>", "🔑": "<circle cx=\"7.5\" cy=\"15.5\" r=\"4.5\"/><path d=\"M10.7 12.3L21 2M17 6l3 3\"/>", "🛡": "<path d=\"M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z\"/>", "⛔": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M7 12h10\"/>", "🧩": "<path d=\"M4 7h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z\"/>", "🛠": "<path d=\"M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z\"/>", "⚙": "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1\"/>", "⧉": "<rect x=\"9\" y=\"9\" width=\"12\" height=\"12\" rx=\"2\"/><path d=\"M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1\"/>", "💡": "<path d=\"M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z\"/>"};
+const EMOJI_RE = new RegExp("(" + Object.keys(EMOJI_ICON).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")\uFE0F?", "g");
+const EMOJI_SKIP = "script,style,textarea,input,select,option,svg,canvas,.bb,.qexbox .ex,.qt .x,.cvp,.lbs,.wi .x,#chatModal .cvbody";
+function emojiToIcons(root){
+  if(!root || root.nodeType !== 1 && root.nodeType !== 3) return;
+  const nodes = [];
+  if(root.nodeType === 3){ nodes.push(root); }
+  else{ const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while((n = w.nextNode())) nodes.push(n); }
+  for(const t of nodes){
+    const v = t.nodeValue; if(!v || !EMOJI_RE.test(v)) { EMOJI_RE.lastIndex = 0; continue; } EMOJI_RE.lastIndex = 0;
+    const host = t.parentElement; if(!host || host.closest(EMOJI_SKIP)) continue;
+    const frag = document.createDocumentFragment(); let last = 0;
+    v.replace(EMOJI_RE, (m, k, off) => {
+      if(off > last) frag.appendChild(document.createTextNode(v.slice(last, off)));
+      const sp = document.createElement("span"); sp.className = "vi"; sp.setAttribute("aria-hidden", "true");
+      sp.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${EMOJI_ICON[k]}</svg>`;
+      frag.appendChild(sp); last = off + m.length; return m; });
+    if(last < v.length) frag.appendChild(document.createTextNode(v.slice(last)));
+    t.replaceWith(frag);
+  }
+}
+(function watchEmoji(){
+  let q = new Set(), raf = 0;
+  const flush = () => { raf = 0; const list = [...q]; q.clear(); list.forEach(n => n.isConnected && emojiToIcons(n)); };
+  new MutationObserver(ms => { for(const m of ms){ if(m.type === "characterData") q.add(m.target); else m.addedNodes.forEach(n => q.add(n)); } if(!raf) raf = requestAnimationFrame(flush); })
+    .observe(document.body, {childList:true, subtree:true, characterData:true});
+  emojiToIcons(document.body);
+})();
 
 /* ================= RENDER ================= */
 function renderSubtitle(){
