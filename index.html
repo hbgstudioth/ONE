@@ -1472,6 +1472,156 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 .asvr .nm i{width:8px;height:8px;border-radius:50%}
 .asvr .nm em{height:4px;border-radius:3px;background:var(--soft);overflow:hidden;display:block}
 .asvr .nm em s{display:block;height:100%;opacity:.55;border-radius:3px}
+/* ===== admin follow-ups ===== */
+.chfu h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chfu .hint{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:300}
+.fuwrap{align-items:start !important;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr) minmax(0,1fr);gap:16px;align-items:center}
+.funnel{display:flex;flex-direction:column;gap:4px}
+.fus{font:inherit;position:relative;display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:8px;text-align:left;padding:9px 14px;border-radius:12px;cursor:pointer;color:var(--text);
+  border:1px solid var(--line);background:var(--card);overflow:hidden;transition:transform .3s ease,background .3s ease}
+.fus:hover{transform:translateX(2px)}
+.fus span{font-size:12.5px;position:relative;z-index:1}
+.fus b{font-size:22px;font-weight:700;position:relative;z-index:1;font-variant-numeric:tabular-nums}
+.fus small{font-size:11px;color:var(--muted);position:relative;z-index:1}
+.fus i{position:absolute;left:0;top:0;bottom:0;opacity:.16;transform-origin:left;animation:cpGrow 1.2s cubic-bezier(.22,.61,.36,1) both}
+.fus.s1 i{background:#7d5a8a} .fus.s1 b{color:#6b4a78}
+.fus.s2 i{background:#3f6f9e} .fus.s2 b{color:#2f5f8e}
+.fus.s3 i{background:#4f7a2e} .fus.s3 b{color:#3f6a22}
+.fua{font-size:11.5px;font-weight:600;color:var(--muted);padding-left:18px}
+.fustat{display:flex;flex-direction:column;gap:8px}
+.fustat > div:not(.note){border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.fustat small{display:block;font-size:11px;color:var(--muted)}
+.fustat b{font-size:20px;font-weight:700}
+.fustat .note{font-size:11px;color:var(--muted);line-height:1.5}
+/* follow-up card: step cards left→right, two stats under them, admin table on the right */
+#chatFU .fuwrap{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);grid-template-areas:"fun adm" "st adm";gap:12px 20px;align-items:start}
+#chatFU .funnel{grid-area:fun;display:grid;grid-template-columns:minmax(0,1fr) 74px minmax(0,1fr) 74px minmax(0,1fr);align-items:stretch;gap:0}
+#chatFU .fus{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px 14px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card);transition:transform .3s ease,box-shadow .3s ease}
+#chatFU .fus:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(60,50,20,.08)}
+#chatFU .fus span{font-size:12px;color:var(--muted)}
+#chatFU .fus b{font-size:clamp(24px,2.1vw,32px);line-height:1.1}
+#chatFU .fus small{font-size:11px}
+#chatFU .fus i{top:auto;bottom:0;height:5px;opacity:1;border-radius:0 3px 0 0}
+#chatFU .fus.s1{background:color-mix(in srgb,#7d5a8a 7%,var(--card));border-color:color-mix(in srgb,#7d5a8a 30%,var(--line))}
+#chatFU .fus.s2{background:color-mix(in srgb,#3f6f9e 7%,var(--card));border-color:color-mix(in srgb,#3f6f9e 30%,var(--line))}
+#chatFU .fus.s3{background:color-mix(in srgb,#4f7a2e 8%,var(--card));border-color:color-mix(in srgb,#4f7a2e 32%,var(--line))}
+#chatFU .fua{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;font-size:11px;text-align:center;color:var(--muted);line-height:1.25}
+#chatFU .fua::before{content:"";width:30px;height:2px;background:var(--line);margin-bottom:2px}
+#chatFU .fustat{grid-area:st;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#chatFU .fustat > div:not(.note){display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:9px 14px}
+#chatFU .fustat .note{grid-column:1 / -1}
+#chatFU .fuadm{grid-area:adm;border-left:1px solid var(--line);padding-left:18px}
+@media (max-width:1180px){ #chatFU .fuwrap{grid-template-columns:1fr;grid-template-areas:"fun" "st" "adm"} #chatFU .fuadm{border-left:0;padding-left:0} }
+@media (max-width:640px){ #chatFU .funnel{grid-template-columns:1fr;row-gap:4px} #chatFU .fua{flex-direction:row} #chatFU .fua::before{display:none} #chatFU .fustat{grid-template-columns:1fr} }
+.fuadm .t{font-size:12.5px;font-weight:600;margin-bottom:4px}
+.fuadm table{width:100%;font-size:12.5px}
+/* ===== admin follow-up card (clean layout) ===== */
+.fu2{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:22px;align-items:stretch}
+.f2flow{display:flex;flex-direction:column;gap:12px;min-width:0}
+.f2steps{display:grid;grid-template-columns:minmax(0,1fr) 86px minmax(0,1fr) 86px minmax(0,1fr);align-items:stretch}
+.f2s{font:inherit;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:12px 14px 12px;border-radius:16px;cursor:pointer;color:var(--text);position:relative;overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--sc) 30%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,var(--sc) 12%,var(--card)),var(--card) 70%);transition:transform .35s ease,box-shadow .35s ease;animation:cpRise .8s cubic-bezier(.22,.61,.36,1) both}
+.f2s:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px color-mix(in srgb,var(--sc) 60%,transparent)}
+.f2s.s1{--sc:#7d5a8a} .f2s.s2{--sc:#3f6f9e;animation-delay:.1s} .f2s.s3{--sc:#4f7a2e;animation-delay:.2s}
+.f2s .ico{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--sc);color:#fff;margin-bottom:6px}
+.f2s .ico svg{width:17px;height:17px}
+.f2s .lb{font-size:12px;color:var(--muted)}
+.f2s b{font-size:clamp(26px,2.3vw,34px);font-weight:700;line-height:1.1;color:var(--sc);font-variant-numeric:tabular-nums}
+.f2s small{font-size:11px;color:var(--muted)}
+.f2s em{display:block;width:100%;height:6px;border-radius:4px;background:color-mix(in srgb,var(--sc) 12%,transparent);margin-top:8px;overflow:hidden}
+.f2s em i{display:block;height:100%;border-radius:4px;background:var(--sc);min-width:3px;transform-origin:left;animation:cpGrow 1.3s cubic-bezier(.22,.61,.36,1) both;animation-delay:.3s}
+.f2s u{text-decoration:none;font-size:10px;font-weight:600;color:var(--sc);margin-top:6px}
+.f2a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--muted)}
+.f2a span{font-size:10.5px}
+.f2a b{font-size:15px;font-weight:700;color:var(--text)}
+.f2a svg{width:40px;height:12px;color:var(--muted2)}
+.f2ins{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:9px 14px;border-radius:12px;background:var(--soft)}
+.f2ins .kv{display:flex;align-items:baseline;gap:8px}
+.f2ins .kv small{font-size:11.5px;color:var(--muted)}
+.f2ins .kv b{font-size:17px;font-weight:700}
+.f2ins .hint2{margin-left:auto;font-size:11px;color:var(--muted)}
+.f2adm{border-left:1px solid var(--line);padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.f2adm .t{font-size:12.5px;font-weight:600;margin-bottom:2px}
+.f2s small .bp{font-size:12px;color:var(--sc);font-weight:700}
+.f2r{display:grid;grid-template-columns:70px 62px minmax(0,1fr) 68px;gap:8px;align-items:center;padding:7px 8px;border-radius:12px;background:color-mix(in srgb,var(--ac) 5%,var(--card));border:1px solid color-mix(in srgb,var(--ac) 18%,var(--line))}
+.f2r .nm{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px}
+.f2r .nm i{width:9px;height:9px;border-radius:50%;background:var(--ac)}
+.f2r .fxcell{display:flex;flex-direction:column;align-items:center;line-height:1.1;padding:3px 8px}
+.f2r .fxcell small{font-size:9.5px;font-weight:400;color:var(--muted)}
+.f2r .fxcell.buy{background:color-mix(in srgb,#4f7a2e 14%,transparent);color:#3f6a22}
+.f2r .rt{display:flex;align-items:center;gap:6px;min-width:0}
+.f2r .rt em{flex:1;height:6px;border-radius:4px;background:var(--soft);overflow:hidden}
+.f2r .rt em s{display:block;height:100%;background:#3f6f9e;border-radius:4px}
+.f2r .z{text-align:center}
+@media (max-width:1180px){ .fu2{grid-template-columns:1fr} .f2adm{border-left:0;padding-left:0} }
+@media (max-width:700px){ .f2steps{grid-template-columns:1fr} .f2a{flex-direction:row;gap:6px;padding:4px 0} .f2a svg{transform:rotate(90deg);width:20px} .f2ins .hint2{margin-left:0} }
+.futag{font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px}
+.futag.r{background:color-mix(in srgb,#3f6f9e 14%,transparent);color:#2f5f8e} .futag.n{background:var(--soft);color:var(--muted)}
+#daysModal .futl{display:flex;flex-direction:column;gap:3px;margin-top:8px}
+#daysModal .futl .st{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:8px;font-size:12px;align-items:start;padding:3px 6px;border-radius:8px}
+#daysModal .futl .st > span{font-size:10.5px;font-weight:700;border-radius:5px;padding:1px 6px;text-align:center}
+#daysModal .futl .st.c > span{background:var(--soft);color:var(--muted)}
+#daysModal .futl .st.a{background:color-mix(in srgb,#7d5a8a 8%,transparent)} #daysModal .futl .st.a > span{background:#7d5a8a;color:#fff}
+#daysModal .futl .st.ok{background:color-mix(in srgb,#3f6f9e 8%,transparent)} #daysModal .futl .st.ok > span{background:#3f6f9e;color:#fff}
+#daysModal .futl .st p{margin:0;line-height:1.4}
+#daysModal .futl .st i{font-style:normal;font-size:10px;color:var(--muted);white-space:nowrap}
+#daysModal .futl .gp{padding-left:98px}
+#daysModal .futl .gp > span{font-size:10.5px;color:var(--muted);border-left:2px dashed var(--line);padding-left:8px}
+@media (max-width:1180px){ .fuwrap{grid-template-columns:1fr} }
+/* ===== chats worth improving ===== */
+.chfix h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chfix .hint{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:300}
+.fxwrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+.fxcats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.fxc{font:inherit;text-align:left;display:flex;flex-direction:column;gap:2px;padding:9px 11px;border-radius:12px;cursor:pointer;color:var(--text);
+  border:1px solid color-mix(in srgb,var(--fc) 30%,var(--line));background:color-mix(in srgb,var(--fc) 6%,var(--card));transition:background .3s ease,transform .3s ease;animation:cpRise .8s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+.fxc:hover{background:color-mix(in srgb,var(--fc) 13%,var(--card));transform:translateY(-1px)}
+.fxc .h{display:flex;align-items:flex-start;gap:6px;font-size:12px;line-height:1.3;min-height:32px}
+.fxc .h em{font-style:normal;flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:700;background:var(--fc);color:#fff}
+.fxc b{font-size:22px;font-weight:700;color:var(--fc);font-variant-numeric:tabular-nums}
+.fxc small{font-size:10.5px;color:var(--muted)}
+.fxc u{text-decoration:none;align-self:flex-start;margin-top:3px;font-size:10px;font-weight:600;color:#fff;background:var(--fc);border-radius:999px;padding:0 8px}
+.fxadm .t{font-size:12.5px;font-weight:600;margin-bottom:4px}
+.fxadm .t small{font-weight:400;color:var(--muted)}
+.fxadm table{width:100%;font-size:12.5px}
+.fxadm td,.fxadm th{padding:5px 6px}
+.fxn{font-style:normal;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--fc);color:#fff;font-size:10.5px;font-weight:700}
+.fxcell{font:inherit;font-size:12.5px;font-weight:700;border:0;background:var(--soft);border-radius:6px;padding:1px 8px;cursor:pointer;color:var(--text)}
+.fxcell:hover{background:color-mix(in srgb,var(--p1) 18%,var(--soft))}
+#daysModal .fxr{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:var(--card)}
+#daysModal .fxh{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#daysModal .fxh small{color:var(--muted);font-size:11.5px}
+#daysModal .fxb{margin-left:auto;display:flex;gap:4px}
+#daysModal .fxbody{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;margin-top:8px}
+#daysModal .fxguide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr);gap:10px 16px;border:1px solid color-mix(in srgb,var(--fc) 35%,var(--line));border-left:5px solid var(--fc);background:color-mix(in srgb,var(--fc) 6%,var(--card));border-radius:12px;padding:10px 14px;margin:6px 0 12px;font-size:12.5px;line-height:1.55}
+#daysModal .fxguide b{display:block;font-size:12px;color:var(--fc);margin-bottom:2px}
+#daysModal .fxguide p,#daysModal .fxguide ol{margin:0}
+#daysModal .fxguide ol{padding-left:18px}
+#daysModal .fxguide .smp{background:var(--card);border:1px dashed color-mix(in srgb,var(--fc) 40%,var(--line));border-radius:10px;padding:6px 9px}
+#daysModal .fxguide .g4{grid-column:1 / -1;display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+#daysModal .lg{display:inline-flex;align-items:center;gap:5px}
+#daysModal .lg::before{content:"";width:12px;height:12px;border-radius:3px}
+#daysModal .lg.bad::before{background:color-mix(in srgb,#b5473a 22%,transparent);border:1px solid #b5473a}
+#daysModal .lg.ok::before{border-left:3px solid #4f7a2e;background:transparent}
+#daysModal .fxfound{font-size:12px;font-weight:600;color:var(--fc);margin:6px 0 4px}
+#daysModal .fxfound small{font-weight:400;color:var(--muted)}
+#daysModal .fl.bad{background:color-mix(in srgb,#b5473a 10%,transparent);border:1px solid color-mix(in srgb,#b5473a 45%,transparent);border-radius:8px;padding:4px 6px;margin:2px 0}
+#daysModal .fl.ok{border-left:3px solid #4f7a2e;padding-left:6px}
+#daysModal .fl .why{display:inline-block;margin-left:6px;font-style:normal;font-size:10.5px;font-weight:700;color:#fff;background:#b5473a;border-radius:999px;padding:0 7px}
+#daysModal .gap{display:flex;justify-content:center;margin:3px 0}
+#daysModal .gap > span{font-size:11px;font-weight:700;color:#b5473a;background:color-mix(in srgb,#b5473a 10%,transparent);border:1px dashed #b5473a;border-radius:999px;padding:1px 10px}
+@media (max-width:900px){ #daysModal .fxguide{grid-template-columns:1fr} }
+#daysModal .fl{display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:6px;font-size:12px;padding:2px 0;align-items:start}
+#daysModal .fl > span{font-size:10.5px;font-weight:700;border-radius:5px;padding:0 5px;text-align:center}
+#daysModal .fl.c > span{background:var(--soft);color:var(--muted)} #daysModal .fl.a > span{background:color-mix(in srgb,var(--ac,#5e662d) 16%,transparent);color:var(--ac,#4b5223)}
+#daysModal .admtag{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#fff;background:var(--ac);border-radius:999px;padding:2px 10px;margin-right:4px}
+#daysModal .fl p{margin:0;line-height:1.4}
+#daysModal .fl i{font-style:normal;font-size:10px;color:var(--muted);white-space:nowrap}
+#daysModal .fxex .more{font-size:11px;color:var(--muted);margin-top:2px}
+#daysModal .fxtip{border-left:3px solid var(--fc);background:color-mix(in srgb,var(--fc) 7%,var(--card));border-radius:0 10px 10px 0;padding:8px 10px;font-size:12px;line-height:1.5}
+#daysModal .fxtip .w{font-weight:600;margin-bottom:3px}
+#daysModal .fxtip .o{margin-top:4px;color:var(--muted);font-size:11px}
+@media (max-width:900px){ .fxwrap,#daysModal .fxbody{grid-template-columns:1fr} }
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1787,10 +1937,12 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
   #p-upsale .mixs{gap:8px}
 }
 @media (min-width:1181px) and (min-height:620px){
-  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto auto auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
+  #p-chat{height:auto;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto auto var(--chr) var(--chr) 178px auto auto auto auto auto;gap:10px;--chr:max(230px,calc((var(--avail) - 380px) / 2))}
   #p-chat .chdays{grid-column:1 / -1;grid-row:6}
   #p-chat .chgap{grid-column:1 / -1;grid-row:7}
-  #p-chat .chq{grid-column:1 / -1;grid-row:8}
+  #p-chat .chfu{grid-column:1 / -1;grid-row:8}
+  #p-chat .chq{grid-column:1 / -1;grid-row:9}
+  #p-chat .chfix{grid-column:1 / -1;grid-row:10}
   #p-chat .chhead,#p-chat .chk{grid-column:1 / -1}
   #p-chat .chrow{display:contents}
   #p-chat .chday{grid-column:1;grid-row:3} #p-chat .chwait{grid-column:2;grid-row:3 / 5}
@@ -2013,7 +2165,9 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
         <div class="card ch chsrc"><h3>ที่มาและช่องทาง</h3><div class="srcwrap" id="chatSrc"></div></div>
         <div class="card ch chdays"><h3>⏱ ลูกค้าใช้เวลากี่วันถึงตัดสินใจซื้อ <span class="hint">นับจากทักครั้งแรก → สร้างคำสั่งซื้อ (ลูกค้า Tracking) · นับตามวันที่ในปฏิทิน: ทักวันนี้ ซื้อพรุ่งนี้ = 1 วันถัดมา</span></h3><div id="chatPayDays"></div></div>
         <div class="card ch chgap"><h3>🔁 ลูกค้าหายไปแล้วกลับมาคุย <span class="hint">ลูกค้าเงียบไปเกิน 1 วัน (24 ชม.) แล้วกลับมาส่งข้อความในช่วงที่เลือก · นับช่วงที่หายไปนานที่สุดของแต่ละคน</span></h3><div id="chatGap"></div></div>
+        <div class="card ch chfu"><h3>📣 แอดมินทักกลับ แล้วลูกค้าคุยต่อ <span class="hint">ลูกค้าเงียบไปเกิน 1 วัน แล้วแอดมินเป็นฝ่ายทักไปก่อน (ในช่วงที่เลือก) · ปิดการขาย = มีคำสั่งซื้อ (Tracking) หลังแอดมินทัก</span></h3><div id="chatFU"></div></div>
         <div class="card ch chq"><h3>💬 ลูกค้าถามอะไรบ่อย <span class="hint" id="chatQHint"></span></h3><div class="qwrap" id="chatQ"></div></div>
+        <div class="card ch chfix"><h3>🛠 แชทที่ควรปรับปรุง <span class="hint">ห้องที่คุยกัน 1–4 รอบ ยังไม่มีคำสั่งซื้อ และรู้ว่าแอดมินคนไหนคุย · ไม่นับการถามคัดกรองก่อนบอกราคา (เทคนิคของทีม) · กดหมวดหรือตัวเลขเพื่อดูแชทและคำแนะนำ</span></h3><div id="chatFix"></div></div>
         <div class="usnote" id="chatNote">แชทใหม่ = ห้องแชทที่ข้อความแรกของลูกค้าในชีตอยู่ในช่วงที่เลือก · เวลาตอบกลับ = จากข้อความแรกของลูกค้าที่ยังไม่ได้ตอบ ถึงข้อความถัดไปของเพจ · แชทจากโฆษณา = Message จาก Meta Ads ÷ แชทใหม่ (ประมาณ) · ตัวกรองบัญชีแอด/บริการ มีผลเฉพาะจำนวน Message จากโฆษณา</div>
       </section>
 
@@ -4884,6 +5038,8 @@ function renderChat(){
   renderChatList(a, e);
   renderChatQ(a, e);
   renderChatGap(a, e);
+  renderChatFU(a, e);
+  renderChatFix(a, e);
 
   /* busy hours */
   segSet($("#chatHourMode"), "m", S.chatHourMode);
@@ -5023,6 +5179,243 @@ function openGapModal(k){
       <td class="num"><b class="dd">${fmtD(x.d)}</b></td><td>${fmtWhen(x.from)}</td><td>${fmtWhen(x.back)}</td>
       <td>${x.paid ? `<span class="gpaid tk">💳 Tracking</span>` : `<span class="muted">-</span>`}</td>
       <td><span style="display:flex;gap:4px;justify-content:flex-end"><button class="pvb" data-cv="${esc(x.c.id)}">Preview</button>${x.c.link ? `<a class="chatlink" href="${esc(x.c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></td></tr>`; }).join("")}</tbody></table>`;
+  $("#daysModal").classList.add("on");
+}
+/* ===== chats worth improving: rooms with 1–4 exchanges and no order yet =====
+   rule-based, so the team's own technique (asking qualifying questions before the price) is not counted as a fault */
+const FIX_CATS = [
+  {k:"unans", name:"ลูกค้าถามแล้วไม่มีคนตอบ", color:"#b5473a", tip:"ลูกค้าส่งข้อความสุดท้ายแล้วไม่มีใครตอบ ควรตอบกลับทันทีพร้อมข้อมูลที่ลูกค้าถาม (มักเป็นราคา) กลุ่มนี้คือลูกค้าที่ยังสนใจอยู่"},
+  {k:"price", name:"ถามราคาซ้ำแต่ยังไม่ได้ตัวเลข", color:"#c08a3e", tip:"ลูกค้าถามราคาตั้งแต่ 2 ครั้ง แปลว่าเริ่มรอไม่ไหว ควรให้ช่วงราคาเริ่มต้นก่อน แล้วค่อยถามคัดกรองต่อ เช่น “เสริมใหม่เริ่มต้น xx,xxx บาท ขอทราบเพิ่มนิดนึงเพื่อแนะนำเทคนิคที่เหมาะนะคะ”"},
+  {k:"dup", name:"แอดมินส่งข้อความเดิมซ้ำติดกัน", color:"#7d5a8a", tip:"แอดมินส่งข้อความเดิมซ้ำโดยที่ลูกค้ายังไม่ได้ตอบ (ภายใน 30 นาที) มักเกิดจากกดส่งซ้ำหรือแอดมิน 2 คนตอบห้องเดียวกัน ลูกค้าอาจรู้สึกว่าคุยกับระบบอัตโนมัติ ควรให้ห้องหนึ่งมีผู้ดูแลคนเดียวและเช็กก่อนส่งข้อความสำเร็จรูป"},
+  {k:"slow", name:"ตอบครั้งแรกช้าเกิน 1 ชม. (เวลาทำการ)", color:"#3f6f9e", tip:"ลูกค้าทักในเวลาทำการ (09:00–21:00) แต่ได้คำตอบแรกจากแอดมินช้ากว่า 1 ชม. ควรเพิ่มคนดูแลช่วงที่ห้องค้าง หรือส่งข้อความชั่วคราวพร้อมราคาเริ่มต้น/รีวิว"},
+  {k:"early", name:"ขอเบอร์/รูปทันทีหลังถามราคา", color:"#356e6b", tip:"ลูกค้าถามราคาแต่แอดมินขอเบอร์หรือรูปก่อนให้ข้อมูล ควรให้ข้อมูลสั้น ๆ ก่อน (ช่วงราคา/โปร) แล้วค่อยขอข้อมูลติดต่อ ลูกค้าจะเต็มใจให้มากกว่า"}
+];
+/* what to do and a sample reply for each category (shown in the popup) */
+const FIX_HOW = {
+  unans:{todo:["ตอบกลับทันทีที่เห็น พร้อมขอโทษที่ให้รอ", "ตอบเรื่องที่ลูกค้าถามล่าสุดก่อน (ส่วนใหญ่คือราคา)", "ปิดท้ายด้วยคำถามง่าย ๆ ให้ลูกค้าตอบต่อ"],
+    sample:"ขออภัยที่ให้รอนะคะ 🙏 เรื่องที่คุณลูกค้าถาม แอดมินแจ้งให้เลยค่ะ … สะดวกให้แอดมินแนะนำโปรที่เหมาะเพิ่มไหมคะ"},
+  price:{todo:["บอกช่วงราคาเริ่มต้นก่อนเสมอเมื่อลูกค้าถามซ้ำ", "แล้วค่อยถามคัดกรอง (เคสใหม่/เคสแก้) ต่อในข้อความเดียวกัน", "ไม่ต้องยกเลิกการคัดกรอง แค่สลับลำดับ"],
+    sample:"เสริมจมูกเริ่มต้น xx,xxx บาทค่ะ ราคาสุดท้ายขึ้นกับเทคนิคที่เหมาะกับคุณลูกค้า ขอทราบเพิ่มนิดนึงนะคะ เป็นเคสเสริมใหม่หรือเคสแก้คะ"},
+  dup:{todo:["ก่อนส่งข้อความสำเร็จรูป ดูว่าในห้องส่งไปแล้วหรือยัง", "ให้ห้องหนึ่งมีแอดมินดูแลคนเดียว ไม่ตอบชนกัน", "ถ้าลูกค้ายังไม่ตอบ ใช้ข้อความสั้น ๆ ทักตามแทนการส่งข้อความเดิม"],
+    sample:"(แทนการส่งคำถามเดิมซ้ำ) “ไม่ทราบว่าคุณลูกค้าสะดวกตอบตอนนี้ไหมคะ หรือให้แอดมินส่งราคาเริ่มต้นให้ดูก่อนก็ได้ค่ะ 😊”"},
+  slow:{todo:["ตั้งเป้าตอบครั้งแรกภายใน 15 นาทีในเวลาทำการ", "ช่วงที่ห้องค้าง เพิ่มคนดูแลหรือส่งข้อความชั่วคราวพร้อมราคาเริ่มต้น/รีวิว", "ตอบแล้วขอโทษที่ให้รอ"],
+    sample:"สวัสดีค่ะ ขออภัยที่ให้รอนะคะ 🙏 แอดมินส่งราคาเริ่มต้นและรีวิวเคสจริงให้ดูก่อนค่ะ …"},
+  early:{todo:["ให้ข้อมูลที่ลูกค้าถามก่อน (ช่วงราคา/โปร)", "ค่อยขอเบอร์หรือรูป พร้อมบอกเหตุผลว่าจะช่วยอะไรลูกค้า"],
+    sample:"เริ่มต้น xx,xxx บาทค่ะ ถ้าสะดวกส่งรูปด้านข้างมา คุณหมอจะประเมินให้ฟรีว่าเหมาะกับเทคนิคไหนนะคะ"}
+};
+const FIX_SYS = /ตอบกลับโฆษณา|replied to|ตอบกลับความคิดเห็น|คุณกำลังตอบกลับ|ต้องการส่งข้อความถึงคุณ|ถูกย้ายไปยัง|moved to spam|you are responding|you're responding/i;
+const FIX_AUTO = /ยินดีให้บริการค่ะ\s*💚\s*$|มีอะไรให้เราช่วยไหม/;
+/* the page's automatic welcome when someone taps an ad ("สวัสดีค่า X ONE Surgery ยินดีให้บริการค่ะ 💚") — not typed by an admin */
+const isAutoMsg = (t, cname) => { t = String(t || "").trim(); if(FIX_AUTO.test(t)) return true;
+  if(/แอดมิน|ที่ปรึกษา|ผู้ให้คำปรึกษา|ผู้ให้คําปรึกษา/.test(t)) return false;
+  if(/ยินดีให้บริการ/.test(t) && t.length < 90) return true;
+  // ad welcome templates greet the customer by name: "สวัสดีค่า วโรภาส ทรงจมูก ONE ฉงชิ่ง น่าสนใจไหมคะ?"
+  const first = String(cname || "").trim().split(/\s+/)[0];
+  return !!(first && first.length >= 2 && /^สวัสดี/.test(t) && t.includes(first) && t.length < 140); };
+/* the same admin message sent twice in a row (no customer message in between, within 30 min): a double send or two admins on one room.
+   Links, files, short words and saved replies sent again after the customer asked again are not counted */
+function dupPairs(m, cname){
+  const out = [], seen = new Map();
+  m.forEach((y, k) => {
+    if(y.c){ seen.clear(); return; }
+    const t = y.text.trim();
+    if(t.length <= 15 || /https?:\/\/|www\./i.test(t) || isAutoMsg(t, cname)) return;
+    if(seen.has(t) && y.t - m[seen.get(t)].t <= 30 * 6e4) out.push([seen.get(t), k]); else seen.set(t, k);
+  });
+  return out;
+}
+const FIX_PRICE = /ราคา|เท่า(ไร|ไหร่|หร่)|กี่บาท|ค่าใช้จ่าย/i, FIX_HASPRICE = /\d{1,3}(,\d{3})+|\d{4,}|\d+\s*(บาท|k\b)|฿/i, FIX_ASK = /เบอร์|โทร|ไลน์|line|ส่งรูป|ขอรูป|ภาพถ่าย/i;
+const FIX_ORDER = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อ|linksplus/i;
+const ADMIN_ALIAS = {"พิ้":"พิ้ง", "พิ้งค์":"พิ้ง", "พิ้งก์":"พิ้ง"};
+function adminOf(msgs){ const n0 = adminOf0(msgs), n = ADMIN_ALIAS[n0] || n0; return n !== "ไม่ระบุ" && (adminCounts()[n] || 0) < 3 ? "ไม่ระบุ" : n; }
+function adminCounts(){
+  const all = chatConvs(); if(S._admCnt && S._admCnt.src === all) return S._admCnt.map;
+  const map = {}; all.forEach(c => { const n0 = adminOf0(c.msgs), n = ADMIN_ALIAS[n0] || n0; map[n] = (map[n] || 0) + 1; });
+  S._admCnt = {src:all, map}; return map;
+}
+function adminOf0(msgs){
+  // only a self-introduction counts ("…แอดมินพิ้งเป็นผู้ให้คำปรึกษา", "…แอดมินซัน☀️ ที่ปรึกษา…", "แอดมินน้ำ ที่ปรึกษา…"),
+  // not phrases such as "แอดมินเช็คคิวให้" or "แอดมินสอบถาม"
+  for(const m of msgs){ if(m.c) continue; const t = m.text || "";
+    if(!/สวัสดี|ที่ปรึกษา|ผู้ให้ค[ำํ]าปรึกษา|ยินดีให้บริการ/.test(t)) continue;
+    const x = t.match(/แอดมิน\s*([ก-๙A-Za-z]{2,12})/); if(!x) continue;
+    let n = x[1].replace(/(ยินดี|สวัสดี|ค่ะ|คะ|นะ|เป็น|ที่ปรึกษา|ผู้|ขอ|ได้|ให้).*$/, "");
+    if(n.length < 2 || /^(รบกวน|แจ้ง|จะ|ส่ง|ลง|ทำ|ยืนยัน|ตรวจ|เช็ค|สอบถาม|ฝาก|อีก|หน่อย|กี่)/.test(n)) continue;
+    if(/^พิ้/.test(n)) n = "พิ้ง"; else if(/^ซัน/.test(n)) n = "ซัน"; else if(/^น้ำ/.test(n)) n = "น้ำ";
+    return n; }
+  return "ไม่ระบุ";
+}
+function renderChatFix(a, e){
+  const dataEnd = Math.max(...chatConvs().map(c => +c.last.t));
+  const items = [];
+  chatConvs().forEach(c => {
+    // admin files / pictures / stickers have no text but are real replies, so they stay; empty customer messages are dropped
+    const m = c.msgs.filter(x => !FIX_SYS.test(x.text || "") && (String(x.text || "").trim() || !x.c)).map(x => ({...x, text: String(x.text || "")}));
+    if(!m.some(x => x.c && x.t >= a && x.t < e) || c.msgs.some(x => !x.c && FIX_ORDER.test(x.text || ""))) return;
+    let turns = 0; for(let i = 1; i < m.length; i++) if(m[i - 1].c && !m[i].c) turns++;
+    if(turns < 1 || turns > 4) return;
+    const why = [], fc = m.find(x => x.c), human = m.filter(x => !x.c && !isAutoMsg(x.text, c.name));
+    const last = m[m.length - 1];
+    if(last.c && dataEnd - last.t > 2 * 36e5){
+      // the customer's trailing block must be a real question/request — not fragments ("ถ้า", "ข"), thanks or stickers
+      let k = m.length - 1; while(k > 0 && m[k - 1].c) k--;
+      const tail = m.slice(k).map(y => y.text.trim()).join(" "), letters = tail.replace(/[^ก-๙A-Za-z]/g, "");
+      const asks = /\?|ไหม|มั้ย|ยังไง|อย่างไร|เท่า(ไร|ไหร่|หร่)|กี่|ไหน|เมื่อไหร่|ราคา|สอบถาม|ขอ(ทราบ|ดู|รายละเอียด|ข้อมูล)|สนใจ|อยาก|ได้ไหม|ได้มั้ย|ว่าง|โปร|นัด|คิว/i.test(tail);
+      const ack = /^(ขอบคุณ|ขอบใจ|โอเค|ok|okay|ครับ|ค่ะ|คะ|คับ|จ้า|ได้ครับ|ได้ค่ะ|รับทราบ|👍|🙏|ค่ะๆ|ครับๆ|\s)+$/i.test(tail);
+      if(asks && !ack && letters.length >= 4) why.push({k:"unans", d:`ข้อความสุดท้ายของลูกค้า ${fmtWhen(m[k].t)}: “${tail.slice(0, 60)}”`});
+    }
+    let asks = 0, lastAsk = null, adminSince = false;
+    m.forEach(y => { if(!y.c){ if(lastAsk) adminSince = true; return; }
+      if(!FIX_PRICE.test(y.text)) return;
+      if(!lastAsk || adminSince || y.t - lastAsk.t > 15 * 6e4){ asks++; } lastAsk = y; adminSince = false; });
+    if(asks >= 2 && !human.some(x => FIX_HASPRICE.test(x.text))) why.push({k:"price", d:`ลูกค้าถามราคา ${asks} รอบ (หลังแอดมินตอบแล้วยังถามอีก) แต่ยังไม่มีตัวเลขราคาในคำตอบ`});
+    const dps = dupPairs(m, c.name);
+    if(dps.length) why.push({k:"dup", d:`แอดมินส่งข้อความเดิมซ้ำติดกัน: “${m[dps[0][1]].text.trim().slice(0, 50)}”`});
+    const fh = fc && human.find(x => x.t > fc.t);
+    if(fh){ const mins = (fh.t - fc.t) / 6e4, h = fc.t.getHours(); if(mins > 60 && h >= 9 && h < 21) why.push({k:"slow", d:`ทักตอน ${String(h).padStart(2,"0")}:${String(fc.t.getMinutes()).padStart(2,"0")} ได้คำตอบแรกหลัง ${Math.round(mins)} นาที`}); }
+    if(fc && FIX_PRICE.test(fc.text) && fh && FIX_ASK.test(fh.text) && !FIX_HASPRICE.test(fh.text)) why.push({k:"early", d:`ตอบแรก: “${fh.text.slice(0, 50)}”`});
+    // only chats where we know which admin talked (rooms without an admin introducing themselves are left out of the whole card)
+    const admin = adminOf(m);
+    if(why.length && admin !== "ไม่ระบุ") items.push({c, m, why, turns, admin});
+  });
+  S._fix = items;
+  const rooms = chatConvs().filter(c => c.msgs.some(x => x.c && x.t >= a && x.t < e)).length;
+  const cnt = k => items.filter(x => x.why.some(w => w.k === k)).length;
+  const admins = [...new Set(items.map(x => x.admin))].filter(n => n !== "ไม่ระบุ").map(n => ({n, list:items.filter(x => x.admin === n)})).sort((p, q) => q.list.length - p.list.length);
+  const box = $("#chatFix");
+  if(!items.length){ setHTMLIf(box, `<div class="rk-more">ไม่พบแชทที่เข้าหมวดในช่วงนี้</div>`); return; }
+  setHTMLIf(box, `<div class="fxwrap">
+    <div class="fxcats">${FIX_CATS.map((f, i) => `<button class="fxc" data-cat="${f.k}" style="--fc:${f.color};--i:${i}">
+      <span class="h"><em>${i + 1}</em>${f.name}</span><b>${fmtN(cnt(f.k))}</b><small>ห้อง · ${rooms ? (cnt(f.k) / rooms * 100).toFixed(1) : 0}% ของห้องที่คุย</small><u>ดูแชท ›</u></button>`).join("")}</div>
+    <div class="fxadm"><div class="t">แยกตามแอดมิน <small>(จากชื่อที่แนะนำตัวในแชท · ไม่รวมห้องที่ไม่รู้ว่าแอดมินคนไหนคุย · กดตัวเลขเพื่อดูแชท)</small></div>
+      <table class="dt fitw"><thead><tr><th>แอดมิน</th>${FIX_CATS.map((f, i) => `<th class="num" title="${f.name}"><em class="fxn" style="--fc:${f.color}">${i + 1}</em></th>`).join("")}<th class="num">รวมห้อง</th></tr></thead><tbody>
+      ${admins.map(A => `<tr><td>${esc(A.n)}</td>${FIX_CATS.map(f => { const n = A.list.filter(x => x.why.some(w => w.k === f.k)).length;
+        return `<td class="num">${n ? `<button class="fxcell" data-cat="${f.k}" data-adm="${esc(A.n)}">${n}</button>` : `<span class="muted">-</span>`}</td>`; }).join("")}<td class="num"><b>${A.list.length}</b></td></tr>`).join("")}
+      </tbody></table></div></div>`);
+  $$("#chatFix .fxc").forEach(b => b.onclick = () => openFixModal(b.dataset.cat, ""));
+  $$("#chatFix .fxcell").forEach(b => b.onclick = () => openFixModal(b.dataset.cat, b.dataset.adm));
+}
+/* a steady colour per admin name, so each admin is easy to spot */
+const ADM_PAL = ["#5e662d", "#b5654a", "#3f6f9e", "#7d5a8a", "#356e6b", "#a3864a", "#c08a3e"];
+const admColor = n => { let h = 0; for(const ch of String(n)) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return ADM_PAL[h % ADM_PAL.length]; };
+function openFixModal(cat, adm){
+  const f = FIX_CATS.find(x => x.k === cat); if(!f) return;
+  const H = FIX_HOW[cat];
+  const list = (S._fix || []).filter(x => x.why.some(w => w.k === cat) && (!adm || x.admin === adm)).sort((p, q) => q.c.last.t - p.c.last.t);
+  $("#dmTitle").textContent = `🛠 ${f.name} · ${list.length} ห้อง${adm ? " · แอดมิน" + adm : ""}`;
+  // one guidance box for the whole category, then each chat with the problem lines highlighted
+  $("#dmSub").innerHTML = "";
+  const guide = `<div class="fxguide" style="--fc:${f.color}"><div class="g1"><b>ทำไมควรปรับ</b><p>${esc(f.tip.split(" ควร")[0])}</p></div>
+    <div class="g2"><b>ควรทำแบบนี้</b><ol>${H.todo.map(t => `<li>${esc(t)}</li>`).join("")}</ol></div>
+    <div class="g3"><b>ตัวอย่างข้อความ</b><p class="smp">${esc(H.sample)}</p></div>
+    <div class="g4"><span class="lg bad">ไฮไลต์แดง = จุดที่ควรปรับ</span><span class="lg ok">เส้นเขียว = ทำได้ดีแล้ว (คัดกรอง/ตอบตรง)</span></div></div>`;
+  const PRICE = FIX_PRICE, HASP = FIX_HASPRICE;
+  const rowsHtml = list.slice(0, 120).map(x => {
+    const m = x.m, w = x.why.find(y => y.k === cat), mark = new Map(), notes = new Map(), good = new Set();
+    // mark the lines that show the problem
+    if(cat === "unans"){ const k = m.length - 1; mark.set(k, "ยังไม่มีคนตอบข้อความนี้"); }
+    if(cat === "price"){ let n = 0, la = null, ad = false; m.forEach((y, k) => { if(!y.c){ if(la) ad = true; return; } if(!PRICE.test(y.text)) return;
+        if(!la || ad || y.t - la.t > 15 * 6e4){ n++; mark.set(k, `ถามราคารอบที่ ${n}`); } la = y; ad = false; });
+      const lastQ = Math.max(...[...mark.keys()]); for(let k = lastQ + 1; k < m.length && !m[k].c; k++) if(!HASP.test(m[k].text)){ mark.set(k, "ตอบแต่ยังไม่บอกราคา"); break; } }
+    if(cat === "dup"){ dupPairs(m, x.c.name).forEach(([a0, b0]) => mark.set(b0, `ส่งซ้ำ (${Math.max(1, Math.round((m[b0].t - m[a0].t) / 6e4))} นาทีหลังครั้งแรก)`)); }
+    if(cat === "slow" || cat === "early"){ const fc = m.findIndex(y => y.c), fh = m.findIndex((y, k) => k > fc && !y.c && !isAutoMsg(y.text, x.c.name));
+      if(fh > 0){ if(cat === "slow") notes.set(fh, `ลูกค้ารอ ${Math.round((m[fh].t - m[fc].t) / 6e4)} นาที`); else mark.set(fh, "ขอเบอร์/รูปก่อนให้ข้อมูล"); } }
+    // what went right: qualifying questions and replies that gave a price
+    m.forEach((y, k) => { if(!y.c && !mark.has(k) && (/เคสเสริมใหม่|เคสแก้|เคยเสริม|กังวล|ทรง/.test(y.text) || HASP.test(y.text))) good.add(k); });
+    // show the problem area (max 10 lines)
+    const ks = [...mark.keys(), ...notes.keys()]; const lo = Math.max(0, Math.min(...(ks.length ? ks : [0])) - 4), hi = Math.min(m.length, lo + 10);
+    const lines = m.slice(lo, hi).map((y, i) => { const k = lo + i, bad = mark.get(k);
+      return `${notes.has(k) ? `<div class="gap"><span>⏱ ${notes.get(k)}</span></div>` : ""}<div class="fl ${y.c ? "c" : "a"} ${bad ? "bad" : good.has(k) ? "ok" : ""}"><span ${y.c ? "" : `style="--ac:${admColor(x.admin)}"`}>${y.c ? "ลูกค้า" : isAutoMsg(y.text, x.c.name) ? "ระบบ" : esc(x.admin)}</span>
+        <p>${y.text.trim() ? esc(String(y.text).replace(/\s+/g, " ").slice(0, 160)) : `<span class="muted"><i>(ไฟล์แนบ / รูป / สติกเกอร์)</i></span>`}${bad ? `<em class="why">${esc(bad)}</em>` : ""}</p><i>${fmtWhen(y.t)}</i></div>`; }).join("");
+    const og = chatOrigin(x.c);
+    return `<div class="fxr"><div class="fxh"><span class="admtag" style="--ac:${admColor(x.admin)}">👤 แอดมิน${esc(x.admin)}</span><b>${esc(x.c.name)}</b> ${srcTag(og.src)} <small>${esc(x.c.page)} · คุย ${x.turns} รอบ</small>
+        <span class="fxb"><button class="pvb" data-cv="${esc(x.c.id)}">Preview</button>${x.c.link ? `<a class="chatlink" href="${esc(x.c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>
+      <div class="fxfound" style="--fc:${f.color}">พบ: ${esc(w.d)}${x.why.length > 1 ? ` <small>· เข้าหมวดอื่นด้วย: ${x.why.filter(y => y.k !== cat).map(o => FIX_CATS.find(z => z.k === o.k).name).join(", ")}</small>` : ""}</div>
+      <div class="fxex">${lo > 0 ? `<div class="more">… ข้ามข้อความก่อนหน้า ${lo} ข้อความ</div>` : ""}${lines}${hi < m.length ? `<div class="more">… อีก ${m.length - hi} ข้อความ (กด Preview)</div>` : ""}</div></div>`; }).join("");
+  $("#dmBody").innerHTML = guide + rowsHtml + (list.length > 120 ? `<div class="rk-more">แสดง 120 จาก ${list.length} ห้อง (ล่าสุดก่อน)</div>` : "");
+  $("#daysModal").classList.add("on");
+}
+/* admin follow-ups: the customer went quiet for more than a day, an admin wrote first, did the customer reply — and buy? */
+function renderChatFU(a, e){
+  const ORD = /you created an order|คุณร้องขอไป|คุณสร้างคำสั่งซื้อ|linksplus/i;
+  const items = [];
+  chatConvs().forEach(c => {
+    const m = c.msgs.filter(x => !FIX_SYS.test(x.text || "")).map(x => ({...x, text:String(x.text || "")}));
+    let lastC = null, hit = null;
+    for(let i = 0; i < m.length; i++){
+      const y = m[i];
+      if(y.c){ lastC = y; continue; }
+      if(!lastC || hit) continue;
+      const gap = (y.t - lastC.t) / 864e5;
+      // a real follow-up is a typed message: files / pictures / stickers alone are not counted
+      if(gap > 1 && y.t >= a && y.t < e && y.text.trim().replace(/[^ก-๙A-Za-z0-9]/g, "").length >= 5 && !isAutoMsg(y.text, c.name) && !ORD.test(y.text)){
+        const reply = m.slice(i + 1).find(z => z.c && String(z.text).trim());
+        const order = m.slice(i + 1).find(z => !z.c && ORD.test(z.text));
+        hit = {c, gap, fu:y, reply, order, admin: adminOf(m), quiet: lastC};
+      }
+    }
+    if(hit) items.push(hit);
+  });
+  S._fu = items;
+  const box = $("#chatFU");
+  if(!items.length){ setHTMLIf(box, `<div class="rk-more">ไม่มีกรณีที่แอดมินทักกลับหลังลูกค้าเงียบเกิน 1 วันในช่วงนี้</div>`); return; }
+  const rep = items.filter(x => x.reply), buy = rep.filter(x => x.order && (!x.reply || x.order.t >= x.fu.t));
+  const hrs = rep.map(x => (x.reply.t - x.fu.t) / 36e5).sort((p, q) => p - q), medH = hrs[Math.floor(hrs.length / 2)];
+  const pct = (n, d) => d ? (n / d * 100).toFixed(0) + "%" : "-";
+  const fmtH = h => h < 1 ? `${Math.round(h * 60)} นาที` : h < 48 ? `${h.toFixed(1)} ชม.` : `${(h / 24).toFixed(1)} วัน`;
+  const admins = [...new Set(items.map(x => x.admin))].filter(n => n !== "ไม่ระบุ").map(n => { const L = items.filter(x => x.admin === n), R2 = L.filter(x => x.reply); return {n, all:L.length, rep:R2.length, buy:R2.filter(x => x.order).length}; }).sort((p, q) => q.all - p.all);
+  const W = Math.max(1, items.length);
+  const mxA = Math.max(1, ...admins.map(A => A.all));
+  const ic = {all:'<path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/>',
+    rep:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"/>', buy:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h3"/>'};
+  const step = (k, cls, label, n, unit, w) => `<button class="f2s ${cls}" data-fu="${k}"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ic[k]}</svg></span>
+      <span class="lb">${label}</span><b>${fmtN(n)}</b><small>${unit}</small><em><i style="width:${w}%"></i></em><u>ดูรายชื่อ ›</u></button>`;
+  const arrow = (txt, v) => `<div class="f2a"><span>${txt}</span><b>${v}</b><svg viewBox="0 0 40 12"><path d="M0 6h34M30 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+  setHTMLIf(box, `<div class="fu2">
+    <div class="f2flow">
+      <div class="f2steps">
+        ${step("all", "s1", "แอดมินทักกลับ", items.length, "ห้อง", 100)}
+        ${arrow("ตอบกลับ", pct(rep.length, items.length))}
+        ${step("rep", "s2", "ลูกค้าคุยต่อ", rep.length, "ห้อง", (rep.length / W * 100).toFixed(1))}
+        ${arrow("ซื้อ", pct(buy.length, rep.length))}
+        ${step("buy", "s3", "ปิดการขายได้", buy.length, `คน (Tracking) · <b class="bp">${pct(buy.length, rep.length)}</b> ของคนที่คุยต่อ · <b class="bp">${pct(buy.length, items.length)}</b> ของห้องที่ทัก`, (buy.length / W * 100).toFixed(1))}
+      </div>
+      <div class="f2ins">
+        <span class="kv"><small>ลูกค้าตอบหลังแอดมินทัก (ค่ากลาง)</small><b>${hrs.length ? fmtH(medH) : "-"}</b></span>
+        <span class="kv"><small>ซื้อ ÷ ห้องที่แอดมินทักทั้งหมด</small><b>${pct(buy.length, items.length)}</b></span>
+        <span class="hint2">กดกล่องเพื่อดูว่าเป็นใคร หายไปกี่วัน แอดมินทักว่าอะไร และลูกค้าตอบว่าอะไร</span>
+      </div>
+    </div>
+    <div class="f2adm"><div class="t">แยกตามแอดมินที่ดูแลห้อง</div>
+      ${admins.map(A => `<div class="f2r" style="--ac:${admColor(A.n)}">
+        <span class="nm"><i></i>${esc(A.n)}</span>
+        <button class="fxcell" data-fu="all" data-adm="${esc(A.n)}" title="ทักกลับ">${A.all}<small>ทัก</small></button>
+        <span class="rt"><em><s style="width:${A.all ? (A.rep / A.all * 100).toFixed(1) : 0}%"></s></em>${A.rep ? `<button class="fxcell" data-fu="rep" data-adm="${esc(A.n)}">${A.rep}<small>คุยต่อ · ${pct(A.rep, A.all)}</small></button>` : `<span class="muted">-</span>`}</span>
+        ${A.buy ? `<button class="fxcell buy" data-fu="buy" data-adm="${esc(A.n)}">${A.buy}<small>ซื้อ · ${pct(A.buy, A.rep)}</small></button>` : `<span class="muted z">-</span>`}
+      </div>`).join("")}
+    </div>
+  </div>`);
+  $$("#chatFU [data-fu]").forEach(b => b.onclick = () => openFUModal(b.dataset.fu, b.dataset.adm || ""));
+}
+function openFUModal(kind, adm){
+  let L = (S._fu || []).filter(x => !adm || x.admin === adm);
+  if(kind === "rep") L = L.filter(x => x.reply); if(kind === "buy") L = L.filter(x => x.reply && x.order);
+  L.sort((p, q) => q.fu.t - p.fu.t);
+  const T = {all:"แอดมินทักกลับหลังลูกค้าเงียบเกิน 1 วัน", rep:"แอดมินทักกลับ แล้วลูกค้าคุยต่อ", buy:"แอดมินทักกลับ แล้วปิดการขายได้"}[kind];
+  $("#dmTitle").textContent = `📣 ${T} · ${L.length} ห้อง${adm ? " · แอดมิน" + adm : ""}`;
+  $("#dmSub").textContent = "เรียงจากแอดมินทักล่าสุด · กด Preview เพื่อดูทั้งแชท";
+  const cut = t => esc(String(t || "").replace(/\s+/g, " ").trim().slice(0, 110)) || `<span class="muted"><i>(ไฟล์แนบ / รูป / สติกเกอร์)</i></span>`;
+  $("#dmBody").innerHTML = !L.length ? `<div class="rk-more">ไม่มีรายชื่อ</div>` : L.slice(0, 150).map(x => { const og = chatOrigin(x.c);
+    return `<div class="fxr fur"><div class="fxh"><b>${esc(x.c.name)}</b> ${srcTag(og.src)} <small>${esc(x.c.page)} · แอดมิน${esc(x.admin)}</small>
+        ${x.order ? `<span class="paidtag">💳 ซื้อแล้ว · ${fmtWhen(x.order.t)}</span>` : x.reply ? `<span class="futag r">คุยต่อแล้ว</span>` : `<span class="futag n">ยังไม่ตอบ</span>`}
+        <span class="fxb"><button class="pvb" data-cv="${esc(x.c.id)}">Preview</button>${x.c.link ? `<a class="chatlink" href="${esc(x.c.link)}" target="_blank" rel="noopener">แชท</a>` : ""}</span></div>
+      <div class="futl">
+        <div class="st c"><span>ลูกค้าเงียบไป</span><p>${cut(x.quiet.text)}</p><i>${fmtWhen(x.quiet.t)}</i></div>
+        <div class="gp"><span>⏳ เงียบ ${x.gap.toFixed(1)} วัน</span></div>
+        <div class="st a"><span>แอดมินทัก</span><p>${cut(x.fu.text)}</p><i>${fmtWhen(x.fu.t)}</i></div>
+        ${x.reply ? `<div class="gp"><span>ตอบใน ${((x.reply.t - x.fu.t) / 36e5) < 48 ? ((x.reply.t - x.fu.t) / 36e5).toFixed(1) + " ชม." : ((x.reply.t - x.fu.t) / 864e5).toFixed(1) + " วัน"}</span></div>
+          <div class="st c ok"><span>ลูกค้าตอบ</span><p>${cut(x.reply.text)}</p><i>${fmtWhen(x.reply.t)}</i></div>` : ""}
+      </div></div>`; }).join("") + (L.length > 150 ? `<div class="rk-more">แสดง 150 จาก ${L.length} ห้อง</div>` : "");
   $("#daysModal").classList.add("on");
 }
 function renderChatQ(a, e){
@@ -5188,7 +5581,7 @@ $$("#chatHourMode button").forEach(b => b.onclick = () => { S.chatHourMode = b.d
 /* ================= PRESENTATION MODE (expand a card to full screen) =================
    Trial on Ads × Booking: every card gets a ⤢ button; the card fills the screen with bigger text, ⤡ / Esc / click outside brings it back. */
 const PRESENT_CARDS = ["#p-adsbook .adsbook", "#p-adsbook .abfun", "#p-adsbook .abweek", "#p-adsbook .abtablecard", "#p-ads .adschart", "#p-ads .adsweek", "#p-ads .adstable",
-  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust", "#p-chat .chdays", "#p-chat .chgap", "#p-chat .chq",
+  "#p-trend > .card", "#p-chat .chday", "#p-chat .chhour", "#p-chat .chwait", "#p-chat .chspeed", "#p-chat .chsrc", "#p-chat .chcust", "#p-chat .chdays", "#p-chat .chgap", "#p-chat .chq", "#p-chat .chfix", "#p-chat .chfu",
   "#p-compare .mcard", "#p-compare .revcmp", "#p-compare .revsales", "#p-compare .cbottom .chcard",
   "#p-lead .ldstage", "#p-lead .ldday", "#p-lead .ldcmp", "#p-lead .ldlist", "#p-camp .cpflow", "#p-camp .cpsum", "#p-camp .cpbuy", "#p-camp .cptable"].join(", ");
 const rerenderPresentPage = () => S.page === "lead" ? renderLead() : S.page === "camp" ? renderCamp() : ["ads", "adsbook", "chat"].includes(S.page) ? rerenderAds() : render();
