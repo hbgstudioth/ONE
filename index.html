@@ -1450,6 +1450,28 @@ body[data-page="customers"] #presetSeg button[data-p="3m"]{display:none}
 }
 .vi{display:inline-flex;width:1.05em;height:1.05em;vertical-align:-.16em;flex:none}
 .vi svg{width:100%;height:100%}
+#p-ads .adstable > .tbl-wrap{flex:0 1 auto;min-height:0}
+.adsavg{flex:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.adsavg .aah{grid-column:1 / -1;font-size:12.5px;font-weight:600}
+.adsavg .aah small{font-weight:400;color:var(--muted)}
+.adsavg .aa{border-radius:12px;padding:8px 12px;color:#fff;background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 62%,#fff));display:flex;flex-direction:column;min-width:0}
+.adsavg .aa span{font-size:11.5px;opacity:.9}
+.adsavg .aa b{font-size:clamp(18px,1.5vw,24px);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.adsavg .aa small{font-size:10.5px;opacity:.85}
+.adsavg .aa .ach{align-self:flex-start;margin-top:4px;font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 7px;background:rgba(255,255,255,.22);color:#fff}
+.asvr .num .ach{display:block;font-size:10px;font-weight:700;line-height:1.1}
+.asvr .ach.g{color:#3f7a2a} .asvr .ach.b{color:#b5473a} .asvr .ach.n{color:var(--muted)}
+.asvr{align-items:start}
+.asv{grid-column:1 / -1;border-top:1px dashed var(--line);margin-top:2px;padding-top:6px}
+.asvh,.asvr{display:grid;grid-template-columns:minmax(0,1.6fr) 1fr .8fr .8fr;gap:8px;align-items:center;font-size:12px;padding:3px 2px}
+.asvh{font-size:11px;color:var(--muted)}
+.asvr{color:var(--text);border-radius:6px}
+.asvr:hover{background:var(--soft)}
+.asv .num{text-align:right;font-variant-numeric:tabular-nums}
+.asvr .nm{display:grid;grid-template-columns:8px auto minmax(30px,1fr);align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.asvr .nm i{width:8px;height:8px;border-radius:50%}
+.asvr .nm em{height:4px;border-radius:3px;background:var(--soft);overflow:hidden;display:block}
+.asvr .nm em s{display:block;height:100%;opacity:.55;border-radius:3px}
 .qbtn{height:32px;padding:0 10px;border-radius:10px;background:var(--soft);font-size:12.5px;color:var(--muted);transition:color .3s,background .3s}
 .qbtn:hover{color:var(--p1);background:color-mix(in srgb,var(--p1) 9%,transparent)}
 .mcard{padding:6px 10px}
@@ -1956,7 +1978,7 @@ kbd{font-family:inherit;min-width:24px;height:24px;padding:0 6px;display:inline-
             <div class="mobhint">แกนล่างแสดงวันจันทร์ต้นสัปดาห์ (วัน/เดือน) · * = สัปดาห์ที่ยังไม่ครบ 7 วัน · แตะแท่งเพื่อดูรายละเอียด</div>
             <div class="grow"><canvas id="ads-week"></canvas></div>
           </div>
-          <div class="card ch flex adstable"><h3><span id="adsTblTitle">สรุป</span><span class="hint" style="margin-left:auto"><div class="seg" id="adsTab"><i class="thumb"></i><button data-t="svc" class="on">แยกบริการ</button><button data-t="acct">แยกบัญชีแอด</button><button data-t="time">รายวัน/เดือน</button><button data-t="camp">แคมเปญ</button></div></span></h3><div class="tbl-wrap" id="t-ads"></div></div>
+          <div class="card ch flex adstable"><h3><span id="adsTblTitle">สรุป</span><span class="hint" style="margin-left:auto"><div class="seg" id="adsTab"><i class="thumb"></i><button data-t="svc" class="on">แยกบริการ</button><button data-t="acct">แยกบัญชีแอด</button><button data-t="time">รายวัน/เดือน</button><button data-t="camp">แคมเปญ</button></div></span></h3><div class="tbl-wrap" id="t-ads"></div><div class="adsavg" id="adsAvg"></div></div>
         </div>
       </section>
 
@@ -4119,6 +4141,24 @@ function renderAds(){
   const withShare = g => g.map(x => ({...x, share: T.spend ? x.spend / T.spend * 100 : null}));
   const foot = {spend:fmtB(T.spend), share:"100%", msg:fmtN(T.msg), cpm:fmtB2(T.cpm), pur:fmtN(T.pur), cpp:fmtB2(T.cpp), val:fmtB(T.val), roas:fmtX(T.roas),
     imp:fmtN(T.imp), cpmi:fmtB2(T.cpmi), clk:fmtN(T.clk), ctr:T.ctr == null ? "-" : T.ctr.toFixed(2) + "%", cpc:fmtB2(T.cpc), tp:T.tp ? fmtN(T.tp) : "-", cptp:T.cptp == null ? "-" : fmtB2(T.cptp)};
+  // daily averages for the period (same filters as the table)
+  { const d = nDays || 1;
+    // the same number of days just before the period, same filters → % change of the daily averages
+    const pa = a && nDays ? addDays(a, -nDays) : null, pb = a ? addDays(a, -1) : null;
+    const prevRows = pa ? (S.ads || []).filter(x => x.date >= pa && x.date <= pb && (!S.adsAcct || x.acct === S.adsAcct) && (!S.adsSvc || x.svc === S.adsSvc) && objOk(x)) : [];
+    const P = prevRows.length ? prevRows.reduce((t, x) => (t.spend += x.spend, t.msg += x.msg, t.pur += x.pur, t), {spend:0, msg:0, pur:0}) : null;
+    const chg = (cur, prev, better) => { if(prev == null || !prev) return ""; const p2 = (cur - prev) / prev * 100; if(Math.abs(p2) < .05) return `<span class="ach n">• 0%</span>`;
+      const cls = better == null ? "n" : (better === "up" ? p2 > 0 : p2 < 0) ? "g" : "b"; return `<span class="ach ${cls}">${p2 > 0 ? "▲" : "▼"} ${Math.abs(p2).toFixed(1)}%</span>`; };
+    const cards = [["Spend เฉลี่ย", fmtB(T.spend / d), "ต่อวัน", "#535b27", chg(T.spend, P && P.spend, null)], ["ข้อความเฉลี่ย", (T.msg / d).toFixed(1), "ข้อความ/วัน", "#8a6a43", chg(T.msg, P && P.msg, "up")], ["การซื้อเฉลี่ย", (T.pur / d).toFixed(2), "ครั้ง/วัน", "#2f6690", chg(T.pur, P && P.pur, "up")]];
+    $("#adsAvg").innerHTML = `<div class="aah">ค่าเฉลี่ยต่อวัน <small>· ${fmtN(d)} วันในช่วงที่เลือก${S.adsSvc ? " · " + esc(S.adsSvc) : ""}${S.adsObj ? " · " + esc(S.adsObj) : ""}${P ? ` · % เทียบ ${fmtN(d)} วันก่อนหน้า (${dLabel(pa)} – ${dLabel(pb)})` : ""}</small></div>` +
+      cards.map(([l, v, u, c, ch]) => `<div class="aa" style="--ac:${c}"><span>${l}</span><b>${v}</b><small>${u}</small>${ch}</div>`).join("") +
+      // per service, quieter: a light list under the totals, with small bars to compare spend
+      (() => { const G = adsAgg(rows, x => x.svc).sort((p, q) => q.spend - p.spend); if(G.length < 2) return "";
+        const mx = Math.max(1, ...G.map(g => g.spend)), PAL = ["#5e662d", "#8a6a43", "#356e6b", "#b5654a", "#7d5a8a", "#3f6f9e", "#a3864a", "#5f9a8f"];
+        const PG = new Map(adsAgg(prevRows, x => x.svc).map(g => [g.key, g]));
+        return `<div class="asv"><div class="asvh"><span>แยกตามบริการ (ต่อวัน)</span><span class="num">Spend</span><span class="num">ข้อความ</span><span class="num">การซื้อ</span></div>${G.map((g, i) => { const q = PG.get(g.key);
+          return `<div class="asvr"><span class="nm"><i style="background:${PAL[i % PAL.length]}"></i>${esc(g.key)}<em><s style="width:${(g.spend / mx * 100).toFixed(1)}%;background:${PAL[i % PAL.length]}"></s></em></span>
+            <span class="num">${fmtB(g.spend / d)}${chg(g.spend, q && q.spend, null)}</span><span class="num">${(g.msg / d).toFixed(1)}${chg(g.msg, q && q.msg, "up")}</span><span class="num">${(g.pur / d).toFixed(2)}${chg(g.pur, q && q.pur, "up")}</span></div>`; }).join("")}</div>`; })(); }
   const tab = S.adsTab;
   if(tab === "svc"){
     $("#adsTblTitle").textContent = "สรุปแยกบริการ";
